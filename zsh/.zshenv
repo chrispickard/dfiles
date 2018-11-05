@@ -5,9 +5,10 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-if [ -f "$HOME/.zshenv_$(hostname)"]; then
+if [ -f "$HOME/.zshenv_$(hostname)" ]; then
     source "$HOME/.zshenv_$(hostname)"
 fi
+
 if [[ -f ~/.asdf/asdf.sh ]]; then
     source ~/.asdf/asdf.sh
     export ASDFROOT=$HOME/.asdf

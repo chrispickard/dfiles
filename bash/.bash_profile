@@ -1,5 +1,5 @@
 
-if [ -f "$HOME/.bash_profile_$(hostname)"]; then
+if [ -f "$HOME/.bash_profile_$(hostname)" ]; then
     source "$HOME/.bash_profile_$(hostname)"
 fi
 

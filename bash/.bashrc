@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ -f "$HOME/.bashrc_$(hostname)"]; then
+if [ -f "$HOME/.bashrc_$(hostname)" ]; then
     source "$HOME/.bashrc_$(hostname)"
 fi
 

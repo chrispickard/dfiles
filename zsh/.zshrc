@@ -1,7 +1,7 @@
 # zmodload zsh/zprof
 source "${HOME}/.zgen/zgen.zsh"
 source "$HOME/.bash_aliases"
-if [ -f "$HOME/.zshrc_$(hostname)"]; then
+if [ -f "$HOME/.zshrc_$(hostname)" ]; then
     source "$HOME/.zshrc_$(hostname)"
 fi
 
