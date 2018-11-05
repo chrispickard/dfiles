@@ -1,7 +1,8 @@
 * Dotfiles
-  A zsh/zgen focused set of dotfiles with tmux support
+  A zsh/zgen focused set of dotfiles with tmux support and spacemacs included
 ** To Install
    - install gnu stow from your package manager
+   - clone this repo
    - run ~./setup.sh~
    - enjoy your fancy new dotfiles
 ** Custom site configuration
