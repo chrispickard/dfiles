@@ -3,7 +3,7 @@
 ** To Install
    - install gnu stow from your package manager
    - clone this repo to your home directory
-   - run ~./setup.sh~
+   - run ~./setup.sh~, it will request sudo to move a script to ~/usr/local/bin~
    - enjoy your fancy new dotfiles
 ** Custom site configuration
    - for custom site configuration, add a file like ~$HOME/.zshenv_$(hostname)~ and add custom
