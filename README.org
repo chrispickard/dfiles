@@ -6,5 +6,5 @@
 ** Custom site configuration
    - for custom site configuration, add a file like ~$HOME/.zshenv_$(hostname)~ and add custom
      configuration there
-   - custom zgen plugins can be added in a ~/.zsh_widgets file
+   - custom zgen plugins can be added in a ~$HOME/.zsh_widgets~ file
    
