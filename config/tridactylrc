@@ -8,6 +8,7 @@
 " set smoothscroll false
 set theme dark
 " " set newtab about:newtab
+source ~/.tridactylrc_local
 
 " "
 " " Binds
@@ -40,7 +41,6 @@ set csp clobber
 
 " Make quickmarks for the sane Tridactyl issue view
 quickmark t https://github.com/cmcaine/tridactyl/issues?utf8=%E2%9C%93&q=sort%3Aupdated-desc+
-quickmark m http://mstr-01.oh.dcos.altamiracorp.com/#/services/overview
 quickmark g https://www.reddit.com/r/golang/
 
 " This will have to do until someone writes us a nice syntax file :)
