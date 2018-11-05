@@ -1,6 +1,6 @@
 
-if [ -f "$HOME/.bash_profile_$(hostname)" ]; then
-    source "$HOME/.bash_profile_$(hostname)"
+if [ -f "$HOME/.bash_profile_local" ]; then
+    source "$HOME/.bash_profile_local"
 fi
 
 export MAVEN_OPTS="-Xmx4000m"

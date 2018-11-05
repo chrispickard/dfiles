@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if [ -f "$HOME/.bashrc_$(hostname)" ]; then
-    source "$HOME/.bashrc_$(hostname)"
+if [ -f "$HOME/.bashrc_local" ]; then
+    source "$HOME/.bashrc_local"
 fi
 
 # Path to the bash it configuration

@@ -5,8 +5,8 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-if [ -f "$HOME/.zshenv_$(hostname)" ]; then
-    source "$HOME/.zshenv_$(hostname)"
+if [ -f "$HOME/.zshenv_local" ]; then
+    source "$HOME/.zshenv_local"
 fi
 
 if [[ -f ~/.asdf/asdf.sh ]]; then
