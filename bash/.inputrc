@@ -1,0 +1,5 @@
+set editing-mode emacs
+set keymap emacs
+"F":vi-fWord
+"B":vi-bWord
+

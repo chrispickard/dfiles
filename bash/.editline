@@ -1,0 +1,4 @@
+edit on
+bind -v
+bind "^F" vi-next-space-word
+bind "^B" vi-previous-space-word

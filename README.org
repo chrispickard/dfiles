@@ -1,0 +1,10 @@
+* Dotfiles
+** To Install
+   - install gnu stow from your package manager
+   - run ~./setup.sh~
+   - enjoy your fancy new dotfiles
+** Custom site configuration
+   - for custom site configuration, add a file like ~$HOME/.zshenv_$(hostname)~ and add custom
+     configuration there
+   - custom zgen plugins can be added in a ~/.zsh_widgets file
+   
