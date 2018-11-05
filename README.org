@@ -6,7 +6,7 @@
    - run ~./setup.sh~, it will request sudo to move a script to ~/usr/local/bin~
    - enjoy your fancy new dotfiles
 ** Custom site configuration
-   - for custom site configuration, add a file like ~$HOME/.zshenv_$(hostname)~ and add custom
+   - for custom site configuration, add a file like ~$HOME/.zshenv_local~ and add custom
      configuration there
    - custom zgen plugins can be added in a ~$HOME/.zsh_widgets~ file
    
