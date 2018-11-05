@@ -16,5 +16,8 @@ ln -s $HOME/dfiles/config/i3_config $HOME/.config/i3/config
 mkdir -p $HOME/.config/alacritty
 ln -s $HOME/dfiles/config/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 
+mkdir -p $HOME/.config/tridactyl
+ln -s $HOME/dfiles/config/tridactylrc $HOME/.config/tridactyl/tridactylrc
+
 mkdir -p /usr/local/bin
 sudo cp $HOME/dfiles/exe/btf /usr/local/bin
