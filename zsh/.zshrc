@@ -1,6 +1,5 @@
 # zmodload zsh/zprof
 source "${HOME}/.zgen/zgen.zsh"
-source "$HOME/.bash_aliases"
 if [ -f "$HOME/.zshrc_local" ]; then
     source "$HOME/.zshrc_local"
 fi
@@ -124,6 +123,8 @@ export FZF_DEFAULT_OPTS="
 "
 
 # zprof | less
+
+source "$HOME/.bash_aliases"
 
 setopt PROMPT_SUBST
 # Note the single quotes
