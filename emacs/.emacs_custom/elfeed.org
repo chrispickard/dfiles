@@ -22,6 +22,7 @@
 **** https://engineering.rei.com/feed.xml
 **** https://blog.sophaskins.net/index.xml
 **** https://blog.acolyer.org/feed/
+**** https://twobithistory.org/feed.xml
 *** Bash                                                               :bash:
 **** https://sanctum.geek.nz/arabesque/feed/
 **** https://blog.jessfraz.com/index.xml

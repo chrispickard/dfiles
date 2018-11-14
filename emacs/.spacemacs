@@ -118,7 +118,7 @@
                                :weight normal
                                :width normal
                                :powerline-scale 1.0
-                               :size 11)
+                               :size 12)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -173,9 +173,10 @@
    dotspacemacs-folding-method 'origami
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    dotspacemacs-smartparens-strict-mode nil
-   ;; If non nil advises quit functions to keep server open when quitting.
-   dotspacemacs-persistent-server t
    dotspacemacs-smart-closing-parenthesis t
+   ;; If non nil advises quit functions to keep server open when quitting.
+   ;; dotspacemacs-persistent-server t
+   dotspacemacs-enable-server t
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now.
@@ -724,7 +725,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   (setq frame-resize-pixelwise t)
   ;; require magit here so that it can be used as $EDITOR with it initted already
   (require 'magit)
-  (server-start)
+  ;; (server-start)
   ;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
   ;; (setq flycheck-gometalinter-vendor t)
   ;; only show errors
