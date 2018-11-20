@@ -114,11 +114,11 @@
    dotspacemacs-scratch-mode 'emacs-lisp-mode
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Hasklig"
+   dotspacemacs-default-font '("Mononoki"
                                :weight normal
                                :width normal
                                :powerline-scale 1.0
-                               :size 12)
+                               :size 11)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -226,7 +226,7 @@
                                       helm-dash
                                       ;; (elvish-mode :location (recipe :fetcher github :repo "ALSchwalm/elvish-mode"))
                                       (tridactyl-mode :location (recipe :fetcher github :repo "Fuco1/tridactyl-mode"))
-                                      hasklig-mode
+                                      ;; hasklig-mode
                                       javadoc-lookup
                                       company-flx
                                       parinfer
@@ -239,6 +239,7 @@
                                       string-inflection
                                       ensime
                                       solaire-mode
+                                      evil-textobj-syntax
                                       super-save
                                       flycheck-joker
                                       helm-gtags
@@ -497,7 +498,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (add-lisp-hooks #'smartparens-mode)
   (add-lisp-hooks #'electric-pair-mode)
   (add-hook 'prog-mode-hook #'spacemacs/toggle-fill-column-indicator-on)
-  (add-hook 'prog-mode-hook #'hasklig-mode)
+  ;; (add-hook 'prog-mode-hook #'hasklig-mode)
   (add-hook 'prog-mode-hook #'spacemacs/toggle-line-numbers-on)
   (add-hook 'prog-mode-hook #'(lambda () (setq fill-column 100)))
 
@@ -554,6 +555,9 @@ With a prefix ARG invokes `projectile-commander' instead of
     (yas-global-mode 1)
     (define-key yas-minor-mode-map (kbd "M-SPC") #'yas-expand))
   (global-auto-revert-mode 1)
+
+  (with-eval-after-load 'evil
+    (require 'evil-textobj-syntax))
 
   (with-eval-after-load 'org
     (load-file "~/.emacs_custom/setup-org.el"))
@@ -789,7 +793,7 @@ This function is called at the very end of Spacemacs initialization."
  '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
-    (hasklig-mode yapfify erlang visual-fill-column writeroom-mode go-guru winum parinfer live-py-mode seq spinner spotify pcache atomic-chrome websocket eyebrowse multiple-cursors rubocop pdf-tools ob-elixir ivy-purpose window-purpose imenu-list hide-comnt column-enforce-mode inflections inf-ruby yaml-mode minitest pug-mode ruby-test-mode mwim company-shell robe macrostep elfeed-goodies counsel-projectile undo-tree elixir-mode s evil-cleverparens intero hlint-refactor hindent haskell-snippets flycheck-haskell company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode meghanada alchemist clang-format elpy fzf alert hydra groovy-mode org-projectile org-jira evil-ediff dumb-jump bundler git-commit with-editor f web-mode tagedit slim-mode scss-mode sass-mode less-css-mode jade-mode haml-mode emmet-mode company-web web-completion-data git-link find-file-in-project suggest loop flycheck-clojure rake company-go clojure-snippets org auto-compile ensime sbt-mode scala-mode org-download flycheck-mix swiper iedit ivy auctex-latexmk auctex tern restclient counsel magit-popup clojure-mode sotclojure vimrc-mode dactyl-mode async auto-complete confluence toc-org org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets htmlize gnuplot avy anzu highlight flycheck request projectile helm-core yasnippet js2-mode markdown-mode evil fireplace cider smartparens company helm magit elfeed sotlisp sx beacon xkcd ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe use-package spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle restart-emacs ranger rainbow-delimiters racket-mode quelpa pyvenv pytest pyenv-mode popwin pip-requirements persp-mode pcre2el paradox page-break-lines orgit open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow lorem-ipsum linum-relative leuven-theme json-mode js2-refactor js-doc indent-guide ido-vertical-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery expand-region evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-plus evil-iedit-state evil-exchange evil-args evil-anzu emacs-eclim define-word cython-mode company-tern company-statistics company-quickhelp company-anaconda coffee-mode clj-refactor clean-aindent-mode cider-eval-sexp-fu buffer-move auto-yasnippet auto-highlight-symbol align-cljlet aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (rspec-mode yapfify erlang visual-fill-column writeroom-mode go-guru winum parinfer live-py-mode seq spinner spotify pcache atomic-chrome websocket eyebrowse multiple-cursors rubocop pdf-tools ob-elixir ivy-purpose window-purpose imenu-list hide-comnt column-enforce-mode inflections inf-ruby yaml-mode minitest pug-mode ruby-test-mode mwim company-shell robe macrostep elfeed-goodies counsel-projectile undo-tree elixir-mode s evil-cleverparens intero hlint-refactor hindent haskell-snippets flycheck-haskell company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode meghanada alchemist clang-format elpy fzf alert hydra groovy-mode org-projectile org-jira evil-ediff dumb-jump bundler git-commit with-editor f web-mode tagedit slim-mode scss-mode sass-mode less-css-mode jade-mode haml-mode emmet-mode company-web web-completion-data git-link find-file-in-project suggest loop flycheck-clojure rake company-go clojure-snippets org auto-compile ensime sbt-mode scala-mode org-download flycheck-mix swiper iedit ivy auctex-latexmk auctex tern restclient counsel magit-popup clojure-mode sotclojure vimrc-mode dactyl-mode async auto-complete confluence toc-org org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets htmlize gnuplot avy anzu highlight flycheck request projectile helm-core yasnippet js2-mode markdown-mode evil fireplace cider smartparens company helm magit elfeed sotlisp sx beacon xkcd ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe use-package spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle restart-emacs ranger rainbow-delimiters racket-mode quelpa pyvenv pytest pyenv-mode popwin pip-requirements persp-mode pcre2el paradox page-break-lines orgit open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow lorem-ipsum linum-relative leuven-theme json-mode js2-refactor js-doc indent-guide ido-vertical-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery expand-region evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-plus evil-iedit-state evil-exchange evil-args evil-anzu emacs-eclim define-word cython-mode company-tern company-statistics company-quickhelp company-anaconda coffee-mode clj-refactor clean-aindent-mode cider-eval-sexp-fu buffer-move auto-yasnippet auto-highlight-symbol align-cljlet aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(paradox-github-token t)
  '(ring-bell-function (quote ignore))
  '(send-mail-function (quote mailclient-send-it))

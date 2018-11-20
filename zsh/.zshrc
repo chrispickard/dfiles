@@ -22,10 +22,10 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/docker
     zgen load mafredri/zsh-async
     zgen load sindresorhus/pure
-    # zgen load dfurnes/purer
-    # zgen load mreinhardt/sfz-prompt.zsh
-    zgen load laurenkt/zsh-vimto
-    zgen load softmoth/zsh-vim-mode
+    zgen load chrissicool/zsh-256color
+    # zgen load laurenkt/zsh-vimto
+    zgen load unixorn/git-extra-commands
+    # zgen load softmoth/zsh-vim-mode
     zgen load zsh-users/zsh-syntax-highlighting
     if [ -f "$HOME/.zsh_widgets" ]; then
         source $HOME/.zsh_widgets
@@ -73,10 +73,10 @@ zle -N __edit_leader
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
-bindkey -M viins '^p' history-search-backward
-bindkey -M viins '^n' history-search-forward
-bindkey -M viins '^[^?' vi-backward-kill-word
-# bindkey -M viins '^[' vi-backward-kill-word
+# bindkey -M viins '^p' history-search-backward
+# bindkey '^n' history-search-forward
+bindkey '^[^?' vi-backward-kill-word
+bindkey '^[^H' vi-backward-blank-word
 
 if [ -f "$HOME/.zsh_widgets" ]; then
     # Map widgets to key

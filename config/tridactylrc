@@ -37,7 +37,7 @@ set editorcmd emacsclient
 
 " Make Tridactyl work on more sites at the expense of some security
 set csp clobber
-" fixamo_quiet
+fixamo_quiet
 
 " Make quickmarks for the sane Tridactyl issue view
 quickmark t https://github.com/cmcaine/tridactyl/issues?utf8=%E2%9C%93&q=sort%3Aupdated-desc+
@@ -64,6 +64,9 @@ bind a buffer #
 bind <A-;> fillcmdline buffer
 unbind <C-f>
 bind <C-h> unfocus
+" unbindurl mail.google.com normal j
+bindurl news.* G fillcmdline tabopen google
+
 " bind I mode ignore
 " bind --mode=ignore I mode normal
 " bind / Find
