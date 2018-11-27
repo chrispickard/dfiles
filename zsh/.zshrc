@@ -23,6 +23,7 @@ if ! zgen saved; then
     zgen load mafredri/zsh-async
     zgen load sindresorhus/pure
     zgen load chrissicool/zsh-256color
+    zgen load sharat87/pip-appzsh-256color
     # zgen load laurenkt/zsh-vimto
     zgen load unixorn/git-extra-commands
     # zgen load softmoth/zsh-vim-mode
@@ -59,16 +60,16 @@ function _space_is_my_leader () {
 
 # add-zsh-hook precmd _prompt_purs_precmd
 
-function _kinda_better_leader() {
-    _space_is_my_leader fzf-select-widget
-}
+# function _kinda_better_leader() {
+#     _space_is_my_leader fzf-select-widget
+# }
 
-function __edit_leader() {
-    _space_is_my_leader fzf-edit-files
-}
+# function __edit_leader() {
+#     _space_is_my_leader fzf-edit-files
+# }
 
-zle -N _kinda_better_leader
-zle -N __edit_leader
+# zle -N _kinda_better_leader
+# zle -N __edit_leader
 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
@@ -80,11 +81,11 @@ bindkey '^[^H' vi-backward-blank-word
 
 if [ -f "$HOME/.zsh_widgets" ]; then
     # Map widgets to key
-    bindkey -M vicmd ' x' fzf-select-widget
+    # bindkey -M vicmd ' x' fzf-select-widget
     bindkey '^@.' fzf-edit-dotfiles
     bindkey '^@c' fzf-change-directory
     bindkey '^@n' fzf-change-named-directory
-    bindkey ' ff' __edit_leader
+    # bindkey ' ff' __edit_leader
     bindkey '^@k' fzf-kill-processes
     bindkey '^@s' fzf-exec-ssh
     bindkey '^\'  fzf-change-recent-directory
