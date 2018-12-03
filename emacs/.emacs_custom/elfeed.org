@@ -11,7 +11,6 @@
 **** https://18f.gsa.gov/feed.xml
 **** https://til.hashrocket.com/?format=atom
 **** http://7sharpnine.com/index.xml
-**** https://joearms.github.io/feed
 **** http://thecodelesscode.com/rss
 **** http://michaelrbernste.in/feed
 **** http://www.commitstrip.com/en/feed/
@@ -23,6 +22,7 @@
 **** https://blog.sophaskins.net/index.xml
 **** https://blog.acolyer.org/feed/
 **** https://twobithistory.org/feed.xml
+**** https://carolynvanslyck.com/blog/index.xml
 *** Bash                                                               :bash:
 **** https://sanctum.geek.nz/arabesque/feed/
 **** https://blog.jessfraz.com/index.xml
@@ -33,6 +33,7 @@
 *** Erlang
 **** http://www.planeterlang.com/atom.xml
 **** https://ferd.ca/feed.rss
+**** https://joearms.github.io/feed
 ** Comics
 *** http://www.qwantz.com/rssfeed.php
 ** Science                                                          :science:

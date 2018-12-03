@@ -18,7 +18,7 @@ Plug 'Shougo/vimproc.vim', {
             \     'unix' : 'make -f make_unix.mak',
             \    },
             \ }
-Plug 'altercation/vim-colors-solarized'
+Plug 'arcticicestudio/nord-vim'
 " Plug 'scrooloose/syntastic'
 " Plug 'ervandew/ag'
 " Plug 'Lokaltog/vim-easymotion'
@@ -126,7 +126,7 @@ syntax enable
 
 set t_Co=256
 set background=dark
-colorscheme solarized
+colorscheme nord
 
 nnoremap <Leader>v :vsplit
 nnoremap <Leader>e :e

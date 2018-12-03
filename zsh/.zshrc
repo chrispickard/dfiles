@@ -23,7 +23,6 @@ if ! zgen saved; then
     zgen load mafredri/zsh-async
     zgen load sindresorhus/pure
     zgen load chrissicool/zsh-256color
-    zgen load sharat87/pip-appzsh-256color
     # zgen load laurenkt/zsh-vimto
     zgen load unixorn/git-extra-commands
     # zgen load softmoth/zsh-vim-mode
