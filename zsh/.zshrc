@@ -26,7 +26,7 @@ if ! zgen saved; then
     # zgen load laurenkt/zsh-vimto
     zgen load unixorn/git-extra-commands
     # zgen load softmoth/zsh-vim-mode
-    zgen load zsh-users/zsh-syntax-highlighting
+    # zgen load zsh-users/zsh-syntax-highlighting
     if [ -f "$HOME/.zsh_widgets" ]; then
         source $HOME/.zsh_widgets
     fi
@@ -73,6 +73,7 @@ function _space_is_my_leader () {
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
+
 # bindkey -M viins '^p' history-search-backward
 # bindkey '^n' history-search-forward
 bindkey '^[^?' vi-backward-kill-word
@@ -129,3 +130,5 @@ source "$HOME/.bash_aliases"
 setopt PROMPT_SUBST
 # Note the single quotes
 RPS1='${MODE_INDICATOR_PROMPT} ${vcs_info_msg_0_}'
+
+zgen load zsh-users/zsh-syntax-highlighting

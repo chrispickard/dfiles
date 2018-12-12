@@ -34,6 +34,8 @@
 **** http://www.planeterlang.com/atom.xml
 **** https://ferd.ca/feed.rss
 **** https://joearms.github.io/feed
+*** Rust
+**** https://deterministic.space/feed.xml
 ** Comics
 *** http://www.qwantz.com/rssfeed.php
 ** Science                                                          :science:
