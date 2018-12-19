@@ -11,11 +11,8 @@ fi
 
 if [[ -f ~/.asdf/asdf.sh ]]; then
     source ~/.asdf/asdf.sh
-    export ASDFROOT=$HOME/.asdf
-    export ASDFINSTALLS=$HOME/.asdf/installs
     export GOPATH=$HOME/dev/golang
-    GOV=$(asdf current golang | awk '{print $1}')
-    export GOROOT=$ASDFINSTALLS/golang/$GOV/go/
+    export GOROOT="$(asdf where golang)/go"
 fi
 
 if [ -x "$(command -v rustc)" ] ; then
