@@ -6,7 +6,7 @@ fi
 export MAVEN_OPTS="-Xmx4000m"
 export GIT_EDITOR='emacsclient'
 export SCRIPT_DIR=$HOME/dev/py/i3blocks-contrib/
-# source ~/.asdf/asdf.sh
+source ~/.asdf/asdf.sh
 
 export GOPATH=$HOME/dev/golang
 export EDITOR='emacsclient -n'

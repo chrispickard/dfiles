@@ -48,6 +48,14 @@ quickmark g https://www.reddit.com/r/golang/
 
 " unbindurl Confluence --mode=normal [[ 
 " unbindurl Confluence --mode=normal [c
+bind I mode ignore
+bind --mode=ignore I mode normal
+unbindurl mail.google.com j
+unbindurl mail.google.com k
+unbindurl inbox.google.com j
+unbindurl inbox.google.com k
+unbindurl outlook.office.com j
+unbindurl outlook.office.com k
 bind K tabnext
 bind J tabprev
 bind u js scrollpage(-.4)
@@ -62,12 +70,11 @@ bind B fillcmdline bmarks
 bind W tabdetach
 bind a buffer #
 bind <A-;> fillcmdline buffer
-unbind <C-f>
-bind <C-h> unfocus
+" unbind <C-f>
+" bind <C-h> unfocus
 " unbindurl mail.google.com normal j
-bindurl news.* G fillcmdline tabopen google
+" bindurl news.* G open
 
-" bind I mode ignore
 " bind --mode=ignore I mode normal
 " bind / Find
 

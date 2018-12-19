@@ -1,8 +1,6 @@
 # zmodload zsh/zprof
 source "${HOME}/.zgen/zgen.zsh"
-if [ -f "$HOME/.zshrc_local" ]; then
-    source "$HOME/.zshrc_local"
-fi
+
 
 
 alias reload='zgen reset && exec zsh'
@@ -131,4 +129,7 @@ setopt PROMPT_SUBST
 # Note the single quotes
 RPS1='${MODE_INDICATOR_PROMPT} ${vcs_info_msg_0_}'
 
+if [ -f "$HOME/.zshrc_local" ]; then
+    source "$HOME/.zshrc_local"
+fi
 zgen load zsh-users/zsh-syntax-highlighting
