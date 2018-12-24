@@ -157,8 +157,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 bindsym mod1+Shift+e exec btf "emacs@chris" emacs
 bindsym mod1+Shift+k exec btf " - Visual Studio Code" code
-bindsym mod1+Shift+j exec btf "alacritty@charon" "/home/chris.pickard/bin/alacritty --live-config-reload --title alacritty@charon"
-bindsym mod1+Shift+c exec btf "Mozilla Firefox" /home/chris.pickard/bin/firefox/firefox
+bindsym mod1+Shift+j exec btf "alacritty@charon" "alacritty --live-config-reload --title alacritty@charon"
+bindsym mod1+Shift+c exec btf "Mozilla Firefox" firefox
 bindsym mod1+Shift+i exec btf "IntelliJ IDEA" idea
 bindsym mod1+Shift+l exec btf "irc@charon" "/home/chris.pickard/bin/alacritty --live-config-reload --title irc@charon"
 bindsym mod4+l exec gnome-screensaver-command --lock --activate
@@ -171,6 +171,7 @@ bindsym KP_Prior exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlaye
 
 exec xset r rate 200 100
 exec xset s off
+exec setxkbmap -layout us -option caps:escape
 exec --no-startup-id feh --bg-fill $HOME/Downloads/matthew-brindle-1118504-unsplash.jpg
 exec xset -dpms
 exec parcellite -d
