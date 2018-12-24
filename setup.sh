@@ -13,6 +13,8 @@ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 # install asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.2
 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 mkdir -p $HOME/.config/i3
 ln -s $HOME/dfiles/config/i3_config $HOME/.config/i3/config
 
