@@ -17,12 +17,13 @@
 **** https://elvish.io/feed.atom
 **** https://jvns.ca/atom.xml
 **** http://www.leucht.com/blog/feed/
-**** https://blog.cloudflare.com/rss/
+**** https://blog.cloudflare.com/tag/programming/rss/
 **** https://engineering.rei.com/feed.xml
 **** https://blog.sophaskins.net/index.xml
 **** https://blog.acolyer.org/feed/
 **** https://twobithistory.org/feed.xml
 **** https://carolynvanslyck.com/blog/index.xml
+**** https://nullprogram.com/feed/
 *** Bash                                                               :bash:
 **** https://sanctum.geek.nz/arabesque/feed/
 **** https://blog.jessfraz.com/index.xml
@@ -36,6 +37,7 @@
 **** https://joearms.github.io/feed
 *** Rust
 **** https://deterministic.space/feed.xml
+**** https://feeds.feedburner.com/steveklabnik/words
 ** Comics
 *** http://www.qwantz.com/rssfeed.php
 ** Science                                                          :science:
