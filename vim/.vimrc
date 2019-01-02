@@ -237,7 +237,7 @@ set guicursor+=i:blinkwait0
 " let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
 " Remove trailing spaces
-nnoremap <Leader>c mm:%s/\s\+$<CR>'m
+nnoremap <Leader>c mm:%s/\s\+$<CR>
 
 " " Pymode stuff
 " let g:pymode_folding = 0
@@ -306,17 +306,17 @@ nnoremap <leader>fed :e $HOME/.config/oni/config.tsx<CR>
 nnoremap <M-m> <C-w><C-w>
 " unmap K
 
-augroup netrw_mapping
-    autocmd!
-    autocmd filetype netrw call NetrwMapping()
-augroup END
+" augroup netrw_mapping
+"     autocmd!
+"     autocmd filetype netrw call NetrwMapping()
+" augroup END
 
-function! NetrwMapping()
-    unmap <buffer> qb
-    unmap <buffer> qf
-    unmap <buffer> q
-    noremap <buffer> q :bd<CR>
-endfunction
+" function! NetrwMapping()
+"     unmap <buffer> qb
+"     unmap <buffer> qf
+"     unmap <buffer> q
+"     noremap <buffer> q :bd<CR>
+" endfunction
 
 let g:SuperTabDefaultCompletionType = "<c-n>"
 autocmd BufNewFile,BufRead *.ts,*.tsx setlocal filetype=typescript

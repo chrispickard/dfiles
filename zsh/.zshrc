@@ -34,13 +34,13 @@ if ! zgen saved; then
     zgen save
 fi
 
-function _space_is_my_leader () {
-    if [ -z "$BUFFER" ]; then
-        zle $1
-    else
-        zle self-insert $KEYS
-    fi
-}
+# function _space_is_my_leader () {
+#     if [ -z "$BUFFER" ]; then
+#         zle $1
+#     else
+#         zle self-insert $KEYS
+#     fi
+# }
 
 # function zle-line-init zle-keymap-select {
 #     PROMPT=$(purs prompt -k "$KEYMAP" -r "$?")
@@ -49,7 +49,7 @@ function _space_is_my_leader () {
 # zle -N zle-line-init
 # zle -N zle-keymap-select
 
-# autoload -Uz add-zsh-hook
+autoload -Uz add-zsh-hook
 
 # function _prompt_purs_precmd() {
 #     purs precmd
@@ -61,12 +61,12 @@ function _space_is_my_leader () {
 #     _space_is_my_leader fzf-select-widget
 # }
 
-# function __edit_leader() {
-#     _space_is_my_leader fzf-edit-files
-# }
+function __backword-delete-WORD() {
+    vi-delete select-in-blank-word
+}
 
 # zle -N _kinda_better_leader
-# zle -N __edit_leader
+zle -N __backword-delete-WORD
 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
@@ -75,7 +75,9 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 # bindkey -M viins '^p' history-search-backward
 # bindkey '^n' history-search-forward
 bindkey '^[^?' vi-backward-kill-word
-bindkey '^[^H' vi-backward-blank-word
+bindkey '^[^H' vi-backward-kill-word
+bindkey '^[B' vi-backward-blank-word
+bindkey '^[F' vi-forward-blank-word
 
 if [ -f "$HOME/.zsh_widgets" ]; then
     # Map widgets to key
