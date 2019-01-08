@@ -29,6 +29,8 @@ font pango:Mononoki 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+for_window [class="(?i)mpv"] floating enable
+
 # start a terminal
 bindsym $mod+Return exec konsole
 
@@ -161,13 +163,15 @@ bindsym mod1+Shift+j exec btf "alacritty@charon" "alacritty --live-config-reload
 bindsym mod1+Shift+c exec btf "Mozilla Firefox" firefox
 bindsym mod1+Shift+i exec btf "IntelliJ IDEA" idea
 bindsym mod1+Shift+l exec btf "irc@charon" "/home/chris.pickard/bin/alacritty --live-config-reload --title irc@charon"
+bindsym mod1+Shift+u exec close-this-window " mpv"
 bindsym mod4+l exec gnome-screensaver-command --lock --activate
-bindsym KP_Begin exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause && pkill -RTMIN+10 i3blocks 
+# bindsym KP_Begin exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause && pkill -RTMIN+10 i3blocks 
+bindsym KP_Begin exec playerctl play-pause && pkill -RTMIN+10 i3blocks 
 bindsym KP_Home exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
 bindsym KP_End exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
 bindsym KP_Left exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
-bindsym KP_Next exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next && pkill -RTMIN+10 i3blocks 
-bindsym KP_Prior exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous && pkill -RTMIN+10 i3blocks 
+bindsym KP_Next exec playerctl next && pkill -RTMIN+10 i3blocks 
+bindsym KP_Prior exec playerctl previous && pkill -RTMIN+10 i3blocks 
 
 exec xset r rate 200 100
 exec xset s off
@@ -178,7 +182,6 @@ exec parcellite -d
 exec unclutter
 exec gnome-screensaver
 # exec --no-startup-id nitrogen --restore
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {

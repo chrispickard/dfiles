@@ -8,6 +8,7 @@ alias debug='java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,addre
 alias docean='ssh do -t tmux a -t irc'
 alias attach='tmuxinator'
 alias tree='tree -C' # colorful trees are pretty, no?
+alias ag=rg
 
 # some more ls aliases
 alias ll='ls -alF --color'

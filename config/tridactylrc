@@ -72,6 +72,12 @@ bind a buffer #
 bind <A-;> fillcmdline buffer
 " Make gu take you back to subreddit from comments
 bindurl reddit.com gu urlparent 3
+alias editor_rm composite editor | jsb -p tri.native.run(`rm -f '${JS_ARG[0]}'`)
+bind --mode=insert <C-i> editor_rm
+bind --mode=input <C-i> editor_rm
+
+" Make gu take you back to main page from full story
+bindurl lwn.net gu urlparent 2
 bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
 
 " unbind <C-f>
