@@ -17,7 +17,8 @@ export FZF_ALT_C_OPTS="--bind change:top --preview 'tree -C {} | head -200'"
 if ! zgen saved; then
     zgen oh-my-zsh
     zgen oh-my-zsh plugins/gitfast
-    zgen oh-my-zsh plugins/docker
+    # zgen load zsh-users/zsh-completions
+    zgen oh-my-zsh plugins/asdf
     zgen load mafredri/zsh-async
     zgen load sindresorhus/pure
     zgen load chrissicool/zsh-256color
@@ -50,6 +51,9 @@ fi
 # zle -N zle-keymap-select
 
 autoload -Uz add-zsh-hook
+autoload -U compinit && compinit
+# autoload -U select-word-style
+# select-word-style bash
 
 # function _prompt_purs_precmd() {
 #     purs precmd
@@ -74,6 +78,12 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # bindkey -M viins '^p' history-search-backward
 # bindkey '^n' history-search-forward
+# backward-kill-dir () {
+#     local WORDCHARS=${WORDCHARS/}
+#     zle backward-kill-word
+# }
+# zle -N backward-kill-dir
+# bindkey '^[^?' backward-kill-dir
 bindkey '^[^?' vi-backward-kill-word
 bindkey '^[^H' vi-backward-kill-word
 bindkey '^[B' vi-backward-blank-word
