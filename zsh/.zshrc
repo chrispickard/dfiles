@@ -17,6 +17,7 @@ export FZF_ALT_C_OPTS="--bind change:top --preview 'tree -C {} | head -200'"
 if ! zgen saved; then
     zgen oh-my-zsh
     zgen oh-my-zsh plugins/gitfast
+    zgen oh-my-zsh plugins/cargo
     # zgen load zsh-users/zsh-completions
     zgen oh-my-zsh plugins/asdf
     zgen load mafredri/zsh-async
