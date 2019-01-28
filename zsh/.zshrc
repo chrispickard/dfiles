@@ -12,6 +12,7 @@ export FZF_CTRL_T_OPTS="--preview '(bat -O ansi -l {} 2> /dev/null || cat {} || 
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview'"
 export FZF_ALT_C_COMMAND='fd . $HOME --type d'  
 export FZF_ALT_C_OPTS="--bind change:top --preview 'tree -C {} | head -200'"
+export PURE_PROMPT_SYMBOL="»"
 # export FZF_COMPLETION_TRIGGER=''
 
 if ! zgen saved; then
@@ -19,7 +20,6 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/gitfast
     zgen oh-my-zsh plugins/cargo
     # zgen load zsh-users/zsh-completions
-    zgen oh-my-zsh plugins/asdf
     zgen load mafredri/zsh-async
     zgen load sindresorhus/pure
     zgen load chrissicool/zsh-256color
@@ -35,7 +35,28 @@ if ! zgen saved; then
     # zgen load zsh-users/zaw
     zgen save
 fi
+# TMOUT=1
+# TRAPALRM() { zle reset-prompt }
+# seems to fix the issue with prompts repeating themselves on resize, at least with mine
+# setopt prompt_subst
 
+# username="%n"
+# path_string="%3c"
+# # date_string=$(date)
+# PROMPT='$(prompt --prompt)'
+
+# function install_powerline_precmd() {
+#     for s in "${precmd_functions[@]}"; do
+#         if [ "$s" = "powerline_precmd" ]; then
+#             return
+#         fi
+#     done
+#     precmd_functions+=(powerline_precmd)
+# }
+
+# if [ "$TERM" != "linux" ]; then
+#     install_powerline_precmd
+# fi
 # function _space_is_my_leader () {
 #     if [ -z "$BUFFER" ]; then
 #         zle $1

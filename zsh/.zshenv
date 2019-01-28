@@ -13,6 +13,7 @@ if [[ -f ~/.asdf/asdf.sh ]]; then
     source ~/.asdf/asdf.sh
     export GOPATH=$HOME/dev/golang
     export GOROOT="$(asdf where golang)/go"
+    export GO111MODULE="on"
 fi
 
 if [ -x "$(command -v rustc)" ] ; then
@@ -28,14 +29,14 @@ export LESS="-F -g -i -M -R -S -w -z-4"
 export PURE_CMD_MAX_EXEC_TIME=1
 export PURE_GIT_PULL=0
 export PURE_GIT_UNTRACKED_DIRTY=0
-export PATH="$HOME/.asdf/installs/python/3.6.4/bin:$HOME/.asdf/installs/nodejs/9.5.0/.npm/bin:$PATH"
+export PATH="$HOME/.asdf/installs/python/3.6.4/bin:$HOME/.asdf/installs/nodejs/11.6.0/.npm/bin:$PATH"
 export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/jre"
 
 export BAT_THEME="TwoDark"
 export FZF_CTRL_T_OPTS="--preview '(bat --style=plain --color=always {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
-export PATH="/home/linuxbrew/.linuxbrew/bin:$HOME/bin/firefox/:/usr/local/bin:$HOME/.asdf/installs/python/3.6.4/bin:$HOME/.asdf/installs/nodejs/9.7.1/.npm/bin:$HOME/.asdf/bin:$HOME/.asdf/shims:/usr/local/sbin:$HOME/dev/golang/bin:$HOME/.local/bin:$HOME/.asdf/installs/ruby/2.5.0/bin:$HOME/.cargo/bin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/bin:$HOME/dev/golang/src/github.com/junegunn/fzf/bin"
+export PATH="$HOME/bin/firefox/:/usr/local/bin:$HOME/.asdf/installs/python/3.6.4/bin:$HOME/.asdf/installs/nodejs/9.7.1/.npm/bin:$HOME/.asdf/bin:$HOME/.asdf/shims:/usr/local/sbin:$HOME/dev/golang/bin:$HOME/.local/bin:$HOME/.asdf/installs/ruby/2.5.0/bin:$HOME/.cargo/bin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/bin:$HOME/dev/golang/src/github.com/junegunn/fzf/bin"
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then

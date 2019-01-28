@@ -26,7 +26,7 @@ alias vim=nvim
 alias e="emacsclient -n -a nvim"
 
 # tmux
-alias mux="gmux start"
+alias mux="tmuxinator"
 
 # git
 alias g='git'
@@ -37,6 +37,7 @@ alias tig='GIT_EDITOR="emacsclient -n" \tig'
 
 # go stuff
 alias gome="$GOPATH/src/github.com/chrispickard"
+alias gogo="$GOPATH/src/github.com/"
 alias golang='cd $GOPATH'
 
 # docker/kubernetes

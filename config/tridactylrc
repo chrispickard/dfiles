@@ -63,6 +63,13 @@ bind d js scrollpage(.4)
 unbind D
 bind x tabclose
 bind X undo
+
+bindurl xkcd.com t composite js document.getElementById("comic").querySelector("img").title | fillcmdline_tmp 10000
+bindurl xkcd.com r open https://c.xkcd.com/random/comic/
+
+bind s fillcmdline tabopen search
+bind S fillcmdline open search
+
 bind o fillcmdline tabopen
 bind O fillcmdline open
 bind b fillcmdline bmarks -t
@@ -86,7 +93,13 @@ bind <C-h> unfocus
 " bindurl news.* G open
 
 " bind --mode=ignore I mode normal
-" bind / Find
+ bind / fillcmdline find
+ bind ? fillcmdline find -?
+ bind n findnext 1
+ bind N findnext -1
+ bind <Space>sc nohlsearch
+ unbindurl overcast.fm <Space>sc
+ unbindurl youtube.com <Space>sc
 
 " set tabopenpos next
 " blacklistadd jira.di2e.net

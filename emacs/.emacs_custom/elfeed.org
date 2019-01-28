@@ -30,6 +30,7 @@
 *** golang
 **** http://planetgolang.com/rss.xml
 **** https://rakyll.org/index.xml
+**** https://golangweekly.com/rss/1nb4iiff
 *** Elm
 *** Erlang
 **** http://www.planeterlang.com/atom.xml

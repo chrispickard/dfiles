@@ -29,6 +29,8 @@ font pango:Mononoki 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+mouse_warping none
+
 for_window [class="(?i)mpv"] floating enable
 
 # start a terminal
@@ -42,6 +44,10 @@ hide_edge_borders both
 
 # start dmenu (a program launcher)
 bindsym $mod+Shift+d exec dmenu_run
+bindsym $mod+space exec gnome-terminal --class "fzf-menu" --geometry 100x6 --profile=NoScrollbar --hide-menubar -e /home/chris.pickard/dev/sh/fzf-menu/fzf-menu
+for_window [class="(?i)gnome-terminal"] floating enable
+
+for_window [class="(?i)my_first_azul_app"] floating enable
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -89,7 +95,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #1E272C
 
@@ -98,6 +104,9 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+
+workspace 1 output DP-4
+workspace 2 output DP-5
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -196,6 +205,7 @@ bar {
     inactive_workspace #2E3440 #2E3440 #aea79f
     urgent_workspace #77216f #77216f #ffffff
   }
+
 }
 
 # client.focused #586e75 #586e75 #fdf6e3 #268bd2
