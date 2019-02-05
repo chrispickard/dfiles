@@ -54,8 +54,8 @@ unbindurl mail.google.com j
 unbindurl mail.google.com k
 unbindurl inbox.google.com j
 unbindurl inbox.google.com k
-unbindurl outlook.office365.com j
-unbindurl outlook.office365.com k
+unbindurl outlook.office.com j
+unbindurl outlook.office.com k
 bind K tabnext
 bind J tabprev
 bind u js scrollpage(-.4)
@@ -100,6 +100,7 @@ bind <C-h> unfocus
  bind <Space>sc nohlsearch
  unbindurl overcast.fm <Space>sc
  unbindurl youtube.com <Space>sc
+ unbindurl infinitelooper.com <Space>sc
 
 " set tabopenpos next
 " blacklistadd jira.di2e.net

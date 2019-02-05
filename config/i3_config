@@ -184,6 +184,7 @@ bindsym KP_Prior exec playerctl previous && pkill -RTMIN+10 i3blocks
 
 exec xset r rate 200 100
 exec xset s off
+# exec redshift-gtk
 exec setxkbmap -layout us -option caps:escape
 exec --no-startup-id feh --bg-fill $HOME/Downloads/matthew-brindle-1118504-unsplash.jpg
 exec xset -dpms
