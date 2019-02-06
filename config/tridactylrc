@@ -101,11 +101,13 @@ bind <C-h> unfocus
  unbindurl overcast.fm <Space>sc
  unbindurl youtube.com <Space>sc
  unbindurl infinitelooper.com <Space>sc
+ bindurl www.google.com f hint -Jc .rc > .r > a
 
 " set tabopenpos next
 " blacklistadd jira.di2e.net
 " blacklistadd jira.altamiracorp.com
 " set newtab about:home
 guiset_quiet gui full
+autocmd DocStart www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
 " guiset_quiet tabs always
 autocmd TabEnter .* unfocus
