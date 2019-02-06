@@ -74,8 +74,6 @@ fi
 
 autoload -Uz add-zsh-hook
 autoload -U compinit && compinit
-# autoload -U select-word-style
-# select-word-style bash
 
 # function _prompt_purs_precmd() {
 #     purs precmd
@@ -98,6 +96,11 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
+tcsh-backward-delete-word () {
+    # local WORDCHARS="./&%$"
+    zle backward-delete-word
+}
+
 # bindkey -M viins '^p' history-search-backward
 # bindkey '^n' history-search-forward
 # backward-kill-dir () {
@@ -106,7 +109,8 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 # }
 # zle -N backward-kill-dir
 # bindkey '^[^?' backward-kill-dir
-bindkey '^[^?' vi-backward-kill-word
+zle -N tcsh-backward-delete-word
+bindkey '^[^?' tcsh-backward-delete-word
 bindkey '^[^H' vi-backward-kill-word
 bindkey '^[B' vi-backward-blank-word
 bindkey '^[F' vi-forward-blank-word
