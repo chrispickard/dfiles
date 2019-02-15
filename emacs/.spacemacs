@@ -35,7 +35,7 @@
          ;; go-use-gometalinter t
          go-backend 'lsp
          gofmt-command "goimports"
-         go-use-golangci-lint 't
+         go-use-golangci-lint t
          go-format-before-save t
          godoc-at-point-function 'godoc-gogetdoc
          go-tab-width 4)
@@ -54,7 +54,8 @@
      emacs-lisp
      clojure
      docker
-     markdown
+     (markdown :variable
+               )
      
      tmux
      racket
@@ -772,6 +773,7 @@ With a prefix ARG invokes `projectile-commander' instead of
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+'(markdown-command "/opt/pandoc/bin/pandoc")
  '(ahs-case-fold-search nil t)
  '(ahs-default-range (quote ahs-range-whole-buffer) t)
  '(ahs-idle-interval 0.25 t)

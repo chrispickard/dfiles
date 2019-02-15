@@ -51,15 +51,20 @@ bind I mode ignore
 bind --mode=ignore I mode normal
 unbindurl mail.google.com j
 unbindurl mail.google.com k
+unbindurl mail.google.com z
 unbindurl inbox.google.com j
 unbindurl inbox.google.com k
+unbindurl inbox.google.com z
+unbindurl inbox.google.com m
 unbindurl outlook.office.com j
 unbindurl outlook.office.com k
+unbindurl outlook.office.com z
 bind K tabnext
 bind J tabprev
 bind u js scrollpage(-.4)
 bind d js scrollpage(.4)
 unbind D
+unbind .
 bind x tabclose
 bind X undo
 
@@ -106,7 +111,7 @@ bind <C-h> unfocus
 " blacklistadd jira.di2e.net
 " blacklistadd jira.altamiracorp.com
 " set newtab about:home
-guiset_quiet gui full
-autocmd DocStart www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+" guiset_quiet gui full
+" autocmd DocStart www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
 " guiset_quiet tabs always
 autocmd TabEnter .* unfocus

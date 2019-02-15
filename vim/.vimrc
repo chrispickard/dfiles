@@ -10,6 +10,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " My Bundles here:
 " Refer to |:Plug-examples|.  Note: You don't set Plug setting in .gvimrc!
 
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'Shougo/vimproc.vim', {
             \ 'build' : {
             \     'windows' : 'tools\\update-dll-mingw',
@@ -23,10 +24,14 @@ Plug 'arcticicestudio/nord-vim'
 " Plug 'ervandew/ag'
 " Plug 'Lokaltog/vim-easymotion'
 " Plug 'Valloric/YouCompleteMe'
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 Plug 'tpope/vim-commentary'
 Plug 'ervandew/supertab'
-Plug 'Shougo/denite.nvim'
-Plug 'chemzqm/denite-extra'
+" Plug 'Shougo/denite.nvim'
+" Plug 'chemzqm/denite-extra'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-vinegar'
@@ -51,19 +56,19 @@ Plug 'tpope/vim-fugitive'
 " Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'fatih/vim-go'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 " Plug 'amdt/vim-niji'
 " Plug 'guns/vim-clojure-static'
 " Plug 'klen/python-mode'
 " Plug 'alfredodeza/pytest.vim'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-go', { 'do': 'make'}
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"   Plug 'zchee/deoplete-go', { 'do': 'make'}
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 
 call plug#end()
 
@@ -136,7 +141,7 @@ nnoremap <Leader>sc :nohl<CR>
 nnoremap <Leader>wd :bd<CR>
 nnoremap <Leader>e :e
 nnoremap <Leader>sc :nohl<CR>
-nnoremap <M-;> :Denite file/old<CR>
+" nnoremap <M-;> :Denite file/old<CR>
 
 nnoremap <C-e> $
 nnoremap <C-a> ^
@@ -288,20 +293,20 @@ if exists('g:gui_oni')
 endif
 
 
-nnoremap <C-p> :<C-u>Denite file_rec<CR>
-nnoremap <leader>s :<C-u>Denite buffer<CR>
-nnoremap <leader><Space>s :<C-u>DeniteBufferDir buffer<CR>
-nnoremap <leader>8 :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
-nnoremap <leader>/ :<C-u>Denite grep:. -mode=normal<CR>
-nnoremap <leader><Space>/ :<C-u>DeniteBufferDir grep:. -mode=normal<CR>
-nnoremap <leader>d :<C-u>DeniteBufferDir file_rec<CR>
+" nnoremap <C-p> :<C-u>Denite file_rec<CR>
+" nnoremap <leader>s :<C-u>Denite buffer<CR>
+" nnoremap <leader><Space>s :<C-u>DeniteBufferDir buffer<CR>
+" nnoremap <leader>8 :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
+" nnoremap <leader>/ :<C-u>Denite grep:. -mode=normal<CR>
+" nnoremap <leader><Space>/ :<C-u>DeniteBufferDir grep:. -mode=normal<CR>
+" nnoremap <leader>d :<C-u>DeniteBufferDir file_rec<CR>
 nnoremap <leader>; gc
 nnoremap <leader>;; gcc
 nnoremap <leader>qq :q<CR>
 nnoremap <leader>wv :vsplit<CR>
 nnoremap <leader>w- :split<CR>
 nnoremap <leader>ws :split<CR>
-nnoremap <leader>pf :<C-u>Denite file_rec<CR>
+" nnoremap <leader>pf :<C-u>Denite file_rec<CR>
 nnoremap <leader>fed :e $HOME/.config/oni/config.tsx<CR>
 nnoremap <M-m> <C-w><C-w>
 " unmap K
@@ -322,35 +327,35 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 autocmd BufNewFile,BufRead *.ts,*.tsx setlocal filetype=typescript
 
 " Ripgrep command on grep source
-call denite#custom#var('grep', 'command', ['rg'])
-call denite#custom#var('grep', 'default_opts',
-			\ ['--vimgrep', '--no-heading'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-" Change mappings.
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-j>',
-            \ '<denite:move_to_next_line>',
-            \ 'noremap'
-            \)
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-k>',
-            \ '<denite:move_to_previous_line>',
-            \ 'noremap'
-            \)
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-n>',
-            \ '<denite:move_to_next_line>',
-            \ 'noremap'
-            \)
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-p>',
-            \ '<denite:move_to_previous_line>',
-            \ 'noremap'
-            \)
+" call denite#custom#var('grep', 'command', ['rg'])
+" call denite#custom#var('grep', 'default_opts',
+" 			\ ['--vimgrep', '--no-heading'])
+" call denite#custom#var('grep', 'recursive_opts', [])
+" call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+" call denite#custom#var('grep', 'separator', ['--'])
+" call denite#custom#var('grep', 'final_opts', [])
+" " Change mappings.
+" call denite#custom#map(
+"             \ 'insert',
+"             \ '<C-j>',
+"             \ '<denite:move_to_next_line>',
+"             \ 'noremap'
+"             \)
+" call denite#custom#map(
+"             \ 'insert',
+"             \ '<C-k>',
+"             \ '<denite:move_to_previous_line>',
+"             \ 'noremap'
+"             \)
+" call denite#custom#map(
+"             \ 'insert',
+"             \ '<C-n>',
+"             \ '<denite:move_to_next_line>',
+"             \ 'noremap'
+"             \)
+" call denite#custom#map(
+"             \ 'insert',
+"             \ '<C-p>',
+"             \ '<denite:move_to_previous_line>',
+"             \ 'noremap'
+"             \)

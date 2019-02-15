@@ -186,7 +186,7 @@ exec xset r rate 200 100
 exec xset s off
 # exec redshift-gtk
 exec setxkbmap -layout us -option caps:escape
-exec --no-startup-id feh --bg-fill $HOME/Downloads/matthew-brindle-1118504-unsplash.jpg
+exec /usr/local/bin/image_viewer $HOME/Downloads/matthew-brindle-1118472-unsplash.jpg
 exec xset -dpms
 exec parcellite -d
 exec unclutter
