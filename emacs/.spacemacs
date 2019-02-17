@@ -138,7 +138,7 @@
                                :weight normal
                                :width normal
                                :powerline-scale 1.0
-                               :size 10)
+                               :size 14)
    dotspacemacs-mode-line-theme '(doom)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -551,6 +551,8 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (add-hook 'prog-mode-hook #'hasklig-mode)
   (add-hook 'prog-mode-hook #'spacemacs/toggle-line-numbers-on)
   (add-hook 'prog-mode-hook #'(lambda () (setq fill-column 100)))
+  (add-hook 'writeroom-mode-hook #'(lambda () (setq fill-column 80)))
+
 
   (add-hook 'text-mode-hook #'spacemacs/toggle-fill-column-indicator-on)
   (add-hook 'text-mode-hook #'(lambda () (setq fill-column 100)))
