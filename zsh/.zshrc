@@ -27,11 +27,11 @@ if ! zgen saved; then
     zgen load unixorn/git-extra-commands
     # zgen load softmoth/zsh-vim-mode
     # zgen load zsh-users/zsh-syntax-highlighting
-    if [ -f "$HOME/.zsh_widgets" ]; then
-        source $HOME/.zsh_widgets
-    fi
-    # zgen load teto/fzf-gems
-    # zgen load willghatch/zsh-cdr
+    zgen load ytet5uy4/fzf-widgets
+    # if [ -f "$HOME/.zsh_widgets" ]; then
+    #     source $HOME/.zsh_widgets
+    # fi
+    zgen load willghatch/zsh-cdr
     # zgen load zsh-users/zaw
     zgen save
 fi
@@ -115,36 +115,42 @@ bindkey '^[^H' vi-backward-kill-word
 bindkey '^[B' vi-backward-blank-word
 bindkey '^[F' vi-forward-blank-word
 
-if [ -f "$HOME/.zsh_widgets" ]; then
-    # Map widgets to key
-    # bindkey -M vicmd ' x' fzf-select-widget
-    bindkey '^@.' fzf-edit-dotfiles
-    bindkey '^@c' fzf-change-directory
-    bindkey '^@n' fzf-change-named-directory
-    # bindkey ' ff' __edit_leader
-    bindkey '^@k' fzf-kill-processes
-    bindkey '^@s' fzf-exec-ssh
-    bindkey '^\'  fzf-change-recent-directory
-    bindkey '^r'  fzf-insert-history
-    bindkey '^xf' fzf-insert-files
-    bindkey '^xd' fzf-insert-directory
-    bindkey '^xn' fzf-insert-named-directory
+if zgen list | grep -q fzf-widgets; then
+  # Map widgets to key
+  bindkey '^[:'  fzf-select-widget
+  bindkey '^j.' fzf-edit-dotfiles
+  bindkey '^jc' fzf-change-directory
+  bindkey '^jn' fzf-change-named-directory
+  bindkey '^jf' fzf-edit-files
+  bindkey '^jk' fzf-kill-processes
+  # bindkey '^js' fzf-exec-ssh
+  bindkey '^[|'  fzf-change-recent-directory
+  # bindkey '^r'  fzf-insert-history
+  # bindkey '^xf' fzf-insert-files
+  # bindkey '^xd' fzf-insert-directory
+  # bindkey '^xn' fzf-insert-named-directory
 
-    ## Git
-    bindkey '^@g'  fzf-select-git-widget
-    bindkey '^@ga' fzf-git-add-files
-    bindkey '^@gc' fzf-git-change-repository
+  ## Git
+  # bindkey '^@g'  fzf-select-git-widget
+  # bindkey '^@ga' fzf-git-add-files
+  # bindkey '^@gc' fzf-git-change-repository
 
-    # GitHub
-    bindkey '^@h'  fzf-select-github-widget
-    bindkey '^@hs' fzf-github-show-issue
-    bindkey '^@hc' fzf-github-close-issue
+  # # GitHub
+  # bindkey '^@h'  fzf-select-github-widget
+  # bindkey '^@hs' fzf-github-show-issue
+  # bindkey '^@hc' fzf-github-close-issue
 
-    ## Docker
-    bindkey '^@d'  fzf-select-docker-widget
-    bindkey '^@dc' fzf-docker-remove-containers
-    bindkey '^@di' fzf-docker-remove-images
-    bindkey '^@dv' fzf-docker-remove-volumes
+  # ## Docker
+  # bindkey '^@d'  fzf-select-docker-widget
+  # bindkey '^@dc' fzf-docker-remove-containers
+  # bindkey '^@di' fzf-docker-remove-images
+  # bindkey '^@dv' fzf-docker-remove-volumes
+
+  # Enable Exact-match by fzf-insert-history
+  FZF_WIDGET_OPTS[insert-history]='--exact'
+
+  # Start fzf in a tmux pane
+  FZF_WIDGET_TMUX=1
 fi
 
 # Then, source plugins and add commands to $PATH
