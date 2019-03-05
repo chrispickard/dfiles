@@ -89,6 +89,17 @@ function __backword-delete-WORD() {
     vi-delete select-in-blank-word
 }
 
+function gogo() {
+     local dir
+     GOGO_FZF_OPTS=""
+     if ! [ -z $1 ]; then
+         GOGO_FZF_OPTS="-q ${1}"
+     fi
+
+     dir=$(find "$GOPATH/src" -maxdepth 3 -path '*/\.*' -prune \
+                -o -type d -print 2> /dev/null | fzf ${GOGO_FZF_OPTS} -0 -1 -e +m) && cd "$dir" 
+}
+
 # zle -N _kinda_better_leader
 zle -N __backword-delete-WORD
 

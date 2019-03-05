@@ -37,7 +37,6 @@ alias tig='GIT_EDITOR="emacsclient -n" \tig'
 
 # go stuff
 alias gome="$GOPATH/src/github.com/chrispickard"
-alias gogo="$GOPATH/src/github.com/"
 alias golang='cd $GOPATH'
 
 # docker/kubernetes
