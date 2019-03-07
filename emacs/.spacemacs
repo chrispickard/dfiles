@@ -37,6 +37,7 @@
          gofmt-command "goimports"
          go-use-golangci-lint t
          go-format-before-save t
+         dap-go-debug-program "~/dev/extensions/go/extension/out/src/goMain.js"
          godoc-at-point-function 'godoc-gogetdoc
          go-tab-width 4)
      yaml
@@ -54,9 +55,8 @@
      emacs-lisp
      clojure
      docker
-     (markdown :variable
-               )
-     
+     markdown
+     dap
      tmux
      racket
      (elfeed :variables
@@ -71,6 +71,7 @@
      ruby
      groovy
      elixir
+
      (java
       :variables
       lsp-java-save-action-organize-imports nil
@@ -590,6 +591,9 @@ With a prefix ARG invokes `projectile-commander' instead of
   (with-eval-after-load 'evil
     (require 'evil-textobj-syntax))
 
+  (with-eval-after-load 'lsp-mode
+    (setq lsp-prefer-flymake :none))
+
   (with-eval-after-load 'org
     (load-file "~/.emacs_custom/setup-org.el"))
 
@@ -771,6 +775,10 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (setq flycheck-gometalinter-disable-linters '("gas"))
   (setq dotspacemacs-large-file-size 2)
   (setq lsp-go-gocode-completion-enabled t)
+  ;; (require 'flycheck)
+  ;; (require 'lsp-mode)
+  ;; (require 'lsp-ui)
+  ;; (setq lsp-prefer-flymake :none)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

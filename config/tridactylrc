@@ -52,6 +52,9 @@ bind --mode=ignore I mode normal
 unbindurl mail.google.com j
 unbindurl mail.google.com k
 unbindurl mail.google.com z
+unbindurl keep.google.com j
+unbindurl keep.google.com k
+unbindurl keep.google.com z
 unbindurl inbox.google.com j
 unbindurl inbox.google.com k
 unbindurl inbox.google.com z

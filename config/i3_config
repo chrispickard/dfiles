@@ -44,7 +44,7 @@ hide_edge_borders both
 
 # start dmenu (a program launcher)
 bindsym $mod+Shift+d exec dmenu_run
-bindsym $mod+space exec gnome-terminal --class "fzf-menu" --geometry 100x6 --profile=NoScrollbar --hide-menubar -e /home/chris.pickard/dev/sh/fzf-menu/fzf-menu
+bindsym $mod+space exec gnome-terminal --class "fzf-menu" --geometry 100x6 --profile=NoScrollbar --hide-menubar -e /home/chris.pickard/dev/golang/bin/problematic
 for_window [class="(?i)gnome-terminal"] floating enable
 
 for_window [class="(?i)my_first_azul_app"] floating enable
@@ -186,7 +186,7 @@ exec xset r rate 200 100
 exec xset s off
 # exec redshift-gtk
 exec setxkbmap -layout us -option caps:escape
-exec feh --bg-scale $HOME/Downloads/matthew-brindle-1118472-unsplash.jpg
+exec /home/linuxbrew/.linuxbrew/bin/feh --bg-scale $HOME/Downloads/matthew-brindle-1118472-unsplash.jpg
 exec xset -dpms
 exec parcellite -d
 exec unclutter
