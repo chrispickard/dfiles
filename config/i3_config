@@ -31,7 +31,7 @@ floating_modifier $mod
 
 mouse_warping none
 
-for_window [class="(?i)mpv"] floating enable
+for_window [class="(?i)vlc"] floating enable
 
 # start a terminal
 bindsym $mod+Return exec konsole

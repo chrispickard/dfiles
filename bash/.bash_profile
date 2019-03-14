@@ -13,3 +13,5 @@ export EDITOR='emacsclient -n'
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export PATH="$HOME/bin:$HOME/.cargo/bin:$HOME/dev/golang/bin:$HOME/bin/firefox/:$PATH"
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+export PATH="$HOME/.cargo/bin:$PATH"

@@ -6,9 +6,10 @@ alias dev='cd ~/dev'
 alias debug='java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=1044 -jar'
 
 alias docean='ssh do -t tmux a -t irc'
-alias attach='tmuxinator'
+# alias attach='tmuxinator'
 alias tree='tree -C' # colorful trees are pretty, no?
 alias ag=rg
+alias socialnetwork='cvlc -R "https://www.youtube.com/watch?v=yydZbVoCbn0"'
 
 # some more ls aliases
 alias ll='ls -alF --color'
@@ -26,7 +27,7 @@ alias vim=nvim
 alias e="emacsclient -n -a nvim"
 
 # tmux
-alias mux="tmuxinator"
+# alias mux="tmuxinator"
 
 # git
 alias g='git'
