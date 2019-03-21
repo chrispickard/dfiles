@@ -20,9 +20,9 @@ if [ -x "$(command -v rustc)" ] ; then
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
-export GIT_EDITOR='emacsclient'
 export SCRIPT_DIR=$HOME/dev/py/i3blocks-contrib/
 export EDITOR='emacsclient -n'
+export GIT_EDITOR='emacsclient'
 
 export VISUAL='emacsclient -n'
 export LESS="-F -g -i -M -R -S -w -z-4"

@@ -10,7 +10,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " My Bundles here:
 " Refer to |:Plug-examples|.  Note: You don't set Plug setting in .gvimrc!
 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'Shougo/vimproc.vim', {
             \ 'build' : {
             \     'windows' : 'tools\\update-dll-mingw',
@@ -39,6 +39,10 @@ Plug 'leafgarland/typescript-vim'
 Plug 'wellle/targets.vim'
 Plug 'godoctor/godoctor.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 " Plug 'tpope/vim-bundler'
 " Plug 'tpope/vim-rails'
 " Plug 'tpope/vim-unimpaired'
@@ -55,7 +59,7 @@ Plug 'tpope/vim-fugitive'
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Plug 'w0rp/ale'
 " Plug 'amdt/vim-niji'
 " Plug 'guns/vim-clojure-static'
@@ -262,9 +266,18 @@ let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_fmt_command = "goimports"
 let g:go_auto_type_info = 1
+let g:go_def_mode='gopls'
 " Error and warning signs.
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
+
+if executable('gopls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+endif
 
 " Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
