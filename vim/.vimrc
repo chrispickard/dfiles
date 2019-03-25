@@ -322,6 +322,7 @@ nnoremap <leader>ws :split<CR>
 " nnoremap <leader>pf :<C-u>Denite file_rec<CR>
 nnoremap <leader>fed :e $HOME/.config/oni/config.tsx<CR>
 nnoremap <M-m> <C-w><C-w>
+vmap s S
 " unmap K
 
 " augroup netrw_mapping

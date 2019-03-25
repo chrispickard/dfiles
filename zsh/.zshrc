@@ -112,6 +112,13 @@ tcsh-backward-delete-word () {
     zle backward-delete-word
 }
 
+__clip_cmd_line () {
+    # local WORDCHARS="./&%$"
+    print -rn -- $BUFFER | xclip -sel c
+    zle kill-whole-line
+}
+
+
 # bindkey -M viins '^p' history-search-backward
 # bindkey '^n' history-search-forward
 # backward-kill-dir () {
@@ -121,10 +128,12 @@ tcsh-backward-delete-word () {
 # zle -N backward-kill-dir
 # bindkey '^[^?' backward-kill-dir
 zle -N tcsh-backward-delete-word
+zle -N __clip_cmd_line
 bindkey '^[^?' tcsh-backward-delete-word
 bindkey '^[^H' vi-backward-kill-word
 bindkey '^[B' vi-backward-blank-word
 bindkey '^[F' vi-forward-blank-word
+bindkey '^u' __clip_cmd_line
 
 if zgen list | grep -q fzf-widgets; then
   # Map widgets to key
