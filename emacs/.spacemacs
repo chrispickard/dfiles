@@ -237,22 +237,16 @@
    dotspacemacs-use-spacelpa nil
    dotspacemacs-additional-packages '(sotlisp
                                       sotclojure
-                                      ;; (evil-adjust :location (recipe :fetcher github :repo "troyp/evil-adjust"))
-                                      ;; (go-dlv :location (recipe :fetcher github :repo "benma/go-dlv.el"))
-                                      ;;doom-themes
                                       org-gcal
                                       realgud
                                       helm-dash
-                                      ;; (elvish-mode :location (recipe :fetcher github :repo "ALSchwalm/elvish-mode"))
                                       (tridactyl-mode :location (recipe :fetcher github :repo "Fuco1/tridactyl-mode"))
-                                      ;; hasklig-mode
                                       javadoc-lookup
                                       company-flx
                                       parinfer
                                       company-shell
                                       solaire-mode
                                       atomic-chrome
-                                      ;; evil-cleverparens
                                       org-jira
                                       dap-mode
                                       edts
