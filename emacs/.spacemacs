@@ -253,7 +253,6 @@
                                       olivetti
                                       string-inflection
                                       ensime
-                                      ;; solaire-mode
                                       evil-textobj-syntax
                                       super-save
                                       flycheck-joker
