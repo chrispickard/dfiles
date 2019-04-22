@@ -20,6 +20,7 @@
      common-lisp
      haskell
      nixos
+     themes-megapack
      helm
      ;; (erc :variables
      ;;      erc-server-list
@@ -124,15 +125,15 @@
 
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-nord
-                         solarized-dark
-                         solarized-light)
+   dotspacemacs-themes '(doom-nord)
+
+
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state nil
    dotspacemacs-scratch-mode 'emacs-lisp-mode
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Mononoki"
+   dotspacemacs-default-font '("Source Code Pro"
                                :weight normal
                                :width normal
                                :powerline-scale 1.0
@@ -238,7 +239,7 @@
                                       sotclojure
                                       ;; (evil-adjust :location (recipe :fetcher github :repo "troyp/evil-adjust"))
                                       ;; (go-dlv :location (recipe :fetcher github :repo "benma/go-dlv.el"))
-                                      doom-themes
+                                      ;;doom-themes
                                       org-gcal
                                       realgud
                                       helm-dash
@@ -249,6 +250,7 @@
                                       company-flx
                                       parinfer
                                       company-shell
+                                      solaire-mode
                                       atomic-chrome
                                       ;; evil-cleverparens
                                       org-jira
@@ -257,7 +259,7 @@
                                       olivetti
                                       string-inflection
                                       ensime
-                                      solaire-mode
+                                      ;; solaire-mode
                                       evil-textobj-syntax
                                       super-save
                                       flycheck-joker
@@ -378,6 +380,11 @@ With a prefix ARG invokes `projectile-commander' instead of
          :action (lambda (project) project))
       (user-error "There are no known projects"))))
 
+(defun my/do-action ()
+  "do actions"
+  (interactive)
+    (lsp-ui-sideline-apply-code-actions))
+
 (defun my-adjoin-to-list-or-symbol (element list-or-symbol)
   (let ((list (if (not (listp list-or-symbol))
                   (list list-or-symbol)
@@ -446,6 +453,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   (setq ediff-window-setup-function 'ediff-setup-windows-default)
 
   (bind-key (kbd "M-;") 'helm-mini)
+
   ;; (define-key evil-inner-text-objects-map (kbd "w") 'evil-inner-symbol)
   ;; (define-key evil-inner-text-objects-map (kbd "o") 'evil-inner-word)
   (bind-key (kbd "M-m") 'other-window )
@@ -472,9 +480,12 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;;   "gl"  'flycheck-error-list
   ;;   "gt"  'open-org-todo)
   (setq nord-comment-brightness 20)
+  (setq nord-region-highlight "frost")
   (setq doom-enable-bold nil)
-  (doom-themes-org-config)
+  ;; (doom-themes-org-config)
   (setq lsp-auto-guess-root t)
+  ;; (setq lsp-ui-sideline-enable nil)
+  (setq lsp-ui-doc-enable nil)
 
   ;; brighten buffers (that represent real files)
   (add-hook 'change-major-mode-hook #'turn-on-solaire-mode)
@@ -485,20 +496,33 @@ With a prefix ARG invokes `projectile-commander' instead of
   (solaire-global-mode +1)
   ;; (solaire-mode-swap-bg)
 
-  (setq nord-region-highlight "snowstorm")
+  ;; (setq nord-region-highlight "snowstorm")
 
    (bind-map-set-keys evil-normal-state-map
      "gc"  'org-capture
      "g/"  'helm-swoop
      "ga"  'org-agenda
      "gs"  'magit-status-or-other-dir
-     "ss"   'evil-avy-goto-char-2
+     "s"  'evil-avy-goto-word-1
+     ;; "ss"   'evil-avy-goto-char-2
      "M-n"  'next-error-cycle
      "M-p"  'previous-error-cycle
-     "sc"   'avy-goto-char
-     "sl"   'evil-avy-goto-line
+     ;; "sc"   'avy-goto-char
+     ;; "sl"   'evil-avy-goto-line
      "gl"  'flycheck-error-list
      "gt"  'open-org-todo)
+
+   (with-eval-after-load 'cc-mode
+     (bind-map-set-keys java-mode-map
+       "<S-f6>"  'lsp-rename))
+
+   (with-eval-after-load 'go-mode
+       (bind-map-set-keys go-mode-map
+         "<S-f6>"  'go-rename))
+
+   (with-eval-after-load 'lsp-ui
+     (bind-map-set-keys lsp-ui-mode-map
+       "M-RET"  'my/do-action))
 
    (bind-map-set-keys evil-normal-state-map
      "C-b" 'evil-first-non-blank
@@ -726,6 +750,9 @@ With a prefix ARG invokes `projectile-commander' instead of
   (when (memq window-system '(mac ns x)))
   ;; (setq gofmt-command "")
   (add-hook 'go-mode-hook 'gofmt-before-save)
+  ;; (add-hook 'go-mode-hook '(lambda (bind-key (kbd "<S-f6>") 'helm-mini)))
+  ;; (add-hook 'go-mode-hook (lambda () (bind-key (kbd "<S-f6>") 'go-rename)))
+  ;; (add-hook 'java-mode-hook (lambda () (bind-key (kbd "<S-f6>") 'lsp-rename)))
   (add-hook 'lsp-hook '(setq flycheck-checker 'golangci-lint))
   ;; (setq godoc-and-godef-command "~/dev/golang/bin/gocode")
   ;; (setq company-go-gocode-command "~/dev/golang/bin/gocode")

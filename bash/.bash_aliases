@@ -12,10 +12,10 @@ alias ag=rg
 alias socialnetwork='cvlc -R "https://www.youtube.com/watch?v=yydZbVoCbn0"'
 
 # some more ls aliases
-alias ll='ls -alF --color'
-alias la='ls -lA --color'
-alias l='ls -CF --color'
-alias lh='ls -lh --color'
+alias ll='ls -alF --color=auto'
+alias la='ls -lA --color=auto'
+alias l='ls -CF --color=auto'
+alias lh='ls -lh --color=auto'
 
 # Git stuff
 

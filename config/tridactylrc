@@ -50,15 +50,12 @@ quickmark t https://github.com/cmcaine/tridactyl/issues?utf8=%E2%9C%93&q=sort%3A
 bind I mode ignore
 bind --mode=ignore I mode normal
 unbindurl mail.google.com j
+unbindurl mail.google.com x
 unbindurl mail.google.com k
 unbindurl mail.google.com z
 unbindurl keep.google.com j
 unbindurl keep.google.com k
 unbindurl keep.google.com z
-unbindurl inbox.google.com j
-unbindurl inbox.google.com k
-unbindurl inbox.google.com z
-unbindurl inbox.google.com m
 unbindurl outlook.office.com j
 unbindurl outlook.office.com k
 unbindurl outlook.office.com z

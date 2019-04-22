@@ -186,11 +186,12 @@ exec xset r rate 200 100
 exec xset s off
 # exec redshift-gtk
 exec setxkbmap -layout us -option caps:escape
-exec /home/linuxbrew/.linuxbrew/bin/feh --bg-scale $HOME/Downloads/matthew-brindle-1118472-unsplash.jpg
+exec feh --bg-fill $HOME/Pictures/0385_Porsche_Diesel_Bus_blau.jpg
 exec xset -dpms
 exec parcellite -d
 exec unclutter
 exec gnome-screensaver
+exec_always ~/.config/i3/scripts/gnome-keyring.sh
 # exec --no-startup-id nitrogen --restore
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

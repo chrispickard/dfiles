@@ -182,7 +182,8 @@ render_timer: false
 #     magenta: '0xD18EC2'
 #     cyan:    '0x7FC1CA'
 #     white:   '0xE6EEF3'
-# Colors (Nord)
+
+# # Colors (Nord)
 colors:
    # Default colors
    primary:
@@ -210,27 +211,28 @@ colors:
      magenta: '0xB48EAD'
      cyan:    '0x8FBCBB'
      white:   '0xECEFF4'
-        # Colors (Solarized Dark)
+
+# Colors (Solarized Dark)
 # colors:
 #     # Default colors
 #     primary:
-#       background: '0x002b36'
+#       background: '0x4d4d4d'
 #       foreground: '0x839496'
 
-#             # Normal colors
+#     # Normal colors
 #     normal:
-#       black:   '0x073642'
-#       red:     '0xdc322f'
-#       green:   '0x859900'
-#       yellow:  '0xb58900'
-#       blue:    '0x268bd2'
-#       magenta: '0xd33682'
-#       cyan:    '0x2aa198'
-#       white:   '0xeee8d5'
+#       black:   '0x4d4d4d'
+#       red:     '0xB26BB8'
+#       green:   '0x76A8A0'
+#       yellow:  '0xC79474'
+#       blue:    '0x6886A6'
+#       magenta: '0x515275'
+#       cyan:    '0x7D8AA8'
+#       white:   '0x8C92A1'
 
 #                 # Bright colors
 #     bright:
-#       black:   '0x002b36'
+#       black:   '0x4d4d4d'
 #       red:     '0xcb4b16'
 #       green:   '0x586e75'
 #       yellow:  '0x657b83'
