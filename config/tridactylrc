@@ -53,6 +53,11 @@ unbindurl mail.google.com j
 unbindurl mail.google.com x
 unbindurl mail.google.com k
 unbindurl mail.google.com z
+unbindurl mail.google.com s
+unbindurl mail.google.com m
+unbindurl mail.google.com r
+unbindurl mail.google.com R
+unbindurl mail.google.com v
 unbindurl keep.google.com j
 unbindurl keep.google.com k
 unbindurl keep.google.com z
@@ -91,7 +96,7 @@ bind --mode=input <C-i> editor_rm
 bindurl lwn.net gu urlparent 2
 bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
 
-" unbind <C-f>
+unbind <C-f>
 bind <C-h> unfocus
 " unbindurl mail.google.com normal j
 " bindurl news.* G open

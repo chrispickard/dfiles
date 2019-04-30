@@ -37,7 +37,7 @@ window:
 tabspaces: 4
 
 # When true, bold text is drawn using the bright variant of colors.
-draw_bold_text_with_bright_colors: false
+draw_bold_text_with_bright_colors: true
 
 # Font configuration (changes require restart)
 #
@@ -61,24 +61,24 @@ draw_bold_text_with_bright_colors: false
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Mononoki
+    family: Source Code Pro
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: Mononoki
+    family: Source Code Pro
     # Style can be specified to pick a specific face.
     style: Bold
 
   # The italic font face
   italic:
-    family: Mononoki
+    family: Source Code Pro
     # Style can be specified to pick a specific face.
     style: Italic
 
   # Point size of the font
-  size: 8.0
+  size: 7.0
 
   hintstyle: hintslight
   # Offset is the extra space around each character. offset.y can be thought of
@@ -106,84 +106,7 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 # custom_cursor_colors: false
 
-# # Colors (Tomorrow Night Bright)
-# colors:
-  # # Default colors
-  # primary:
-  #   background: '0x000000'
-  #   foreground: '0xeaeaea'
-
-  # # Colors the cursor will use if `custom_cursor_colors` is true
-  # cursor:
-  #   text: '0x000000'
-  #   cursor: '0xffffff'
-
-  # # Normal colors
-  # normal:
-  #   black:   '0x000000'
-  #   red:     '0xd54e53'
-  #   green:   '0xb9ca4a'
-  #   yellow:  '0xe6c547'
-  #   blue:    '0x7aa6da'
-  #   magenta: '0xc397d8'
-  #   cyan:    '0x70c0ba'
-  #   white:   '0xffffff'
-
-  # # Bright colors
-  # bright:
-  #   black:   '0x666666'
-  #   red:     '0xff3334'
-  #   green:   '0x9ec400'
-  #   yellow:  '0xe7c547'
-  #   blue:    '0x7aa6da'
-  #   magenta: '0xb77ee0'
-  #   cyan:    '0x54ced6'
-  #   white:   '0xffffff'
-
-  # # Dim colors (Optional)
-  # dim:
-  #   black:   '0x333333'
-  #   red:     '0xf2777a'
-  #   green:   '0x99cc99'
-  #   yellow:  '0xffcc66'
-  #   blue:    '0x6699cc'
-  #   magenta: '0xcc99cc'
-  #   cyan:    '0x66cccc'
-  #   white:   '0xdddddd'
-# # Colors (Nova)
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x3C4C55'
-#     foreground: '0xC5D4DD'
-
-#   cursor:
-#     text: '0x212121'
-#     cursor: '0xC0C5CE'
-
-#   # Normal colors
-#   normal:
-#     black:   '0x3C4C55'
-#     red:     '0xDF8C8C'
-#     green:   '0xA8CE93'
-#     yellow:  '0xDADA93'
-#     blue:    '0x83AFE5'
-#     magenta: '0x9A93E1'
-#     cyan:    '0x7FC1CA'
-#     white:   '0xC5D4DD'
-
-#   # Bright colors
-#   bright:
-#     black:   '0x899BA6'
-#     red:     '0xF2C38F'
-#     green:   '0xA8CE93'
-#     yellow:  '0xDADA93'
-#     blue:    '0x83AFE5'
-#     magenta: '0xD18EC2'
-#     cyan:    '0x7FC1CA'
-#     white:   '0xE6EEF3'
-
-# # Colors (Nord)
+# Colors (Nord)
 colors:
    # Default colors
    primary:
@@ -212,35 +135,6 @@ colors:
      cyan:    '0x8FBCBB'
      white:   '0xECEFF4'
 
-# Colors (Solarized Dark)
-# colors:
-#     # Default colors
-#     primary:
-#       background: '0x4d4d4d'
-#       foreground: '0x839496'
-
-#     # Normal colors
-#     normal:
-#       black:   '0x4d4d4d'
-#       red:     '0xB26BB8'
-#       green:   '0x76A8A0'
-#       yellow:  '0xC79474'
-#       blue:    '0x6886A6'
-#       magenta: '0x515275'
-#       cyan:    '0x7D8AA8'
-#       white:   '0x8C92A1'
-
-#                 # Bright colors
-#     bright:
-#       black:   '0x4d4d4d'
-#       red:     '0xcb4b16'
-#       green:   '0x586e75'
-#       yellow:  '0x657b83'
-#       blue:    '0x839496'
-#       magenta: '0x6c71c4'
-#       cyan:    '0x93a1a1'
-#       white:   '0xfdf6e3'
- 
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
@@ -324,14 +218,6 @@ dynamic_title: false
 
 # Live config reload (changes require restart)
 live_config_reload: true
-
-# Shell
-#
-# You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
-# Entries in shell.args are passed unmodified as arguments to the shell.
-#
-# shell:
-#   program: /home/linuxbrew/.linuxbrew/bin/zsh
 
 # Key bindings
 #

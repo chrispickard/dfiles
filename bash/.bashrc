@@ -56,3 +56,4 @@ export SCM_CHECK=true
 source "$BASH_IT"/bash_it.sh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc

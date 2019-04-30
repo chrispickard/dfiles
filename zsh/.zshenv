@@ -14,6 +14,7 @@ if [[ -f ~/.asdf/asdf.sh ]]; then
     export GOPATH=$HOME/dev/golang
     export GOROOT="$(asdf where golang)/go"
     export GO111MODULE="auto"
+    source ~/.asdf/plugins/java/asdf-java-wrapper.zsh
 fi
 
 if [ -x "$(command -v rustc)" ] ; then
@@ -30,7 +31,6 @@ export PURE_CMD_MAX_EXEC_TIME=1
 export PURE_GIT_PULL=0
 export PURE_GIT_UNTRACKED_DIRTY=0
 export PATH="$HOME/.asdf/installs/python/3.6.4/bin:$HOME/.asdf/installs/nodejs/11.6.0/.npm/bin:$PATH"
-export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.201.b09-2.el7_6.x86_64/jre"
 
 export BAT_THEME="TwoDark"
 export FZF_CTRL_T_OPTS="--preview '(bat --style=plain --color=always {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
@@ -50,3 +50,4 @@ export FZF_DEFAULT_OPTS="
   --bind='ctrl-o:execute($EDITOR {})+abort'
   --bind tab:down --cycle
 "
+[ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc

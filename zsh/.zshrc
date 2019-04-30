@@ -13,6 +13,7 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden --bin
 export FZF_ALT_C_COMMAND='fd . $HOME --type d'  
 export FZF_ALT_C_OPTS="--bind change:top --preview 'tree -C {} | head -200'"
 export PURE_PROMPT_SYMBOL="»"
+fpath+=~/.zfunc
 # export FZF_COMPLETION_TRIGGER=''
 
 if ! zgen saved; then
