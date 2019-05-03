@@ -10,6 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $hyper Shift+mod1+mod4+control
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -176,12 +177,13 @@ bindsym mod1+Shift+m exec /home/chris.pickard/bin/open-tpf.sh
 bindsym mod1+Shift+u exec close-this-window " mpv"
 bindsym mod4+l exec gnome-screensaver-command --lock --activate
 # bindsym KP_Begin exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause && pkill -RTMIN+10 i3blocks 
-bindsym KP_Begin exec playerctl play-pause && pkill -RTMIN+10 i3blocks 
-bindsym KP_Home exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
-bindsym KP_End exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
-bindsym KP_Left exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
-bindsym KP_Next exec playerctl next && pkill -RTMIN+10 i3blocks 
-bindsym KP_Prior exec playerctl previous && pkill -RTMIN+10 i3blocks 
+# bindsym mod1+control+mod4+Shift+F1 exec playerctl play-pause && pkill -RTMIN+10 i3blocks
+bindsym $hyper+F1 exec playerctl play-pause && pkill -RTMIN+10 i3blocks
+bindsym $hyper+F2 exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
+bindsym $hyper+F3 exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+bindsym $hyper+F4 exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym $hyper+F5 exec playerctl previous && pkill -RTMIN+10 i3blocks 
+bindsym $hyper+F6 exec playerctl next && pkill -RTMIN+10 i3blocks 
 
 exec xset r rate 200 100
 exec xset s off
