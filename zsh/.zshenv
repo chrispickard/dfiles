@@ -13,8 +13,7 @@ if [[ -f ~/.asdf/asdf.sh ]]; then
     source ~/.asdf/asdf.sh
     export GOPATH=$HOME/dev/golang
     export GOROOT="$(asdf where golang)/go"
-    export GO111MODULE="auto"
-    source ~/.asdf/plugins/java/asdf-java-wrapper.zsh
+    export GO111MODULE="on"
 fi
 
 if [ -x "$(command -v rustc)" ] ; then

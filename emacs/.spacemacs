@@ -32,15 +32,17 @@
      (rust :variables
            ;; rust-backend 'rls
            rust-format-on-save t)
-     javascript
+     (javascript :variables
+                 javascript-fmt-tool 'prettier 
+                  javascript-backend 'lsp)
      (go :variables
          ;; go-use-gometalinter t
          go-backend 'lsp
          gofmt-command "goimports"
-         go-use-golangci-lint t
+         ;; go-use-golangci-lint t
          go-format-before-save t
-         dap-go-debug-program "~/dev/extensions/go/extension/out/src/goMain.js"
-         godoc-at-point-function 'godoc-gogetdoc
+         ;; dap-go-debug-program "~/dev/extensions/go/extension/out/src/goMain.js"
+         ;; godoc-at-point-function 'godoc-gogetdoc
          go-tab-width 4)
      yaml
      (auto-completion :variables
@@ -78,7 +80,6 @@
       :variables
       lsp-java-save-action-organize-imports nil
       lsp-eldoc-render-all nil
-      company-lsp-cache-candidates t
       lsp-highlight-symbol-at-point nil
       java-backend 'lsp)
      ;; vinegar
@@ -91,7 +92,12 @@
      confluence
      vimscript)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(evil-mc evil-unimpaired evil-escape spaceline clojure-cheatsheet)
+   dotspacemacs-excluded-packages '(evil-mc
+                                    evil-unimpaired
+                                    evil-escape
+                                    spaceline
+                                    clojure-cheatsheet
+                                    smartparens)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
@@ -138,7 +144,7 @@
                                :weight normal
                                :width normal
                                :powerline-scale 1.0
-                               :size 14)
+                               :size 10)
    dotspacemacs-mode-line-theme '(doom)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -194,7 +200,7 @@
    dotspacemacs-folding-method 'origami
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    dotspacemacs-smartparens-strict-mode nil
-   dotspacemacs-smart-closing-parenthesis t
+   dotspacemacs-smart-closing-parenthesis nil
    ;; If non nil advises quit functions to keep server open when quitting.
    ;; dotspacemacs-persistent-server t
    dotspacemacs-enable-server t
@@ -255,6 +261,7 @@
                                       string-inflection
                                       ensime
                                       evil-textobj-syntax
+                                      graphql-mode
                                       super-save
                                       flycheck-joker
                                       helm-gtags
@@ -721,15 +728,15 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (custom-set-variables '(org-trello-files '("~/trello/todo.org")))
 
   ;; gets rid of that awful highlighting smartparens wanted to do when you open a new pair
-  (setq sp-highlight-pair-overlay nil)
+  ;; (setq sp-highlight-pair-overlay nil)
 
   ;; (add-hook 'web-mode-hook (lambda () (bind-key (kbd "M-;") 'ivy-switch-buffer)))
 
   (remove-hook 'prog-mode-hook #'smartparens-mode #'show-smartparens-mode)
-  (spacemacs/toggle-smartparens-globally-off)
+  ;; (spacemacs/toggle-smartparens-globally-off)
 
-  (add-hook 'shell-mode-hook (lambda () (progn (smartparens-mode 0)
-                                               (show-smartparens-mode 0))))
+  ;; (add-hook 'shell-mode-hook (lambda () (progn (smartparens-mode 0)
+  ;;                                              (show-smartparens-mode 0))))
   (bind-map-set-keys ctl-x-map
     "H-i" 'endless/ispell-word-then-abbrev
     "C-l" 'evil-complete-previous-line)
