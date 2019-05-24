@@ -27,7 +27,4 @@ ln -s $HOME/dfiles/config/tridactylrc $HOME/.config/tridactyl/tridactylrc
 mkdir -p /usr/local/bin
 sudo cp $HOME/dfiles/exe/btf /usr/local/bin
 
-brew bundle
-
-ln -s /home/linuxbrew/.linuxbrew/share/fonts ~/.local/share/fonts
 fc-cache -fv
