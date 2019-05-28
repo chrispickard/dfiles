@@ -622,6 +622,7 @@ With a prefix ARG invokes `projectile-commander' instead of
     (setq lsp-prefer-flymake :none))
 
   (with-eval-after-load 'org
+    (add-hook 'org-mode-hook 'spacemacs/toggle-fill-column-indicator-off)
     (load-file "~/.emacs_custom/setup-org.el"))
 
   (with-eval-after-load 'company
