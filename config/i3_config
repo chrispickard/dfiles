@@ -190,7 +190,7 @@ exec xset r rate 200 100
 exec xset s off
 # exec redshift-gtk
 exec setxkbmap -layout us -option caps:escape
-exec feh --bg-fill $HOME/Pictures/0385_Porsche_Diesel_Bus_blau.jpg
+exec feh --bg-fill $HOME/.background_l --bg-fill $HOME/.background_r
 exec xset -dpms
 exec parcellite -d
 exec unclutter

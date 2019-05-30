@@ -6,22 +6,26 @@
   "uses org-capture-plist to create defect"
   (concat (format "** %s:%d " defect-file-name defect-line-number) "%?"))
 
-(setq org-capture-templates
-      '(("n" "Note" entry
-         (file+headline "~/org/notes.org" "Notes")
-         "** %?")
-        ("C" "Contents to Current Clocked Task" plain
-         (clock)
-         (function my/org-from-browser) :immediate-finish t :empty-lines 1)
-        ("l" "org-protocol" plain (file "~/org/notes.org")
-         "* TODO Review %a\n%U\n%:initial\n")
-        ("u" "get current url and maybe text to go along with it"
-         plain
-         (file+headline "~/org/notes.org" "Notes")
-         (function my/org-from-browser) :immediate-finish t :empty-lines 1)
-        ("d" "Defect" entry
-         (file+headline "~/org/defects.org" "Defects")
-         (function defect-capture))))
+;; (setq org-capture-templates
+;;       '(("n" "Note" entry
+;;          (file+headline "~/org/notes.org" "Notes")
+;;          "** %?")
+;;         ("C" "Contents to Current Clocked Task" plain
+;;          (clock)
+;;          (function my/org-from-browser) :immediate-finish t :empty-lines 1)
+;;         ("l" "org-protocol" plain (file "~/org/notes.org")
+;;          "* TODO Review %a\n%U\n%:initial\n")
+;;         ("w" "Web site"
+;;          entry (file+olp "~/org/notes.org" "Web")
+;;          "* %c :website:\n%U %?%:initial")
+;;         ("u" "get current url and maybe text to go along with it"
+;;          plain
+;;          (file+headline "~/org/notes.org" "Notes")
+;;          (function my/org-from-browser) :immediate-finish t :empty-lines 1)
+
+;;         ("d" "Defect" entry
+;;          (file+headline "~/org/defects.org" "Defects")
+;;          (function defect-capture))))
 
 (defun log-defect-terminal (file n)
   "docstring"
@@ -50,3 +54,23 @@
 (require 'elfeed-org)
 (elfeed-org)
 (setq rmh-elfeed-org-files (list "~/.emacs_custom/elfeed.org"))
+
+(require 'org-protocol)
+(defun transform-square-brackets-to-round-ones(string-to-transform)
+  "Transforms [ into ( and ] into ), other chars left unchanged."
+  (concat 
+   (mapcar #'(lambda (c) (if (equal c ?\[) ?\( (if (equal c ?\]) ?\) c))) string-to-transform))
+  )
+
+(setq org-capture-templates `(
+                              ("d" "Defect" entry
+                               (file+headline "~/org/defects.org" "Defects")
+                               (function defect-capture))
+                              ("w" "Web site"
+                               entry (file+olp "~/org/notes.org" "Web")
+                               "* %c :website:\n%U %?%:initial")
+	                            ("p" "Protocol" entry (file+headline ,"~/org/notes.org" "Inbox")
+                               "* [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\nSource: %U\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n %?")	
+	                            ("L" "Protocol Link" entry (file+headline ,"~/org/notes.org"  "Inbox")
+                               "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")
+                              ))
