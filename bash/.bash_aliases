@@ -44,3 +44,6 @@ alias golang='cd $GOPATH'
 alias d=docker
 alias k=kubectl
 alias kl='docker run --rm --env ADVERTISED_HOST=localhost -p 2181:2181 -p 9092:9092 --env ADVERTISED_PORT=9092 --name kafka -h kafka spotify/kafka'
+alias cap="emacsclient !!"
+alias sc="systemctl"
+alias jc="journalctl"

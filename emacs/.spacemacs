@@ -58,8 +58,8 @@
       org-enable-jira-support t
       jiralib-url "https://jira.di2e.net"
       org-enable-github-support t)
-     ;; (vue
-     ;;   :variables vue-backend 'lsp)
+     (vue
+       :variables vue-backend 'lsp)
      (syntax-checking :variables syntax-checking-enable-by-default t)
      emacs-lisp
      clojure
@@ -256,6 +256,7 @@
                                       javadoc-lookup
                                       company-flx
                                       parinfer
+                                      (outshine :location (recipe :fetcher github :repo "alphapapa/outshine"))
                                       company-shell
                                       solaire-mode
                                       atomic-chrome
@@ -797,6 +798,10 @@ With a prefix ARG invokes `projectile-commander' instead of
 
   (setq frame-resize-pixelwise t)
   ;; require magit here so that it can be used as $EDITOR with it initted already
+  (require 'org)
+  (add-hook 'org-mode-hook 'spacemacs/toggle-fill-column-indicator-off)
+  (load-file "~/.emacs_custom/setup-org.el")
+
   (require 'magit)
   ;; (server-start)
   ;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1

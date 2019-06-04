@@ -13,7 +13,7 @@ if [[ -f ~/.asdf/asdf.sh ]]; then
     source ~/.asdf/asdf.sh
     export GOPATH=$HOME/dev/golang
     export GOROOT="$(asdf where golang)/go"
-    export GO111MODULE="on"
+    export GO111MODULE="auto"
 fi
 
 if [ -x "$(command -v rustc)" ] ; then
@@ -52,3 +52,5 @@ export FZF_DEFAULT_OPTS="
   --bind tab:down --cycle
 "
 [ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
+
+[ -f /etc/profile.d/snapd.sh ] && source /etc/profile.d/snapd.sh

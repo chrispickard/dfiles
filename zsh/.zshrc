@@ -20,15 +20,16 @@ if ! zgen saved; then
     zgen oh-my-zsh
     zgen oh-my-zsh plugins/gitfast
     zgen oh-my-zsh plugins/cargo
-    # zgen load zsh-users/zsh-completions
+    zgen load zsh-users/zsh-completions src
     zgen load mafredri/zsh-async
-    zgen load sindresorhus/pure
+    # zgen load sindresorhus/pure
     zgen load chrissicool/zsh-256color
     # zgen load laurenkt/zsh-vimto
     zgen load unixorn/git-extra-commands
+    zgen load ${HOME}/dev/sh/purist
     # zgen load softmoth/zsh-vim-mode
     # zgen load zsh-users/zsh-syntax-highlighting
-    zgen load ytet5uy4/fzf-widgets
+    # zgen load ytet5uy4/fzf-widgets
     # if [ -f "$HOME/.zsh_widgets" ]; then
     #     source $HOME/.zsh_widgets
     # fi
@@ -36,6 +37,13 @@ if ! zgen saved; then
     # zgen load zsh-users/zaw
     zgen save
 fi
+
+autoload -Uz add-zsh-hook
+# prompt_mimir_cmd() { mimir }
+# add-zsh-hook precmd prompt_mimir_cmd
+
+# prompt_symbol='❯'
+# PROMPT="%(?.%F{magenta}.%F{red})${prompt_symbol}%f "
 # TMOUT=1
 # TRAPALRM() { zle reset-prompt }
 # seems to fix the issue with prompts repeating themselves on resize, at least with mine
@@ -110,13 +118,16 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 
 tcsh-backward-delete-word () {
     # local WORDCHARS="./&%$"
-    zle backward-delete-word
+    # zle vi-change
 }
 
 __clip_cmd_line () {
     # local WORDCHARS="./&%$"
     print -rn -- $BUFFER | xclip -sel c
     zle kill-whole-line
+}
+__clear_screen () {
+    echoti clear; prompt_mimir_cmd; zle redisplay;
 }
 
 
@@ -128,13 +139,15 @@ __clip_cmd_line () {
 # }
 # zle -N backward-kill-dir
 # bindkey '^[^?' backward-kill-dir
-zle -N tcsh-backward-delete-word
+# zle -N tcsh-backward-delete-word
 zle -N __clip_cmd_line
-bindkey '^[^?' tcsh-backward-delete-word
+zle -N __clear_screen
+# bindkey '^[^?' vi-backward-delete-word
 bindkey '^[^H' vi-backward-kill-word
 bindkey '^[B' vi-backward-blank-word
 bindkey '^[F' vi-forward-blank-word
 bindkey '^u' __clip_cmd_line
+bindkey '^l' __clear_screen
 
 if zgen list | grep -q fzf-widgets; then
   # Map widgets to key
@@ -200,3 +213,4 @@ fi
 zgen load zsh-users/zsh-syntax-highlighting
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
