@@ -26,6 +26,7 @@ if ! zgen saved; then
     zgen load chrissicool/zsh-256color
     # zgen load laurenkt/zsh-vimto
     zgen load unixorn/git-extra-commands
+    # zgen load romkatv/powerlevel10k powerlevel10k
     zgen load ${HOME}/dev/sh/purist
     # zgen load softmoth/zsh-vim-mode
     # zgen load zsh-users/zsh-syntax-highlighting
@@ -213,4 +214,3 @@ fi
 zgen load zsh-users/zsh-syntax-highlighting
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-

@@ -30,7 +30,7 @@
      ;;         :nick "chris")))
      elm
      (rust :variables
-           ;; rust-backend 'rls
+           rust-backend 'rls
            rust-format-on-save t)
      (javascript :variables
                  javascript-fmt-tool 'prettier 
