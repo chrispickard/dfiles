@@ -20,21 +20,24 @@ if ! zgen saved; then
     zgen oh-my-zsh
     zgen oh-my-zsh plugins/gitfast
     zgen oh-my-zsh plugins/cargo
+    # zgen oh-my-zsh themes/ys
     zgen load zsh-users/zsh-completions src
     zgen load mafredri/zsh-async
-    # zgen load sindresorhus/pure
+    zgen load sindresorhus/pure
     zgen load chrissicool/zsh-256color
     # zgen load laurenkt/zsh-vimto
     zgen load unixorn/git-extra-commands
     # zgen load romkatv/powerlevel10k powerlevel10k
-    zgen load ${HOME}/dev/sh/purist
+    # zgen load laurenkt/zsh-vimto
     # zgen load softmoth/zsh-vim-mode
+    # zgen load ${HOME}/dev/sh/purist
     # zgen load zsh-users/zsh-syntax-highlighting
     # zgen load ytet5uy4/fzf-widgets
     # if [ -f "$HOME/.zsh_widgets" ]; then
     #     source $HOME/.zsh_widgets
     # fi
     zgen load willghatch/zsh-cdr
+    # zgen load akz92/clean
     # zgen load zsh-users/zaw
     zgen save
 fi
@@ -142,13 +145,39 @@ __clear_screen () {
 # bindkey '^[^?' backward-kill-dir
 # zle -N tcsh-backward-delete-word
 zle -N __clip_cmd_line
-zle -N __clear_screen
+# zle -N __clear_screen
 # bindkey '^[^?' vi-backward-delete-word
+bindkey -v
 bindkey '^[^H' vi-backward-kill-word
+bindkey '^?' backward-delete-char
 bindkey '^[B' vi-backward-blank-word
 bindkey '^[F' vi-forward-blank-word
 bindkey '^u' __clip_cmd_line
-bindkey '^l' __clear_screen
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+bindkey '^p' up-history
+bindkey '^n' down-history
+# bindkey '^l' __clear_screen
+autoload -U select-quoted select-bracketed surround
+zle -N select-quoted
+zle -N select-bracketed
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+
+for m in visual viopp; do
+    for c in {a,i}{\',\",\`}; do
+        bindkey -M $m $c select-quoted
+    done
+    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+        bindkey -M $m $c select-bracketed
+    done
+done
+bindkey -a cs change-surround
+bindkey -a ds delete-surround
+bindkey -a ys add-surround
+bindkey -M visual S add-surround
+bindkey -M visual s add-surround
 
 if zgen list | grep -q fzf-widgets; then
   # Map widgets to key
@@ -205,6 +234,7 @@ export FZF_DEFAULT_OPTS="
 source "$HOME/.bash_aliases"
 
 setopt PROMPT_SUBST
+export KEYTIMEOUT=15
 # Note the single quotes
 RPS1='${MODE_INDICATOR_PROMPT} ${vcs_info_msg_0_}'
 

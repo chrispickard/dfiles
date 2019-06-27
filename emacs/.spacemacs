@@ -34,7 +34,7 @@
            rust-format-on-save t)
      (javascript :variables
                  javascript-fmt-tool 'prettier 
-                  javascript-backend 'lsp)
+                 javascript-backend 'lsp)
      (go :variables
          ;; go-use-gometalinter t
          go-backend 'lsp
