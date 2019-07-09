@@ -24,6 +24,7 @@
 **** https://twobithistory.org/feed.xml
 **** https://carolynvanslyck.com/blog/index.xml
 **** https://nullprogram.com/feed/
+**** http://ifeanyi.co/feed
 *** Bash                                                               :bash:
 **** https://sanctum.geek.nz/arabesque/feed/
 **** https://blog.jessfraz.com/index.xml
