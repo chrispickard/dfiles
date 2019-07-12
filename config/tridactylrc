@@ -63,9 +63,9 @@ unbindurl mail.google.com v
 unbindurl keep.google.com j
 unbindurl keep.google.com k
 unbindurl keep.google.com z
-unbindurl outlook.office.com j
-unbindurl outlook.office.com k
-unbindurl outlook.office.com z
+unbindurl outlook.office365.com j
+unbindurl outlook.office365.com k
+unbindurl outlook.office365.com z
 bind K tabnext
 bind J tabprev
 bind u js scrollpage(-.4)
@@ -99,6 +99,7 @@ bindurl lwn.net gu urlparent 2
 bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
 
 unbind <C-f>
+unbind <Space>
 bind <C-h> unfocus
 " unbindurl mail.google.com normal j
 " bindurl news.* G open
