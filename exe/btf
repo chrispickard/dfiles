@@ -6,7 +6,7 @@ PROGNAME=$2 # This is the name of the binary for t-bird
 # Use wmctrl to list all windows, count how many contain WINTITLE,
 # and test if that count is non-zero:
 
-if [ `wmctrl -l | grep -c "$WINTITLE"` != 0 ]
+if [ `wmctrl -lx | grep -c "$WINTITLE"` != 0 ]
 then
     wmctrl -a "$WINTITLE" # If it exists, bring t-bird window to front
 else

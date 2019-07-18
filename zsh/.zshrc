@@ -147,16 +147,16 @@ __clear_screen () {
 zle -N __clip_cmd_line
 # zle -N __clear_screen
 # bindkey '^[^?' vi-backward-delete-word
-bindkey -v
+# bindkey -v
 bindkey '^[^H' vi-backward-kill-word
 bindkey '^?' backward-delete-char
 bindkey '^[B' vi-backward-blank-word
 bindkey '^[F' vi-forward-blank-word
 bindkey '^u' __clip_cmd_line
-bindkey '^a' beginning-of-line
-bindkey '^e' end-of-line
-bindkey '^p' up-history
-bindkey '^n' down-history
+# bindkey '^a' beginning-of-line
+# bindkey '^e' end-of-line
+# bindkey '^p' up-history
+# bindkey '^n' down-history
 # bindkey '^l' __clear_screen
 autoload -U select-quoted select-bracketed surround
 zle -N select-quoted

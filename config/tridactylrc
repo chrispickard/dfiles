@@ -66,6 +66,14 @@ unbindurl keep.google.com z
 unbindurl outlook.office365.com j
 unbindurl outlook.office365.com k
 unbindurl outlook.office365.com z
+unbindurl jira.di2e.net/secure/RapidBoard.jspa j
+unbindurl jira.di2e.net/secure/RapidBoard.jspa k
+unbindurl jira.di2e.net/secure/RapidBoard.jspa n
+unbindurl jira.di2e.net/secure/RapidBoard.jspa p
+unbindurl jira.di2e.net/secure/RapidBoard.jspa t
+unbindurl jira.di2e.net/secure/RapidBoard.jspa a
+unbindurl jira.di2e.net/secure/RapidBoard.jspa o
+unbindurl jira.di2e.net/secure/RapidBoard.jspa m
 bind K tabnext
 bind J tabprev
 bind u js scrollpage(-.4)

@@ -625,8 +625,15 @@ With a prefix ARG invokes `projectile-commander' instead of
   (with-eval-after-load 'evil
     (require 'evil-textobj-syntax))
 
-  (with-eval-after-load 'lsp-mode
-    (setq lsp-prefer-flymake :none))
+  (with-eval-after-load 'typescript-mode
+    (projectile-register-project-type 'npm '("package.json")
+                                      :compile "npm install"
+                                      :test "npm test"
+                                      :run "npm run start"
+                                      :test-suffix ".spec.ts"))
+
+  ;; (with-eval-after-load 'lsp-mode
+  ;;   (setq lsp-prefer-flymake :none))
 
   (with-eval-after-load 'org
     (add-hook 'org-mode-hook 'spacemacs/toggle-fill-column-indicator-off)
