@@ -35,7 +35,6 @@ floating_modifier $mod
 mouse_warping none
 
 for_window [class="(?i)vlc"] floating enable
-for_window [class="Spotify"] title_format "Spotify - %title"
 for_window [class="Spotify"] move to workspace 6
 
 # start a terminal

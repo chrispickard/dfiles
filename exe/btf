@@ -5,10 +5,11 @@ PROGNAME=$2 # This is the name of the binary for t-bird
 
 # Use wmctrl to list all windows, count how many contain WINTITLE,
 # and test if that count is non-zero:
-
-if [ `wmctrl -lx | grep -c "$WINTITLE"` != 0 ]
+WINDOW=$(wmctrl -lx | grep "$WINTITLE")
+if [ $(echo $WINDOW | wc -l) != 0 ]
 then
-    wmctrl -a "$WINTITLE" # If it exists, bring t-bird window to front
+    WINID=$(echo $WINDOW | awk '{print $1}')
+    wmctrl -i -a "$WINID" # If it exists, bring t-bird window to front
 else
     $PROGNAME & # Otherwise, just launch t-bird
 fi
