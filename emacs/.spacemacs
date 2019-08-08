@@ -502,7 +502,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; itself off every time Emacs reverts the file
   (add-hook 'after-revert-hook #'turn-on-solaire-mode)
   (solaire-global-mode +1)
-  ;; (solaire-mode-swap-bg)
+  (solaire-mode-swap-bg)
 
   ;; (setq nord-region-highlight "snowstorm")
 
@@ -555,6 +555,8 @@ With a prefix ARG invokes `projectile-commander' instead of
   (spacemacs/set-leader-keys "w/" 'split-window-right-and-focus)
   (spacemacs/set-leader-keys "w-" 'split-window-below-and-focus)
   (spacemacs/set-leader-keys "SPC" 'helm-semantic-or-imenu)
+  (spacemacs/set-leader-keys "qr" 'restart-emacs)
+  (spacemacs/set-leader-keys "qR" 'spacemacs/restart-emacs-resume-layouts)
 
   ;; (add-lisp-hooks #'smartparens-strict-mode)
   ;; (add-lisp-hooks #'evil-cleverparens-mode)
@@ -623,6 +625,14 @@ With a prefix ARG invokes `projectile-commander' instead of
   (global-auto-revert-mode 1)
 
   (with-eval-after-load 'evil
+    (dolist (map '(evil-motion-state-map
+                   evil-insert-state-map
+                   evil-emacs-state-map))
+      (define-key (eval map) "(" nil))
+    (dolist (map '(evil-motion-state-map
+                   evil-insert-state-map
+                   evil-emacs-state-map))
+      (define-key (eval map) ")" nil))
     (require 'evil-textobj-syntax))
 
   (with-eval-after-load 'typescript-mode

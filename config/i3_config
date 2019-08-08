@@ -170,13 +170,13 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-bindsym mod1+Shift+e exec btf "emacs@chris" emacs
-bindsym mod1+Shift+k exec btf " - Visual Studio Code" code
-bindsym mod1+Shift+j exec btf "alacritty@charon" "alacritty --live-config-reload --title alacritty@charon"
-bindsym mod1+Shift+c exec btf "Mozilla Firefox" firefox
-bindsym mod1+Shift+h exec btf "DI2E Framework Jira" firefox
-# bindsym mod1+Shift+i exec btf "IntelliJ IDEA" idea
-bindsym mod1+Shift+l exec btf "irc@charon" "/home/chris.pickard/bin/alacritty --live-config-reload --title irc@charon"
+bindsym mod1+Shift+e exec btf -m "emacs@chris" emacs
+bindsym mod1+Shift+k exec btf -m " - Visual Studio Code" code
+bindsym mod1+Shift+j exec btf -m "alacritty@charon" "alacritty --live-config-reload --title alacritty@charon"
+bindsym mod1+Shift+c exec btf -m "Mozilla Firefox" -e "DI2E Framework Jira"  firefox
+bindsym mod1+Shift+h exec btf -m "DI2E Framework Jira" firefox
+# bindsym mod1+Shift+i exec btf -m "IntelliJ IDEA" idea
+bindsym mod1+Shift+l exec btf -m "irc@charon" "/home/chris.pickard/bin/alacritty --live-config-reload --title irc@charon"
 bindsym mod1+Shift+p exec /home/chris.pickard/bin/open-tpf.sh
 bindsym mod1+Shift+m exec /home/chris.pickard/bin/open-cp9.sh
 bindsym mod1+Shift+u exec close-this-window " mpv"
@@ -189,7 +189,7 @@ bindsym $hyper+F3 exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 
 bindsym $hyper+F4 exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
 bindsym $hyper+F5 exec playerctl previous && pkill -RTMIN+10 i3blocks 
 bindsym $hyper+F6 exec playerctl next && pkill -RTMIN+10 i3blocks 
-bindsym $hyper+F7 exec btf "Spotify" spotify
+bindsym $hyper+F7 exec btf -m "Spotify" spotify
 
 exec xset r rate 200 100
 exec xset s off
