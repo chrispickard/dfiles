@@ -173,8 +173,8 @@ bindsym $mod+r mode "resize"
 bindsym mod1+Shift+e exec btf -m "emacs@chris" emacs
 bindsym mod1+Shift+k exec btf -m " - Visual Studio Code" code
 bindsym mod1+Shift+j exec btf -m "alacritty@charon" "alacritty --live-config-reload --title alacritty@charon"
-bindsym mod1+Shift+c exec btf -m "Mozilla Firefox" -e "DI2E Framework Jira"  firefox
-bindsym mod1+Shift+h exec btf -m "DI2E Framework Jira" firefox
+bindsym mod1+Shift+c exec btf -m "Firefox Nightly" -e "DI2E Framework Jira"  /opt/firefox/firefox
+bindsym mod1+Shift+h exec btf -m "DI2E Framework Jira" /opt/firefox/firefox
 # bindsym mod1+Shift+i exec btf -m "IntelliJ IDEA" idea
 bindsym mod1+Shift+l exec btf -m "irc@charon" "/home/chris.pickard/bin/alacritty --live-config-reload --title irc@charon"
 bindsym mod1+Shift+p exec /home/chris.pickard/bin/open-tpf.sh

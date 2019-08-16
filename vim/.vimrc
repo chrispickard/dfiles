@@ -136,7 +136,7 @@ syntax enable
 
 set t_Co=256
 set background=dark
-colorscheme nord
+silent! colorscheme nord
 
 nnoremap <Leader>v :vsplit
 nnoremap <Leader>e :e

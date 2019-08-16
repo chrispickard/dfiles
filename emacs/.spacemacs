@@ -742,7 +742,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (add-hook 'java-mode-hook 'meghanada-mode)
   (setq helm-dash-browser-func 'eww-browse-url)
   (setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "firefox")
+        browse-url-generic-program "/opt/firefox/firefox")
 
   ;; (add-to-list 'company-backends 'company-shell)
   (setq ac-auto-show-menu t

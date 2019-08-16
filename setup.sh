@@ -7,9 +7,6 @@ done
 # install zgen
 git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
-# install bash-it
-git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
-
 # install asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.2
 

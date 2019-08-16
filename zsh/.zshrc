@@ -119,6 +119,8 @@ zle -N __backword-delete-WORD
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' completer _complete _correct
 
 tcsh-backward-delete-word () {
     # local WORDCHARS="./&%$"
@@ -234,6 +236,7 @@ export FZF_DEFAULT_OPTS="
 source "$HOME/.bash_aliases"
 
 setopt PROMPT_SUBST
+# setopt correct
 export KEYTIMEOUT=15
 # Note the single quotes
 RPS1='${MODE_INDICATOR_PROMPT} ${vcs_info_msg_0_}'
