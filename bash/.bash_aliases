@@ -23,8 +23,9 @@ alias fw="rlwrap lein figwheel"
 alias less="less -+X"
 
 # editors
-alias vim=nvim
+# alias vim=nvim
 alias e="emacsclient -n -a nvim"
+alias vim="emacsclient -nw -a nvim"
 
 # tmux
 # alias mux="tmuxinator"

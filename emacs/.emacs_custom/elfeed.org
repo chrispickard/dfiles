@@ -26,6 +26,7 @@
 **** https://nullprogram.com/feed/
 **** http://ifeanyi.co/feed
 **** https://www.vrk.dev/feed
+**** http://n-gate.com/hackernews/index.rss
 *** Bash                                                               :bash:
 **** https://sanctum.geek.nz/arabesque/feed/
 **** https://blog.jessfraz.com/index.xml

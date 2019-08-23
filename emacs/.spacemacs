@@ -127,7 +127,7 @@
    ;; directory. A string value must be a path to a .PNG file.
    ;; If the value is nil then no banner is displayed.
    ;; dotspacemacs-startup-banner 'official
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner '000
    dotspacemacs-elpa-https t
    dotspacemacs-elpa-timeout 5
    ;; t if you always want to see the changelog at startup
@@ -190,7 +190,7 @@
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'.
    dotspacemacs-active-transparency 100
-   dotspacemacs-distinguish-gui-tab t
+   dotspacemacs-distinguish-gui-tab nil
    dotspacemacs-helm-use-fuzzy 'always
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
@@ -263,10 +263,17 @@
                                       atomic-chrome
                                       org-jira
                                       dap-mode
+                                      smart-mode-line
+                                      (mini-modeline
+                                      :quelpa (mini-modeline :repo "kiennq/emacs-mini-modeline" :fetcher github)
+                                      :config
+                                      (mini-modeline-mode t))
                                       edts
                                       olivetti
                                       string-inflection
+                                      evil-terminal-cursor-changer
                                       ensime
+                                      smart-mode-line-atom-one-dark-theme
                                       evil-textobj-syntax
                                       graphql-mode
                                       super-save
@@ -337,6 +344,14 @@ abort completely with `C-g'."
   "Switch entry to DONE when all subentries are done, to TODO otherwise."
   (let (org-log-done org-log-states)   ; turn off logging
     (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+
+(defun ladicle/toggle-lsp-ui-doc ()
+  (interactive)
+  (if lsp-ui-doc-mode
+      (progn
+        (lsp-ui-doc-mode -1)
+        (lsp-ui-doc--hide-frame))
+    (lsp-ui-doc-mode 1)))
 
 (defun add-lisp-hooks (hook)
   "add hooks to lisp modes of choice"
@@ -466,11 +481,15 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (define-key evil-inner-text-objects-map (kbd "o") 'evil-inner-word)
   (bind-key (kbd "M-m") 'other-window )
   ;; (bind-key (kbd "M-s") 'sp-forward-slurp-sexp )
-  (keyboard-translate ?\C-i ?\H-i)
-  (global-set-key [?\H-i] 'evil-jump-forward)
+
+  (define-key input-decode-map (kbd "C-i") (kbd "H-i"))
+  (global-set-key (kbd "H-i") 'evil-jump-forward)
   ;; (bind-key (kbd "C-M-s") 'sp-forward-barf-sexp )
 
   (bind-key (kbd "<f2>") 'begin-defect-capture)
+  (evil-terminal-cursor-changer-activate)
+  (setq lsp-ui-doc-position 'at-point)
+  (setq lsp-ui-doc-use-webkit t)
 
   (unbind-key (kbd "s") evil-normal-state-map)
   ;; (unbind-key (kbd "s") evil-cleverparens-mode-map)
@@ -488,6 +507,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;;   "gl"  'flycheck-error-list
   ;;   "gt"  'open-org-todo)
   (setq nord-comment-brightness 20)
+
   (setq nord-region-highlight "frost")
   (setq doom-enable-bold nil)
   ;; (doom-themes-org-config)
@@ -496,29 +516,33 @@ With a prefix ARG invokes `projectile-commander' instead of
   (setq lsp-ui-doc-enable nil)
 
   ;; brighten buffers (that represent real files)
-  (add-hook 'change-major-mode-hook #'turn-on-solaire-mode)
+  ;; (add-hook 'change-major-mode-hook #'turn-on-solaire-mode)
 
   ;; ...if you use auto-revert-mode, this prevents solaire-mode from turning
   ;; itself off every time Emacs reverts the file
-  (add-hook 'after-revert-hook #'turn-on-solaire-mode)
-  (solaire-global-mode +1)
-  (solaire-mode-swap-bg)
+  ;; (add-hook 'after-revert-hook #'turn-on-solaire-mode)
+  ;; (solaire-global-mode +1)
+  ;; (solaire-mode-swap-bg)
 
   ;; (setq nord-region-highlight "snowstorm")
-
-   (bind-map-set-keys evil-normal-state-map
-     "gc"  'org-capture
-     "g/"  'helm-swoop
-     "ga"  'org-agenda
-     "gs"  'magit-status-or-other-dir
-     "s"  'evil-avy-goto-word-1
-     ;; "ss"   'evil-avy-goto-char-2
-     "M-n"  'next-error-cycle
-     "M-p"  'previous-error-cycle
-     ;; "sc"   'avy-goto-char
-     ;; "sl"   'evil-avy-goto-line
-     "gl"  'flycheck-error-list
-     "gt"  'open-org-todo)
+  ;; (setq sml/theme 'atom-one-dark)
+  ;; (setq sml/no-confirm-load-theme t)
+  ;; (sml/setup)
+  ;; (smart-mode-line-enable)
+  (mini-modeline-mode t)
+  (bind-map-set-keys evil-normal-state-map
+    "gc"  'org-capture
+    "g/"  'helm-swoop
+    "ga"  'org-agenda
+    "gs"  'magit-status-or-other-dir
+    "s"  'evil-avy-goto-word-1
+    ;; "ss"   'evil-avy-goto-char-2
+    "M-n"  'next-error-cycle
+    "M-p"  'previous-error-cycle
+    ;; "sc"   'avy-goto-char
+    ;; "sl"   'evil-avy-goto-line
+    "gl"  'flycheck-error-list
+    "gt"  'open-org-todo)
 
    (with-eval-after-load 'cc-mode
      (bind-map-set-keys java-mode-map
@@ -529,8 +553,14 @@ With a prefix ARG invokes `projectile-commander' instead of
          "<S-f6>"  'go-rename))
 
    (with-eval-after-load 'lsp-ui
+     (bind-map-set-keys evil-normal-state-map
+       "K" 'ladicle/toggle-lsp-ui-doc)
      (bind-map-set-keys lsp-ui-mode-map
        "M-RET"  'my/do-action))
+
+   (with-eval-after-load 'typescript
+     (bind-map-set-keys lsp-ui-mode-map
+       "M-RET"  'lsp-ui-sideline-apply-code-actions))
 
    (bind-map-set-keys evil-normal-state-map
      "C-b" 'evil-first-non-blank
@@ -574,7 +604,6 @@ With a prefix ARG invokes `projectile-commander' instead of
   (add-hook 'text-mode-hook #'(lambda () (setq fill-column 100)))
   (add-hook 'text-mode-hook #'auto-fill-mode)
   ;; (add-hook 'text-mode-hook 'variable-pitch-mode)
-
   (modify-syntax-entry ?_ "w")
   (modify-syntax-entry ?- "w")
   ;; (add-lisp-hooks #'aggressive-indent-mode)
@@ -885,6 +914,9 @@ This function is called at the very end of Spacemacs initialization."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
+ '(custom-safe-themes
+   '("bc75dfb513af404a26260b3420d1f3e4131df752c19ab2984a7c85def9a2917e" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
+ '(evil-want-Y-yank-to-eol nil)
  '(js2-missing-semi-one-line-override nil)
  '(js2-strict-missing-semi-warning nil)
  '(magit-use-overlays nil)

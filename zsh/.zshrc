@@ -102,6 +102,10 @@ function __backword-delete-WORD() {
     vi-delete select-in-blank-word
 }
 
+function tree(){
+    exa -T $@
+}
+
 function gogo() {
      local dir
      GOGO_FZF_OPTS=""
