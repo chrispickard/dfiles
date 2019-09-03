@@ -34,6 +34,7 @@
            rust-backend 'rls
            rust-format-on-save t)
      (javascript :variables
+                 ;; javascript-fmt-on-save t
                  javascript-fmt-tool 'prettier 
                  javascript-backend 'lsp)
      (go :variables
@@ -60,7 +61,10 @@
       jiralib-url "https://jira.di2e.net"
       org-enable-github-support t)
      (vue
-       :variables vue-backend 'lsp)
+      :variables
+      vue-backend 'lsp)
+     (node :variable
+           node-add-modules-path t)
      (syntax-checking :variables syntax-checking-enable-by-default t)
      emacs-lisp
      clojure
@@ -479,7 +483,8 @@ With a prefix ARG invokes `projectile-commander' instead of
 
   ;; (define-key evil-inner-text-objects-map (kbd "w") 'evil-inner-symbol)
   ;; (define-key evil-inner-text-objects-map (kbd "o") 'evil-inner-word)
-  (bind-key (kbd "M-m") 'other-window )
+  ;; ADD OTHER WINDOW TO TMUX
+  (bind-key (kbd "M-m") 'other-window)
   ;; (bind-key (kbd "M-s") 'sp-forward-slurp-sexp )
 
   (define-key input-decode-map (kbd "C-i") (kbd "H-i"))

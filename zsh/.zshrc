@@ -184,6 +184,7 @@ bindkey -a ds delete-surround
 bindkey -a ys add-surround
 bindkey -M visual S add-surround
 bindkey -M visual s add-surround
+bindkey -r ^j
 
 if zgen list | grep -q fzf-widgets; then
   # Map widgets to key

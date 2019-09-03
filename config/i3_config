@@ -172,8 +172,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 bindsym mod1+Shift+e exec btf -m "emacs@chris" emacs
 bindsym mod1+Shift+k exec btf -m " - Visual Studio Code" code
-# bindsym mod1+Shift+j exec btf -m "alacritty@charon" "alacritty --live-config-reload --title alacritty@charon"
-bindsym mod1+Shift+j exec btf -m "st-256color" "st -t 'st -- simple terminal'"
+bindsym mod1+Shift+j exec btf -m "alacritty@charon" "alacritty --live-config-reload --title alacritty@charon"
+# bindsym mod1+Shift+j exec btf -m "st-256color" "st -t 'st -- simple terminal'"
 bindsym mod1+Shift+c exec btf -m "Firefox Nightly" -e "DI2E Framework Jira"  /opt/firefox/firefox
 bindsym mod1+Shift+h exec btf -m "DI2E Framework Jira" /opt/firefox/firefox
 # bindsym mod1+Shift+i exec btf -m "IntelliJ IDEA" idea
