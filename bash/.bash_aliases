@@ -25,7 +25,7 @@ alias less="less -+X"
 # editors
 # alias vim=nvim
 alias e="emacsclient -n -a nvim"
-alias vim="emacsclient -nw -a nvim"
+# alias vim="emacsclient -nw -a nvim"
 
 # tmux
 # alias mux="tmuxinator"
@@ -43,9 +43,14 @@ alias golang='cd $GOPATH'
 
 # docker/kubernetes
 alias d=docker
+alias t="task -t .taskfile.yml"
+alias task="task -t .taskfile.yml"
+alias start="task -t .taskfile.yml start"
 alias k=kubectl
-alias kl='docker run --rm --env ADVERTISED_HOST=localhost -p 2181:2181 -p 9092:9092 --env ADVERTISED_PORT=9092 --name kafka -h kafka spotify/kafka'
+# alias kl='docker run --rm --env ADVERTISED_HOST=localhost -p 2181:2181 -p 9092:9092 --env ADVERTISED_PORT=9092 --name kafka -h kafka spotify/kafka'
 alias postgres='docker run -it --rm -p 5432 postgres:alpine'
 alias cap="emacsclient !!"
 alias sc="systemctl"
 alias jc="journalctl"
+alias ssh="TERM=xterm-256color ssh"
+alias cmcli="cm --config ~/.config/cm/config.json"

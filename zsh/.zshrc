@@ -106,6 +106,40 @@ function tree(){
     exa -T $@
 }
 
+function kl(){
+read -r -d '' COMPOSE_FILE <<'EOF'
+{
+   "version": "3",
+   "services": {
+      "zookeeper": {
+         "image": "confluentinc/cp-zookeeper:latest",
+         "restart": "unless-stopped",
+         "network_mode": "host",
+         "environment": {
+            "ZOOKEEPER_CLIENT_PORT": 2181
+         }
+      },
+      "kafka": {
+         "image": "confluentinc/cp-kafka:latest",
+         "restart": "unless-stopped",
+         "depends_on": [
+            "zookeeper"
+         ],
+         "network_mode": "host",
+         "environment": {
+            "KAFKA_ZOOKEEPER_CONNECT": "localhost:2181",
+            "KAFKA_ADVERTISED_LISTENERS": "PLAINTEXT://localhost:9092",
+            "KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR": 1,
+            "KAFKA_AUTO_CREATE_TOPICS_ENABLE": "true",
+            "CONFLUENT_SUPPORT_METRICS_ENABLE": "false"
+         }
+      }
+   }
+}
+EOF
+echo ${COMPOSE_FILE} | docker-compose -f- up
+}
+
 function gogo() {
      local dir
      GOGO_FZF_OPTS=""

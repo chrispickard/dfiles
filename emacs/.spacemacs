@@ -17,7 +17,8 @@
      lua
      ansible
      lsp
-     shell-scripts
+     (shell-scripts :variables
+                    shell-scripts-backend 'lsp)
      common-lisp
      haskell
      nixos
@@ -80,7 +81,7 @@
              python-backend 'lsp
              python-enable-yapf-format-on-save t)
      (restclient :variables
-                 restclient-use-org t)
+                  restclient-use-org t)
      erlang
      ruby
      groovy
@@ -150,11 +151,11 @@
    dotspacemacs-scratch-mode 'emacs-lisp-mode
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :weight normal
-                               :width normal
+   dotspacemacs-default-font '("Iosevka Term"
+                               :weight Regular
+                               :width Regular
                                :powerline-scale 1.0
-                               :size 10)
+                               :size 10.0)
    dotspacemacs-mode-line-theme '(doom)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -258,6 +259,7 @@
                                       realgud
                                       helm-dash
                                       (tridactyl-mode :location (recipe :fetcher github :repo "Fuco1/tridactyl-mode"))
+                                      skeletor
                                       javadoc-lookup
                                       company-flx
                                       parinfer
@@ -268,10 +270,10 @@
                                       org-jira
                                       dap-mode
                                       smart-mode-line
-                                      (mini-modeline
-                                      :quelpa (mini-modeline :repo "kiennq/emacs-mini-modeline" :fetcher github)
-                                      :config
-                                      (mini-modeline-mode t))
+                                      ;; (mini-modeline
+                                      ;; :quelpa (mini-modeline :repo "kiennq/emacs-mini-modeline" :fetcher github)
+                                      ;; :config
+                                      ;; (mini-modeline-mode t))
                                       edts
                                       olivetti
                                       string-inflection
@@ -519,6 +521,11 @@ With a prefix ARG invokes `projectile-commander' instead of
   (setq lsp-auto-guess-root t)
   ;; (setq lsp-ui-sideline-enable nil)
   (setq lsp-ui-doc-enable nil)
+  (setq-default
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2)
 
   ;; brighten buffers (that represent real files)
   ;; (add-hook 'change-major-mode-hook #'turn-on-solaire-mode)
@@ -534,7 +541,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (setq sml/no-confirm-load-theme t)
   ;; (sml/setup)
   ;; (smart-mode-line-enable)
-  (mini-modeline-mode t)
+  ;; (mini-modeline-mode t)
   (bind-map-set-keys evil-normal-state-map
     "gc"  'org-capture
     "g/"  'helm-swoop
@@ -553,7 +560,11 @@ With a prefix ARG invokes `projectile-commander' instead of
      (bind-map-set-keys java-mode-map
        "<S-f6>"  'lsp-rename))
 
+   (with-eval-after-load 'json-mode
+     (setq-default tab-width 2))
+
    (with-eval-after-load 'go-mode
+     (require 'dap-go)
        (bind-map-set-keys go-mode-map
          "<S-f6>"  'go-rename))
 
@@ -626,6 +637,10 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
   ;; (setq flycheck-gometalinter-vendor t)
   (setq flycheck-elixir-credo-strict t)
+  (setq skeletor-project-directory "~/dev/vgo/github.com/chrispickard/")
+  (setq skeletor-user-directory "~/.emacs.d/private/project-skeletons")
+
+  (skeletor-define-template "go")
   ;; only show errors
   ;; (setq flycheck-gometalinter-errors-only t)
   ;; only run fast linters
@@ -651,6 +666,8 @@ With a prefix ARG invokes `projectile-commander' instead of
                                                  (setq solarized-scale-org-headlines nil)))
   (setq solarized-use-variable-pitch nil)
   (setq solarized-scale-org-headlines nil)
+  (setq lsp-enable-symbol-highlighting nil)
+  (setq lsp-ui-sideline-show-hover 't)
   ;; (add-hook 'spacemacs-post-theme-change-hook 'remove-bolds)
   ;; (setq evil-cleverparens-use-regular-insert t)
   (with-eval-after-load 'yasnippet
@@ -815,7 +832,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (add-hook 'go-mode-hook '(lambda (bind-key (kbd "<S-f6>") 'helm-mini)))
   ;; (add-hook 'go-mode-hook (lambda () (bind-key (kbd "<S-f6>") 'go-rename)))
   ;; (add-hook 'java-mode-hook (lambda () (bind-key (kbd "<S-f6>") 'lsp-rename)))
-  (add-hook 'lsp-hook '(setq flycheck-checker 'golangci-lint))
+  ;; (add-hook 'lsp-hook '(setq flycheck-checker 'golangci-lint))
   ;; (setq godoc-and-godef-command "~/dev/golang/bin/gocode")
   ;; (setq company-go-gocode-command "~/dev/golang/bin/gocode")
   (setq cider-cljs-lein-repl
@@ -919,13 +936,18 @@ This function is called at the very end of Spacemacs initialization."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
- '(custom-safe-themes
-   '("bc75dfb513af404a26260b3420d1f3e4131df752c19ab2984a7c85def9a2917e" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
+ '(ansi-color-names-vector
+   ["#2E3440" "#C16069" "#A2BF8A" "#ECCC87" "#80A0C2" "#B58DAE" "#86C0D1" "#ECEFF4"])
  '(evil-want-Y-yank-to-eol nil)
+ '(fci-rule-color "#4C566A")
+ '(jdee-db-active-breakpoint-face-colors (cons "#191C25" "#80A0C2"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#191C25" "#A2BF8A"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#191C25" "#434C5E"))
  '(js2-missing-semi-one-line-override nil)
  '(js2-strict-missing-semi-warning nil)
  '(magit-use-overlays nil)
  '(markdown-command "/opt/pandoc/bin/pandoc")
+ '(objed-cursor-color "#C16069")
  '(package-selected-packages
    '(ob-ipython ein polymode yapfify erlang visual-fill-column writeroom-mode go-guru winum parinfer live-py-mode seq spinner spotify pcache atomic-chrome websocket eyebrowse multiple-cursors rubocop pdf-tools ob-elixir ivy-purpose window-purpose imenu-list hide-comnt column-enforce-mode inflections inf-ruby yaml-mode minitest pug-mode ruby-test-mode mwim company-shell robe macrostep elfeed-goodies counsel-projectile undo-tree elixir-mode s evil-cleverparens intero hlint-refactor hindent haskell-snippets flycheck-haskell company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode meghanada alchemist clang-format elpy fzf alert hydra groovy-mode org-projectile org-jira evil-ediff dumb-jump bundler git-commit with-editor f web-mode tagedit slim-mode scss-mode sass-mode less-css-mode jade-mode haml-mode emmet-mode company-web web-completion-data git-link find-file-in-project suggest loop flycheck-clojure rake company-go clojure-snippets org auto-compile ensime sbt-mode scala-mode org-download flycheck-mix swiper iedit ivy auctex-latexmk auctex tern restclient counsel magit-popup clojure-mode sotclojure vimrc-mode dactyl-mode async auto-complete confluence toc-org org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets htmlize gnuplot avy anzu highlight flycheck request projectile helm-core yasnippet js2-mode markdown-mode evil fireplace cider smartparens company helm magit elfeed sotlisp sx beacon xkcd ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe use-package spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle restart-emacs ranger rainbow-delimiters racket-mode quelpa pyvenv pytest pyenv-mode popwin pip-requirements persp-mode pcre2el paradox page-break-lines orgit open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow lorem-ipsum linum-relative leuven-theme json-mode js2-refactor js-doc indent-guide ido-vertical-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery expand-region evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-plus evil-iedit-state evil-exchange evil-args evil-anzu emacs-eclim define-word cython-mode company-tern company-statistics company-quickhelp company-anaconda coffee-mode clj-refactor clean-aindent-mode cider-eval-sexp-fu buffer-move auto-yasnippet auto-highlight-symbol align-cljlet aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
  '(paradox-github-token t)
@@ -943,6 +965,28 @@ This function is called at the very end of Spacemacs initialization."
      (elixir-enable-compilation-checking . t)
      (elixir-enable-compilation-checking)))
  '(send-mail-function 'mailclient-send-it)
+ '(vc-annotate-background "#2E3440")
+ '(vc-annotate-color-map
+   (list
+    (cons 20 "#A2BF8A")
+    (cons 40 "#bac389")
+    (cons 60 "#d3c788")
+    (cons 80 "#ECCC87")
+    (cons 100 "#e3b57e")
+    (cons 120 "#da9e75")
+    (cons 140 "#D2876D")
+    (cons 160 "#c88982")
+    (cons 180 "#be8b98")
+    (cons 200 "#B58DAE")
+    (cons 220 "#b97e97")
+    (cons 240 "#bd6f80")
+    (cons 260 "#C16069")
+    (cons 280 "#a15b66")
+    (cons 300 "#825663")
+    (cons 320 "#625160")
+    (cons 340 "#4C566A")
+    (cons 360 "#4C566A")))
+ '(vc-annotate-very-old-color nil)
  '(vc-follow-symlinks t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

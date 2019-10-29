@@ -25,10 +25,9 @@ bindurl news.ycombinator.com ;c hint -c [class*="collapser"],[class="togg"]
 " "
 " " Misc settings
 " "
-
 " " set editorcmd to suckless terminal, or use the defaults on other platforms
 set editorcmd emacsclient
-" " js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "emacsclient -n" : "auto"; tri.config.set("editorcmd", editorcmd)})
+" js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "emacsclient -n" : "auto"; tri.config.set("editorcmd", editorcmd)})
 
 " " set profile dir on Windows
 " jsb browser.runtime.getPlatformInfo().then(os=>{const profiledir = os.os=="win" ? "C:\\Users\\olie\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\gwm76nmk.default" : "auto"; tri.config.set("profiledir", profiledir)})
@@ -38,8 +37,8 @@ set editorcmd emacsclient
 " set hintchars 4327895610
 
 " Make Tridactyl work on more sites at the expense of some security
-set csp clobber
-fixamo_quiet
+" set csp clobber
+" fixamo_quiet
 
 " Make quickmarks for the sane Tridactyl issue view
 quickmark t https://github.com/cmcaine/tridactyl/issues?utf8=%E2%9C%93&q=sort%3Aupdated-desc+

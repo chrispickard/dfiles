@@ -33,6 +33,7 @@ export PURE_GIT_UNTRACKED_DIRTY=0
 export PATH="$HOME/.asdf/installs/python/3.6.4/bin:$HOME/.asdf/installs/nodejs/11.6.0/.npm/bin:$PATH"
 
 export BAT_THEME="TwoDark"
+export ANSIBLE_HOST_KEY_CHECKING=False
 export TERM="xterm-24bit"
 export FZF_CTRL_T_OPTS="--preview '(bat --style=plain --color=always {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
