@@ -261,14 +261,14 @@ fi
 # Then, source plugins and add commands to $PATH
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Nord colors
-export FZF_DEFAULT_OPTS="
-  --color=bg+:#3B4252,bg:#2E3440,spinner:#4C566A,hl:#A3BE8C
-  --color=fg:#D8DEE9,header:#ECEFF4,info:#81A1C1,pointer:#B48EAD
-  --color=marker:#BF616A,fg+:#88C0D0,prompt:#D8DEE9,hl+:#8FBCBB
-  --bind='ctrl-o:execute($EDITOR {})+abort'
-  --bind tab:down --cycle
-"
+# # Nord colors
+# export FZF_DEFAULT_OPTS="
+#   --color=bg+:#3B4252,bg:#2E3440,spinner:#4C566A,hl:#A3BE8C
+#   --color=fg:#D8DEE9,header:#ECEFF4,info:#81A1C1,pointer:#B48EAD
+#   --color=marker:#BF616A,fg+:#88C0D0,prompt:#D8DEE9,hl+:#8FBCBB
+#   --bind='ctrl-o:execute($EDITOR {})+abort'
+#   --bind tab:down --cycle
+# "
 
 # zprof | less
 
