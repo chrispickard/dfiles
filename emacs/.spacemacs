@@ -24,6 +24,7 @@
      nixos
      themes-megapack
      ;; ipython-notebook
+     nim
      helm
      ;; (erc :variables
      ;;      erc-server-list
@@ -151,7 +152,7 @@
    dotspacemacs-scratch-mode 'emacs-lisp-mode
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Iosevka Term"
+   dotspacemacs-default-font '("Iosevka"
                                :weight Regular
                                :width Regular
                                :powerline-scale 1.0

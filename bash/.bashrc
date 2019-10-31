@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 
-if [ -f "$HOME/.bashrc_local" ]; then
-    source "$HOME/.bashrc_local"
-fi
+# If not running interactively, don't do anything
+case $- in
+  *i*) ;;
+    *) return;;
+esac
 
 # Path to the bash it configuration
-export BASH_IT="$HOME/.bash_it"
+export BASH_IT="/home/chris.pickard/.bash_it"
 
-# Lock and Load a custom theme file
+# Lock and Load a custom theme file.
+# Leave empty to disable theming.
 # location /.bash_it/themes/
 export BASH_IT_THEME='bobby'
 
@@ -22,7 +25,7 @@ export GIT_HOSTING='git@git.domain.com'
 unset MAILCHECK
 
 # Change this to your console based IRC client of choice.
-export IRC_CLIENT='weechat'
+export IRC_CLIENT='irssi'
 
 # Set this to the command you use for todo.txt-cli
 export TODO="t"
@@ -52,8 +55,9 @@ export SCM_CHECK=true
 # after enabling or disabling aliases, plugins, and completions.
 # export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
 
-# Load Bash It
-source "$BASH_IT"/bash_it.sh
+# Uncomment this to make Bash-it create alias reload.
+# export BASH_IT_RELOAD_LEGACY=1
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
+# Load Bash It
+export PATH="$HOME/.nimble/bin:$PATH"
+source "$BASH_IT"/bash_it.sh
