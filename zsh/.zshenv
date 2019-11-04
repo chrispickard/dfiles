@@ -19,7 +19,7 @@ fi
 if [ -x "$(command -v rustc)" ] ; then
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
-
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.5.10-0.el7_7.x86_64
 export SCRIPT_DIR=$HOME/dev/py/i3blocks-contrib/
 export EDITOR='emacsclient -n'
 export GIT_EDITOR='emacsclient'

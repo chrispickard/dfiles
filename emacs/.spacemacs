@@ -26,11 +26,7 @@
      ;; ipython-notebook
      nim
      helm
-     ;; (erc :variables
-     ;;      erc-server-list
-     ;;      '(("pickard.cc"
-     ;;         :port "5000"
-     ;;         :nick "chris")))
+     emoji
      elm
      (rust :variables
            rust-backend 'rls
@@ -152,7 +148,7 @@
    dotspacemacs-scratch-mode 'emacs-lisp-mode
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Iosevka"
+   dotspacemacs-default-font '("Iosevka Term"
                                :weight Regular
                                :width Regular
                                :powerline-scale 1.0
