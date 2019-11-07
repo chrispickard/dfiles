@@ -76,6 +76,8 @@
      xkcd
      (python :variables
              python-backend 'lsp
+             python-pipenv-activate t
+             python-format-on-save t
              python-enable-yapf-format-on-save t)
      (restclient :variables
                   restclient-use-org t)

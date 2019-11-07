@@ -42,6 +42,7 @@ export PATH="$HOME/bin/firefox/:/usr/eocal/bin:$HOME/.asdf/installs/python/3.6.4
 export PATH="$HOME/bin/firefox/:/usr/local/bin:$HOME/.asdf/installs/python/3.6.4/bin:$HOME/.asdf/installs/nodejs/9.7.1/.npm/bin:$HOME/.asdf/bin:$HOME/.asdf/shims:/usr/local/sbin:$HOME/dev/golang/bin:$HOME/.local/bin:$HOME/.asdf/installs/ruby/2.5.0/bin:$HOME/.cargo/bin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/bin:$HOME/dev/golang/src/github.com/junegunn/fzf/bin"
 export PATH="/home/chris.pickard/.guix-profile/bin${PATH:+:}$PATH"
 export PATH=/home/chris.pickard/.nimble/bin:$PATH
+export PATH=/opt/apache-maven-3.6.2/bin:$PATH
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
