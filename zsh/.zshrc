@@ -20,8 +20,10 @@ if ! zgen saved; then
     zgen oh-my-zsh
     zgen oh-my-zsh plugins/gitfast
     zgen oh-my-zsh plugins/cargo
+    zgen oh-my-zsh plugins/docker
+    zgen oh-my-zsh plugins/docker-compose
     # zgen oh-my-zsh themes/ys
-    zgen load zsh-users/zsh-completions src
+    zgen load zsh-users/zsh-completions
     zgen load mafredri/zsh-async
     zgen load sindresorhus/pure
     zgen load chrissicool/zsh-256color
