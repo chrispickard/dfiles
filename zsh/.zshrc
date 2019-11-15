@@ -1,8 +1,6 @@
 # zmodload zsh/zprof
 source "${HOME}/.zgen/zgen.zsh"
 
-
-
 alias reload='zgen reset && exec zsh'
 
 export SHARE_HISTORY=true
@@ -282,9 +280,10 @@ export KEYTIMEOUT=15
 # Note the single quotes
 RPS1='${MODE_INDICATOR_PROMPT} ${vcs_info_msg_0_}'
 
-if [ -f "$HOME/.zshrc_local" ]; then
-    source "$HOME/.zshrc_local"
-fi
+# if [ -f "$HOME/.zshrc_local" ]; then
+#     source "$HOME/.zshrc_local"
+# fi
 zgen load zsh-users/zsh-syntax-highlighting
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# zprof

@@ -1,3 +1,4 @@
+# zmodload zsh/zprof
 #
 # Defines environment variables.
 #
@@ -10,9 +11,9 @@ if [ -f "$HOME/.zshenv_local" ]; then
 fi
 
 if [[ -f ~/.asdf/asdf.sh ]]; then
-    source ~/.asdf/asdf.sh
+    # source ~/.asdf/asdf.sh
     export GOPATH=$HOME/dev/golang
-    export GOROOT="$(asdf where golang)/go"
+    # export GOROOT="$(asdf where golang)/go"
     export GO111MODULE="auto"
 fi
 
@@ -43,6 +44,8 @@ export PATH="$HOME/bin/firefox/:/usr/local/bin:$HOME/.asdf/installs/python/3.6.4
 export PATH="/home/chris.pickard/.guix-profile/bin${PATH:+:}$PATH"
 export PATH=/home/chris.pickard/.nimble/bin:$PATH
 export PATH=/opt/apache-maven-3.6.2/bin:$PATH
+export BNP_URL=http://localhost:8080
+export PATH="$HOME/.tmuxifier/bin:$PATH"
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
@@ -56,6 +59,6 @@ export FZF_DEFAULT_OPTS="
   --bind tab:down --cycle
 "
 
-[ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
+# [ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
 
-[ -f /etc/profile.d/snapd.sh ] && source /etc/profile.d/snapd.sh
+# [ -f /etc/profile.d/snapd.sh ] && source /etc/profile.d/snapd.sh

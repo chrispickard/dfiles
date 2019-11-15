@@ -21,6 +21,10 @@
                     shell-scripts-backend 'lsp)
      common-lisp
      haskell
+     (json :variables
+           json-fmt-tool 'prettier
+           js-indent-level 2
+           json-fmt-on-save t)
      nixos
      themes-megapack
      ;; ipython-notebook
@@ -76,9 +80,11 @@
      xkcd
      (python :variables
              python-backend 'lsp
+             python-sort-imports-on-save t
+             python-formatter 'lsp
              python-pipenv-activate t
-             python-format-on-save t
-             python-enable-yapf-format-on-save t)
+             python-save-before-test t
+             python-format-on-save t)
      (restclient :variables
                   restclient-use-org t)
      erlang
@@ -93,7 +99,11 @@
       lsp-highlight-symbol-at-point nil
       java-backend 'lsp)
      ;; vinegar
-     html
+     (html :variables
+           css-enable-lsp t
+           less-enable-lsp t
+           scss-enable-lsp t
+           html-enable-lsp t)
      (typescript :variables
                  typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier
@@ -560,13 +570,27 @@ With a prefix ARG invokes `projectile-commander' instead of
        "<S-f6>"  'lsp-rename))
 
    (with-eval-after-load 'json-mode
+     (setq json-fmt-tool 'prettier)
      (setq-default tab-width 2))
 
    (with-eval-after-load 'go-mode
      (require 'dap-go)
-       (bind-map-set-keys go-mode-map
-         "<S-f6>"  'go-rename))
-
+     (dap-register-debug-template "Go Test Debug Package"
+                                  (list :type "go"
+                                        :request "launch"
+                                        :name "Launch Debug Package"
+                                        :mode "debug"
+                                        :program nil
+                                        :buildFlags nil
+                                        :args nil
+                                        :env nil
+                                        :envFile nil))
+     (lsp-register-custom-settings
+      '(("gopls.completeUnimported" t t)
+        ("gopls.staticcheck" t t)))
+     (bind-map-set-keys go-mode-map
+       "<S-f6>"  'go-rename))
+   
    (with-eval-after-load 'lsp-ui
      (bind-map-set-keys evil-normal-state-map
        "K" 'ladicle/toggle-lsp-ui-doc)
