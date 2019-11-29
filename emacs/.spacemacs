@@ -17,6 +17,7 @@
      lua
      ansible
      lsp
+     xclipboard
      (shell-scripts :variables
                     shell-scripts-backend 'lsp)
      common-lisp
