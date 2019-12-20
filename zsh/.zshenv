@@ -44,7 +44,9 @@ export PATH="$HOME/bin/firefox/:/usr/local/bin:$HOME/.asdf/installs/python/3.6.4
 export PATH="/home/chris.pickard/.guix-profile/bin${PATH:+:}$PATH"
 export PATH=/home/chris.pickard/.nimble/bin:$PATH
 export PATH=/opt/apache-maven-3.6.2/bin:$PATH
+export PATH=$PATH:/home/chris.pickard/.linkerd2/bin
 export BNP_URL=http://localhost:8080
+export DEFAULT_VAULT_PASSWORD_FILE=$HOME/bin/get-pass.sh
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then

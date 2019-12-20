@@ -18,3 +18,5 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.nimble/bin:$PATH"
 if [ -e /home/chris.pickard/.nix-profile/etc/profile.d/nix.sh ]; then . /home/chris.pickard/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+export PATH="$HOME/.poetry/bin:$PATH"

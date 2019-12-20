@@ -8,7 +8,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview '(bat -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview'"
-export FZF_ALT_C_COMMAND='fd . $HOME --type d'  
+export FZF_ALT_C_COMMAND='fd . $HOME --type d'
 export FZF_ALT_C_OPTS="--bind change:top --preview 'tree -C {} | head -200'"
 export PURE_PROMPT_SYMBOL="»"
 fpath+=~/.zfunc
@@ -37,6 +37,7 @@ if ! zgen saved; then
     #     source $HOME/.zsh_widgets
     # fi
     zgen load willghatch/zsh-cdr
+    zgen load urbainvaes/fzf-marks
     # zgen load akz92/clean
     # zgen load zsh-users/zaw
     zgen save
@@ -148,7 +149,7 @@ function gogo() {
      fi
 
      dir=$(find "$GOPATH/src" -maxdepth 3 -path '*/\.*' -prune \
-                -o -type d -print 2> /dev/null | fzf ${GOGO_FZF_OPTS} -0 -1 -e +m) && cd "$dir" 
+                -o -type d -print 2> /dev/null | fzf ${GOGO_FZF_OPTS} -0 -1 -e +m) && cd "$dir"
 }
 
 # zle -N _kinda_better_leader
@@ -280,9 +281,9 @@ export KEYTIMEOUT=15
 # Note the single quotes
 RPS1='${MODE_INDICATOR_PROMPT} ${vcs_info_msg_0_}'
 
-# if [ -f "$HOME/.zshrc_local" ]; then
-#     source "$HOME/.zshrc_local"
-# fi
+if [ -f "$HOME/.zshrc_local" ]; then
+    source "$HOME/.zshrc_local"
+fi
 zgen load zsh-users/zsh-syntax-highlighting
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

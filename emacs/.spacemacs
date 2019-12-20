@@ -10,29 +10,29 @@
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
-   '(perl5
-     asciidoc
+   '(;;perl5
+     ;; asciidoc
      nginx
-     sql
-     lua
-     ansible
+     ;; sql
+     ;; lua
+     ;; ansible
      lsp
      xclipboard
      (shell-scripts :variables
                     shell-scripts-backend 'lsp)
-     common-lisp
-     haskell
+     ;; common-lisp
+     ;; haskell
      (json :variables
            json-fmt-tool 'prettier
            js-indent-level 2
            json-fmt-on-save t)
-     nixos
+     ;; nixos
      themes-megapack
      ;; ipython-notebook
-     nim
+     ;; nim
      helm
-     emoji
-     elm
+     ;; emoji
+     ;; elm
      (rust :variables
            rust-backend 'rls
            rust-format-on-save t)
@@ -50,6 +50,7 @@
          ;; godoc-at-point-function 'godoc-gogetdoc
          go-tab-width 4)
      yaml
+     copy-as-format
      (auto-completion :variables
                       auto-completion-tab-key-behavior 'cycle
                       ;; auto-completion-enable-snippets-in-popup t
@@ -71,11 +72,12 @@
      (syntax-checking :variables syntax-checking-enable-by-default t)
      emacs-lisp
      clojure
-     docker
+     (docker :variables
+             docker-dockerfile-backend 'lsp)
      markdown
      dap
-     tmux
-     racket
+     ;; tmux
+     ;; racket
      (elfeed :variables
              rmh-elfeed-org-files '("~/.emacs_custom/elfeed.org"))
      xkcd
@@ -89,9 +91,9 @@
      (restclient :variables
                   restclient-use-org t)
      erlang
-     ruby
-     groovy
-     elixir
+     ;; ruby
+     ;; groovy
+     ;; elixir
 
      (java
       :variables
@@ -110,7 +112,7 @@
                  typescript-fmt-tool 'prettier
                  typescript-backend 'lsp
                  )
-     confluence
+     ;; confluence
      vimscript)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-mc
@@ -263,40 +265,12 @@
    ;; (default nil)
    dotspacemacs-pretty-docs nil
    dotspacemacs-use-spacelpa nil
-   dotspacemacs-additional-packages '(sotlisp
-                                      sotclojure
-                                      org-gcal
-                                      realgud
-                                      helm-dash
+   dotspacemacs-additional-packages '(
                                       (tridactyl-mode :location (recipe :fetcher github :repo "Fuco1/tridactyl-mode"))
-                                      skeletor
-                                      javadoc-lookup
                                       company-flx
-                                      parinfer
-                                      (outshine :location (recipe :fetcher github :repo "alphapapa/outshine"))
-                                      company-shell
                                       solaire-mode
-                                      atomic-chrome
-                                      org-jira
-                                      dap-mode
-                                      smart-mode-line
-                                      ;; (mini-modeline
-                                      ;; :quelpa (mini-modeline :repo "kiennq/emacs-mini-modeline" :fetcher github)
-                                      ;; :config
-                                      ;; (mini-modeline-mode t))
-                                      edts
-                                      olivetti
-                                      string-inflection
-                                      evil-terminal-cursor-changer
-                                      ensime
-                                      smart-mode-line-atom-one-dark-theme
                                       evil-textobj-syntax
-                                      graphql-mode
-                                      super-save
-                                      flycheck-joker
-                                      helm-gtags
-                                      syntactic-close
-                                      concurrent)
+                                      super-save)
    ;; User initialization goes here
 
 
@@ -504,7 +478,6 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (bind-key (kbd "C-M-s") 'sp-forward-barf-sexp )
 
   (bind-key (kbd "<f2>") 'begin-defect-capture)
-  (evil-terminal-cursor-changer-activate)
   (setq lsp-ui-doc-position 'at-point)
   (setq lsp-ui-doc-use-webkit t)
 
@@ -589,6 +562,7 @@ With a prefix ARG invokes `projectile-commander' instead of
      (lsp-register-custom-settings
       '(("gopls.completeUnimported" t t)
         ("gopls.staticcheck" t t)))
+
      (bind-map-set-keys go-mode-map
        "<S-f6>"  'go-rename))
    
@@ -661,10 +635,10 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
   ;; (setq flycheck-gometalinter-vendor t)
   (setq flycheck-elixir-credo-strict t)
-  (setq skeletor-project-directory "~/dev/vgo/github.com/chrispickard/")
-  (setq skeletor-user-directory "~/.emacs.d/private/project-skeletons")
+  ;; (setq skeletor-project-directory "~/dev/vgo/github.com/chrispickard/")
+  ;; (setq skeletor-user-directory "~/.emacs.d/private/project-skeletons")
 
-  (skeletor-define-template "go")
+  ;; (skeletor-define-template "go")
   ;; only show errors
   ;; (setq flycheck-gometalinter-errors-only t)
   ;; only run fast linters
@@ -748,8 +722,8 @@ With a prefix ARG invokes `projectile-commander' instead of
   (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
   ;; (add-hook 'prog-mode-hook 'real-auto-save-mode)
 
-  (require 'sotlisp)
-  (add-hook 'emacs-lisp-mode-hook 'sotlisp-mode)
+  ;; (require 'sotlisp)
+  ;; (add-hook 'emacs-lisp-mode-hook 'sotlisp-mode)
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
@@ -759,32 +733,32 @@ With a prefix ARG invokes `projectile-commander' instead of
   (defadvice spacemacs/jump-to-definition (after jump-to-def-center activate)
     (evil-scroll-line-to-center nil))
 
-  (defadvice sotlisp-find-or-define-function (before sotlisp-push-jump activate)
-    (evil--jumps-push))
-  (defadvice sotlisp-find-or-define-variable (before sotlisp-push-jump-var activate)
-    (evil--jumps-push))
+  ;; (defadvice sotlisp-find-or-define-function (before sotlisp-push-jump activate)
+  ;;   (evil--jumps-push))
+  ;; (defadvice sotlisp-find-or-define-variable (before sotlisp-push-jump-var activate)
+  ;;   (evil--jumps-push))
 
-  (defadvice sotclojure-find-or-define-function (before sotclojure-push-jump activate)
-    (evil--jumps-push))
-  (defadvice sotclojure-find-or-define-variable (before sotclojure-push-jump-var activate)
-    (evil--jumps-push))
+  ;; (defadvice sotclojure-find-or-define-function (before sotclojure-push-jump activate)
+  ;;   (evil--jumps-push))
+  ;; (defadvice sotclojure-find-or-define-variable (before sotclojure-push-jump-var activate)
+  ;;   (evil--jumps-push))
 
   (defadvice meghanada-local-variable (before save-before-local-var activate)
     (save-buffer))
 
   ;; when using sotlisp enter insert mode upon using the insert parens funcs
-  (defadvice sotlisp-newline-and-parentheses
-      (after enter-insert-mode-after-newline activate)
-    (evil-insert-state))
-  (defadvice sotlisp-downlist-newline-and-parentheses
-      (after enter-insert-mode-after-downlist activate)
-    (evil-insert-state))
+  ;; (defadvice sotlisp-newline-and-parentheses
+  ;;     (after enter-insert-mode-after-newline activate)
+  ;;   (evil-insert-state))
+  ;; (defadvice sotlisp-downlist-newline-and-parentheses
+  ;;     (after enter-insert-mode-after-downlist activate)
+  ;;   (evil-insert-state))
 
   (add-to-list 'spacemacs-large-file-modes-list 'tags-table-mode)
 
-  (defadvice sotlisp-newline-and-parentheses
-      (before end-of-sexp-before-newline activate)
-    (sp-end-of-sexp))
+  ;; (defadvice sotlisp-newline-and-parentheses
+  ;;     (before end-of-sexp-before-newline activate)
+  ;;   (sp-end-of-sexp))
 
   (defadvice move-past-close-and-reindent
       (after end-of-sexp-reindent activate)
@@ -801,7 +775,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;;   (link-hint-open-link-at-point (right-char 1)))
 
   (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode-disable)
-  (add-hook 'clojure-mode-hook 'sotclojure-mode)
+  ;; (add-hook 'clojure-mode-hook 'sotclojure-mode)
   ;(add-hook 'emacs-lisp-mode-hook 'sotlisp-mode)
 
   (setq clojure-enable-fancify-symbols t)
@@ -891,11 +865,11 @@ With a prefix ARG invokes `projectile-commander' instead of
 
   (setq frame-resize-pixelwise t)
   ;; require magit here so that it can be used as $EDITOR with it initted already
-  (require 'org)
-  (add-hook 'org-mode-hook 'spacemacs/toggle-fill-column-indicator-off)
-  (load-file "~/.emacs_custom/setup-org.el")
+  (with-eval-after-load 'org
+    (add-hook 'org-mode-hook 'spacemacs/toggle-fill-column-indicator-off)
+    (load-file "~/.emacs_custom/setup-org.el"))
 
-  (require 'magit)
+  (global-git-commit-mode)
   ;; (server-start)
   ;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
   ;; (setq flycheck-gometalinter-vendor t)

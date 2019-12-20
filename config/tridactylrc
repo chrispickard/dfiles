@@ -88,6 +88,7 @@ unbindurl jira.di2e.net/secure/RapidBoard.jspa b
 bind K tabnext
 bind J tabprev
 bind u js scrollpage(-.4)
+unbind d
 bind d js scrollpage(.4)
 unbind D
 unbind .
