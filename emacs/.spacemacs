@@ -26,7 +26,7 @@
            json-fmt-tool 'prettier
            js-indent-level 2
            json-fmt-on-save t)
-     ;; nixos
+     nixos
      themes-megapack
      ;; ipython-notebook
      ;; nim
@@ -34,7 +34,7 @@
      ;; emoji
      ;; elm
      (rust :variables
-           rust-backend 'rls
+           lsp-rust-rls-server-command "~/.cargo/bin/ra_lsp_server"
            rust-format-on-save t)
      (javascript :variables
                  ;; javascript-fmt-on-save t
@@ -443,9 +443,9 @@ With a prefix ARG invokes `projectile-commander' instead of
    This function is called at the very end of Spacemacs initialization after
   layers configuration."
   (setq-default powerline-default-separator 'arrow)
-  (setq dotspacemacs-mode-line-unicode-symbols nil)
-  (spacemacs/toggle-highlight-current-line-globally-off)
-  (setq solarized-use-more-italic t)
+  ;; (setq dotspacemacs-mode-line-unicode-symbols nil)
+  ;; (spacemacs/toggle-highlight-current-line-globally-off)
+  ;; (setq solarized-use-more-italic t)
 
   ;; (bind-key (kbd "M-;") 'ivy-switch-buffer)
 
@@ -565,7 +565,7 @@ With a prefix ARG invokes `projectile-commander' instead of
 
      (bind-map-set-keys go-mode-map
        "<S-f6>"  'go-rename))
-   
+
    (with-eval-after-load 'lsp-ui
      (bind-map-set-keys evil-normal-state-map
        "K" 'ladicle/toggle-lsp-ui-doc)
