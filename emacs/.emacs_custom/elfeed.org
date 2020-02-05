@@ -45,6 +45,7 @@
 **** https://feeds.feedburner.com/steveklabnik/words
 ** Comics
 *** http://www.qwantz.com/rssfeed.php
+*** https://xkcd.com/atom.xml
 ** Science                                                          :science:
 **** https://www.amarchenkova.com/feed
 **** https://apod.nasa.gov/apod.rss

@@ -62,6 +62,7 @@
    (mapcar #'(lambda (c) (if (equal c ?\[) ?\( (if (equal c ?\]) ?\) c))) string-to-transform))
   )
 
+(setq org-log-note-clock-out t)
 (setq org-capture-templates
       `(("d" "Defect" entry
          (file+headline "~/org/notes.org" "Defects")

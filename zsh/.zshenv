@@ -40,7 +40,7 @@ export FZF_CTRL_T_OPTS="--preview '(bat --style=plain --color=always {} 2> /dev/
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 export PATH="$HOME/bin/firefox/:/usr/eocal/bin:$HOME/.asdf/installs/python/3.6.4/bin:$HOME/.asdf/installs/nodejs/9.7.1/.npm/bin:$HOME/.asdf/bin:$HOME/.asdf/shims:/usr/local/sbin:$HOME/dev/golang/bin:$HOME/.local/bin:$HOME/.asdf/installs/ruby/2.5.0/bin:$HOME/.cargo/bin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/bin:$HOME/dev/golang/src/github.com/junegunn/fzf/bin"
-export PATH="$HOME/bin/firefox/:/usr/local/bin:$HOME/.asdf/installs/python/3.6.4/bin:$HOME/.asdf/installs/nodejs/9.7.1/.npm/bin:$HOME/.asdf/bin:$HOME/.asdf/shims:/usr/local/sbin:$HOME/dev/golang/bin:$HOME/.local/bin:$HOME/.asdf/installs/ruby/2.5.0/bin:$HOME/.cargo/bin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/bin:$HOME/dev/golang/src/github.com/junegunn/fzf/bin"
+export PATH="$HOME/bin/firefox/:/usr/local/bin:$HOME/.asdf/installs/python/3.6.4/bin:$HOME/.asdf/installs/nodejs/9.7.1/.npm/bin:$HOME/.asdf/bin:$HOME/.asdf/shims:/usr/local/sbin:$HOME/dev/golang/bin:$HOME/.local/bin:$HOME/.asdf/installs/ruby/2.5.0/bin:$HOME/.cargo/bin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/dev/golang/src/github.com/junegunn/fzf/bin"
 export PATH="/home/chris.pickard/.guix-profile/bin${PATH:+:}$PATH"
 export PATH=/home/chris.pickard/.nimble/bin:$PATH
 export PATH=/opt/apache-maven-3.6.2/bin:$PATH
@@ -48,6 +48,7 @@ export PATH=$PATH:/home/chris.pickard/.linkerd2/bin
 export BNP_URL=http://localhost:8080
 export DEFAULT_VAULT_PASSWORD_FILE=$HOME/bin/get-pass.sh
 export PATH="$HOME/.tmuxifier/bin:$PATH"
+export PATH="/opt/firefox:$HOME/bin:$PATH"
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
@@ -64,3 +65,5 @@ export FZF_DEFAULT_OPTS="
 # [ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
 
 # [ -f /etc/profile.d/snapd.sh ] && source /etc/profile.d/snapd.sh
+ [ -f ~/.nix-profile/etc/profile.d/nix.sh ] && source ~/.nix-profile/etc/profile.d/nix.sh && export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
+[ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ] && source ~/.nix-profile/etc/profile.d/hm-session-vars.sh

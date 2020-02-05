@@ -5,7 +5,7 @@
 
 
 sanitise tridactyllocal tridactylsync
-" set smoothscroll false
+set smoothscroll true
 set theme dark
 " " set newtab about:newtab
 source ~/.tridactylrc_local
@@ -27,6 +27,7 @@ bindurl news.ycombinator.com ;c hint -c [class*="collapser"],[class="togg"]
 " "
 " " set editorcmd to suckless terminal, or use the defaults on other platforms
 set editorcmd emacsclient
+seturl ^https://mail.google.com editorcmd emacsclient -c
 " js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "emacsclient -n" : "auto"; tri.config.set("editorcmd", editorcmd)})
 
 " " set profile dir on Windows
@@ -110,6 +111,7 @@ bind a buffer #
 bind <A-;> fillcmdline buffer
 " Make gu take you back to subreddit from comments
 bindurl reddit.com gu urlparent 3
+bindurl lobste.rs gu urlparent 3
 alias editor_rm composite editor | jsb -p tri.native.run(`rm -f '${JS_ARG[0]}'`)
 bind --mode=insert <C-i> editor_rm
 bind --mode=input <C-i> editor_rm

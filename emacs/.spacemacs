@@ -10,7 +10,9 @@
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
-   '(;;perl5
+   '(ansible
+     systemd
+     ;;perl5
      ;; asciidoc
      nginx
      ;; sql
@@ -34,11 +36,15 @@
      ;; emoji
      ;; elm
      (rust :variables
-           lsp-rust-rls-server-command "~/.cargo/bin/ra_lsp_server"
+           lsp-rust-server 'rust-analyzer
            rust-format-on-save t)
      (javascript :variables
                  ;; javascript-fmt-on-save t
-                 javascript-fmt-tool 'prettier 
+                 javascript-fmt-tool 'prettier
+                 web-mode-markup-indent-offset 2
+                 web-mode-css-indent-offset 2
+                 web-mode-code-indent-offset 2
+                 web-mode-attr-indent-offset 2
                  javascript-backend 'lsp)
      (go :variables
          ;; go-use-gometalinter t
@@ -80,7 +86,6 @@
      ;; racket
      (elfeed :variables
              rmh-elfeed-org-files '("~/.emacs_custom/elfeed.org"))
-     xkcd
      (python :variables
              python-backend 'lsp
              python-sort-imports-on-save t
@@ -111,6 +116,10 @@
                  typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier
                  typescript-backend 'lsp
+                 web-mode-markup-indent-offset 2
+                 web-mode-css-indent-offset 2
+                 web-mode-code-indent-offset 2
+                 web-mode-attr-indent-offset 2
                  )
      ;; confluence
      vimscript)
@@ -268,6 +277,7 @@
    dotspacemacs-additional-packages '(
                                       (tridactyl-mode :location (recipe :fetcher github :repo "Fuco1/tridactyl-mode"))
                                       company-flx
+                                      ham-mode
                                       solaire-mode
                                       evil-textobj-syntax
                                       super-save)
@@ -337,11 +347,7 @@ abort completely with `C-g'."
 
 (defun ladicle/toggle-lsp-ui-doc ()
   (interactive)
-  (if lsp-ui-doc-mode
-      (progn
-        (lsp-ui-doc-mode -1)
-        (lsp-ui-doc--hide-frame))
-    (lsp-ui-doc-mode 1)))
+  (lsp-ui-doc-glance))
 
 (defun add-lisp-hooks (hook)
   "add hooks to lisp modes of choice"
@@ -481,6 +487,8 @@ With a prefix ARG invokes `projectile-commander' instead of
   (setq lsp-ui-doc-position 'at-point)
   (setq lsp-ui-doc-use-webkit t)
 
+  (add-to-list 'auto-mode-alist '(".*github.*\\.txt?\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '(".*office.*\\.txt?\\'" . org-mode))
   (unbind-key (kbd "s") evil-normal-state-map)
   ;; (unbind-key (kbd "s") evil-cleverparens-mode-map)
 
@@ -508,7 +516,10 @@ With a prefix ARG invokes `projectile-commander' instead of
    web-mode-markup-indent-offset 2
    web-mode-css-indent-offset 2
    web-mode-code-indent-offset 2
-   web-mode-attr-indent-offset 2)
+   web-mode-attr-indent-offset 2
+   js-indent-level 2
+   typescript-indent-level 2)
+  (setq lsp-signature-auto-activate nil)
 
   ;; brighten buffers (that represent real files)
   ;; (add-hook 'change-major-mode-hook #'turn-on-solaire-mode)
@@ -537,6 +548,8 @@ With a prefix ARG invokes `projectile-commander' instead of
     ;; "sc"   'avy-goto-char
     ;; "sl"   'evil-avy-goto-line
     "gl"  'flycheck-error-list
+
+    "K" 'ladicle/toggle-lsp-ui-doc
     "gt"  'open-org-todo)
 
    (with-eval-after-load 'cc-mode
@@ -567,8 +580,6 @@ With a prefix ARG invokes `projectile-commander' instead of
        "<S-f6>"  'go-rename))
 
    (with-eval-after-load 'lsp-ui
-     (bind-map-set-keys evil-normal-state-map
-       "K" 'ladicle/toggle-lsp-ui-doc)
      (bind-map-set-keys lsp-ui-mode-map
        "M-RET"  'my/do-action))
 
@@ -696,6 +707,7 @@ With a prefix ARG invokes `projectile-commander' instead of
 
   (with-eval-after-load 'org
     (add-hook 'org-mode-hook 'spacemacs/toggle-fill-column-indicator-off)
+    (add-hook 'org-mode-hook 'visual-line-mode)
     (load-file "~/.emacs_custom/setup-org.el"))
 
   (with-eval-after-load 'company
@@ -716,6 +728,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (elpy-use-ipython)
   ;; shell script hook
   (add-hook 'shell-script-enabled-hook #'flycheck-mode)
+  (add-hook 'visual-line-mode-hook 'visual-fill-column-mode)
 
   ;;(add-hook 'python-mode-hook 'set-python-interpreter)
   ;; elisp hooks
@@ -947,7 +960,7 @@ This function is called at the very end of Spacemacs initialization."
  '(markdown-command "/opt/pandoc/bin/pandoc")
  '(objed-cursor-color "#C16069")
  '(package-selected-packages
-   '(ob-ipython ein polymode yapfify erlang visual-fill-column writeroom-mode go-guru winum parinfer live-py-mode seq spinner spotify pcache atomic-chrome websocket eyebrowse multiple-cursors rubocop pdf-tools ob-elixir ivy-purpose window-purpose imenu-list hide-comnt column-enforce-mode inflections inf-ruby yaml-mode minitest pug-mode ruby-test-mode mwim company-shell robe macrostep elfeed-goodies counsel-projectile undo-tree elixir-mode s evil-cleverparens intero hlint-refactor hindent haskell-snippets flycheck-haskell company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode meghanada alchemist clang-format elpy fzf alert hydra groovy-mode org-projectile org-jira evil-ediff dumb-jump bundler git-commit with-editor f web-mode tagedit slim-mode scss-mode sass-mode less-css-mode jade-mode haml-mode emmet-mode company-web web-completion-data git-link find-file-in-project suggest loop flycheck-clojure rake company-go clojure-snippets org auto-compile ensime sbt-mode scala-mode org-download flycheck-mix swiper iedit ivy auctex-latexmk auctex tern restclient counsel magit-popup clojure-mode sotclojure vimrc-mode dactyl-mode async auto-complete confluence toc-org org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets htmlize gnuplot avy anzu highlight flycheck request projectile helm-core yasnippet js2-mode markdown-mode evil fireplace cider smartparens company helm magit elfeed sotlisp sx beacon xkcd ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe use-package spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle restart-emacs ranger rainbow-delimiters racket-mode quelpa pyvenv pytest pyenv-mode popwin pip-requirements persp-mode pcre2el paradox page-break-lines orgit open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow lorem-ipsum linum-relative leuven-theme json-mode js2-refactor js-doc indent-guide ido-vertical-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery expand-region evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-plus evil-iedit-state evil-exchange evil-args evil-anzu emacs-eclim define-word cython-mode company-tern company-statistics company-quickhelp company-anaconda coffee-mode clj-refactor clean-aindent-mode cider-eval-sexp-fu buffer-move auto-yasnippet auto-highlight-symbol align-cljlet aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
+   '(jinja2-mode company-ansible ansible-doc ansible yapfify erlang visual-fill-column writeroom-mode go-guru winum parinfer live-py-mode seq spinner spotify pcache atomic-chrome websocket eyebrowse multiple-cursors rubocop pdf-tools ob-elixir ivy-purpose window-purpose imenu-list hide-comnt column-enforce-mode inflections inf-ruby yaml-mode minitest pug-mode ruby-test-mode mwim company-shell robe macrostep elfeed-goodies counsel-projectile undo-tree elixir-mode s evil-cleverparens intero hlint-refactor hindent haskell-snippets flycheck-haskell company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode meghanada alchemist clang-format elpy fzf alert hydra groovy-mode org-projectile org-jira evil-ediff dumb-jump bundler git-commit with-editor f web-mode tagedit slim-mode scss-mode sass-mode less-css-mode jade-mode haml-mode emmet-mode company-web web-completion-data git-link find-file-in-project suggest loop flycheck-clojure rake company-go clojure-snippets org auto-compile ensime sbt-mode scala-mode org-download flycheck-mix swiper iedit ivy auctex-latexmk auctex tern restclient counsel magit-popup clojure-mode sotclojure vimrc-mode dactyl-mode async auto-complete confluence toc-org org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets htmlize gnuplot avy anzu highlight flycheck request projectile helm-core yasnippet js2-mode markdown-mode evil fireplace cider smartparens company helm magit elfeed sotlisp sx beacon xkcd ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe use-package spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle restart-emacs ranger rainbow-delimiters racket-mode quelpa pyvenv pytest pyenv-mode popwin pip-requirements persp-mode pcre2el paradox page-break-lines orgit open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow lorem-ipsum linum-relative leuven-theme json-mode js2-refactor js-doc indent-guide ido-vertical-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery expand-region evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-plus evil-iedit-state evil-exchange evil-args evil-anzu emacs-eclim define-word cython-mode company-tern company-statistics company-quickhelp company-anaconda coffee-mode clj-refactor clean-aindent-mode cider-eval-sexp-fu buffer-move auto-yasnippet auto-highlight-symbol align-cljlet aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
  '(paradox-github-token t)
  '(ring-bell-function 'ignore)
  '(safe-local-variable-values

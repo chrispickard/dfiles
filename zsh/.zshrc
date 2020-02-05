@@ -288,3 +288,5 @@ zgen load zsh-users/zsh-syntax-highlighting
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # zprof
+
+source /home/chris.pickard/.config/broot/launcher/bash/br
