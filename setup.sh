@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for i in $(ls -d */ | grep -v config); do
+for i in $(ls -d */ | grep -v config | grep -v nix); do
     stow -R $i
 done
 
@@ -20,6 +20,8 @@ ln -s $HOME/dfiles/config/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 
 mkdir -p $HOME/.config/tridactyl
 ln -s $HOME/dfiles/config/tridactylrc $HOME/.config/tridactyl/tridactylrc
+
+ln -s $HOME/dfiles/nix $HOME/.config/nixpkgs
 
 mkdir -p /usr/local/bin
 sudo cp $HOME/dfiles/exe/btf /usr/local/bin

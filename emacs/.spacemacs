@@ -32,7 +32,10 @@
      themes-megapack
      ;; ipython-notebook
      ;; nim
-     helm
+     ;; helm
+     (ivy
+      :variables
+      ivy-enable-advanced-buffer-information t)
      ;; emoji
      ;; elm
      (rust :variables
@@ -274,11 +277,14 @@
    ;; (default nil)
    dotspacemacs-pretty-docs nil
    dotspacemacs-use-spacelpa nil
-   dotspacemacs-additional-packages '(
-                                      (tridactyl-mode :location (recipe :fetcher github :repo "Fuco1/tridactyl-mode"))
+   dotspacemacs-additional-packages '((tridactyl-mode :location (recipe :fetcher github :repo "Fuco1/tridactyl-mode"))
+                                      ivy-posframe
+                                      direnv
                                       company-flx
                                       ham-mode
+                                      ox-slack
                                       solaire-mode
+                                      ;; hydra-posframe
                                       evil-textobj-syntax
                                       super-save)
    ;; User initialization goes here
@@ -292,7 +298,8 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env))
+  (spacemacs/load-spacemacs-env)
+  )
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -306,6 +313,30 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq solarized-use-variable-pitch nil)
   (setq solarized-use-less-bold t)
   (setq solarized-scale-org-headlines nil))
+
+(defun ivy-posframe-display-at-XXX (str)
+  (ivy-posframe--display str #'my/posframe-poshandler-window-top-center))
+
+
+(defun enter-debug-mode ()
+  ""
+  (interactive)
+  (dap-debug-last)
+  (dap-hydra)
+  )
+
+(defun my/posframe-poshandler-window-top-center (info)
+  "Posframe's position handler.
+
+Get a position which let posframe stay onto its parent-frame's
+bottom center.  The structure of INFO can be found in docstring of
+`posframe-show'."
+  (cons (/ (- (plist-get info :parent-frame-width)
+              (plist-get info :posframe-width))
+           2)
+        (- 0
+           (plist-get info :mode-line-height)
+           (plist-get info :minibuffer-height))))
 
 (defun endless/ispell-word-then-abbrev (p)
   "Call `ispell-word', then create an abbrev for it.
@@ -424,18 +455,18 @@ With a prefix ARG invokes `projectile-commander' instead of
 ;; (defun select-window-except ()
 ;;   ""
 ;;   (interactive)
-;;   (when 
+;;   (when
 ;;       (-contains? ignore-switch-to-list (next-window)
 ;;                   (other-window))))
 (defun next-error-cycle ()
   (interactive)
-  (condition-case nil (flycheck-next-error) 
+  (condition-case nil (flycheck-next-error)
     (error (goto-char (point-min))
            (flycheck-next-error 1))) )
 
 (defun previous-error-cycle ()
   (interactive)
-  (condition-case nil (flycheck-previous-error) 
+  (condition-case nil (flycheck-previous-error)
     (error (goto-char (point-max))
            (flycheck-previous-error 1))) )
 
@@ -471,7 +502,31 @@ With a prefix ARG invokes `projectile-commander' instead of
 
   (setq ediff-window-setup-function 'ediff-setup-windows-default)
 
-  (bind-key (kbd "M-;") 'helm-mini)
+  ;; Configure ivy
+  (with-eval-after-load 'ivy
+    (require 'ivy-posframe)
+    (bind-key (kbd "M-;") 'ivy-switch-buffer)
+    (setq ivy-on-del-error-function #'ignore)
+    ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+    (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-XXX)))
+    (setq ivy-posframe-border-width 10)
+    (setq ivy-posframe-hide-minibuffer t)
+
+    (setq ivy-initial-inputs-alist
+      '((org-refile . "^")
+        (org-agenda-refile . "^")
+        (org-capture-refile . "^")
+        (Man-completion-table . "^")
+        (woman . "^")))
+    (ivy-posframe-mode)
+    (defun ivy-posframe-get-size ()
+      "The default functon used by `ivy-posframe-size-function'."
+      (list
+       :height (round (* (frame-height) 0.25))
+       :width (round (* (frame-width) 0.8))
+       :min-height (round (* (frame-height) 0.25))
+       :min-width (round (* (frame-width) 0.8))))
+    )
 
   ;; (define-key evil-inner-text-objects-map (kbd "w") 'evil-inner-symbol)
   ;; (define-key evil-inner-text-objects-map (kbd "o") 'evil-inner-word)
@@ -483,10 +538,9 @@ With a prefix ARG invokes `projectile-commander' instead of
   (global-set-key (kbd "H-i") 'evil-jump-forward)
   ;; (bind-key (kbd "C-M-s") 'sp-forward-barf-sexp )
 
-  (bind-key (kbd "<f2>") 'begin-defect-capture)
+  ;; (bind-key (kbd "<f2>") 'begin-defect-capture)
   (setq lsp-ui-doc-position 'at-point)
   (setq lsp-ui-doc-use-webkit t)
-
   (add-to-list 'auto-mode-alist '(".*github.*\\.txt?\\'" . markdown-mode))
   (add-to-list 'auto-mode-alist '(".*office.*\\.txt?\\'" . org-mode))
   (unbind-key (kbd "s") evil-normal-state-map)
@@ -526,9 +580,9 @@ With a prefix ARG invokes `projectile-commander' instead of
 
   ;; ...if you use auto-revert-mode, this prevents solaire-mode from turning
   ;; itself off every time Emacs reverts the file
-  ;; (add-hook 'after-revert-hook #'turn-on-solaire-mode)
-  ;; (solaire-global-mode +1)
-  ;; (solaire-mode-swap-bg)
+  (add-hook 'after-revert-hook #'turn-on-solaire-mode)
+  (solaire-global-mode +1)
+  (solaire-mode-swap-bg)
 
   ;; (setq nord-region-highlight "snowstorm")
   ;; (setq sml/theme 'atom-one-dark)
@@ -583,9 +637,18 @@ With a prefix ARG invokes `projectile-commander' instead of
      (bind-map-set-keys lsp-ui-mode-map
        "M-RET"  'my/do-action))
 
-   (with-eval-after-load 'typescript
-     (bind-map-set-keys lsp-ui-mode-map
-       "M-RET"  'lsp-ui-sideline-apply-code-actions))
+   (with-eval-after-load 'typescript-mode
+     (require 'dap-mode)
+     (require 'dap-node)
+     (dap-register-debug-template "Node::Inspect"
+                                  (list :type "node"
+                                        :port 9229
+                                        :program "oops.ts"
+                                        :request "attach"
+                                        :protocol "inspector"
+                                        :sourceMaps t
+                                        :restart t
+                                        :name "Node::Inspect")))
 
    (bind-map-set-keys evil-normal-state-map
      "C-b" 'evil-first-non-blank
@@ -609,9 +672,16 @@ With a prefix ARG invokes `projectile-commander' instead of
   (spacemacs/set-leader-keys "l" 'avy-goto-line)
   (spacemacs/set-leader-keys "w/" 'split-window-right-and-focus)
   (spacemacs/set-leader-keys "w-" 'split-window-below-and-focus)
-  (spacemacs/set-leader-keys "SPC" 'helm-semantic-or-imenu)
+  (spacemacs/set-leader-keys "SPC" 'imenu)
   (spacemacs/set-leader-keys "qr" 'restart-emacs)
   (spacemacs/set-leader-keys "qR" 'spacemacs/restart-emacs-resume-layouts)
+  (spacemacs/set-leader-keys-for-major-mode 'typescript-mode
+    "dd" 'enter-debug-mode
+    "d." 'dap-hydra
+    "da" 'dap-disconnect
+    "dc" 'dap-continue
+    "dn" 'dap-next
+    )
 
   ;; (add-lisp-hooks #'smartparens-strict-mode)
   ;; (add-lisp-hooks #'evil-cleverparens-mode)
@@ -709,6 +779,12 @@ With a prefix ARG invokes `projectile-commander' instead of
     (add-hook 'org-mode-hook 'spacemacs/toggle-fill-column-indicator-off)
     (add-hook 'org-mode-hook 'visual-line-mode)
     (load-file "~/.emacs_custom/setup-org.el"))
+  (with-eval-after-load 'hydra
+    (require 'posframe)
+    (load-file "~/dev/elisp/hydra-posframe/hydra-posframe.el")
+    (setq hydra-posframe-poshandler 'my/posframe-poshandler-window-top-center)
+    (setq hydra-posframe-border-width 5)
+    (hydra-posframe-mode))
 
   (with-eval-after-load 'company
     (setq company-flx-limit 20)
@@ -896,6 +972,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (setq flycheck-gometalinter-disable-linters '("gas"))
   (setq dotspacemacs-large-file-size 2)
   (setq lsp-go-gocode-completion-enabled t)
+  (direnv-mode)
   ;; (require 'flycheck)
   ;; (require 'lsp-mode)
   ;; (require 'lsp-ui)

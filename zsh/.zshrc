@@ -107,6 +107,23 @@ function tree(){
     exa -T $@
 }
 
+function jgrep(){
+    JQ_ARGS=""
+    GREP_ARGS=""
+    if [ -z "${1}" ]; then
+        echo "usage: jgrep [jq-args] <query>"
+        return
+    elif [ -z "${2}" ]; then
+        JQ_ARGS="."
+        GREP_ARGS="${1}"
+    else
+        JQ_ARGS="${1}"
+        GREP_ARGS="${2}"
+    fi
+
+    jq -cS "${JQ_ARGS}" | grep -i "${2}" | jq .
+}
+
 function kl(){
 read -r -d '' COMPOSE_FILE <<'EOF'
 {

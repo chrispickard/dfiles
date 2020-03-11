@@ -8,7 +8,7 @@ sanitise tridactyllocal tridactylsync
 set smoothscroll true
 set theme dark
 " " set newtab about:newtab
-source ~/.tridactylrc_local
+" source ~/.tridactylrc_local
 
 " "
 " " Binds
@@ -88,13 +88,13 @@ unbindurl jira.di2e.net/secure/RapidBoard.jspa s
 unbindurl jira.di2e.net/secure/RapidBoard.jspa b
 bind K tabnext
 bind J tabprev
-bind u js scrollpage(-.4)
 unbind d
-bind d js scrollpage(.4)
 unbind D
-unbind .
 bind x tabclose
 bind X undo
+bind u js scrollpage(-.4)
+bind d js scrollpage(.4)
+unbind .
 
 bindurl xkcd.com t composite js document.getElementById("comic").querySelector("img").title | fillcmdline_tmp 10000
 bindurl xkcd.com r open https://c.xkcd.com/random/comic/

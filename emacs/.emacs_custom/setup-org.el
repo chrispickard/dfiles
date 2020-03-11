@@ -4,7 +4,7 @@
 
 (defun defect-capture ()
   "uses org-capture-plist to create defect"
-  (concat (format "** %s:%d " defect-file-name defect-line-number) "%?"))
+  (concat (format "** %s:%s " defect-file-name defect-line-number) "%?"))
 
 ;; (setq org-capture-templates
 ;;       '(("n" "Note" entry
@@ -27,8 +27,22 @@
 
 (defun log-defect-terminal (file n)
   "docstring"
-  (shell-command "btf emacs@chris emacs")
+  (shell-command "btf -m emacs@chris emacs")
   (log-defect file n))
+
+(defun count-lines-region-or-line ()
+  (let (p1 p2 lines)
+    (if (region-active-p)
+        (format "%s-%s"
+                (line-number-at-pos (region-beginning))
+                (- (+ (line-number-at-pos (region-beginning))
+                      (count-lines (region-beginning) (region-end))) 1))
+      (format "%d" (line-number-at-pos (line-beginning-position))))))
+
+(defun call-that-guy ()
+  "docstring"
+  (interactive "P")
+  (message (count-lines-region-or-line)))
 
 (defun log-defect-emacs ()
   "docstring"
@@ -46,7 +60,7 @@
 (defun log-defect (file n)
   "logs a defect in file `file` at line number `n`"
   (setq defect-file-name file)
-  (setq defect-line-number n)
+  (setq defect-line-number (count-lines-region-or-line))
   (org-capture nil "d"))
 
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
@@ -74,3 +88,6 @@
          "* [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\nSource: %U\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n %?")	
         ("L" "Web Link" entry (file+headline ,"~/org/notes.org"  "Inbox")
          "* [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n- %?")))
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((sql . t)))

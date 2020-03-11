@@ -65,3 +65,4 @@ source "$BASH_IT"/bash_it.sh
 source /home/chris.pickard/.config/broot/launcher/bash/br
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+

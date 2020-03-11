@@ -48,7 +48,7 @@ focus_on_window_activation smart
 hide_edge_borders both
 
 # start dmenu (a program launcher)
-bindsym $mod+Shift+d exec dmenu_run
+# bindsym $mod+Shift+d exec rofi -show
 # bindsym $mod+space exec gnome-terminal --class "fzf-menu" --geometry 100x6 --profile=NoScrollbar --hide-menubar -e /home/chris.pickard/dev/golang/bin/problematic
 for_window [class="(?i)gnome-terminal"] floating enable
 
@@ -56,7 +56,6 @@ for_window [class="(?i)my_first_azul_app"] floating enable
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left
@@ -172,7 +171,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 bindsym mod1+Shift+e exec btf -m "emacs@chris" emacs
-bindsym mod1+Shift+k exec btf -m " - Visual Studio Code" code
+bindsym mod1+space exec rofi -show
+# bindsym mod1+Shift+k exec btf -m " - Visual Studio Code" code
 # bindsym mod1+Shift+j exec btf -m "alacritty@charon" "alacritty --live-config-reload --title alacritty@charon"
 bindsym mod1+Shift+j exec btf -m "alacritty@charon" "kitty --title alacritty@charon"
 bindsym mod1+Shift+t exec btf -m "Microsoft Teams" "teams"
