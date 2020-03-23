@@ -60,9 +60,7 @@ export SCM_CHECK=true
 
 # Load Bash It
 export PATH="$HOME/.nimble/bin:$PATH"
-source "$BASH_IT"/bash_it.sh
-
-source /home/chris.pickard/.config/broot/launcher/bash/br
+# source "$BASH_IT"/bash_it.sh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

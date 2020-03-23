@@ -303,7 +303,11 @@ if [ -f "$HOME/.zshrc_local" ]; then
 fi
 zgen load zsh-users/zsh-syntax-highlighting
 
+if [ -n "${commands[fzf-share]}" ]; then
+    source "$(fzf-share)/key-bindings.zsh"
+fi
+
+eval "$(direnv hook zsh)"
+
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # zprof
-
-source /home/chris.pickard/.config/broot/launcher/bash/br

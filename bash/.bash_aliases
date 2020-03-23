@@ -1,5 +1,6 @@
 # ; -*- mode: shell-script ;-*-
 alias please='eval "sudo $(fc -ln -1)"'
+alias home="$EDITOR ~/.config/nixpkgs/home.nix"
 alias o=xdg-open
 
 alias dev='cd ~/dev'

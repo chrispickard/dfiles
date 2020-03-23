@@ -175,7 +175,7 @@
    dotspacemacs-scratch-mode 'emacs-lisp-mode
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Iosevka Term"
+   dotspacemacs-default-font '("Iosevka"
                                :weight Regular
                                :width Regular
                                :powerline-scale 1.0
@@ -779,12 +779,12 @@ With a prefix ARG invokes `projectile-commander' instead of
     (add-hook 'org-mode-hook 'spacemacs/toggle-fill-column-indicator-off)
     (add-hook 'org-mode-hook 'visual-line-mode)
     (load-file "~/.emacs_custom/setup-org.el"))
-  (with-eval-after-load 'hydra
-    (require 'posframe)
-    (load-file "~/dev/elisp/hydra-posframe/hydra-posframe.el")
-    (setq hydra-posframe-poshandler 'my/posframe-poshandler-window-top-center)
-    (setq hydra-posframe-border-width 5)
-    (hydra-posframe-mode))
+  ;; (with-eval-after-load 'hydra
+  ;;   (require 'posframe)
+  ;;   (load-file "~/dev/elisp/hydra-posframe/hydra-posframe.el")
+  ;;   (setq hydra-posframe-poshandler 'my/posframe-poshandler-window-top-center)
+  ;;   (setq hydra-posframe-border-width 5)
+  ;;   (hydra-posframe-mode))
 
   (with-eval-after-load 'company
     (setq company-flx-limit 20)
