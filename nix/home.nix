@@ -39,6 +39,7 @@
     nodejs
     nodePackages.typescript-language-server
     nodePackages.npm
+    nodePackages.prettier
     nodePackages.bash-language-server
   ];
   services.lorri = {
@@ -59,6 +60,7 @@
     aliases = {
       co = "checkout";
       s = "status";
+      a = "add";
     };
     extraConfig = {
       core = {
