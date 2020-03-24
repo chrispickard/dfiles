@@ -47,6 +47,33 @@
   };
   services.dunst = {
     enable = true;
+    settings = {
+      global = {
+        geometry = "250-15+49";
+        format = "<b>%s</b>\\n%b";
+        word_wrap = true;
+        transparency = 10;
+        frame_color = "#eceff1";
+        font = "Iosevka 11";
+        alignment = "center";
+        timeout = 10;
+      };
+      urgency_low = {
+        frame_color = "#3B7C87";
+        foreground = "#3B7C87";
+        background = "#191311";
+      };
+      urgency_normal = {
+        frame_color = "#3B7C87";
+        foreground = "#5B8234";
+        background = "#191311";
+      };
+      urgency_critical = {
+        frame_color = "#B7472A";
+        foreground = "#B7472A";
+        background = "#191311";
+      };
+    };
   };
 
   programs.ssh = {
@@ -116,8 +143,8 @@
         };
         
         keybindings = let
-        mod = config.modifier;
-        leader = "Mod1 + Shift";
+          mod = config.modifier;
+          leader = "Mod1 + Shift";
         in {
           "${leader}+j" = "exec btf -m kitty kitty";
           "${leader}+e" = "exec btf -m emacs@chris emacs";
@@ -251,18 +278,18 @@ set-option  -ga terminal-overrides  ",xterm-kitty:Tc"
 set-option -g allow-rename off
 
 # Set colors
-# set -g status-left-length 52
-# set -g status-right-length 20
-# set -g status-fg white
-# set -g status-bg colour234
+set -g status-left-length 52
+set -g status-right-length 20
+set -g status-fg white
+set -g status-bg colour234
 # set -g window-status-activity-attr bold
 # set -g pane-border-fg colour245
 # set -g pane-active-border-fg colour39
 # set -g message-fg colour16
 # set -g message-bg colour221
 # set -g message-attr bold
-# set -g status-left '#[fg=colour235,bg=colour252,bold] #S #[fg=colour252,bg=colour238,nobold]#[fg=colour245,bg=colour238,bold] #(whoami)#[fg=colour238,bg=colour234,nobold]'
-# set -g status-right \'\'
+set -g status-left '#[fg=colour235,bg=colour252,bold] #S #[fg=colour252,bg=colour238,nobold]#[fg=colour245,bg=colour238,bold] #(whoami)#[fg=colour238,bg=colour234,nobold]'
+set -g status-right \'\'
 setw -g mode-keys vi
 
 bind h select-pane -L
