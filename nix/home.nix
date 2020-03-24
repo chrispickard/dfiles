@@ -45,6 +45,9 @@
   services.lorri = {
     enable = true;
   };
+  services.gnome-keyring = {
+    enable = true;
+  };
   services.dunst = {
     enable = true;
     settings = {
@@ -201,7 +204,6 @@
           "${mod}+Shift+r" = "restart";
           "${mod}+Shift+q" = "kill";
           "${mod}+Shift+e" = "exec \"i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'\"";
-
         };
         modes.resize = {
           "j"= "resize shrink width 10 px or 10 ppt";
@@ -215,10 +217,6 @@
         startup = [
           {
             command = "xset r rate 200 100";
-            notification = false;
-          }
-          {
-            command = "gnome-keyring-daemon --start";
             notification = false;
           }
         ];
