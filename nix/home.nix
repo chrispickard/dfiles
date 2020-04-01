@@ -41,6 +41,7 @@
     nodePackages.npm
     nodePackages.prettier
     nodePackages.bash-language-server
+    topgrade
   ];
   services.lorri = {
     enable = true;
@@ -79,9 +80,9 @@
     };
   };
 
-  programs.ssh = {
-    enable = true;
-  };
+  # programs.ssh = {
+  #   enable = true;
+  # };
 
   programs.git = {
     enable = true;
@@ -91,6 +92,8 @@
       co = "checkout";
       s = "status";
       a = "add";
+      rs = "reset";
+      rb = "rebase";
     };
     extraConfig = {
       core = {
@@ -358,7 +361,7 @@ set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
 # set -g @plugin 'git@github.com/user/plugin'
 # set -g @plugin 'git@bitbucket.com/user/plugin'
 
-bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "xclip -selection clipboard -i" \; send -X clear-selection
+# bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "xclip -selection clipboard -i" \; send -X clear-selection
 
 # set -g @yank_selection 'clipboard'
 # set -g @yank_selection_mouse 'clipboard'
