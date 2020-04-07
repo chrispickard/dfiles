@@ -28,7 +28,11 @@
            json-fmt-tool 'prettier
            js-indent-level 2
            json-fmt-on-save t)
-     nixos
+     (nixos
+      :variables
+      :hooks
+            before-save-hook 'nix-format-buffer
+            )
      themes-megapack
      ;; ipython-notebook
      ;; nim
@@ -179,7 +183,7 @@
                                :weight Regular
                                :width Regular
                                :powerline-scale 1.0
-                               :size 10.0)
+                               :size 12.0)
    dotspacemacs-mode-line-theme '(doom)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -504,13 +508,13 @@ With a prefix ARG invokes `projectile-commander' instead of
 
   ;; Configure ivy
   (with-eval-after-load 'ivy
-    (require 'ivy-posframe)
+    ;; (require 'ivy-posframe)
     (bind-key (kbd "M-;") 'ivy-switch-buffer)
     (setq ivy-on-del-error-function #'ignore)
-    ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
-    (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-XXX)))
-    (setq ivy-posframe-border-width 10)
-    (setq ivy-posframe-hide-minibuffer t)
+  ;;   ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+  ;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-XXX)))
+  ;;   (setq ivy-posframe-border-width 10)
+  ;;   (setq ivy-posframe-hide-minibuffer t)
 
     (setq ivy-initial-inputs-alist
       '((org-refile . "^")
@@ -518,14 +522,14 @@ With a prefix ARG invokes `projectile-commander' instead of
         (org-capture-refile . "^")
         (Man-completion-table . "^")
         (woman . "^")))
-    (ivy-posframe-mode)
-    (defun ivy-posframe-get-size ()
-      "The default functon used by `ivy-posframe-size-function'."
-      (list
-       :height (round (* (frame-height) 0.25))
-       :width (round (* (frame-width) 0.8))
-       :min-height (round (* (frame-height) 0.25))
-       :min-width (round (* (frame-width) 0.8))))
+  ;;   (ivy-posframe-mode)
+  ;;   (defun ivy-posframe-get-size ()
+  ;;     "The default functon used by `ivy-posframe-size-function'."
+  ;;     (list
+  ;;      :height (round (* (frame-height) 0.25))
+  ;;      :width (round (* (frame-width) 0.8))
+  ;;      :min-height (round (* (frame-height) 0.25))
+  ;;      :min-width (round (* (frame-width) 0.8))))
     )
 
   ;; (define-key evil-inner-text-objects-map (kbd "w") 'evil-inner-symbol)
@@ -893,7 +897,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; gets rid of that awful highlighting smartparens wanted to do when you open a new pair
   ;; (setq sp-highlight-pair-overlay nil)
 
-  ;; (add-hook 'web-mode-hook (lambda () (bind-key (kbd "M-;") 'ivy-switch-buffer)))
+  (add-hook 'web-mode-hook (lambda () (bind-key (kbd "M-;") 'ivy-switch-buffer)))
 
   (remove-hook 'prog-mode-hook #'smartparens-mode #'show-smartparens-mode)
   ;; (spacemacs/toggle-smartparens-globally-off)

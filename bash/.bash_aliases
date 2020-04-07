@@ -51,10 +51,11 @@ alias k=kubectl
 # alias kl='docker run --rm --env ADVERTISED_HOST=localhost -p 2181:2181 -p 9092:9092 --env ADVERTISED_PORT=9092 --name kafka -h kafka spotify/kafka'
 alias postgres='docker run -it --rm -p 5432 postgres:alpine'
 alias cap="emacsclient !!"
-alias sc="systemctl"
-alias jc="journalctl"
 alias ssh="TERM=xterm-256color ssh"
 alias cmcli="cm --config ~/.config/cm/config.json"
 alias workon="tmuxifier load-window"
 alias umux="tmuxifier load-session work"
 alias ns="nix-shell --command zsh"
+alias sc="systemctl"
+alias scu="systemctl --user"
+alias jc="journalctl"
