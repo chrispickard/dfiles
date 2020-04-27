@@ -1,4 +1,4 @@
-# zmodload zsh/zprof
+zmodload zsh/zprof
 source "${HOME}/.zgen/zgen.zsh"
 
 alias reload='zgen reset && exec zsh'
@@ -311,4 +311,4 @@ fi
 eval "$(direnv hook zsh)"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-# zprof
+zprof

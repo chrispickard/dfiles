@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+command -v stow >/dev/null 2>&1 || { echo >&2 "I require gnu stow but it's not installed. Please install it with dnf/yum/apt install stow. Aborting."; exit 1; }
+
 for i in $(ls -d */ | grep -v config | grep -v nix); do
     stow -R $i
 done

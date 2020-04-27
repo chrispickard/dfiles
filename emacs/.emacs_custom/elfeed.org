@@ -4,8 +4,8 @@
 **** http://www.terminally-incoherent.com/blog/feed
 **** http://planet.emacsen.org/atom.xml
 **** http://kitchingroup.cheme.cmu.edu/blog/category/orgmode/feed/
-*** Clojure                                                         :clojure:
-**** http://planet.clojure.in/atom.xml
+# *** Clojure                                                         :clojure:
+# **** http://planet.clojure.in/atom.xml
 *** General
 **** http://beatsryetypes.com/tips.xml
 **** https://18f.gsa.gov/feed.xml
@@ -37,7 +37,7 @@
 **** https://golangweekly.com/rss/1nb4iiff
 *** Elm
 *** Erlang
-**** http://www.planeterlang.com/atom.xml
+# **** http://www.planeterlang.com/atom.xml
 **** https://ferd.ca/feed.rss
 **** https://joearms.github.io/feed
 *** Rust
@@ -49,7 +49,7 @@
 ** Science                                                          :science:
 **** https://www.amarchenkova.com/feed
 **** https://apod.nasa.gov/apod.rss
-**** https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss
+# **** https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss
 **** https://what-if.xkcd.com/feed.atom
 *** Environment
 **** https://www.patagonia.com/blog/feed/atom/

@@ -46,15 +46,16 @@ alias golang='cd $GOPATH'
 alias d=docker
 alias t="task -t .taskfile.yml"
 alias task="task -t .taskfile.yml"
-alias start="task -t .taskfile.yml start"
+alias start="./.start.sh"
 alias k=kubectl
 # alias kl='docker run --rm --env ADVERTISED_HOST=localhost -p 2181:2181 -p 9092:9092 --env ADVERTISED_PORT=9092 --name kafka -h kafka spotify/kafka'
 alias postgres='docker run -it --rm -p 5432 postgres:alpine'
+alias es='docker run -it --net=host docker.elastic.co/elasticsearch/elasticsearch:6.4.3'
 alias cap="emacsclient !!"
 alias ssh="TERM=xterm-256color ssh"
 alias cmcli="cm --config ~/.config/cm/config.json"
 alias workon="tmuxifier load-window"
-alias umux="tmuxifier load-session work"
+alias umux="tmuxp load -y ~/.tmuxp/work.yaml"
 alias ns="nix-shell --command zsh"
 alias sc="systemctl"
 alias scu="systemctl --user"

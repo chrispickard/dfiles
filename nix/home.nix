@@ -3,6 +3,7 @@
 {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  targets.genericLinux.enable = true;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -13,11 +14,12 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   fonts.fontconfig.enable = true;
-  home.stateVersion = "19.09";
+  home.stateVersion = "20.03";
   home.packages = with pkgs; [
     zsh
     go
     tmux
+    tmuxp
     emacs
     lastpass-cli
     direnv
@@ -25,6 +27,7 @@
     topgrade
     iosevka
     tig
+    tmate
     rofi
     sshuttle
     feh
@@ -43,7 +46,10 @@
     nodePackages.npm
     nodePackages.prettier
     nodePackages.bash-language-server
+    # nodePackages.vls
+    nodePackages.eslint
     topgrade
+    vscode-with-extensions
   ];
 
   services.lorri = { enable = true; };
@@ -161,6 +167,8 @@
           "${leader}+j" = "exec btf -m Termite termite";
           "${leader}+e" = "exec btf -m emacs@chris emacs";
           "${leader}+c" = "exec btf -m Firefox /opt/firefox/firefox";
+          "${leader}+s" = "exec btf -m Slack slack";
+          "${leader}+k" = "exec btf -m Code code";
           "${leader}+h" =
             ''exec btf -m "DI2E Framework Jira" /opt/firefox/firefox'';
           "${mod}+d" = "exec rofi -show run";
@@ -250,6 +258,14 @@
     format = "%Y-%m-%d %H:%M:%S"
     }
   '';
+  home.file.".tmuxp/work.yaml".text = ''
+    session_name: work
+    windows:
+      - window_name: ""
+        panes:
+          - focus: true
+          - null
+      '';
   home.file.".tmux.conf".text = ''
     set -g prefix M-a
     unbind C-b
@@ -275,7 +291,8 @@
 
     set -g base-index 1
     set -g pane-base-index 1
-
+    set -g default-terminal "xterm-24bit"
+    set -g terminal-overrides ',xterm-24bit:Tc'
     # improve colors
     # set -g default-terminal "xterm-kitty"
     # set-option  -ga terminal-overrides  ",xterm-kitty:Tc"

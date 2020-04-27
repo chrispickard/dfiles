@@ -28,9 +28,9 @@ export PURE_GIT_UNTRACKED_DIRTY=0
 
 export BAT_THEME="TwoDark"
 export ANSIBLE_HOST_KEY_CHECKING=False
-export TERM="xterm-256color"
-export FZF_CTRL_T_OPTS="--preview '(bat --style=plain --color=always {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+export TERM="xterm-24bit"
+# export FZF_CTRL_T_OPTS="--preview '(bat --style=plain --color=always {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+# export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export BNP_URL=http://localhost:8080
@@ -42,13 +42,13 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-export FZF_DEFAULT_OPTS="
-  --color=bg+:#3B4252,bg:#2E3440,spinner:#4C566A,hl:#A3BE8C
-  --color=fg:#D8DEE9,header:#ECEFF4,info:#81A1C1,pointer:#B48EAD
-  --color=marker:#BF616A,fg+:#88C0D0,prompt:#D8DEE9,hl+:#8FBCBB
-  --bind='ctrl-o:execute($EDITOR {})+abort'
-  --bind tab:down --cycle
-"
+# export FZF_DEFAULT_OPTS="
+#   --color=bg+:#3B4252,bg:#2E3440,spinner:#4C566A,hl:#A3BE8C
+#   --color=fg:#D8DEE9,header:#ECEFF4,info:#81A1C1,pointer:#B48EAD
+#   --color=marker:#BF616A,fg+:#88C0D0,prompt:#D8DEE9,hl+:#8FBCBB
+#   --bind='ctrl-o:execute($EDITOR {})+abort'
+#   --bind tab:down --cycle
+# "
 
 # [ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
 

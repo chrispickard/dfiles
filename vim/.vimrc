@@ -135,7 +135,7 @@ set splitright
 
 syntax enable
 
-set t_Co=256
+" set t_Co=256
 set termguicolors
 set background=dark
 silent! colorscheme nord

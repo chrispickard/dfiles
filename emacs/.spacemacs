@@ -36,10 +36,10 @@
      themes-megapack
      ;; ipython-notebook
      ;; nim
-     ;; helm
-     (ivy
-      :variables
-      ivy-enable-advanced-buffer-information t)
+     helm
+     ;; (ivy
+     ;;  :variables
+     ;;  ivy-enable-advanced-buffer-information t)
      ;; emoji
      ;; elm
      (rust :variables
@@ -119,6 +119,12 @@
            less-enable-lsp t
            scss-enable-lsp t
            html-enable-lsp t)
+     (ranger :variables
+             ranger-enter-with-minus t
+             ;; ranger-ignored-extensions '("mkv" "iso" "mp4" "pdf" "tar" "tar.*")
+             ;; ranger-max-preview-size 1
+             ranger-show-dotfile t
+             ranger-cleanup-on-disable t)
      (typescript :variables
                  typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier
@@ -488,7 +494,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (spacemacs/toggle-highlight-current-line-globally-off)
   ;; (setq solarized-use-more-italic t)
 
-  ;; (bind-key (kbd "M-;") 'ivy-switch-buffer)
+  (bind-key (kbd "M-;") 'helm-mini)
 
   ;; (load-file "~/.emacs_custom/setup-font.el")
   (setq ns-use-srgb-colorspace nil)
@@ -507,30 +513,30 @@ With a prefix ARG invokes `projectile-commander' instead of
   (setq ediff-window-setup-function 'ediff-setup-windows-default)
 
   ;; Configure ivy
-  (with-eval-after-load 'ivy
-    ;; (require 'ivy-posframe)
-    (bind-key (kbd "M-;") 'ivy-switch-buffer)
-    (setq ivy-on-del-error-function #'ignore)
-  ;;   ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
-  ;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-XXX)))
-  ;;   (setq ivy-posframe-border-width 10)
-  ;;   (setq ivy-posframe-hide-minibuffer t)
+  ;; (with-eval-after-load 'ivy
+  ;;   ;; (require 'ivy-posframe)
+  ;;   (bind-key (kbd "M-;") 'ivy-switch-buffer)
+  ;;   (setq ivy-on-del-error-function #'ignore)
+  ;; ;;   ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+  ;; ;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-XXX)))
+  ;; ;;   (setq ivy-posframe-border-width 10)
+  ;; ;;   (setq ivy-posframe-hide-minibuffer t)
 
-    (setq ivy-initial-inputs-alist
-      '((org-refile . "^")
-        (org-agenda-refile . "^")
-        (org-capture-refile . "^")
-        (Man-completion-table . "^")
-        (woman . "^")))
-  ;;   (ivy-posframe-mode)
-  ;;   (defun ivy-posframe-get-size ()
-  ;;     "The default functon used by `ivy-posframe-size-function'."
-  ;;     (list
-  ;;      :height (round (* (frame-height) 0.25))
-  ;;      :width (round (* (frame-width) 0.8))
-  ;;      :min-height (round (* (frame-height) 0.25))
-  ;;      :min-width (round (* (frame-width) 0.8))))
-    )
+  ;;   (setq ivy-initial-inputs-alist
+  ;;     '((org-refile . "^")
+  ;;       (org-agenda-refile . "^")
+  ;;       (org-capture-refile . "^")
+  ;;       (Man-completion-table . "^")
+  ;;       (woman . "^")))
+  ;; ;;   (ivy-posframe-mode)
+  ;; ;;   (defun ivy-posframe-get-size ()
+  ;; ;;     "The default functon used by `ivy-posframe-size-function'."
+  ;; ;;     (list
+  ;; ;;      :height (round (* (frame-height) 0.25))
+  ;; ;;      :width (round (* (frame-width) 0.8))
+  ;; ;;      :min-height (round (* (frame-height) 0.25))
+  ;; ;;      :min-width (round (* (frame-width) 0.8))))
+  ;;   )
 
   ;; (define-key evil-inner-text-objects-map (kbd "w") 'evil-inner-symbol)
   ;; (define-key evil-inner-text-objects-map (kbd "o") 'evil-inner-word)
@@ -769,13 +775,6 @@ With a prefix ARG invokes `projectile-commander' instead of
       (define-key (eval map) ")" nil))
     (require 'evil-textobj-syntax))
 
-  (with-eval-after-load 'typescript-mode
-    (projectile-register-project-type 'npm '("package.json")
-                                      :compile "npm install"
-                                      :test "npm test"
-                                      :run "npm run start"
-                                      :test-suffix ".spec.ts"))
-
   ;; (with-eval-after-load 'lsp-mode
   ;;   (setq lsp-prefer-flymake :none))
 
@@ -962,6 +961,11 @@ With a prefix ARG invokes `projectile-commander' instead of
     (add-hook 'org-mode-hook 'spacemacs/toggle-fill-column-indicator-off)
     (load-file "~/.emacs_custom/setup-org.el"))
 
+  ;; (with-eval-after-load 'projectile
+  ;;   (add-to-list 'projectile-other-file-alist '("test.ts" "ts")) ;; switch from js -> html
+  ;;   (add-to-list 'projectile-other-file-alist '("ts" "test.ts")) ;; switch from js -> html
+  ;;   )
+
   (global-git-commit-mode)
   ;; (server-start)
   ;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
@@ -1024,12 +1028,15 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ahs-case-fold-search nil)
- '(ahs-default-range 'ahs-range-whole-buffer)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
  '(ansi-color-names-vector
    ["#2E3440" "#C16069" "#A2BF8A" "#ECCC87" "#80A0C2" "#B58DAE" "#86C0D1" "#ECEFF4"])
+ '(custom-safe-themes
+   (quote
+    ("7f791f743870983b9bb90c8285e1e0ba1bf1ea6e9c9a02c60335899ba20f3c94" "801a567c87755fe65d0484cb2bded31a4c5bb24fd1fe0ed11e6c02254017acb2" default)))
  '(evil-want-Y-yank-to-eol nil)
  '(fci-rule-color "#4C566A")
  '(jdee-db-active-breakpoint-face-colors (cons "#191C25" "#80A0C2"))
@@ -1041,11 +1048,16 @@ This function is called at the very end of Spacemacs initialization."
  '(markdown-command "/opt/pandoc/bin/pandoc")
  '(objed-cursor-color "#C16069")
  '(package-selected-packages
-   '(jinja2-mode company-ansible ansible-doc ansible yapfify erlang visual-fill-column writeroom-mode go-guru winum parinfer live-py-mode seq spinner spotify pcache atomic-chrome websocket eyebrowse multiple-cursors rubocop pdf-tools ob-elixir ivy-purpose window-purpose imenu-list hide-comnt column-enforce-mode inflections inf-ruby yaml-mode minitest pug-mode ruby-test-mode mwim company-shell robe macrostep elfeed-goodies counsel-projectile undo-tree elixir-mode s evil-cleverparens intero hlint-refactor hindent haskell-snippets flycheck-haskell company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode meghanada alchemist clang-format elpy fzf alert hydra groovy-mode org-projectile org-jira evil-ediff dumb-jump bundler git-commit with-editor f web-mode tagedit slim-mode scss-mode sass-mode less-css-mode jade-mode haml-mode emmet-mode company-web web-completion-data git-link find-file-in-project suggest loop flycheck-clojure rake company-go clojure-snippets org auto-compile ensime sbt-mode scala-mode org-download flycheck-mix swiper iedit ivy auctex-latexmk auctex tern restclient counsel magit-popup clojure-mode sotclojure vimrc-mode dactyl-mode async auto-complete confluence toc-org org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets htmlize gnuplot avy anzu highlight flycheck request projectile helm-core yasnippet js2-mode markdown-mode evil fireplace cider smartparens company helm magit elfeed sotlisp sx beacon xkcd ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe use-package spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle restart-emacs ranger rainbow-delimiters racket-mode quelpa pyvenv pytest pyenv-mode popwin pip-requirements persp-mode pcre2el paradox page-break-lines orgit open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow lorem-ipsum linum-relative leuven-theme json-mode js2-refactor js-doc indent-guide ido-vertical-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery expand-region evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-plus evil-iedit-state evil-exchange evil-args evil-anzu emacs-eclim define-word cython-mode company-tern company-statistics company-quickhelp company-anaconda coffee-mode clj-refactor clean-aindent-mode cider-eval-sexp-fu buffer-move auto-yasnippet auto-highlight-symbol align-cljlet aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
+   (quote
+    (jinja2-mode company-ansible ansible-doc ansible yapfify erlang visual-fill-column writeroom-mode go-guru winum parinfer live-py-mode seq spinner spotify pcache atomic-chrome websocket eyebrowse multiple-cursors rubocop pdf-tools ob-elixir ivy-purpose window-purpose imenu-list hide-comnt column-enforce-mode inflections inf-ruby yaml-mode minitest pug-mode ruby-test-mode mwim company-shell robe macrostep elfeed-goodies counsel-projectile undo-tree elixir-mode s evil-cleverparens intero hlint-refactor hindent haskell-snippets flycheck-haskell company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode meghanada alchemist clang-format elpy fzf alert hydra groovy-mode org-projectile org-jira evil-ediff dumb-jump bundler git-commit with-editor f web-mode tagedit slim-mode scss-mode sass-mode less-css-mode jade-mode haml-mode emmet-mode company-web web-completion-data git-link find-file-in-project suggest loop flycheck-clojure rake company-go clojure-snippets org auto-compile ensime sbt-mode scala-mode org-download flycheck-mix swiper iedit ivy auctex-latexmk auctex tern restclient counsel magit-popup clojure-mode sotclojure vimrc-mode dactyl-mode async auto-complete confluence toc-org org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets htmlize gnuplot avy anzu highlight flycheck request projectile helm-core yasnippet js2-mode markdown-mode evil fireplace cider smartparens company helm magit elfeed sotlisp sx beacon xkcd ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe use-package spacemacs-theme spaceline solarized-theme smooth-scrolling smeargle restart-emacs ranger rainbow-delimiters racket-mode quelpa pyvenv pytest pyenv-mode popwin pip-requirements persp-mode pcre2el paradox page-break-lines orgit open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow lorem-ipsum linum-relative leuven-theme json-mode js2-refactor js-doc indent-guide ido-vertical-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery expand-region evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-plus evil-iedit-state evil-exchange evil-args evil-anzu emacs-eclim define-word cython-mode company-tern company-statistics company-quickhelp company-anaconda coffee-mode clj-refactor clean-aindent-mode cider-eval-sexp-fu buffer-move auto-yasnippet auto-highlight-symbol align-cljlet aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(paradox-github-token t)
- '(ring-bell-function 'ignore)
+ '(pdf-view-midnight-colors (cons "#ECEFF4" "#2E3440"))
+ '(ring-bell-function (quote ignore))
+ '(rustic-ansi-faces
+   ["#2E3440" "#BF616A" "#A3BE8C" "#EBCB8B" "#81A1C1" "#B48EAD" "#88C0D0" "#ECEFF4"])
  '(safe-local-variable-values
-   '((eval progn
+   (quote
+    ((eval progn
            (pp-buffer)
            (indent-buffer))
      (typescript-backend . tide)
@@ -1055,8 +1067,8 @@ This function is called at the very end of Spacemacs initialization."
      (go-backend . go-mode)
      (go-backend . lsp)
      (elixir-enable-compilation-checking . t)
-     (elixir-enable-compilation-checking)))
- '(send-mail-function 'mailclient-send-it)
+     (elixir-enable-compilation-checking))))
+ '(send-mail-function (quote mailclient-send-it))
  '(vc-annotate-background "#2E3440")
  '(vc-annotate-color-map
    (list
@@ -1085,6 +1097,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil))))
  '(company-tooltip-common ((t (:inherit company-tooltip :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :underline nil)))))
 )
