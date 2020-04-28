@@ -1,12 +1,12 @@
 * Dotfiles
-  A zsh/zgen focused set of dotfiles with tmux support and spacemacs included
+  A set of dotfiles powered by [[https://nixos.org/nix/][nix]] and [[https://github.com/rycee/home-manager][home-manager]]
 ** To Install
-   - install gnu stow from your package manager
    - clone this repo to your home directory
-   - run ~./setup.sh~, it will request sudo to move a script to ~/usr/local/bin~
+   - run ~./setup.sh~, it will install nix and home-manager
    - enjoy your fancy new dotfiles
 ** Custom site configuration
    - for custom site configuration, add a file like ~$HOME/.zshenv_local~ and add custom
      configuration there
-   - custom zgen plugins can be added in a ~$HOME/.zsh_widgets~ file
+   - or, you can make your own env by creating your own ~home.nix~ and importing my modules (see
+     nix/home.nix for an example)
    
