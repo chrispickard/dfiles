@@ -55,11 +55,27 @@
     #   theme = "";
     #   plugins = [ "gitfast" "git" ];
     # };
-    localVariables = { PURE_PROMPT_SYMBOL = "»"; };
+    localVariables = {
+      PURE_PROMPT_SYMBOL = "»";
+      PURE_GIT_PULL = "0";
+      PURE_GIT_UNTRACKED_DIRTY = "0";
+    };
+    sessionVariables = {
+      GOPATH = "$HOME/dev/golang";
+      EDITOR = "emacsclient -n";
+      VISUAL = "emacsclient -n";
+      DOCKER_REGISTRY = "registry.artifactory.oh.dcos.altamiracorp.com";
+      LESS = "-F -g -i -M -R -S -w -z-4";
+      PATH = lib.makeBinPath [
+        "$HOME/dev/golang"
+        "$HOME"
+      ] + lib.optionalString (!config.home.emptyActivationPath) "\${PATH:+:}$PATH";
+    };
   };
 
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+    changeDirWidgetCommand = "fd . $HOME --type=d";
   };
 }

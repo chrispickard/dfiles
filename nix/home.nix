@@ -57,11 +57,6 @@
   ];
 
   home.sessionVariables = {
-    GOPATH = "$HOME/dev/golang";
-    EDITOR = "emacsclient -n";
-    VISUAL = "emacsclient -n";
-    DOCKER_REGISTRY = "registry.artifactory.oh.dcos.altamiracorp.com";
-    LESS = "-F -g -i -M -R -S -w -z-4";
     LOCALE_ARCHIVE_2_11 = "${pkgs.glibcLocales}/lib/locale/locale-archive";
     LOCALE_ARCHIVE_2_27 = "${pkgs.glibcLocales}/lib/locale/locale-archive";
     LOCALE_ARCHIVE = "/usr/bin/locale";

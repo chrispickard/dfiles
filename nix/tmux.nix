@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ tmuxp ];
+  home.packages = with pkgs; [ tmuxp fpp ];
   programs.tmux.enable = true;
   home.file.".tmuxp/work.yaml".text = ''
     session_name: work
@@ -123,6 +123,7 @@
     # set -g @plugin 'Morantron/tmux-fingers'
     set -g @plugin 'tmux-plugins/tmux-open'
     set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+    set -g @plugin 'jbnicolai/tmux-fpp'
 
     # Other examples:
     # set -g @plugin 'github_username/plugin_name'

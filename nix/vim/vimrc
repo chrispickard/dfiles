@@ -6,6 +6,7 @@ set runtimepath+=~/.vim/bundle/Plug.vim/
 " Required:
 call plug#begin('~/.local/share/nvim/plugged')
 
+
 " Let Plug manage Plug
 " My Bundles here:
 " Refer to |:Plug-examples|.  Note: You don't set Plug setting in .gvimrc!
