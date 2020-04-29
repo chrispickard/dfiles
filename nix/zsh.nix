@@ -64,7 +64,6 @@
       GOPATH = "$HOME/dev/golang";
       EDITOR = "emacsclient -n";
       VISUAL = "emacsclient -n";
-      DOCKER_REGISTRY = "registry.artifactory.oh.dcos.altamiracorp.com";
       LESS = "-F -g -i -M -R -S -w -z-4";
       PATH = lib.makeBinPath [
         "$HOME/dev/golang"
