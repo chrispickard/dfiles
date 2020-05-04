@@ -28,6 +28,9 @@
 **** https://www.vrk.dev/feed
 **** http://n-gate.com/hackernews/index.rss
 **** https://technology.mlblogs.com/feed
+*** Nix                                                                 :nix:
+**** https://grahamc.com/feed/
+**** https://weekly.nixos.org/feeds/all.rss.xml
 *** Bash                                                               :bash:
 **** https://sanctum.geek.nz/arabesque/feed/
 **** https://blog.jessfraz.com/index.xml
@@ -49,7 +52,7 @@
 ** Science                                                          :science:
 **** https://www.amarchenkova.com/feed
 **** https://apod.nasa.gov/apod.rss
-# **** https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss
+     # **** https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss
 **** https://what-if.xkcd.com/feed.atom
 *** Environment
 **** https://www.patagonia.com/blog/feed/atom/

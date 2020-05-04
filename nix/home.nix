@@ -69,3 +69,4 @@
 
   programs.htop = { enable = true; };
 }
+

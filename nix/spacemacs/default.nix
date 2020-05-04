@@ -8,7 +8,14 @@
   home.file."bin/e" = {
     text = ''
       #!/bin/sh
-      emacsclient -a "vim" $@
+      emacsclient -n -a "vim" $@
+    '';
+    executable = true;
+  };
+  home.file."bin/et" = {
+    text = ''
+      #!/bin/sh
+      TERM=xterm-24bit emacsclient -nw -a "vim" $@
     '';
     executable = true;
   };

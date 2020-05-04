@@ -186,7 +186,7 @@ tcsh-backward-delete-word () {
 
 __clip_cmd_line () {
     # local WORDCHARS="./&%$"
-    print -rn -- $BUFFER | xclip -sel c
+    if xhost &> /dev/null ; then print -rn -- $BUFFER | xclip -sel c; fi
     zle kill-whole-line
 }
 __clear_screen () {
