@@ -7,6 +7,10 @@
     enable = true;
     userName = "Chris Pickard";
     userEmail = "chris.pickard@altamiracorp.com";
+    delta = {
+      enable = true;
+      options = [ "--dark" "--theme=base16" ];
+    };
     # pullStrategy = "rebase";
     aliases = {
       co = "checkout";

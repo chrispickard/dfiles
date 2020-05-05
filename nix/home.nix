@@ -44,7 +44,6 @@
     fd
     entr
     vgo2nix
-    bat
     nodejs
     nixfmt
     nodePackages.npm
@@ -68,5 +67,12 @@
   };
 
   programs.htop = { enable = true; };
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "base16";
+      pager = "less -FR";
+    };
+  };
 }
 
