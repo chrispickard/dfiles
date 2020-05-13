@@ -1,8 +1,20 @@
 { config, lib, pkgs, ... }:
 
 {
+  xsession.initExtra = ''
+    systemctl --user import-environment
+  '';
+
   services.lorri = { enable = true; };
 
+  services.gnome-keyring = {
+    enable = true;
+    components = [ "pkcs11" "secrets" "ssh" ];
+  };
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
   services.dunst = {
     enable = true;
     settings = {

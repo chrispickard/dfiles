@@ -8,10 +8,8 @@
       ll = "${pkgs.exa}/bin/exa -l";
       la = "${pkgs.exa}/bin/exa -la";
       l = "${pkgs.exa}/bin/exa -la";
-      g = "${pkgs.git}/bin/git";
-
-      gits = "${pkgs.git}/bin/git status";
-      gf = "${pkgs.git}/bin/git fetch";
+      tree = "${pkgs.exa}/bin/exa -T";
+      b = "buffalo";
 
       reload = "exec zsh";
       switch = "__HM_SESS_VARS_SOURCED= home-manager switch; exec zsh";
@@ -23,7 +21,7 @@
       sc = "systemctl";
       scu = "systemctl --user";
       jc = "journalctl";
-      jcu = "journalctl --user";
+      jcu = "journalctl --user-unit";
     };
     plugins = [
       {
@@ -34,6 +32,16 @@
           repo = "pure";
           rev = "3589b7f3f8a687b2a3b7f91100bae540fcd4056f";
           sha256 = "03nr88349frfkq3rcgm2x5m3r23sgq52dqcpvdkrfi40b610rl17";
+        };
+      }
+      {
+        name = "buffalo.zsh";
+        file = "buffalo.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "1995parham";
+          repo = "buffalo.zsh";
+          rev = "7953b9cb52b2b75dd29b6db0b4042380ac22d446";
+          sha256 = "1lkvjyvbkky7gwp3nml1k16b4rynhgd4l0gmhrc4my7vrp5a1c8d";
         };
       }
       {
@@ -75,7 +83,7 @@
     initExtraBeforeCompInit = ''
       fpath+=$HOME/.zsh/plugins
       zstyle ':completion:*' accept-exact '*(N)'
-      zstyle ':completion:*' completer _complete _correct
+      zstyle ':completion:*' completer _complete _correct _approximate
       zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
     '';
     envExtra = ''
@@ -92,6 +100,7 @@
       }
       zle -N __clip_cmd_line
       bindkey '^[^?' vi-backward-kill-word
+      bindkey '\033[33~' backward-kill-word
       bindkey '^?' backward-delete-char
       bindkey '^[B' vi-backward-blank-word
       bindkey '^[F' vi-forward-blank-word
@@ -106,8 +115,8 @@
     };
     sessionVariables = {
       GOPATH = "$HOME/dev/golang";
-      EDITOR = "emacsclient -n";
-      VISUAL = "emacsclient -n";
+      EDITOR = "e";
+      VISUAL = "e";
       LESS = "-F -g -i -M -R -S -w -z-4";
       PATH = lib.makeBinPath [ "$HOME/dev/golang" "$HOME" ]
         + lib.optionalString (!config.home.emptyActivationPath)
@@ -119,5 +128,9 @@
     enable = true;
     enableZshIntegration = true;
     changeDirWidgetCommand = "fd . $HOME --type=d";
+  };
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
   };
 }

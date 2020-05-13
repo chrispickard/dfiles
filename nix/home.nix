@@ -12,7 +12,8 @@
     ./vim
     ./spacemacs
     ./i3.nix
-    ./termite.nix
+    # ./termite.nix
+    ./urxvt.nix
     ./services.nix
   ];
   # This value determines the Home Manager release that your
@@ -28,17 +29,16 @@
   home.packages = with pkgs; [
     go
     lastpass-cli
-    direnv
     nodePackages.node2nix
     topgrade
     iosevka
     tmate
-    rofi
     sshuttle
     feh
     postman
     playerctl
     jq
+    cacert
     ripgrep
     curl
     fd
@@ -59,11 +59,6 @@
     LOCALE_ARCHIVE_2_11 = "${pkgs.glibcLocales}/lib/locale/locale-archive";
     LOCALE_ARCHIVE_2_27 = "${pkgs.glibcLocales}/lib/locale/locale-archive";
     LOCALE_ARCHIVE = "/usr/bin/locale";
-  };
-
-  services.gnome-keyring = {
-    enable = true;
-    components = [ "pkcs11" "secrets" "ssh" ];
   };
 
   programs.htop = { enable = true; };
