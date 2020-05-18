@@ -6,7 +6,7 @@
   targets.genericLinux.enable = true;
 
   imports = [
-    ./git.nix
+    ./git
     ./zsh.nix
     ./tmux.nix
     ./vim
