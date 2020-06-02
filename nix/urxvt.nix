@@ -18,6 +18,7 @@
       "Shift-Control-V" = "eval:paste_clipboard";
       "Meta-Shift-BackSpace" = "\\033[33~";
     };
+    iso14755 = false;
     extraConfig = {
       termName = "xterm-24bit";
       fading = 0;

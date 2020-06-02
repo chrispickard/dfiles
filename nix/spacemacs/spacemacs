@@ -20,8 +20,9 @@
      ;; ansible
      lsp
      xclipboard
-     (shell-scripts :variables
-                    shell-scripts-backend 'lsp)
+     ;; (shell-scripts :variables
+     ;;                shell-scripts-backend 'lsp)
+     shell-scripts
      ;; common-lisp
      ;; haskell
      (json :variables
@@ -619,8 +620,8 @@ With a prefix ARG invokes `projectile-commander' instead of
    (with-eval-after-load 'cc-mode
      (bind-map-set-keys java-mode-map
        "<S-f6>"  'lsp-rename))
-   (with-eval-after-load 'nix-mode
-     (add-hook 'before-save-hook 'nix-format-buffer))
+   ;; (with-eval-after-load 'nix-mode
+   ;;   (add-hook 'before-save-hook 'nix-format-buffer))
    (with-eval-after-load 'json-mode
      (setq json-fmt-tool 'prettier)
      (setq-default tab-width 2))

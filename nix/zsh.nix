@@ -85,6 +85,7 @@
       zstyle ':completion:*' accept-exact '*(N)'
       zstyle ':completion:*' completer _complete _correct _approximate
       zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
+      zstyle ':completion:*:*:*:default' menu yes select search
     '';
     envExtra = ''
       if [ -f "$HOME/.zshenv_local" ]; then
@@ -93,6 +94,9 @@
           '';
     defaultKeymap = "emacs";
     initExtra = ''
+      md () {
+          mkdir -p "$@" && cd "$@"
+      }
       __clip_cmd_line () {
           # local WORDCHARS="./&%$"
           if xhost &> /dev/null ; then print -rn -- $BUFFER | xclip -sel c; fi
