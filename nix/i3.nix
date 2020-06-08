@@ -50,8 +50,8 @@
           mod = config.modifier;
           leader = "Mod1 + Shift";
         in {
-          # "${leader}+j" = "exec btf -m Termite termite";
-          "${leader}+j" = "exec btf -m URxvt urxvt";
+          "${leader}+j" = "exec btf -m XTerm xterm";
+          # "${leader}+j" = "exec btf -m URxvt urxvt";
           "${leader}+e" = "exec btf -m emacs@chris emacs";
           "${leader}+c" = "exec btf -m Firefox /opt/firefox/firefox";
           "${leader}+s" = "exec btf -m Slack slack";

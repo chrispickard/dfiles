@@ -190,7 +190,7 @@
                                :weight Regular
                                :width Regular
                                :powerline-scale 1.0
-                               :size 12.0)
+                               :size 9.0)
    dotspacemacs-mode-line-theme '(doom)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -294,7 +294,7 @@
                                       company-flx
                                       ham-mode
                                       ox-slack
-                                      solaire-mode
+                                      ;; solaire-mode
                                       ;; hydra-posframe
                                       evil-textobj-syntax
                                       super-save)
@@ -591,9 +591,9 @@ With a prefix ARG invokes `projectile-commander' instead of
 
   ;; ...if you use auto-revert-mode, this prevents solaire-mode from turning
   ;; itself off every time Emacs reverts the file
-  (add-hook 'after-revert-hook #'turn-on-solaire-mode)
-  (solaire-global-mode +1)
-  (solaire-mode-swap-bg)
+  ;; (add-hook 'after-revert-hook #'turn-on-solaire-mode)
+  ;; (solaire-global-mode +1)
+  ;; (solaire-mode-swap-bg)
 
   ;; (setq nord-region-highlight "snowstorm")
   ;; (setq sml/theme 'atom-one-dark)

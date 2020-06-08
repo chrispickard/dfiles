@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ tig ];
+  home.packages = with pkgs; [ tig gitAndTools.delta ];
   programs.zsh.shellAliases = {
     g = "${pkgs.git}/bin/git";
     gits = "${pkgs.git}/bin/git status";

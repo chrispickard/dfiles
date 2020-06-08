@@ -85,7 +85,6 @@
       zstyle ':completion:*' accept-exact '*(N)'
       zstyle ':completion:*' completer _complete _correct _approximate
       zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
-      zstyle ':completion:*:*:*:default' menu yes select search
     '';
     envExtra = ''
       if [ -f "$HOME/.zshenv_local" ]; then
@@ -103,14 +102,15 @@
           zle kill-whole-line
       }
       zle -N __clip_cmd_line
-      bindkey '^[^?' vi-backward-kill-word
+      bindkey '^[^H' vi-backward-kill-word
       bindkey '\033[33~' backward-kill-word
       bindkey '^?' backward-delete-char
       bindkey '^[B' vi-backward-blank-word
       bindkey '^[F' vi-forward-blank-word
       bindkey '^[b' vi-backward-word
       bindkey '^[f' vi-forward-word
-      bindkey '^u' __clip_cmd_line
+
+  bindkey '^u' __clip_cmd_line
     '';
     localVariables = {
       PURE_PROMPT_SYMBOL = "»";

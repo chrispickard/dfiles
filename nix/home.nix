@@ -13,8 +13,11 @@
     ./spacemacs
     ./i3.nix
     # ./termite.nix
-    ./urxvt.nix
+    # ./urxvt.nix
+    ./kitty.nix
+    ./xterm.nix
     ./services.nix
+    ./slack.nix
     ./curl
   ];
   # This value determines the Home Manager release that your

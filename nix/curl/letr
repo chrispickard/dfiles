@@ -1,7 +1,7 @@
 # !/usr/bin/env bash
 
 die () {
-    echo "$1"
+    >&2 echo "$1"
     exit 1
 }
 
@@ -11,4 +11,4 @@ setp () {
 }
 setp "${JWT}" || die 'set $JWT'
 
-tee /dev/stderr | curl -Ss -k -H "Authorization: ${JWT}" -H "Content-Type: application/json" -d @- "$@"
+curl -Ss -k -H "Authorization: ${JWT}" -H "Content-Type: application/json" -d @- "$@"

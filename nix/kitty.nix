@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
+  # home.packages = [ pkgs.kitty ];
   xdg.configFile."kitty/kitty.conf".text = ''
     # Nord Colorscheme for Kitty
     # Based on:
