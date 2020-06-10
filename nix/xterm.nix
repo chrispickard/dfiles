@@ -8,6 +8,7 @@
       "XTerm*faceName" = "iosevka";
       "XTerm*faceSize" = "10";
       "XTerm*termName" = "xterm-256color";
+      "XTerm*selectToClipboard" = true;
       "XTerm*metaSendsEscape" = true;
       "XTerm.backarrowKey" = false;
       "XTerm.borderWidth" = 0;

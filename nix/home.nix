@@ -19,6 +19,7 @@
     ./services.nix
     ./slack.nix
     ./curl
+    ./calc
   ];
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -44,7 +45,6 @@
     jq
     cacert
     ripgrep
-    httpie
     fd
     entr
     vgo2nix

@@ -1,4 +1,5 @@
 # !/usr/bin/env bash
+# -*- mode: shell-script-mode -*-
 
 die () {
     >&2 echo "$1"
