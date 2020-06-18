@@ -10,6 +10,7 @@
       l = "${pkgs.exa}/bin/exa -la";
       tree = "${pkgs.exa}/bin/exa -T";
       b = "buffalo";
+      d = "docker";
 
       reload = "exec zsh";
       switch = "__HM_SESS_VARS_SOURCED= home-manager switch; exec zsh";
@@ -102,15 +103,15 @@
           zle kill-whole-line
       }
       zle -N __clip_cmd_line
-      bindkey '^[^H' vi-backward-kill-word
-      bindkey '\033[33~' backward-kill-word
+      bindkey '^[^?' vi-backward-kill-word
+      bindkey '^[[33~' backward-kill-word
       bindkey '^?' backward-delete-char
       bindkey '^[B' vi-backward-blank-word
       bindkey '^[F' vi-forward-blank-word
       bindkey '^[b' vi-backward-word
       bindkey '^[f' vi-forward-word
 
-  bindkey '^u' __clip_cmd_line
+      bindkey '^u' __clip_cmd_line
     '';
     localVariables = {
       PURE_PROMPT_SYMBOL = "»";

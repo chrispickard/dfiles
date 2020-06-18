@@ -18,6 +18,7 @@
     ./xterm.nix
     ./services.nix
     ./slack.nix
+    ./prometheus.nix
     ./curl
     ./calc
   ];
@@ -50,9 +51,12 @@
     vgo2nix
     nodejs
     nixfmt
+    pandoc
     nodePackages.npm
     nodePackages.prettier
     nodePackages.bash-language-server
+    dhall
+    dhall-json
     # nodePackages.vls
     nodePackages.eslint
     topgrade

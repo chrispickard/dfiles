@@ -32,8 +32,8 @@
               text = "#aea79f";
             };
             urgentWorkspace = {
-              border = "#77216f";
-              background = "#77216f";
+              border = "#B48EAD";
+              background = "#B48EAD";
               text = "#ffffff";
             };
           };

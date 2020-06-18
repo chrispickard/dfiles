@@ -54,6 +54,7 @@
                  web-mode-code-indent-offset 2
                  web-mode-attr-indent-offset 2
                  javascript-backend 'lsp)
+     dhall
      (go :variables
          ;; go-use-gometalinter t
          go-backend 'lsp
@@ -809,7 +810,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (elpy-use-ipython)
   ;; shell script hook
   (add-hook 'shell-script-enabled-hook #'flycheck-mode)
-  (add-hook 'visual-line-mode-hook 'visual-fill-column-mode)
+  ;; (add-hook 'visual-line-mode-hook 'visual-fill-column-mode)
 
   ;;(add-hook 'python-mode-hook 'set-python-interpreter)
   ;; elisp hooks
