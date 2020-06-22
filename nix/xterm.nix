@@ -5,8 +5,8 @@
   xresources = {
     properties = {
       "XTerm*font" = "*-fixed-*-*-*-*-*";
-      "XTerm*faceName" = "iosevka";
-      "XTerm*faceSize" = "10";
+      "XTerm*faceName" = "dejavu sans mono";
+      "XTerm*faceSize" = "8";
       "XTerm*termName" = "xterm-256color";
       "XTerm*selectToClipboard" = true;
       "XTerm*metaSendsEscape" = true;

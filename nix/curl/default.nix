@@ -3,8 +3,8 @@
 {
   home.packages = [ pkgs.curl ];
 
-  home.file."bin/letr" = {
-    source = ./letr;
+  home.file."bin/postit" = {
+    source = ./postit;
     executable = true;
   };
   home.file."bin/get" = {

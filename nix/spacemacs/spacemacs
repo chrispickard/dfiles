@@ -661,7 +661,9 @@ With a prefix ARG invokes `projectile-commander' instead of
                                         :protocol "inspector"
                                         :sourceMaps t
                                         :restart t
-                                        :name "Node::Inspect")))
+                                        :name "Node::Inspect"))
+     (unbind-key (kbd "M-;") )
+     )
 
    (bind-map-set-keys evil-normal-state-map
      "C-b" 'evil-first-non-blank
@@ -898,8 +900,6 @@ With a prefix ARG invokes `projectile-commander' instead of
 
   ;; gets rid of that awful highlighting smartparens wanted to do when you open a new pair
   ;; (setq sp-highlight-pair-overlay nil)
-
-  (add-hook 'web-mode-hook (lambda () (bind-key (kbd "M-;") 'ivy-switch-buffer)))
 
   (remove-hook 'prog-mode-hook #'smartparens-mode #'show-smartparens-mode)
   ;; (spacemacs/toggle-smartparens-globally-off)

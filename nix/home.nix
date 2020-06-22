@@ -7,6 +7,7 @@
 
   imports = [
     ./git
+    ./jq.nix
     ./zsh.nix
     ./tmux.nix
     ./vim
@@ -30,7 +31,6 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  fonts.fontconfig.enable = true;
   home.stateVersion = "20.03";
   home.packages = with pkgs; [
     go
@@ -43,7 +43,6 @@
     feh
     postman
     playerctl
-    jq
     cacert
     ripgrep
     fd
@@ -62,6 +61,7 @@
     topgrade
     vscode-with-extensions
   ];
+  fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
     LOCALE_ARCHIVE_2_11 = "${pkgs.glibcLocales}/lib/locale/locale-archive";

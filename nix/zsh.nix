@@ -103,6 +103,9 @@
           zle kill-whole-line
       }
       zle -N __clip_cmd_line
+      autoload -z edit-command-line
+      zle -N edit-command-line
+      bindkey "^X^E" edit-command-line
       bindkey '^[^?' vi-backward-kill-word
       bindkey '^[[33~' backward-kill-word
       bindkey '^?' backward-delete-char
@@ -121,7 +124,7 @@
     sessionVariables = {
       GOPATH = "$HOME/dev/golang";
       EDITOR = "e";
-      VISUAL = "e";
+      VISUAL = "et";
       LESS = "-F -g -i -M -R -S -w -z-4";
       PATH = lib.makeBinPath [ "$HOME/dev/golang" "$HOME" ]
         + lib.optionalString (!config.home.emptyActivationPath)

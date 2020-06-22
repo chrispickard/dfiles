@@ -16,6 +16,7 @@
       user.work.email = "chris.pickard@altamiracorp.com";
       user.personal.name = "Chris Pickard";
       user.personal.email = "chrispickard9@gmail.com";
+      pull.ff = "only";
     };
     aliases = {
       co = "checkout";

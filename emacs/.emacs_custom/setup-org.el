@@ -90,4 +90,8 @@
          "* [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n- %?")))
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((sql . t)))
+ '(
+   (shell . t)
+   (sql . t)
+   )
+ )
