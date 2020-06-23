@@ -290,7 +290,6 @@
    dotspacemacs-pretty-docs nil
    dotspacemacs-use-spacelpa nil
    dotspacemacs-additional-packages '((tridactyl-mode :location (recipe :fetcher github :repo "Fuco1/tridactyl-mode"))
-                                      ivy-posframe
                                       direnv
                                       company-flx
                                       ham-mode
@@ -325,10 +324,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq solarized-use-variable-pitch nil)
   (setq solarized-use-less-bold t)
   (setq solarized-scale-org-headlines nil))
-
-(defun ivy-posframe-display-at-XXX (str)
-  (ivy-posframe--display str #'my/posframe-poshandler-window-top-center))
-
 
 (defun enter-debug-mode ()
   ""
@@ -514,34 +509,6 @@ With a prefix ARG invokes `projectile-commander' instead of
 
   (setq ediff-window-setup-function 'ediff-setup-windows-default)
 
-  ;; Configure ivy
-  ;; (with-eval-after-load 'ivy
-  ;;   ;; (require 'ivy-posframe)
-  ;;   (bind-key (kbd "M-;") 'ivy-switch-buffer)
-  ;;   (setq ivy-on-del-error-function #'ignore)
-  ;; ;;   ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
-  ;; ;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-XXX)))
-  ;; ;;   (setq ivy-posframe-border-width 10)
-  ;; ;;   (setq ivy-posframe-hide-minibuffer t)
-
-  ;;   (setq ivy-initial-inputs-alist
-  ;;     '((org-refile . "^")
-  ;;       (org-agenda-refile . "^")
-  ;;       (org-capture-refile . "^")
-  ;;       (Man-completion-table . "^")
-  ;;       (woman . "^")))
-  ;; ;;   (ivy-posframe-mode)
-  ;; ;;   (defun ivy-posframe-get-size ()
-  ;; ;;     "The default functon used by `ivy-posframe-size-function'."
-  ;; ;;     (list
-  ;; ;;      :height (round (* (frame-height) 0.25))
-  ;; ;;      :width (round (* (frame-width) 0.8))
-  ;; ;;      :min-height (round (* (frame-height) 0.25))
-  ;; ;;      :min-width (round (* (frame-width) 0.8))))
-  ;;   )
-
-  ;; (define-key evil-inner-text-objects-map (kbd "w") 'evil-inner-symbol)
-  ;; (define-key evil-inner-text-objects-map (kbd "o") 'evil-inner-word)
   ;; ADD OTHER WINDOW TO TMUX
   (bind-key (kbd "M-m") 'other-window)
   ;; (bind-key (kbd "M-s") 'sp-forward-slurp-sexp )
@@ -661,9 +628,7 @@ With a prefix ARG invokes `projectile-commander' instead of
                                         :protocol "inspector"
                                         :sourceMaps t
                                         :restart t
-                                        :name "Node::Inspect"))
-     (unbind-key (kbd "M-;") )
-     )
+                                        :name "Node::Inspect")))
 
    (bind-map-set-keys evil-normal-state-map
      "C-b" 'evil-first-non-blank
@@ -912,10 +877,6 @@ With a prefix ARG invokes `projectile-commander' instead of
   (add-hook 'evil-evilified-state-entry-hook 'setup-evilified-state)
   (setq twittering-icon-mode t)
   (setq twittering-use-icon-storage t)
-  ;; (setq ivy-height 6)
-  ;; (setq ivy-re-builders-alist
-  ;;       '((ivy-switch-buffer . ivy--regex-plus)
-  ;;         (t . ivy--regex-fuzzy)))
 
   (setq inferior-lisp-program "ros -Q run")
 
@@ -948,9 +909,6 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (with-eval-after-load 'flycheck
   ;;   (add-hook 'flycheck-error-list-mode-hook
   ;;             (lambda () (set-window-parameter (first (window-list)) 'no-other-window t))))
-
-  ;; (require 'ivy-rich)
-  ;; (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
 
   ;; (setq shell-file-name "/bin/bash")
   (setq projectile-enable-caching t)

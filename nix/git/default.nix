@@ -32,8 +32,9 @@
       options = [ "--dark" "--theme=base16" ];
     };
   };
-  home.file."bin/git-identity" = {
-    source = ./git-identity;
+  home.file."bin/fbr" = {
+    source = ./fbr;
     executable = true;
   };
+
 }

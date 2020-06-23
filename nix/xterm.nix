@@ -4,9 +4,17 @@
   home.packages = with pkgs; [ xterm ];
   xresources = {
     properties = {
-      "XTerm*font" = "*-fixed-*-*-*-*-*";
-      "XTerm*faceName" = "dejavu sans mono";
-      "XTerm*faceSize" = "8";
+      "XTerm.vt100.facename" = "Iosevka:regular:size=11";
+      "XTerm.vt100.font" = "xft:Iosevka:regular:size=11";
+      "XTerm.vt100.imFont" = "xft:Iosevka:italic:size=11";
+      "XTerm.vt100.boldFont" = "xft:Iosevka:bold:size=11";
+      "XTerm.vt100.italicFont" = "xft:Iosevka:italic:size=11";
+      "XTerm.vt100.boldItalicFont" = "xft:Iosevka:bold italic:size=11";
+      "Xft.autohint"=0;
+      "Xft.antialias"=true;
+      "Xft.hinting"=true;
+      "Xft.rgba"="rgb";
+      "XTerm*faceSize" = "9";
       "XTerm*termName" = "xterm-256color";
       "XTerm*selectToClipboard" = true;
       "XTerm*metaSendsEscape" = true;

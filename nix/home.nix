@@ -22,6 +22,7 @@
     ./prometheus.nix
     ./curl
     ./calc
+    ./topgrade.nix
   ];
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -36,7 +37,6 @@
     go
     lastpass-cli
     nodePackages.node2nix
-    topgrade
     iosevka
     tmate
     sshuttle
@@ -45,6 +45,7 @@
     playerctl
     cacert
     ripgrep
+    zlib
     fd
     entr
     vgo2nix
@@ -58,7 +59,6 @@
     dhall-json
     # nodePackages.vls
     nodePackages.eslint
-    topgrade
     vscode-with-extensions
   ];
   fonts.fontconfig.enable = true;
@@ -75,6 +75,52 @@
     config = {
       theme = "base16";
       pager = "less -FR";
+    };
+  };
+  programs.gnome-terminal = {
+    enable = true;
+    showMenubar = false;
+    profile = {
+      "5ddfe964-7ee6-4131-b449-26bdd97518f7" = {
+        default = true;
+        visibleName = "Nord HM";
+        cursorShape = "block";
+        font = "Iosevka 9";
+        showScrollbar = false;
+        colors = {
+          foregroundColor = "#D8DEE9";
+          palette = [
+            "#3B4252"
+            "#BF616A"
+            "#A3BE8C"
+            "#EBCB8B"
+            "#81A1C1"
+            "#B48EAD"
+            "#88C0D0"
+            "#E5E9F0"
+            "#4C566A"
+            "#BF616A"
+            "#A3BE8C"
+            "#EBCB8B"
+            "#81A1C1"
+            "#B48EAD"
+            "#8FBCBB"
+            "#ECEFF4"
+          ];
+          # palette = [
+          #   "#2E3440" "#3B4252"
+          #   "#4C566A" "#D8DEE9"
+          #   "#E5E9F0" "#ECEFF4"
+          #   "#8FBCBB" "#88C0D0"
+          #   "#81A1C1" "#BF616A"
+          #   "#EBCB8B" "A3BE8C"
+          #   "#EBCB8B" "A3BE8C"
+          #   "#EBCB8B" "A3BE8C"
+          # ];
+          boldColor = "#D8DEE9";
+          backgroundColor = "#2E3440";
+        };
+      };
     };
   };
 }

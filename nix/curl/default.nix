@@ -3,8 +3,8 @@
 {
   home.packages = [ pkgs.curl ];
 
-  home.file."bin/postit" = {
-    source = ./postit;
+  home.file."bin/post-it" = {
+    source = ./post-it;
     executable = true;
   };
   home.file."bin/get" = {
