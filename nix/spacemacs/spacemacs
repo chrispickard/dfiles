@@ -187,11 +187,11 @@
    dotspacemacs-scratch-mode 'emacs-lisp-mode
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Iosevka"
+   dotspacemacs-default-font '("Iosevka Term"
                                :weight Regular
                                :width Regular
                                :powerline-scale 1.0
-                               :size 9.0)
+                               :size 10.0)
    dotspacemacs-mode-line-theme '(doom)
    ;; The leader key
    dotspacemacs-leader-key "SPC"

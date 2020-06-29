@@ -16,13 +16,14 @@
     # ./termite.nix
     # ./urxvt.nix
     ./kitty.nix
-    ./xterm.nix
+    # ./xterm.nix
     ./services.nix
     ./slack.nix
     ./prometheus.nix
     ./curl
     ./calc
     ./topgrade.nix
+    ./jira.nix
   ];
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -37,7 +38,7 @@
     go
     lastpass-cli
     nodePackages.node2nix
-    iosevka
+    # iosevka
     tmate
     sshuttle
     feh
@@ -61,7 +62,7 @@
     nodePackages.eslint
     vscode-with-extensions
   ];
-  fonts.fontconfig.enable = true;
+  # fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
     LOCALE_ARCHIVE_2_11 = "${pkgs.glibcLocales}/lib/locale/locale-archive";
@@ -85,7 +86,7 @@
         default = true;
         visibleName = "Nord HM";
         cursorShape = "block";
-        font = "Iosevka 9";
+        font = "Iosevka Term 10";
         showScrollbar = false;
         colors = {
           foregroundColor = "#D8DEE9";

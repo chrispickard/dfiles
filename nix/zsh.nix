@@ -15,7 +15,7 @@
       reload = "exec zsh";
       switch = "__HM_SESS_VARS_SOURCED= home-manager switch; exec zsh";
 
-      start = "./.start.sh";
+      start = "./start.py";
       t = "./.test.sh";
       umux = "${pkgs.tmuxp}/bin/tmuxp load -y ~/.tmuxp/work.yaml";
 

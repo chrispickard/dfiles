@@ -36,5 +36,9 @@
     source = ./fbr;
     executable = true;
   };
+  home.file."bin/git-identity" = {
+    source = ./git-identity;
+    executable = true;
+  };
 
 }
