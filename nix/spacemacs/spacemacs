@@ -105,6 +105,7 @@
      (restclient :variables
                   restclient-use-org t)
      erlang
+     elasticsearch
      ;; ruby
      ;; groovy
      ;; elixir

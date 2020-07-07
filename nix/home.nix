@@ -15,10 +15,10 @@
     ./i3.nix
     # ./termite.nix
     # ./urxvt.nix
-    ./kitty.nix
+    # ./kitty.nix
     # ./xterm.nix
+    ./gnome-terminal.nix
     ./services.nix
-    ./slack.nix
     ./prometheus.nix
     ./curl
     ./calc
@@ -38,7 +38,7 @@
     go
     lastpass-cli
     nodePackages.node2nix
-    # iosevka
+    iosevka
     tmate
     sshuttle
     feh
@@ -52,17 +52,21 @@
     vgo2nix
     nodejs
     nixfmt
+    slack
+    teams
     pandoc
     nodePackages.npm
     nodePackages.prettier
     nodePackages.bash-language-server
-    dhall
-    dhall-json
     # nodePackages.vls
     nodePackages.eslint
     vscode-with-extensions
+    python3
+    python-language-server
+    black
+    elasticsearch6-oss
   ];
-  # fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
     LOCALE_ARCHIVE_2_11 = "${pkgs.glibcLocales}/lib/locale/locale-archive";
@@ -76,52 +80,6 @@
     config = {
       theme = "base16";
       pager = "less -FR";
-    };
-  };
-  programs.gnome-terminal = {
-    enable = true;
-    showMenubar = false;
-    profile = {
-      "5ddfe964-7ee6-4131-b449-26bdd97518f7" = {
-        default = true;
-        visibleName = "Nord HM";
-        cursorShape = "block";
-        font = "Iosevka Term 10";
-        showScrollbar = false;
-        colors = {
-          foregroundColor = "#D8DEE9";
-          palette = [
-            "#3B4252"
-            "#BF616A"
-            "#A3BE8C"
-            "#EBCB8B"
-            "#81A1C1"
-            "#B48EAD"
-            "#88C0D0"
-            "#E5E9F0"
-            "#4C566A"
-            "#BF616A"
-            "#A3BE8C"
-            "#EBCB8B"
-            "#81A1C1"
-            "#B48EAD"
-            "#8FBCBB"
-            "#ECEFF4"
-          ];
-          # palette = [
-          #   "#2E3440" "#3B4252"
-          #   "#4C566A" "#D8DEE9"
-          #   "#E5E9F0" "#ECEFF4"
-          #   "#8FBCBB" "#88C0D0"
-          #   "#81A1C1" "#BF616A"
-          #   "#EBCB8B" "A3BE8C"
-          #   "#EBCB8B" "A3BE8C"
-          #   "#EBCB8B" "A3BE8C"
-          # ];
-          boldColor = "#D8DEE9";
-          backgroundColor = "#2E3440";
-        };
-      };
     };
   };
 }
