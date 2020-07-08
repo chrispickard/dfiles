@@ -56,6 +56,7 @@
           "${leader}+e" = "exec btf -m emacs@chris emacs";
           "${leader}+c" = "exec btf -m Firefox /opt/firefox/firefox";
           "${leader}+s" = "exec btf -m Slack slack";
+          "${leader}+t" = "exec btf -m \"Microsoft Teams\" teams";
           "${leader}+k" = "exec btf -m Code code";
           "${leader}+h" =
             ''exec btf -m "DI2E Framework Jira" /opt/firefox/firefox'';
@@ -131,6 +132,8 @@
         #focus_on_window_activation smart
         for_window [class="floating"] floating enable
         for_window [class="Firefox" title="Developer Tools"] floating enable
+        for_window [title="Microsoft Teams Notification"] floating enable
+        no_focus [title="Microsoft Teams Notification"]
         for_window [class="Firefox" title="Developer Tools"] resize set 900 480
         client.focused          #4c7899 #285577 #ffffff #2e9ef4   #1E272C
       '';
