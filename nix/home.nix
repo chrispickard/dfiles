@@ -16,8 +16,8 @@
     # ./termite.nix
     # ./urxvt.nix
     # ./kitty.nix
-    # ./xterm.nix
-    ./gnome-terminal.nix
+    ./xterm.nix
+    # ./gnome-terminal.nix
     ./services.nix
     ./prometheus.nix
     ./curl
@@ -39,10 +39,11 @@
     lastpass-cli
     nodePackages.node2nix
     iosevka
+    source-code-pro
     tmate
     sshuttle
     feh
-    postman
+    # postman
     playerctl
     cacert
     ripgrep

@@ -20,7 +20,7 @@
     };
     iso14755 = false;
     extraConfig = {
-      termName = "rxvt-unicode";
+      termName = "rxvt-unicode-256color";
       fading = 0;
     };
   };
