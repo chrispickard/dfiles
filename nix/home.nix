@@ -36,6 +36,8 @@
   home.stateVersion = "20.03";
   home.packages = with pkgs; [
     go
+    goimports
+    gopls
     lastpass-cli
     nodePackages.node2nix
     iosevka

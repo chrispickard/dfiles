@@ -55,12 +55,12 @@
           "${leader}+j" = "exec btf -m UXTerm uxterm";
           # "${leader}+j" = "exec btf -m URxvt urxvt";
           "${leader}+e" = "exec btf -m emacs@chris emacs";
-          "${leader}+c" = "exec btf -m Firefox /opt/firefox/firefox";
+          "${leader}+c" = "exec btf -m Firefox firefox";
           "${leader}+s" = "exec btf -m Slack slack";
           "${leader}+t" = "exec btf -m \"Microsoft Teams\" teams";
           "${leader}+k" = "exec btf -m Code code";
           "${leader}+h" =
-            ''exec btf -m "DI2E Framework Jira" /opt/firefox/firefox'';
+            ''exec btf -m "DI2E Framework Jira" firefox'';
           "${mod}+d" = "exec rofi -show run";
 
           "${mod}+Shift+grave" = "move scratchpad";
