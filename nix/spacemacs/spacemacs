@@ -188,11 +188,11 @@
    dotspacemacs-scratch-mode 'emacs-lisp-mode
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Terminus"
                                :weight Regular
                                :width Regular
                                :powerline-scale 1.0
-                               :size 10.0)
+                               :size 8.0)
    dotspacemacs-mode-line-theme '(doom)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -854,7 +854,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (add-hook 'java-mode-hook 'meghanada-mode)
   (setq helm-dash-browser-func 'eww-browse-url)
   (setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "/opt/firefox/firefox")
+        browse-url-generic-program "firefox")
 
   ;; (add-to-list 'company-backends 'company-shell)
   (setq ac-auto-show-menu t

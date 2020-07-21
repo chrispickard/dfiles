@@ -102,7 +102,7 @@
       }
       __clip_cmd_line () {
           # local WORDCHARS="./&%$"
-          if xhost &> /dev/null ; then print -rn -- $BUFFER | xclip -sel c; fi
+          if ${pkgs.xorg.xhost}/bin/xhost &> /dev/null ; then print -rn -- $BUFFER | xclip -sel c; fi
           zle kill-whole-line
       }
       zle -N __clip_cmd_line

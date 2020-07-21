@@ -29,7 +29,10 @@
     };
     delta = {
       enable = true;
-      options = [ "--dark" "--theme=base16" ];
+      # options = [ "--dark" "--theme=base16" ];
+      options = {
+        syntax-theme = "Nord";
+      };
     };
   };
   home.file."bin/gg" = {

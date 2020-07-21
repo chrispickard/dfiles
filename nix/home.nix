@@ -40,8 +40,8 @@
     gopls
     lastpass-cli
     nodePackages.node2nix
-    iosevka
-    source-code-pro
+    # iosevka
+    # source-code-pro
     tmate
     sshuttle
     feh
@@ -60,16 +60,18 @@
     pandoc
     nodePackages.npm
     nodePackages.prettier
+    scrot
     nodePackages.bash-language-server
     # nodePackages.vls
     nodePackages.eslint
     vscode-with-extensions
     python3
+    pcmanfm
     python-language-server
     black
     elasticsearch6-oss
   ];
-  fonts.fontconfig.enable = true;
+  # fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
     LOCALE_ARCHIVE_2_11 = "${pkgs.glibcLocales}/lib/locale/locale-archive";
@@ -77,6 +79,10 @@
     LOCALE_ARCHIVE = "/usr/bin/locale";
   };
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = { "inode/directory" = [ "pcmanfm.desktop" ]; };
+  };
   programs.htop = { enable = true; };
   programs.bat = {
     enable = true;

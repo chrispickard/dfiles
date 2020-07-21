@@ -4,8 +4,8 @@
   home.packages = with pkgs; [ xterm ];
   xresources = {
     properties = {
-      "UXTerm*faceName" = "Source Code Pro";
-      "UXTerm*faceSize" = "10";
+      "UXTerm*faceName" = "Terminus";
+      "UXTerm*faceSize" = "9";
       "UXTerm*selectToClipboard" = true;
       "UXTerm*metaSendsEscape" = true;
       "UXTerm.backarrowKey" = false;
