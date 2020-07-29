@@ -52,11 +52,12 @@
         in {
           # "${leader}+j" = "exec btf -m Gnome-terminal gnome-terminal";
           # "${leader}+j" = "exec btf -m XTerm xterm";
-          "${leader}+j" = "exec btf -m UXTerm uxterm";
+          "${leader}+j" = "exec btf -m st-256color st";
+          # "${leader}+j" = "exec btf -m UXTerm uxterm";
           # "${leader}+j" = "exec btf -m URxvt urxvt";
           "${leader}+e" = "exec btf -m emacs@chris emacs";
           "${leader}+c" = "exec btf -m Firefox firefox";
-          "${leader}+s" = "exec btf -m Slack slack";
+          # "${leader}+s" = "exec btf -m Slack slack";
           "${leader}+t" = "exec btf -m \"Microsoft Teams\" teams";
           "${leader}+k" = "exec btf -m Code code";
           "${leader}+h" =

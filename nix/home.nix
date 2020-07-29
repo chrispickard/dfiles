@@ -17,6 +17,7 @@
     # ./urxvt.nix
     # ./kitty.nix
     ./xterm.nix
+    ./st.nix
     # ./gnome-terminal.nix
     ./services.nix
     ./prometheus.nix
@@ -43,6 +44,7 @@
     # iosevka
     # source-code-pro
     tmate
+    openssl
     sshuttle
     feh
     # postman
@@ -67,11 +69,12 @@
     vscode-with-extensions
     python3
     pcmanfm
-    python-language-server
+    python38Packages.python-language-server
+    python38Packages.pyls-black
     black
     elasticsearch6-oss
   ];
-  # fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
     LOCALE_ARCHIVE_2_11 = "${pkgs.glibcLocales}/lib/locale/locale-archive";

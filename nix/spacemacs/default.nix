@@ -3,7 +3,8 @@
 {
   programs.emacs.enable = true;
 
-  home.packages = [ pkgs.aspell pkgs.aspellDicts.en ];
+  home.packages =
+    [ pkgs.aspell pkgs.emacs-all-the-icons-fonts pkgs.aspellDicts.en ];
   home.sessionVariables = {
     ASPELL_CONF = "data-dir $HOME/.nix-profile/lib/aspell";
   };
@@ -20,7 +21,7 @@
   home.file."bin/et" = {
     text = ''
       #!/bin/sh
-      emacsclient -nw -a "vim" $@
+      TERM=screen-24bit emacsclient -nw -a "vim" $@
     '';
     executable = true;
   };

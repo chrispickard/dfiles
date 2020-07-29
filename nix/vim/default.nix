@@ -14,6 +14,8 @@
     ];
     extraConfig = ''
     set clipboard=unnamedplus
+    set termguicolors
+    colorscheme nord
     '';
 
   };

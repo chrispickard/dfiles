@@ -17,6 +17,7 @@
       user.personal.name = "Chris Pickard";
       user.personal.email = "chrispickard9@gmail.com";
       pull.ff = "only";
+      init.defaultBranch = "main";
     };
     aliases = {
       co = "checkout";

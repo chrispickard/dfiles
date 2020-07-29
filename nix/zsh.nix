@@ -132,6 +132,7 @@
       PATH = lib.makeBinPath [ "$HOME/dev/golang" "$HOME" ]
         + lib.optionalString (!config.home.emptyActivationPath)
         "\${PATH:+:}$PATH";
+      SSH_AUTH_SOCK="/run/user/$UID/keyring/ssh";
     };
   };
 
