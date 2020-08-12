@@ -15,6 +15,13 @@
       };
     })
   ];
+  home.file."bin/st-size" = {
+    text = ''
+      #!/bin/sh
+      st -f "Iosevka:size=14"
+    '';
+    executable = true;
+  };
 
   home.packages = with pkgs; [
     st

@@ -11,4 +11,8 @@
     source = ./get;
     executable = true;
   };
+  home.file."bin/decode-jwt" = {
+    source = ./decode-jwt;
+    executable = true;
+  };
 }

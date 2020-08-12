@@ -69,6 +69,8 @@
      (auto-completion :variables
                       auto-completion-tab-key-behavior 'cycle
                       ;; auto-completion-enable-snippets-in-popup t
+                      ;; This is nice but doesn't work in tty mode :/
+                      ;; auto-completion-use-company-box t
                       auto-completion-enable-sort-by-usage t)
      ;; auto-completion-enable-company-yasnippet t)
      better-defaults
@@ -107,7 +109,6 @@
      erlang
      elasticsearch
      ;; ruby
-     ;; groovy
      ;; elixir
 
      (java
@@ -131,7 +132,7 @@
      (typescript :variables
                  typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier
-                 typescript-backend 'lsp
+                 ;; typescript-backend 'lsp
                  web-mode-markup-indent-offset 2
                  web-mode-css-indent-offset 2
                  web-mode-code-indent-offset 2
@@ -192,7 +193,7 @@
                                :weight Regular
                                :width Regular
                                :powerline-scale 1.0
-                               :size 10.0)
+                               :size 14.0)
    dotspacemacs-mode-line-theme '(doom)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -293,6 +294,7 @@
    dotspacemacs-additional-packages '((tridactyl-mode :location (recipe :fetcher github :repo "Fuco1/tridactyl-mode"))
                                       direnv
                                       company-flx
+                                      (company-box :location (recipe :fetcher github :repo "sebastiencs/company-box"))
                                       ham-mode
                                       ox-slack
                                       ;; solaire-mode

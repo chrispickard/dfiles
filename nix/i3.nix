@@ -52,16 +52,16 @@
         in {
           # "${leader}+j" = "exec btf -m Gnome-terminal gnome-terminal";
           # "${leader}+j" = "exec btf -m XTerm xterm";
-          "${leader}+j" = "exec btf -m st-256color st";
+          "${leader}+j" =
+            "exec btf -m st-256color /home/chris.pickard/bin/st-size";
           # "${leader}+j" = "exec btf -m UXTerm uxterm";
           # "${leader}+j" = "exec btf -m URxvt urxvt";
           "${leader}+e" = "exec btf -m emacs@chris emacs";
           "${leader}+c" = "exec btf -m Firefox firefox";
-          # "${leader}+s" = "exec btf -m Slack slack";
-          "${leader}+t" = "exec btf -m \"Microsoft Teams\" teams";
+          "${leader}+s" = "exec btf -m Slack slack";
+          "${leader}+t" = ''exec btf -m "Microsoft Teams" teams'';
           "${leader}+k" = "exec btf -m Code code";
-          "${leader}+h" =
-            ''exec btf -m "DI2E Framework Jira" firefox'';
+          "${leader}+h" = ''exec btf -m "DI2E Framework Jira" firefox'';
           "${mod}+d" = "exec rofi -show run";
 
           "${mod}+Shift+grave" = "move scratchpad";
@@ -86,8 +86,9 @@
           "${mod}+h" = "split h";
           "${mod}+v" = "split v";
           "${mod}+f" = "fullscreen";
-          "${mod}+Shift+s" = "layout stacking";
-          "${mod}+Shift+t" = "layout tabbed";
+          "${mod}+s" = "layout stacking";
+          "${mod}+t" = "layout tabbed";
+          "${mod}+e" = "layout toggle split";
           "${mod}+Shift+f" = "floating toggle";
           "${mod}+space" = "focus mode_toggle";
           "${mod}+1" = "workspace 1";
@@ -124,10 +125,17 @@
           "Return" = "mode default";
         };
 
-        startup = [{
-          command = "xset r rate 200 100";
-          notification = false;
-        }];
+        startup = [
+          {
+            command = "xset r rate 200 100";
+            notification = false;
+          }
+          {
+            command =
+              "feh --bg-fill $HOME/.background_l --bg-fill $HOME/.background_r";
+            notification = false;
+          }
+        ];
       };
       extraConfig = ''
         new_window pixel 1

@@ -20,7 +20,7 @@
     ./st.nix
     # ./gnome-terminal.nix
     ./services.nix
-    ./prometheus.nix
+    # ./prometheus.nix
     ./curl
     ./calc
     ./topgrade.nix
@@ -73,6 +73,10 @@
     python38Packages.pyls-black
     black
     elasticsearch6-oss
+    teams
+    ansible
+    youtube-dl
+    vlc
   ];
   fonts.fontconfig.enable = true;
 
@@ -84,9 +88,16 @@
 
   xdg.mimeApps = {
     enable = true;
-    defaultApplications = { "inode/directory" = [ "pcmanfm.desktop" ]; };
+    defaultApplications = {
+      "inode/directory" = [ "pcmanfm.desktop" ];
+      "x-scheme-handler/msteams" = [ "teams.desktop" ];
+    };
   };
   programs.htop = { enable = true; };
+  programs.mpv = {
+    enable = true;
+    scripts = [ pkgs.mpvScripts.mpris ];
+  };
   programs.bat = {
     enable = true;
     config = {
