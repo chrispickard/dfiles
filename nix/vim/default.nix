@@ -12,11 +12,16 @@
       targets-vim
       vim-go
       vim-commentary
+      lightline-vim
     ];
     extraConfig = ''
     set clipboard=unnamedplus
     set termguicolors
     colorscheme nord
+    let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ }
+    set noshowmode
     '';
 
   };
