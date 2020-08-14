@@ -11,6 +11,7 @@
       vim-surround
       targets-vim
       vim-go
+      vim-commentary
     ];
     extraConfig = ''
     set clipboard=unnamedplus

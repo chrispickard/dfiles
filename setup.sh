@@ -11,7 +11,7 @@
 
 # # install asdf
 # # git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.2
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 git clone -b develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
@@ -23,8 +23,8 @@ git clone -b develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
 # mkdir -p $HOME/.config/alacritty
 # ln -s $HOME/dfiles/config/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 
-mkdir -p $HOME/.config/tridactyl
-ln -s $HOME/dfiles/config/tridactylrc $HOME/.config/tridactyl/tridactylrc
+# mkdir -p $HOME/.config/tridactyl
+# ln -s $HOME/dfiles/config/tridactylrc $HOME/.config/tridactyl/tridactylrc
 
 mkdir -p $HOME/.config/nixpkgs
 ln -s $HOME/dfiles/nix/config.nix $HOME/.config/nixpkgs/

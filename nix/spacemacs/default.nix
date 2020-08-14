@@ -1,7 +1,17 @@
 { config, pkgs, ... }:
 
 {
-  programs.emacs.enable = true;
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url =
+        "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+    }))
+  ];
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacsUnstable;
+    # package = pkgs.emacsGcc;
+  };
 
   home.packages =
     [ pkgs.aspell pkgs.emacs-all-the-icons-fonts pkgs.aspellDicts.en ];

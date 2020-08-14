@@ -98,6 +98,7 @@
     enable = true;
     scripts = [ pkgs.mpvScripts.mpris ];
   };
+  programs.readline.enable = true;
   programs.bat = {
     enable = true;
     config = {
