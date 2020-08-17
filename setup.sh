@@ -35,6 +35,7 @@ curl -L https://nixos.org/nix/install | sh
 nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
 nix-shell '<home-manager>' -A install
+home-manager switch
 
 # instead of this, build github.com/chrispickard/btf and put that in /usr/local/bin
 # mkdir -p /usr/local/bin

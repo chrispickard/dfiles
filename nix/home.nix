@@ -72,7 +72,6 @@
     python38Packages.python-language-server
     python38Packages.pyls-black
     black
-    elasticsearch6-oss
     teams
     ansible
     youtube-dl
