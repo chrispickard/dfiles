@@ -733,6 +733,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (add-hook 'spacemacs-post-theme-change-hook 'remove-bolds)
   ;; (setq evil-cleverparens-use-regular-insert t)
   (with-eval-after-load 'yasnippet
+    ;; (add-to-list 'yas-snippet-dirs "~/.emacs_custom/snippets")
     (yas-global-mode 1)
     (define-key yas-minor-mode-map (kbd "M-SPC") #'yas-expand))
   (global-auto-revert-mode 1)
