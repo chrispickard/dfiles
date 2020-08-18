@@ -27,6 +27,7 @@
       rb = "rebase";
       identity = "! git-identity";
       id = "! git-identity";
+      current = "branch --show-current";
     };
     delta = {
       enable = true;

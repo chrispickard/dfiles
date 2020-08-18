@@ -35,4 +35,37 @@
     '';
     executable = true;
   };
+  home.file.".emacs.d/private/snippets/org-mode/_sh" = {
+    text = ''
+      # -*- mode: snippet -*-
+      # name: sh
+      # key: _sh
+      # --
+      #+BEGIN_SRC shell-script
+      $0
+      #+END_SRC
+    '';
+  };
+  home.file.".emacs.d/private/snippets/org-mode/_json" = {
+    text = ''
+      # -*- mode: snippet -*-
+      # name: json
+      # key: _json
+      # --
+      #+BEGIN_SRC json
+      $0
+      #+END_SRC
+    '';
+  };
+  home.file.".emacs.d/private/snippets/js-mode/dump" = {
+    text = ''
+      # -*- mode: snippet -*-
+      # name: dump
+      # key: dump
+      # --
+
+      console.dir($1, { depth: null, colors: true });
+      $0
+    '';
+  };
 }

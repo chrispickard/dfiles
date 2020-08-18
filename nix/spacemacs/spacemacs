@@ -41,7 +41,7 @@
      ;; (ivy
      ;;  :variables
      ;;  ivy-enable-advanced-buffer-information t)
-     ;; emoji
+     emoji
      ;; elm
      (rust :variables
            lsp-rust-server 'rust-analyzer

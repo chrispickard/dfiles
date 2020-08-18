@@ -1,6 +1,15 @@
 { config, pkgs, ... }:
 
-{
+let
+  comma = import (builtins.fetchTarball
+    "https://github.com/Shopify/comma/archive/60a4cf8ec5c93104d3cfb9fc5a5bac8fb18cc8e4.tar.gz") {
+      inherit pkgs;
+    };
+  btf = import (builtins.fetchTarball
+    "https://github.com/chrispickard/btf/archive/v0.0.2.tar.gz") {
+      inherit pkgs;
+    };
+in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   targets.genericLinux.enable = true;
@@ -76,6 +85,8 @@
     ansible
     youtube-dl
     vlc
+    comma
+    btf
   ];
   fonts.fontconfig.enable = true;
 
