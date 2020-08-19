@@ -48,7 +48,7 @@
 
         keybindings = let
           mod = config.modifier;
-          leader = "Mod1 + Shif";
+          leader = "Mod1 + Shift";
         in {
           # "${leader}+j" = "exec btf -m Gnome-terminal gnome-terminal";
           # "${leader}+j" = "exec btf -m XTerm xterm";
