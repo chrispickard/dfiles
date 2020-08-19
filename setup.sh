@@ -30,7 +30,6 @@ mkdir -p $HOME/.config/nixpkgs
 ln -s $HOME/dfiles/nix/config.nix $HOME/.config/nixpkgs/
 ln -s $HOME/dfiles/nix/home.nix $HOME/.config/nixpkgs/
 
-curl -L https://nixos.org/nix/install | sh
 
 nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager
 nix-channel --update

@@ -20,6 +20,7 @@
   };
 
   home.file.".spacemacs".source = ./spacemacs;
+  home.file.".emacs_custom".source = ./.emacs_custom;
 
   home.file."bin/e" = {
     text = ''
