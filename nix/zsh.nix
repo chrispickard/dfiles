@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [ perl ];
   programs.zsh = {
     enable = true;
     shellAliases = {
