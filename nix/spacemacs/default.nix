@@ -1,15 +1,15 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url =
-        "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-    }))
-  ];
+#  nixpkgs.overlays = [
+#    (import (builtins.fetchTarball {
+#      url =
+#        "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+#    }))
+#  ];
   programs.emacs = {
     enable = true;
-    package = pkgs.emacsUnstable;
+    #package = pkgs.emacsUnstable;
     # package = pkgs.emacsGcc;
   };
 
