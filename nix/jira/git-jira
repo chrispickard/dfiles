@@ -1,0 +1,8 @@
+# -*- mode: shell-script-mode -*-
+#!/usr/bin/env sh
+
+BRANCH=$(jira jsonmine \
+            | jq -r ".issues[] | {id: .key, summary: .fields.summary} | join(\" \")" \
+            | sed -e 's/ /_/g' | fzf -1 | cut -c -50)
+echo $BRANCH
+git checkout "$BRANCH" || git checkout -b "$BRANCH"

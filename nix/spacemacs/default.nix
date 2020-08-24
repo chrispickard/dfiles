@@ -9,9 +9,11 @@
 #  ];
   programs.emacs = {
     enable = true;
+    package = pkgs.emacs27;
     #package = pkgs.emacsUnstable;
     # package = pkgs.emacsGcc;
   };
+  #services.emacs.enable = true;
 
   home.packages =
     [ pkgs.aspell pkgs.emacs-all-the-icons-fonts pkgs.aspellDicts.en ];
