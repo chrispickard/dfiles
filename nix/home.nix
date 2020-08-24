@@ -33,7 +33,7 @@ in {
     ./curl
     ./calc
     ./topgrade.nix
-    ./jira.nix
+    ./jira
     ./tridactyl
   ];
   # This value determines the Home Manager release that your
