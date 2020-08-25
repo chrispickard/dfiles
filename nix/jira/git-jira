@@ -1,8 +1,10 @@
 # -*- mode: shell-script-mode -*-
 #!/usr/bin/env sh
 
+set -e
+set -o pipefail
+
 BRANCH=$(jira jsonmine \
             | jq -r ".issues[] | {id: .key, summary: .fields.summary} | join(\" \")" \
-            | sed -e 's/ /_/g' | fzf -1 | cut -c -50)
-echo $BRANCH
-git checkout "$BRANCH" || git checkout -b "$BRANCH"
+            | sed -e 's/ /_/g' | fzf -1 +m -q "$1" | cut -c -75)
+git checkout "$BRANCH" 2>/dev/null || (printf "Branch not found\nCreating!\n" && git checkout -b "$BRANCH")

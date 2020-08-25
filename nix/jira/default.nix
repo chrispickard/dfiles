@@ -2,6 +2,9 @@
 
 {
   home.packages = [ pkgs.go-jira ];
+  programs.zsh.shellAliases = {
+    workon = "${pkgs.git}/bin/git jira";
+  };
   home.file.".jira.d/config.yml" = {
     text = ''
 endpoint: https://jira.di2e.net
@@ -24,5 +27,9 @@ custom-commands:
     script: |-
           {{jira}} list --template json --query "resolution = unresolved and assignee=currentuser() and project = $JIRA_PROJECT ORDER BY priority asc, created"
         '';
+  };
+  home.file."bin/git-jira" = {
+    source = ./git-jira;
+    executable = true;
   };
 }

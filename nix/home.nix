@@ -33,6 +33,7 @@ in {
     ./curl
     ./calc
     ./topgrade.nix
+    ./vscode.nix
     ./jira
     ./tridactyl
   ];
@@ -76,7 +77,6 @@ in {
     nodePackages.bash-language-server
     # nodePackages.vls
     nodePackages.eslint
-    vscode-with-extensions
     python3
     pcmanfm
     python38Packages.python-language-server

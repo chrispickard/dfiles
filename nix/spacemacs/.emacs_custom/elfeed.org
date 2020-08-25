@@ -28,6 +28,7 @@
 **** https://www.vrk.dev/feed
 **** http://n-gate.com/hackernews/index.rss
 **** https://technology.mlblogs.com/feed
+**** https://usesthis.com/categories/developer/feed.atom
 *** Nix                                                                 :nix:
 **** https://grahamc.com/feed/
 **** https://weekly.nixos.org/feeds/all.rss.xml

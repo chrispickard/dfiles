@@ -1,17 +1,17 @@
 { config, pkgs, ... }:
 
 {
-#  nixpkgs.overlays = [
-#    (import (builtins.fetchTarball {
-#      url =
-#        "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-#    }))
-#  ];
+ nixpkgs.overlays = [
+   (import (builtins.fetchTarball {
+     url =
+       "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+   }))
+ ];
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs27;
+    # package = pkgs.emacs27;
     #package = pkgs.emacsUnstable;
-    # package = pkgs.emacsGcc;
+    package = pkgs.emacsGcc;
   };
   #services.emacs.enable = true;
 

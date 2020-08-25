@@ -13,6 +13,7 @@
       vim-go
       vim-commentary
       lightline-vim
+      vim-nix
     ];
     extraConfig = ''
     set clipboard=unnamedplus
