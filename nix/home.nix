@@ -35,7 +35,7 @@ in {
     ./topgrade.nix
     ./vscode.nix
     ./jira
-    ./tridactyl
+    ./firefox
   ];
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
