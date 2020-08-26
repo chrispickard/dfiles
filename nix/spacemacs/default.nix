@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs,lib, ... }:
 
 {
  # nixpkgs.overlays = [
@@ -34,7 +34,7 @@
   home.file."bin/et" = {
     text = ''
       #!/bin/sh
-      TERM=screen-24bit emacsclient -nw -a "vim" $@
+      emacsclient -nw -a "vim" $@
     '';
     executable = true;
   };

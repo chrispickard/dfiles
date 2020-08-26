@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  # home.packages = [ pkgs.kitty ];
+  home.packages = [ pkgs.kitty ];
   xdg.configFile."kitty/kitty.conf".text = ''
     # Nord Colorscheme for Kitty
     # Based on:
@@ -52,7 +52,17 @@
     bold_font auto
     italic_font auto
     bold_italic_font auto
-    font_size 10
+    font_size 14
     hide_window_decorations yes
   '';
+  home.file."bin/kitty-with-class" = {
+    text = ''
+      #!/bin/sh
+      kitty --class "kitty@chris"
+    '';
+    executable = true;
+  };
+  xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
+  # in { "${leader}+j" = ''exec btf -m "kitty@chris" sh -c "kitty --class kitty@chris" >> /home/chris.pickard/kitty.error''; };
+  in { "${leader}+j" = ''exec btf -m kitty kitty''; };
 }

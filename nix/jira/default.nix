@@ -9,6 +9,7 @@
     text = ''
 endpoint: https://jira.di2e.net
 user: chris.pickard
+password-source: keyring
 custom-commands:
   - name: sprint
     help: display issues in the current sprint
@@ -30,6 +31,14 @@ custom-commands:
   };
   home.file."bin/git-jira" = {
     source = ./git-jira;
+    executable = true;
+  };
+  home.file."bin/which-task" = {
+    source = ./which-task;
+    executable = true;
+  };
+  home.file."bin/gen-test-steps" = {
+    source = ./gen-test-steps;
     executable = true;
   };
 }

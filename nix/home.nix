@@ -24,7 +24,7 @@ in {
     ./i3.nix
     # ./termite.nix
     # ./urxvt.nix
-    # ./kitty.nix
+    ./kitty.nix
     ./xterm.nix
     ./st.nix
     # ./gnome-terminal.nix

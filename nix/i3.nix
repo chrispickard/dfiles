@@ -52,14 +52,14 @@
         in {
           # "${leader}+j" = "exec btf -m Gnome-terminal gnome-terminal";
           # "${leader}+j" = "exec btf -m XTerm xterm";
-          "${leader}+j" =
-            "exec btf -m st-256color /home/chris.pickard/bin/st-size";
+          # "${leader}+j" =
+          #   "exec btf -m \"kitty@chris\" kitty";
           # "${leader}+j" = "exec btf -m UXTerm uxterm";
           # "${leader}+j" = "exec btf -m URxvt urxvt";
           "${leader}+e" = "exec btf -m emacs@chris emacs";
           "${leader}+c" = "exec btf -m Firefox firefox";
           "${leader}+s" = "exec btf -m Slack slack";
-          "${leader}+t" = ''exec btf -m "Microsoft Teams" teams'';
+          "${leader}+t" = ''exec btf -m "Microsoft Teams" /home/chris.pickard/bin/teams-timeout'';
           "${leader}+k" = "exec btf -m Code code";
           "${leader}+h" = ''exec btf -m "DI2E Framework Jira" firefox'';
           "${mod}+d" = "exec rofi -show run";
@@ -161,6 +161,13 @@
     format = "%Y-%m-%d %H:%M:%S"
     }
   '';
+  home.file."bin/teams-timeout" = {
+    text = ''
+      #!/bin/sh
+      XDG_CONFIG_HOME=~/.config/teams/ teams
+    '';
+    executable = true;
+  };
   home.file."bin/pbcopy" = {
     text = ''
       #!/bin/sh
