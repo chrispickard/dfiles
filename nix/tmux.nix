@@ -40,7 +40,7 @@
     #set -g terminal-overrides ',xterm-256color:Tc'
     # improve colors
     # set -g default-terminal "xterm-kitty"
-    # set-option  -ga terminal-overrides  ",xterm-kitty:Tc"
+    set-option  -ga terminal-overrides  ",xterm-kitty:Tc"
     # set -g default-terminal "xterm-256color"
     # set -g terminal-overrides ',xterm-256color:Tc'
 

@@ -59,7 +59,8 @@
           "${leader}+e" = "exec btf -m emacs@chris emacs";
           "${leader}+c" = "exec btf -m Firefox firefox";
           "${leader}+s" = "exec btf -m Slack slack";
-          "${leader}+t" = ''exec btf -m "Microsoft Teams" /home/chris.pickard/bin/teams-timeout'';
+          "${leader}+t" = ''
+            exec btf -m "Microsoft Teams" /home/chris.pickard/bin/teams-timeout'';
           "${leader}+k" = "exec btf -m Code code";
           "${leader}+h" = ''exec btf -m "DI2E Framework Jira" firefox'';
           "${mod}+d" = "exec rofi -show run";
@@ -131,8 +132,12 @@
             notification = false;
           }
           {
-            command =
-              "feh --bg-fill $HOME/.background_l --bg-fill $HOME/.background_r";
+            command = let
+              wallpaper = builtins.fetchurl {
+                url = "https://unsplash.com/photos/rCbdp8VCYhQ/download?force=true";
+                sha256 = "1jy1vkv29hfgacir8dc9rbkzaq9ihsgpwkdm1jviy5g34kw3czwp";
+              };
+            in "feh --bg-center ${wallpaper}";
             notification = false;
           }
         ];

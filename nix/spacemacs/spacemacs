@@ -143,6 +143,7 @@
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-mc
                                     evil-unimpaired
+                                    company-box
                                     evil-escape
                                     spaceline
                                     clojure-cheatsheet
@@ -294,7 +295,8 @@
    dotspacemacs-additional-packages '((tridactyl-mode :location (recipe :fetcher github :repo "Fuco1/tridactyl-mode"))
                                       direnv
                                       company-flx
-                                      (company-box :location (recipe :fetcher github :repo "sebastiencs/company-box"))
+                                      (company-box :location (recipe :fetcher github :repo "sebastiencs/company-box")
+                                                   :hook (company-mode . company-box-mode))
                                       ham-mode
                                       ox-slack
                                       ;; solaire-mode
@@ -515,7 +517,6 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; ADD OTHER WINDOW TO TMUX
   (bind-key (kbd "M-m") 'other-window)
   ;; (bind-key (kbd "M-s") 'sp-forward-slurp-sexp )
-
   (define-key input-decode-map (kbd "C-i") (kbd "H-i"))
   (global-set-key (kbd "H-i") 'evil-jump-forward)
   ;; (bind-key (kbd "C-M-s") 'sp-forward-barf-sexp )
@@ -885,6 +886,8 @@ With a prefix ARG invokes `projectile-commander' instead of
   (setq inferior-lisp-program "ros -Q run")
 
   (when (memq window-system '(mac ns x)))
+
+
   ;; (setq gofmt-command "")
   (add-hook 'go-mode-hook 'gofmt-before-save)
   ;; (add-hook 'go-mode-hook '(lambda (bind-key (kbd "<S-f6>") 'helm-mini)))

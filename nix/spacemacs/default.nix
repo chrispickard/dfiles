@@ -34,7 +34,7 @@
   home.file."bin/et" = {
     text = ''
       #!/bin/sh
-      emacsclient -nw -a "vim" $@
+      TERM=xterm-24bit emacsclient -nw -a "vim" $@
     '';
     executable = true;
   };
