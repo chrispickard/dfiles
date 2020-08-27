@@ -3,7 +3,8 @@
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-devedition-bin;
+    package = pkgs.firefox-bin;
+    # package = pkgs.firefox-bin;
   };
   home.file.".mozilla/native-messaging-hosts/tridactyl.json".source =
     "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
@@ -40,15 +41,24 @@
     defaultApplications = {
       "inode/directory" = [ "pcmanfm.desktop" ];
       "x-scheme-handler/msteams" = [ "teams.desktop" ];
-      "x-scheme-handler/http" =
-        [ "userapp-Firefox Developer Edition-2993P0.desktop" ];
-      "x-scheme-handler/https" =
-        [ "userapp-Firefox Developer Edition-2993P0.desktop" ];
+      "x-scheme-handler/http" = [
+        "userapp-Firefox Developer Edition-2993P0.desktop"
+        "firefox.desktop"
+      ];
+      "x-scheme-handler/https" = [
+        "userapp-Firefox Developer Edition-2993P0.desktop"
+        "firefox.desktop"
+      ];
       "x-scheme-handler/ftp" =
         [ "userapp-Firefox Developer Edition-2993P0.desktop" ];
-      "x-scheme-handler/chrome" =
-        [ "userapp-Firefox Developer Edition-2993P0.desktop" ];
-      "text/html" = [ "userapp-Firefox Developer Edition-2993P0.desktop" ];
+      "x-scheme-handler/chrome" = [
+        "userapp-Firefox Developer Edition-2993P0.desktop"
+        "firefox.desktop"
+      ];
+      "text/html" = [
+        "userapp-Firefox Developer Edition-2993P0.desktop"
+        "firefox.desktop"
+      ];
       "application/x-extension-htm" =
         [ "userapp-Firefox Developer Edition-2993P0.desktop" ];
       "application/x-extension-html" =

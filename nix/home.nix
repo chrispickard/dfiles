@@ -79,13 +79,13 @@ in {
     nodePackages.eslint
     python3
     pcmanfm
-    python38Packages.python-language-server
-    python38Packages.pyls-black
+    # python38Packages.python-language-server
+    # python38Packages.pyls-black
     black
     teams
     ansible
     youtube-dl
-    vlc
+    # vlc
     comma
     btf
   ];

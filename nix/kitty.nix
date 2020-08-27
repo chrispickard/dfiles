@@ -45,9 +45,10 @@
 
     # white
     color7   #E5E9F0
-    Color15  #B48EAD
+    color15  #B48EAD
 
 
+    map alt+shift+0x259 set_font_size 20
     font_family Iosevka
     bold_font auto
     italic_font auto
@@ -58,11 +59,11 @@
   home.file."bin/kitty-with-class" = {
     text = ''
       #!/bin/sh
-      kitty --class "kitty@chris"
+      kitty --class kitty@chris
     '';
     executable = true;
   };
   xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
-  # in { "${leader}+j" = ''exec btf -m "kitty@chris" sh -c "kitty --class kitty@chris" >> /home/chris.pickard/kitty.error''; };
-  in { "${leader}+j" = ''exec btf -m kitty kitty''; };
+  in { "${leader}+j" = ''exec btf -m kitty@chris /home/chris.pickard/bin/kitty-with-class''; };
+  # in { "${leader}+j" = ''exec btf -m kitty@chris kitty''; };
 }
