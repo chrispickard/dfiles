@@ -19,7 +19,7 @@ in {
     ./jq.nix
     ./zsh.nix
     ./tmux.nix
-    # ./vim
+    ./vim
     ./spacemacs
     ./i3.nix
     # ./termite.nix
