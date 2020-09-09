@@ -37,10 +37,10 @@
     set -g base-index 1
     set -g pane-base-index 1
     set -g default-terminal "$TERM"
-    #set -g terminal-overrides ',xterm-256color:Tc'
+    set -g terminal-overrides ',xterm-256color:Tc'
     # improve colors
     # set -g default-terminal "xterm-kitty"
-    set-option  -ga terminal-overrides  ",xterm-kitty:Tc"
+    #set-option  -ga terminal-overrides  ",xterm-kitty:Tc"
     # set -g default-terminal "xterm-256color"
     # set -g terminal-overrides ',xterm-256color:Tc'
 

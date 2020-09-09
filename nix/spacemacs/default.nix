@@ -1,12 +1,12 @@
-{ config, pkgs,lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
- # nixpkgs.overlays = [
- #   (import (builtins.fetchTarball {
- #     url =
- #       "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
- #   }))
- # ];
+  # nixpkgs.overlays = [
+  #   (import (builtins.fetchTarball {
+  #     url =
+  #       "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+  #   }))
+  # ];
   programs.emacs = {
     enable = true;
     package = pkgs.emacs27;
@@ -23,6 +23,9 @@
 
   home.file.".spacemacs".source = ./spacemacs;
   home.file.".emacs_custom".source = ./.emacs_custom;
+
+  xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
+  in { "${leader}+e" = "exec btf -m emacs@chris emacs"; };
 
   home.file."bin/e" = {
     text = ''

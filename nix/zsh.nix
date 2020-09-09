@@ -129,7 +129,8 @@
       GOPATH = "$HOME/dev/golang";
       EDITOR = "e";
       VISUAL = "et";
-      LESS = "-F -g -i -M -R -S -w -z-4";
+      LESS = "-g -i -M -R -S -w -z-4";
+      PAGER = "less";
       PATH = lib.makeBinPath [ "$HOME/dev/golang" "$HOME" ]
         + lib.optionalString (!config.home.emptyActivationPath)
         "\${PATH:+:}$PATH";

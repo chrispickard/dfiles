@@ -31,4 +31,6 @@
       "vim.useSystemClipboard" = true;
     };
   };
+  xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
+  in { "${leader}+k" = "exec btf -m Code code"; };
 }

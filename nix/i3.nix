@@ -56,13 +56,14 @@
           #   "exec btf -m \"kitty@chris\" kitty";
           # "${leader}+j" = "exec btf -m UXTerm uxterm";
           # "${leader}+j" = "exec btf -m URxvt urxvt";
-          "${leader}+e" = "exec btf -m emacs@chris emacs";
-          "${leader}+c" = "exec btf -m Firefox firefox";
+          # "${leader}+e" = "exec btf -m emacs@chris emacs";
+          # "${leader}+c" = "exec btf -m Firefox firefox";
+          "${leader}+m" = "exec btf -m Mailspring mailspring";
           "${leader}+s" = "exec btf -m Slack slack";
           "${leader}+t" = ''
             exec btf -m "Microsoft Teams" /home/chris.pickard/bin/teams-timeout'';
-          "${leader}+k" = "exec btf -m Code code";
-          "${leader}+h" = ''exec btf -m "DI2E Framework Jira" firefox'';
+          # "${leader}+k" = "exec btf -m Code code";
+          # "${leader}+h" = ''exec btf -m "DI2E Framework Jira" firefox'';
           "${mod}+d" = "exec rofi -show run";
 
           "${mod}+Shift+grave" = "move scratchpad";

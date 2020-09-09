@@ -19,12 +19,12 @@ in {
     ./jq.nix
     ./zsh.nix
     ./tmux.nix
-    ./vim
+    # ./vim
     ./spacemacs
     ./i3.nix
     # ./termite.nix
     # ./urxvt.nix
-    ./kitty.nix
+    # ./kitty.nix
     ./xterm.nix
     ./st.nix
     # ./gnome-terminal.nix
@@ -85,6 +85,9 @@ in {
     teams
     ansible
     youtube-dl
+    mailspring
+    gnome3.zenity
+    gsettings_desktop_schemas
     # vlc
     comma
     btf
@@ -102,6 +105,8 @@ in {
     defaultApplications = {
       "inode/directory" = [ "pcmanfm.desktop" ];
       "x-scheme-handler/msteams" = [ "teams.desktop" ];
+      "x-scheme-handler/mailspring" = [ "mailspring.desktop" ];
+      "x-scheme-handler/mailto" = [ "mailspring.desktop" ];
     };
   };
   programs.htop = { enable = true; };
