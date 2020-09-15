@@ -29,6 +29,7 @@
 **** http://n-gate.com/hackernews/index.rss
 **** https://technology.mlblogs.com/feed
 **** https://usesthis.com/categories/developer/feed.atom
+**** https://blog.benjojo.co.uk/rss.xml
 *** Nix                                                                 :nix:
 **** https://grahamc.com/feed/
 **** https://weekly.nixos.org/feeds/all.rss.xml

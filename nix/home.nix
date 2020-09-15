@@ -52,6 +52,7 @@ in {
     gopls
     lastpass-cli
     nodePackages.node2nix
+    terraform
     # iosevka
     # source-code-pro
     tmate
@@ -74,6 +75,7 @@ in {
     nodePackages.npm
     nodePackages.prettier
     scrot
+    bashInteractive
     nodePackages.bash-language-server
     # nodePackages.vls
     nodePackages.eslint

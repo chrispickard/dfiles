@@ -28,6 +28,7 @@
       identity = "! git-identity";
       id = "! git-identity";
       current = "branch --show-current";
+      f = "fetch";
     };
     delta = {
       enable = true;
