@@ -53,6 +53,7 @@ in {
     lastpass-cli
     nodePackages.node2nix
     terraform
+    terraform-lsp
     # iosevka
     # source-code-pro
     tmate

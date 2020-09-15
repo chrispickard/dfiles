@@ -42,6 +42,7 @@
      ;;  :variables
      ;;  ivy-enable-advanced-buffer-information t)
      emoji
+     (terraform :variables terraform-backend 'lsp)
      ;; elm
      (rust :variables
            lsp-rust-server 'rust-analyzer
