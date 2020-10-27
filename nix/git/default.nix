@@ -33,9 +33,7 @@
     delta = {
       enable = true;
       # options = [ "--dark" "--theme=base16" ];
-      options = {
-        syntax-theme = "Nord";
-      };
+      options = { syntax-theme = "Nord"; };
     };
   };
   home.file."bin/gg" = {

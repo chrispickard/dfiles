@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ xclip rofi ];
+  home.packages = with pkgs; [ xclip xsel rofi ];
   services.unclutter = { enable = true; };
   xsession = {
     enable = true;
@@ -60,8 +60,13 @@
           # "${leader}+c" = "exec btf -m Firefox firefox";
           "${leader}+m" = "exec btf -m Mailspring mailspring";
           "${leader}+s" = "exec btf -m Slack slack";
+          "${leader}+d" = "exec btf -m Discord Discord";
+          "${leader}+i" = "exec btf -m jetbrains-idea idea-ultimate";
+          # "${leader}+i" = ''exec btf -m "Eclipse Platform" eclipse'';
           "${leader}+t" = ''
-            exec btf -m "Microsoft Teams" /home/chris.pickard/bin/teams-timeout'';
+            exec btf -m "Microsoft Teams" /home/chris.pickard/bin/open-teams.sh'';
+          "${leader}+o" = ''
+            exec btf -m " - Outlook" /home/chris.pickard/bin/open-outlook.sh'';
           # "${leader}+k" = "exec btf -m Code code";
           # "${leader}+h" = ''exec btf -m "DI2E Framework Jira" firefox'';
           "${mod}+d" = "exec rofi -show run";
@@ -135,7 +140,8 @@
           {
             command = let
               wallpaper = builtins.fetchurl {
-                url = "https://unsplash.com/photos/rCbdp8VCYhQ/download?force=true";
+                url =
+                  "https://unsplash.com/photos/rCbdp8VCYhQ/download?force=true";
                 sha256 = "1jy1vkv29hfgacir8dc9rbkzaq9ihsgpwkdm1jviy5g34kw3czwp";
               };
             in "feh --bg-center ${wallpaper}";

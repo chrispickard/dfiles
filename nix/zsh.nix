@@ -12,9 +12,14 @@
       tree = "${pkgs.exa}/bin/exa -T";
       b = "buffalo";
       d = "docker";
+      dc = "docker-compose";
+      tf = "terraform";
+      o = "xdg-open";
+      idea = "idea-ultimate";
 
       reload = "exec zsh";
-      switch = "__HM_SESS_VARS_SOURCED= home-manager switch; exec zsh";
+      switch =
+        "rm ~/.config/mimeapps.list && __HM_SESS_VARS_SOURCED= home-manager switch; exec zsh";
 
       start = "./start.py";
       t = "./.test.sh";
@@ -37,6 +42,15 @@
         };
       }
       {
+        name = "gradle-completion";
+        src = pkgs.fetchFromGitHub {
+          owner = "gradle";
+          repo = "gradle-completion";
+          rev = "5c863bf6e6702bb763051d2bc74220bf9e922f4c";
+          sha256 = "0sq18r9hjlbghqmw8z8l7y2kvd403ivqqffrhpxy757jihdnbf45";
+        };
+      }
+      {
         name = "buffalo.zsh";
         file = "buffalo.plugin.zsh";
         src = pkgs.fetchFromGitHub {
@@ -52,6 +66,14 @@
           url =
             "https://raw.githubusercontent.com/docker/cli/v19.03.8/contrib/completion/zsh/_docker";
           sha256 = "09b7376a06svy533fla718s6knqssagsb0k74sbfgicgknwgiv6d";
+        };
+      }
+      {
+        name = "_terraform";
+        src = pkgs.fetchurl {
+          url =
+            "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/terraform/_terraform";
+          sha256 = "0gnyp4r0kcax2ldhzq8anyfaw1y7rm7nf71pylhyq7nkf8fix7c8";
         };
       }
       {
@@ -84,6 +106,7 @@
     # enableCompletion = true;
     initExtraBeforeCompInit = ''
       fpath+=$HOME/.zsh/plugins
+      source ~/.zsh/plugins/gradle-completion/_gradle
       zstyle ':completion:*' accept-exact '*(N)'
       zstyle ':completion:*' completer _complete _correct _approximate
       zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
@@ -100,6 +123,10 @@
       fi
       md () {
           mkdir -p "$@" && cd "$@"
+      }
+      gw () {
+          GROOT="$(git rev-parse --show-toplevel)"
+          $GROOT/gradlew -p $GROOT "$@"
       }
       __clip_cmd_line () {
           # local WORDCHARS="./&%$"
@@ -119,6 +146,8 @@
       bindkey '^[f' vi-forward-word
 
       bindkey '^u' __clip_cmd_line
+
+      setopt autopushd pushdminus pushdsilent pushdtohome
     '';
     localVariables = {
       PURE_PROMPT_SYMBOL = "»";
@@ -127,14 +156,14 @@
     };
     sessionVariables = {
       GOPATH = "$HOME/dev/golang";
-      EDITOR = "e";
+      EDITOR = "et";
       VISUAL = "et";
       LESS = "-g -i -M -R -S -w -z-4";
       PAGER = "less";
       PATH = lib.makeBinPath [ "$HOME/dev/golang" "$HOME" ]
         + lib.optionalString (!config.home.emptyActivationPath)
         "\${PATH:+:}$PATH";
-      SSH_AUTH_SOCK="/run/user/$UID/keyring/ssh";
+      SSH_AUTH_SOCK = "/run/user/$UID/keyring/ssh";
     };
   };
 

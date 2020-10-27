@@ -9,8 +9,7 @@
           {
             url =
               "https://st.suckless.org/patches/nordtheme/st-nordtheme-0.8.2.diff";
-            sha256 =
-              "0ssj7gsb3snk1pqfkffwc0dshrbmvf7ffqvrdi4k2p451mnqmph1";
+            sha256 = "0ssj7gsb3snk1pqfkffwc0dshrbmvf7ffqvrdi4k2p451mnqmph1";
           }
           {
             url =
@@ -22,7 +21,9 @@
     })
   ];
   xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
-  in { "${leader}+j" = ''exec btf -m st-256color /home/chris.pickard/bin/st-size''; };
+  in {
+    "${leader}+j" = "exec btf -m st-256color /home/chris.pickard/bin/st-size";
+  };
   home.file."bin/st-size" = {
     text = ''
       #!/bin/sh
@@ -31,7 +32,5 @@
     executable = true;
   };
 
-  home.packages = with pkgs; [
-    st
-  ];
+  home.packages = with pkgs; [ st ];
 }

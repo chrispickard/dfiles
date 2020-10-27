@@ -48,14 +48,14 @@ in {
   home.stateVersion = "20.03";
   home.packages = with pkgs; [
     go
-    goimports
+    # goimports
     gopls
     lastpass-cli
     nodePackages.node2nix
     terraform
     terraform-lsp
-    # iosevka
-    # source-code-pro
+    iosevka
+    source-code-pro
     tmate
     openssl
     sshuttle
@@ -82,18 +82,28 @@ in {
     nodePackages.eslint
     python3
     pcmanfm
-    # python38Packages.python-language-server
+    python38Packages.python-language-server
     # python38Packages.pyls-black
     black
     teams
+    discord
     ansible
     youtube-dl
     mailspring
     gnome3.zenity
+    gnome3.file-roller
     gsettings_desktop_schemas
-    # vlc
+    vlc
     comma
     btf
+    jetbrains.idea-ultimate
+    beam.packages.erlangR23.elixir_1_10
+    mkcert
+    step-ca
+    step-cli
+    docker-compose
+    kotlin
+    eclipses.eclipse-platform
   ];
   fonts.fontconfig.enable = true;
 
@@ -113,10 +123,10 @@ in {
     };
   };
   programs.htop = { enable = true; };
-  programs.mpv = {
-    enable = true;
-    scripts = [ pkgs.mpvScripts.mpris ];
-  };
+  # programs.mpv = {
+  #   enable = true;
+  #   scripts = [ pkgs.mpvScripts.mpris ];
+  # };
   programs.readline.enable = true;
   programs.bat = {
     enable = true;

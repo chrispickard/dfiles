@@ -17,7 +17,8 @@
   xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
   in {
     "${leader}+c" = ''exec btf -m Firefox firefox'';
-    "${leader}+h" = ''exec btf -m "DI2E Framework Jira" firefox'';
+    # "${leader}+h" = ''exec btf -m "DI2E Framework Jira" firefox'';
+    "${leader}+h" = ''exec btf -m " - Jira" firefox'';
      };
 
   xdg.mimeApps = {

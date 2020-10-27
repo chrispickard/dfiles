@@ -110,7 +110,7 @@
      erlang
      elasticsearch
      ;; ruby
-     ;; elixir
+     elixir
 
      (java
       :variables
@@ -294,6 +294,7 @@
    dotspacemacs-pretty-docs nil
    dotspacemacs-use-spacelpa nil
    dotspacemacs-additional-packages '((tridactyl-mode :location (recipe :fetcher github :repo "Fuco1/tridactyl-mode"))
+                                      (term-cursor :location (recipe :fetcher github :repo "h0d/term-cursor.el" ))
                                       direnv
                                       company-flx
                                       (company-box :location (recipe :fetcher github :repo "sebastiencs/company-box")
@@ -936,6 +937,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;;   )
 
   (global-git-commit-mode)
+  (global-term-cursor-mode)
   ;; (server-start)
   ;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
   ;; (setq flycheck-gometalinter-vendor t)
