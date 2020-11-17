@@ -104,6 +104,8 @@ in {
     docker-compose
     kotlin
     eclipses.eclipse-platform
+    kafkacat
+    protobuf3_12
   ];
   fonts.fontconfig.enable = true;
 

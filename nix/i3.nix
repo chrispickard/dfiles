@@ -61,10 +61,12 @@
           "${leader}+m" = "exec btf -m Mailspring mailspring";
           "${leader}+s" = "exec btf -m Slack slack";
           "${leader}+d" = "exec btf -m Discord Discord";
-          "${leader}+i" = "exec btf -m jetbrains-idea idea-ultimate";
+          "${leader}+i" = "exec btf -m jetbrains-idea /home/chris.pickard/bin/open-idea";
           # "${leader}+i" = ''exec btf -m "Eclipse Platform" eclipse'';
           "${leader}+t" = ''
             exec btf -m "Microsoft Teams" /home/chris.pickard/bin/open-teams.sh'';
+          "${leader}+r" = ''
+            exec btf -m "MDPAP" /home/chris.pickard/bin/open-rocketchat.sh'';
           "${leader}+o" = ''
             exec btf -m " - Outlook" /home/chris.pickard/bin/open-outlook.sh'';
           # "${leader}+k" = "exec btf -m Code code";
@@ -177,6 +179,13 @@
     text = ''
       #!/bin/sh
       XDG_CONFIG_HOME=~/.config/teams/ teams
+    '';
+    executable = true;
+  };
+  home.file."bin/open-idea" = {
+    text = ''
+      #!/bin/sh
+      $HOME/.nix-profile/bin/zsh -ic idea-ultimate > /home/chris.pickard/logs.txt
     '';
     executable = true;
   };

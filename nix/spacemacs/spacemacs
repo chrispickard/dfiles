@@ -195,7 +195,7 @@
                                :weight Regular
                                :width Regular
                                :powerline-scale 1.0
-                               :size 14.0)
+                               :size 11.0)
    dotspacemacs-mode-line-theme '(doom)
    ;; The leader key
    dotspacemacs-leader-key "SPC"

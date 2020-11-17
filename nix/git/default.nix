@@ -9,6 +9,7 @@
   };
   programs.git = {
     enable = true;
+    package = pkgs.gitAndTools.lab;
     extraConfig = {
       core = { editor = "emacsclient"; };
       user.useConfigOnly = true;

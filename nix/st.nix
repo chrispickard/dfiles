@@ -27,7 +27,7 @@
   home.file."bin/st-size" = {
     text = ''
       #!/bin/sh
-      st -f "Iosevka:size=14"
+      st -f "Iosevka:size=11"
     '';
     executable = true;
   };
