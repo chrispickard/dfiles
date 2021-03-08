@@ -179,7 +179,7 @@
    dotspacemacs-always-show-changelog t
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'."
-   dotspacemacs-startup-lists '(recents projects bookmarks)
+   ;; dotspacemacs-startup-lists '(recents projects bookmarks)
 
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
@@ -936,6 +936,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;;   (add-to-list 'projectile-other-file-alist '("ts" "test.ts")) ;; switch from js -> html
   ;;   )
 
+  (require 'git-commit)
   (global-git-commit-mode)
   (global-term-cursor-mode)
   ;; (server-start)

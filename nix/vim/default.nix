@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  home.sessionVariables = {
+    MANPAGER = "nvim -c 'set ft=man' -";
+  };
   programs.neovim = {
     enable = true;
     viAlias = true;

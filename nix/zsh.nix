@@ -42,15 +42,6 @@
         };
       }
       {
-        name = "gradle-completion";
-        src = pkgs.fetchFromGitHub {
-          owner = "gradle";
-          repo = "gradle-completion";
-          rev = "5c863bf6e6702bb763051d2bc74220bf9e922f4c";
-          sha256 = "0sq18r9hjlbghqmw8z8l7y2kvd403ivqqffrhpxy757jihdnbf45";
-        };
-      }
-      {
         name = "buffalo.zsh";
         file = "buffalo.plugin.zsh";
         src = pkgs.fetchFromGitHub {
@@ -106,7 +97,6 @@
     # enableCompletion = true;
     initExtraBeforeCompInit = ''
       fpath+=$HOME/.zsh/plugins
-      source ~/.zsh/plugins/gradle-completion/_gradle
       zstyle ':completion:*' accept-exact '*(N)'
       zstyle ':completion:*' completer _complete _correct _approximate
       zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
