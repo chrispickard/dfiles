@@ -106,6 +106,7 @@ in {
     eclipses.eclipse-platform
     kafkacat
     protobuf3_12
+    go-protobuf
     rustup
   ];
   fonts.fontconfig.enable = true;
