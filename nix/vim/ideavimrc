@@ -1,0 +1,40 @@
+" Selected Intellimacs modules
+source ~/.intellimacs/spacemacs.vim
+""" Map leader to space ---------------------
+let mapleader=" "
+
+""" Plugins  --------------------------------
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set easymotion
+set textobj-entire
+set ReplaceWithRegister
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+
+""" Common settings -------------------------
+set showmode
+set so=5
+set incsearch
+set nu
+
+""" Idea specific settings ------------------
+set ideastatusicon=gray
+set idearefactormode=keep
+
+" Comma for major mode
+nmap , <leader>m
+vmap , <leader>m
+nmap <C-a> ^
+nmap <C-e> $
+vmap <C-a> ^
+vmap <C-e> $
+
+nnoremap <A-;>    :action RecentFiles<CR>
+vnoremap <A-;>    :action RecentFiles<CR>
+set ideajoin
+
+vmap s S

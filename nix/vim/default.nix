@@ -74,6 +74,7 @@
     '';
 
   };
+  home.file.".ideavimrc".source = ./ideavimrc;
 
   # home.file.".vimrc".source = ./vimrc;
   # xdg.configFile."nvim/init.vim".source = ./vimrc;
