@@ -23,6 +23,7 @@
      ;; (shell-scripts :variables
      ;;                shell-scripts-backend 'lsp)
      shell-scripts
+     shell
      ;; common-lisp
      ;; haskell
      (json :variables

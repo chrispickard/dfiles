@@ -6,7 +6,7 @@ let
       inherit pkgs;
     };
   btf = import (builtins.fetchTarball
-    "https://github.com/chrispickard/btf/archive/v0.0.2.tar.gz") {
+    "https://github.com/chrispickard/btf/archive/refs/tags/v0.0.3.tar.gz") {
       inherit pkgs;
     };
 in {
@@ -71,7 +71,6 @@ in {
     nodejs
     nixfmt
     slack
-    teams
     pandoc
     nodePackages.npm
     nodePackages.prettier
@@ -89,7 +88,7 @@ in {
     discord
     ansible
     youtube-dl
-    mailspring
+    # mailspring
     gnome3.zenity
     gnome3.file-roller
     gsettings_desktop_schemas
@@ -97,6 +96,7 @@ in {
     comma
     btf
     jetbrains.idea-ultimate
+    shellcheck
     beam.packages.erlangR23.elixir_1_10
     mkcert
     step-ca

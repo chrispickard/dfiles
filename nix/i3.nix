@@ -11,7 +11,10 @@
         modifier = "Mod4";
         bars = [{
           statusCommand = "${pkgs.i3status}/bin/i3status";
-          fonts = [ "Iosevka 8" ];
+          fonts = {
+            names = [ "Iosevka" ];
+            size = 8.0;
+          };
           colors = {
             separator = "#aea79f";
             background = "#2E3440";
@@ -58,15 +61,15 @@
           # "${leader}+j" = "exec btf -m URxvt urxvt";
           # "${leader}+e" = "exec btf -m emacs@chris emacs";
           # "${leader}+c" = "exec btf -m Firefox firefox";
-          "${leader}+m" = "exec btf -m Mailspring mailspring";
+          "${leader}+m" = "exec btf -m nheko ${pkgs.nheko}/bin/nheko";
           "${leader}+s" = "exec btf -m Slack slack";
           "${leader}+d" = "exec btf -m Discord Discord";
           "${leader}+i" = "exec btf -m jetbrains-idea /home/chris.pickard/bin/open-idea";
           # "${leader}+i" = ''exec btf -m "Eclipse Platform" eclipse'';
           "${leader}+t" = ''
-            exec btf -m "Microsoft Teams" /home/chris.pickard/bin/open-teams.sh'';
+            exec btf -m "Microsoft Teams" teams'';
           "${leader}+r" = ''
-            exec btf -m "MDPAP" /home/chris.pickard/bin/open-rocketchat.sh'';
+            exec btf -m "Rocket.Chat" /home/chris.pickard/bin/run-rocketchat'';
           "${leader}+o" = ''
             exec btf -m " - Outlook" /home/chris.pickard/bin/open-outlook.sh'';
           # "${leader}+k" = "exec btf -m Code code";
@@ -185,7 +188,7 @@
   home.file."bin/open-idea" = {
     text = ''
       #!/bin/sh
-      $HOME/.nix-profile/bin/zsh -ic idea-ultimate > /home/chris.pickard/logs.txt
+      ${pkgs.steam-run}/bin/steam-run idea-ultimate
     '';
     executable = true;
   };

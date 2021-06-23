@@ -15,8 +15,13 @@
   };
   #services.emacs.enable = true;
 
-  home.packages =
-    [ pkgs.aspell pkgs.emacs-all-the-icons-fonts pkgs.aspellDicts.en ];
+  home.packages = [
+    pkgs.aspell
+    pkgs.emacs-all-the-icons-fonts
+    pkgs.aspellDicts.en
+    pkgs.libtool
+    pkgs.cmake
+  ];
   home.sessionVariables = {
     ASPELL_CONF = "data-dir $HOME/.nix-profile/lib/aspell";
   };

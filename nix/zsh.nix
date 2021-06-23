@@ -19,7 +19,7 @@
 
       reload = "exec zsh";
       switch =
-        "rm ~/.config/mimeapps.list && __HM_SESS_VARS_SOURCED= home-manager switch; exec zsh";
+        "rm ~/.config/mimeapps.list || true && home-manager switch; exec zsh";
 
       start = "./start.py";
       t = "./.test.sh";
