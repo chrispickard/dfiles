@@ -64,7 +64,7 @@
           "${leader}+m" = "exec btf -m nheko ${pkgs.nheko}/bin/nheko";
           "${leader}+s" = "exec btf -m Slack slack";
           "${leader}+d" = "exec btf -m Discord Discord";
-          "${leader}+i" = "exec btf -m jetbrains-idea /home/chris.pickard/bin/open-idea";
+          "${leader}+i" = "exec btf -m jetbrains-idea open-idea";
           # "${leader}+i" = ''exec btf -m "Eclipse Platform" eclipse'';
           "${leader}+t" = ''
             exec btf -m "Microsoft Teams" teams'';

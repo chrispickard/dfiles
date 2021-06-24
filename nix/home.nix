@@ -132,6 +132,12 @@ in {
     scripts = [ pkgs.mpvScripts.mpris ];
   };
   programs.readline.enable = true;
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = false;
+    enableBashIntegration = false;
+  };
+
   programs.bat = {
     enable = true;
     config = {

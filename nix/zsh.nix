@@ -10,7 +10,6 @@
       la = "${pkgs.exa}/bin/exa -la";
       l = "${pkgs.exa}/bin/exa -la";
       tree = "${pkgs.exa}/bin/exa -T";
-      b = "buffalo";
       d = "docker";
       dc = "docker-compose";
       tf = "terraform";
@@ -35,16 +34,6 @@
         name = "pure";
         src = "${pkgs.pure-prompt}/share/zsh/site-functions/";
         file = "prompt_pure_setup";
-      }
-      {
-        name = "buffalo.zsh";
-        file = "buffalo.plugin.zsh";
-        src = pkgs.fetchFromGitHub {
-          owner = "1995parham";
-          repo = "buffalo.zsh";
-          rev = "7953b9cb52b2b75dd29b6db0b4042380ac22d446";
-          sha256 = "1lkvjyvbkky7gwp3nml1k16b4rynhgd4l0gmhrc4my7vrp5a1c8d";
-        };
       }
       {
         name = "docker";
@@ -125,6 +114,14 @@
         + lib.optionalString (!config.home.emptyActivationPath)
         "\${PATH:+:}$PATH";
       SSH_AUTH_SOCK = "/run/user/$UID/keyring/ssh";
+    };
+  };
+  programs.bash = {
+    enable = true;
+    sessionVariables = {
+      PATH = lib.makeBinPath [ "$HOME/dev/golang" "$HOME" ]
+        + lib.optionalString (!config.home.emptyActivationPath)
+        "\${PATH:+:}$PATH";
     };
   };
 
