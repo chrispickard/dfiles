@@ -74,6 +74,11 @@
       md () {
           mkdir -p "$@" && cd "$@"
       }
+
+      jumptostore () {
+          cd $(dirname $(realpath $(which "$@" )))
+      }
+
       gw () {
           GROOT="$(git rev-parse --show-toplevel)"
           $GROOT/gradlew -p $GROOT "$@"
