@@ -11,7 +11,7 @@
     MANPAGER = "nvim -c 'set ft=man' -";
   };
   programs.neovim = {
-    package = pkgs.neovim-nightly;
+    # package = pkgs.neovim-nightly;
     enable = true;
     viAlias = true;
     vimAlias = true;
