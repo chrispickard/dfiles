@@ -1,11 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/mjlbach/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
+  # nixpkgs.overlays = [
+  #   (import (builtins.fetchTarball {
+  #     url = https://github.com/mjlbach/neovim-nightly-overlay/archive/master.tar.gz;
+  #   }))
+  # ];
   home.packages = [ pkgs.neovim-remote pkgs.page pkgs.lua ];
   home.sessionVariables = {
     MANPAGER = "nvim -c 'set ft=man' -";
