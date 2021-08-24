@@ -5,7 +5,7 @@
     enable = true;
     package = pkgs.vscode;
     extensions = with pkgs.vscode-extensions;
-      [ bbenoist.Nix vscodevim.vim ]
+      [ vscodevim.vim ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
         name = "nord-visual-studio-code";
         publisher = "arcticicestudio";

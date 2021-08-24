@@ -85,7 +85,7 @@
          entry (file+olp "~/org/notes.org" "Web")
          "* %c :website:\n%U %?%:initial")
         ("p" "Web" entry (file+headline ,"~/org/notes.org" "Inbox")
-         "* [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\nSource: %U\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n %?")	
+         "* [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\nSource: %U\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n %?")
         ("L" "Web Link" entry (file+headline ,"~/org/notes.org"  "Inbox")
          "* [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n- %?")))
 (org-babel-do-load-languages

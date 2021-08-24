@@ -14,7 +14,7 @@
       core = { editor = "emacsclient"; };
       user.useConfigOnly = true;
       user.work.name = "Chris Pickard";
-      user.work.email = "chris.pickard@altamiracorp.com";
+      user.work.email = "chrispickard@tangramflex.com";
       user.personal.name = "Chris Pickard";
       user.personal.email = "chrispickard9@gmail.com";
       pull.ff = "only";

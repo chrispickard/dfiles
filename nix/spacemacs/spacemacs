@@ -31,10 +31,7 @@
            js-indent-level 2
            json-fmt-on-save t)
      (nixos
-      :variables
-      :hooks
-            before-save-hook 'nix-format-buffer
-            )
+      :variables nixos-format-on-save t)
      themes-megapack
      ;; ipython-notebook
      ;; nim
@@ -189,6 +186,7 @@
 
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state nil
+   dotspacemacs-line-numbers t
    dotspacemacs-scratch-mode 'emacs-lisp-mode
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
@@ -196,7 +194,7 @@
                                :weight Regular
                                :width Regular
                                :powerline-scale 1.0
-                               :size 11.0)
+                               :size 10.0)
    dotspacemacs-mode-line-theme '(doom)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -301,6 +299,7 @@
                                       (company-box :location (recipe :fetcher github :repo "sebastiencs/company-box")
                                                    :hook (company-mode . company-box-mode))
                                       ham-mode
+                                      xclip
                                       ox-slack
                                       ;; solaire-mode
                                       ;; hydra-posframe
@@ -522,6 +521,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (bind-key (kbd "M-s") 'sp-forward-slurp-sexp )
   (define-key input-decode-map (kbd "C-i") (kbd "H-i"))
   (global-set-key (kbd "H-i") 'evil-jump-forward)
+  (global-set-key (kbd "C-h") 'clean-aindent--bsunindent)
   ;; (bind-key (kbd "C-M-s") 'sp-forward-barf-sexp )
 
   ;; (bind-key (kbd "<f2>") 'begin-defect-capture)
@@ -677,7 +677,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   (add-lisp-hooks #'electric-pair-mode)
   (add-hook 'prog-mode-hook #'spacemacs/toggle-fill-column-indicator-on)
   ;; (add-hook 'prog-mode-hook #'hasklig-mode)
-  (add-hook 'prog-mode-hook #'spacemacs/toggle-line-numbers-on)
+  ;; (add-hook 'prog-mode-hook #'spacemacs/toggle-line-numbers-on)
   (add-hook 'prog-mode-hook #'(lambda () (setq fill-column 100)))
   (add-hook 'writeroom-mode-hook #'(lambda () (setq fill-column 80)))
 
@@ -772,6 +772,7 @@ With a prefix ARG invokes `projectile-commander' instead of
     (company-flx-mode 1)
     (setq company-idle-delay 0.2)
     (bind-map-set-keys company-active-map
+      "C-h" nil
       "C-k" 'company-select-previous
       "C-j" 'company-select-next))
 
@@ -937,6 +938,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;;   (add-to-list 'projectile-other-file-alist '("ts" "test.ts")) ;; switch from js -> html
   ;;   )
 
+  (xclip-mode 1)
   (require 'git-commit)
   (global-git-commit-mode)
   (global-term-cursor-mode)

@@ -7,16 +7,17 @@
 
   services.lorri = { enable = true; };
 
-  services.gnome-keyring = {
-    enable = true;
-    components = [ "pkcs11" "secrets" "ssh" ];
-  };
+  # services.gnome-keyring = {
+  #   enable = true;
+  #   components = [ "pkcs11" "secrets" ];
+  # };
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
   };
   services.dunst = {
-    enable = true;
+    # enable = true;
+    enable = false;
     settings = {
       global = {
         geometry = "250-15+49";

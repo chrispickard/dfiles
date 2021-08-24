@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 
+let
+  homeDir = config.home.homeDirectory;
+in
 {
   home.packages = with pkgs; [ perl ];
   programs.zsh = {
@@ -110,21 +113,22 @@
       PURE_GIT_UNTRACKED_DIRTY = "0";
     };
     sessionVariables = {
-      GOPATH = "$HOME/dev/golang";
+      GOPATH = "${homeDir}/dev/golang";
       EDITOR = "et";
       VISUAL = "et";
-      LESS = "-g -i -M -R -S -w -z-4";
+      LESS = "-g -i -M -R -S -w -z-4 -X --mouse";
+      SYSTEMD_LESS = "-g -i -M -R -S -w -z-4 -X --mouse";
       PAGER = "less";
-      PATH = lib.makeBinPath [ "$HOME/dev/golang" "$HOME" ]
+      PATH = lib.makeBinPath [ "${homeDir}/dev/golang" "${homeDir}" ]
         + lib.optionalString (!config.home.emptyActivationPath)
         "\${PATH:+:}$PATH";
-      SSH_AUTH_SOCK = "/run/user/$UID/keyring/ssh";
+      # SSH_AUTH_SOCK = "/run/user/\${UID}/keyring/ssh";
     };
   };
   programs.bash = {
     enable = true;
     sessionVariables = {
-      PATH = lib.makeBinPath [ "$HOME/dev/golang" "$HOME" ]
+      PATH = lib.makeBinPath [ "${homeDir}/dev/golang" "${homeDir}" ]
         + lib.optionalString (!config.home.emptyActivationPath)
         "\${PATH:+:}$PATH";
     };

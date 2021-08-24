@@ -80,7 +80,7 @@
           "${mod}+grave" = "scratchpad show";
           "${mod}+j" = "focus left";
           "${mod}+k" = "focus down";
-          "${mod}+l" = "focus up";
+          "${mod}+l" = "exec sh -c '${pkgs.i3lock}/bin/i3lock -c 222222 & sleep 5 && xset dpms force of'";
           "${mod}+r" = "mode resize";
           "${mod}+semicolon" = "focus right";
           "${mod}+Left" = "focus left";

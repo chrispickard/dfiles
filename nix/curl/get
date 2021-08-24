@@ -11,4 +11,4 @@ setp () {
 }
 setp "${JWT}" || die 'set $JWT'
 
-curl -Ss -H "Authorization: ${JWT}" "$@" 
+curl -Ss -H "Authorization: ${JWT}" "$@"

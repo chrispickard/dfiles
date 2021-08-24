@@ -18,7 +18,13 @@
       tmuxPlugins.nord
       tmuxPlugins.prefix-highlight
       tmuxPlugins.yank
-      # tmuxPlugins.better-mouse-mode
+      {
+        plugin = tmuxPlugins.better-mouse-mode;
+        extraConfig = ''
+        set -g mouse on
+        set -g @emulate-scroll-for-no-mouse-alternate-buffer on
+        '';
+      }
     ];
     extraConfig = ''
       set -g terminal-overrides ',xterm-256color:Tc'
@@ -49,8 +55,8 @@
       bind % split-window -h -c "#{pane_current_path}"
       bind c new-window -c "#{pane_current_path}"
 
-      bind -n WheelUpPane copy-mode
-      set-option -g mouse on
+      # bind -n WheelUpPane copy-mode
+      # set-option -g mouse on
 
       # set -g @emulate-scroll-for-no-mouse-alternate-buffer "on"
       # run-shell ~/tmux-better-mouse-mode/scroll_copy_mode.tmux

@@ -1,5 +1,8 @@
 { config, pkgs, lib, ... }:
 
+let
+  emacspkg = pkgs.emacs27;
+in
 {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
@@ -9,8 +12,8 @@
   ];
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs27;
-    #package = pkgs.emacsUnstable;
+    # package = pkgs.emacs27;
+    package = pkgs.emacsUnstable;
     # package = pkgs.emacsGcc;
   };
   #services.emacs.enable = true;
