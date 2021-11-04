@@ -1,5 +1,9 @@
 " Selected Intellimacs modules
+
 source ~/.intellimacs/spacemacs.vim
+
+source ~/.intellimacs/which-key.vim
+
 """ Map leader to space ---------------------
 let mapleader=" "
 
@@ -33,8 +37,15 @@ nmap <C-e> $
 vmap <C-a> ^
 vmap <C-e> $
 
+nmap gs :action Tool_External Tools_magit<CR>
+vmap gs :action Tool_External Tools_magit<CR>
+
+
 nnoremap <A-;>    :action RecentFiles<CR>
 vnoremap <A-;>    :action RecentFiles<CR>
+nnoremap <A-m>    :action NextSplitter<CR>
+vnoremap <A-m>    :action NextSplitter<CR>
 set ideajoin
 
 vmap s S
+

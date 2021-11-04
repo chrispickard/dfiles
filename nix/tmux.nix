@@ -21,8 +21,8 @@
       {
         plugin = tmuxPlugins.better-mouse-mode;
         extraConfig = ''
-        set -g mouse on
-        set -g @emulate-scroll-for-no-mouse-alternate-buffer on
+          set -g mouse on
+          set -g @emulate-scroll-for-no-mouse-alternate-buffer on
         '';
       }
     ];
@@ -35,6 +35,7 @@
 
       bind -n M-m select-pane -t :.+
       bind -n M-n next-window
+      bind -n M-p previous-window
       set-option -g allow-rename off
 
       # # Set colors

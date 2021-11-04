@@ -143,6 +143,7 @@
    dotspacemacs-excluded-packages '(evil-mc
                                     evil-unimpaired
                                     company-box
+                                    forge
                                     evil-escape
                                     spaceline
                                     clojure-cheatsheet
@@ -194,7 +195,7 @@
                                :weight Regular
                                :width Regular
                                :powerline-scale 1.0
-                               :size 10.0)
+                               :size 16.0)
    dotspacemacs-mode-line-theme '(doom)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -300,7 +301,9 @@
                                                    :hook (company-mode . company-box-mode))
                                       ham-mode
                                       xclip
+                                      shackle
                                       ox-slack
+                                      frame-purpose
                                       ;; solaire-mode
                                       ;; hydra-posframe
                                       evil-textobj-syntax
@@ -338,6 +341,17 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (dap-debug-last)
   (dap-hydra)
   )
+
+(defun quit-or-kill ()
+  (message "made it")
+  (if from-term-p
+      (progn
+        (message "hey ya")
+        (spacemacs/frame-killer))
+    (progn
+      (message "no duh")
+      (magit-mode-bury-buffer))
+    ))
 
 (defun my/posframe-poshandler-window-top-center (info)
   "Posframe's position handler.
@@ -654,6 +668,9 @@ With a prefix ARG invokes `projectile-commander' instead of
   (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
   (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
 
+  (require 'window-purpose-x)
+  (purpose-x-magit-single-on)
+  (purpose-x-kill-setup)
   (super-save-mode +1)
   (diminish 'super-save-mode "ss")
   (spacemacs/set-leader-keys "l" 'avy-goto-line)
@@ -939,6 +956,10 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;;   )
 
   (xclip-mode 1)
+  ;; (with-eval-after-load 'magit-status-mode
+  ;;   (define-key magit-mode-map (kbd "q") 'quit-or-kill)
+  ;;   ;; (define-key magit-status-mode-map (kbd "q") 'quit-or-kill)
+  ;;   )
   (require 'git-commit)
   (global-git-commit-mode)
   (global-term-cursor-mode)

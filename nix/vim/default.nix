@@ -24,17 +24,26 @@
       vim-commentary
       lightline-vim
       vim-nix
+      vim-markdown
       nvim-compe
       telescope-nvim
       nvim-lspconfig
+      packer-nvim
     ];
     extraConfig = ''
     set clipboard=unnamedplus
     set termguicolors
     set completeopt=menuone,noselect
     lua <<EOF
+    require('packer').startup(function()
+      use {
+          'glacambre/firenvim',
+          run = function() vim.fn['firenvim#install'](0) end 
+      }
+    end)
     require'lspconfig'.gopls.setup{}
     EOF
+    let g:vim_markdown_folding_disabled = 1
     let g:compe = {}
     let g:compe.enabled = v:true
     let g:compe.autocomplete = v:true
@@ -71,6 +80,8 @@
     nnoremap <leader>fg <cmd>Telescope live_grep<cr>
     nnoremap <leader>fb <cmd>Telescope buffers<cr>
     nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+    au BufEnter github.com_*.txt set filetype=markdown
+    au BufEnter gitlab.tangramflex.tech_*.txt set filetype=markdown
     '';
 
   };

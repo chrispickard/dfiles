@@ -16,7 +16,8 @@ let
     postFixup = old.postFixup or "" + ''
       wrapProgram "$out/bin/idea-ultimate" \
       --set GOPATH "${config.programs.zsh.sessionVariables.GOPATH}" \
-      --set JAVA_HOME "${config.home.sessionVariables.JAVA_HOME}"
+      --set JAVA_HOME "${config.home.sessionVariables.JAVA_HOME}" \
+      --unset DESKTOP_STARTUP_ID
     '';
   });
 in {
@@ -27,7 +28,7 @@ in {
   imports = [
     ./git
     ./jq.nix
-    ./zsh.nix
+    ./zsh
     ./tmux.nix
     ./vim
     ./spacemacs
@@ -55,7 +56,9 @@ in {
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "20.03";
+  home.stateVersion = "21.05";
+  home.homeDirectory = "/home/chrispickard";
+  home.username = "chrispickard";
   home.packages = with pkgs; [
     go
     # goimports
@@ -63,6 +66,8 @@ in {
     goimports
     lastpass-cli
     google-chrome
+    delve
+    gcc
     nodePackages.node2nix
     terraform
     terraform-lsp
@@ -86,6 +91,7 @@ in {
     pandoc
     nodePackages.npm
     nodePackages.prettier
+    shfmt
     scrot
     bashInteractive
     nodePackages.bash-language-server
@@ -93,15 +99,19 @@ in {
     nodePackages.eslint
     python3
     pcmanfm
-    python38Packages.python-language-server
+    # python38Packages.python-language-server
     # python38Packages.pyls-black
     black
     teams
     discord
     ansible
     youtube-dl
-    # mailspring
+    mailspring
+    mattermost-desktop
+    gnome3.libsecret
     gnome3.zenity
+    _1password
+    _1password-gui
     gnome3.file-roller
     gsettings_desktop_schemas
     vlc
@@ -114,14 +124,21 @@ in {
     mkcert
     step-ca
     step-cli
+    dive
     docker-compose
     docker-credential-helpers
+    skopeo
     kotlin
     eclipses.eclipse-platform
     kafkacat
     protobuf3_12
     go-protobuf
     rustup
+    # k8s stuff
+    kubernetes-helm
+    kubectl
+    tilt
+    kube3d
   ];
   fonts.fontconfig.enable = true;
 
@@ -335,6 +352,9 @@ in {
       ".wmv" = "32";
     };
   };
-  programs.java = { enable = true; };
+  programs.java = {
+    enable = true;
+    package = pkgs.oraclejdk;
+  };
 }
 

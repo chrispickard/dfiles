@@ -1,9 +1,16 @@
 { config, pkgs, lib, ... }:
 
 let
-  emacspkg = pkgs.emacs27;
-in
-{
+  emacspkg = pkgs.emacsUnstable;
+  helloMagit = pkgs.writeText "hello-magit.el" ''
+    (setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
+    (require 'magit)
+    (defun hello-magit ()
+      (magit-status (magit-toplevel (pwd))))
+    (defadvice magit-mode-bury-buffer (after kill-frame-also activate)
+      (spacemacs/frame-killer))
+  '';
+in {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url =
@@ -13,10 +20,10 @@ in
   programs.emacs = {
     enable = true;
     # package = pkgs.emacs27;
-    package = pkgs.emacsUnstable;
+    package = emacspkg;
     # package = pkgs.emacsGcc;
   };
-  #services.emacs.enable = true;
+  # services.emacs.enable = true;
 
   home.packages = [
     pkgs.aspell
@@ -46,6 +53,36 @@ in
     text = ''
       #!/bin/sh
       TERM=xterm-24bit emacsclient -nw -a "vim" $@
+    '';
+    executable = true;
+  };
+  home.file."bin/termacs" = {
+    text = ''
+      #!/bin/sh
+      export XDG_RUNTIME_DIR=$HOME/.tmp
+      TERM=xterm-24bit emacsclient -nw $@
+    '';
+    executable = true;
+  };
+  home.file."bin/guimacs" = {
+    text = ''
+      #!/bin/sh
+      export XDG_RUNTIME_DIR=$HOME/.tmp
+      emacsclient -c $@
+    '';
+    executable = true;
+  };
+  home.file."bin/magit" = {
+    text = ''
+      #!/bin/sh
+      termacs -e '(hello-magit)'
+    '';
+    executable = true;
+  };
+  home.file."bin/magit-float" = {
+    text = ''
+      #!/bin/sh
+      guimacs -e '(hello-magit)'
     '';
     executable = true;
   };
@@ -81,5 +118,14 @@ in
       console.dir($1, { depth: null, colors: true });
       $0
     '';
+  };
+  systemd.user.services.magit = {
+    Unit.Description = "magit! a git porcelain inside emacs";
+    Service = {
+      Environment = [ "XDG_RUNTIME_DIR=/home/chrispickard/.tmp" ];
+      ExecStart = "${emacspkg}/bin/emacs --fg-daemon --load ${helloMagit}";
+      Restart = "always";
+    };
+    Install.WantedBy = [ "default.target" ];
   };
 }

@@ -11,10 +11,10 @@
     enable = true;
     package = pkgs.gitAndTools.lab;
     extraConfig = {
-      core = { editor = "emacsclient"; };
+      core = { editor = "et"; };
       user.useConfigOnly = true;
       user.work.name = "Chris Pickard";
-      user.work.email = "chrispickard@tangramflex.com";
+      user.work.email = "chris.pickard@tangramflex.com";
       user.personal.name = "Chris Pickard";
       user.personal.email = "chrispickard9@gmail.com";
       pull.ff = "only";

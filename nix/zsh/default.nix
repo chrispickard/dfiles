@@ -2,8 +2,9 @@
 
 let
   homeDir = config.home.homeDirectory;
-in
-{
+  onepassCompletion =
+    pkgs.writeTextDir "share/zsh/site-functions/_op" (builtins.readFile ./_op);
+in {
   home.packages = with pkgs; [ perl ];
   programs.zsh = {
     enable = true;
@@ -14,6 +15,7 @@ in
       l = "${pkgs.exa}/bin/exa -la";
       tree = "${pkgs.exa}/bin/exa -T";
       d = "docker";
+      k = "kubectl";
       dc = "docker-compose";
       tf = "terraform";
       o = "xdg-open";
@@ -42,6 +44,14 @@ in
         name = "docker";
         src = "${pkgs.docker}/share/zsh/site-functions/";
         file = "_docker";
+      }
+      {
+        name = "k3d";
+        src = "${pkgs.kube3d}/share/zsh/site-functions/";
+      }
+      {
+        name = "op";
+        src = "${onepassCompletion}/share/zsh/site-functions/";
       }
       {
         name = "terraform";
