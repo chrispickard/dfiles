@@ -39,10 +39,7 @@
           configuration.imports = [ ./home.nix ];
 
         };
-      apps."${system}".hello = {
-        type = "app";
-        program = ./hola;
-      };
+
       defaultApp."${system}" = {
         type = "app";
         program = ./bin/hola;
