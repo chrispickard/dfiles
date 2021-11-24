@@ -42,7 +42,7 @@
 
       defaultApp."${system}" = {
         type = "app";
-        program = "${btf}/bin/btf";
+        program = "${nixpkgs.packages.hello}/bin/hello";
       };
 
     };
