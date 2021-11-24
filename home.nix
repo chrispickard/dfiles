@@ -26,27 +26,27 @@ in {
   targets.genericLinux.enable = true;
 
   imports = [
-    ./git
-    ./jq.nix
-    ./zsh
-    ./tmux.nix
-    ./vim
-    ./spacemacs
-    ./i3.nix
+    ./modules/git
+    ./modules/jq.nix
+    ./modules/zsh
+    ./modules/tmux.nix
+    ./modules/vim
+    ./modules/spacemacs
+    ./modules/i3.nix
     # ./termite.nix
     # ./urxvt.nix
     # ./kitty.nix
-    ./xterm.nix
-    ./st.nix
+    ./modules/xterm.nix
+    ./modules/st.nix
     # ./gnome-terminal.nix
-    ./services.nix
+    ./modules/services.nix
     # ./prometheus.nix
-    ./curl
-    ./calc
-    ./topgrade.nix
-    ./vscode.nix
-    ./jira
-    ./firefox
+    ./modules/curl
+    ./modules/calc
+    ./modules/topgrade.nix
+    ./modules/vscode.nix
+    ./modules/jira
+    ./modules/firefox
   ];
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
