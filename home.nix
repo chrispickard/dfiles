@@ -12,6 +12,7 @@ let
   idea-overlay = pkgs.jetbrains.idea-ultimate.overrideAttrs (old: rec {
     # add `makeWrapper` to existing dependencies
     buildInputs = old.buildInputs or [ ] ++ [ pkgs.makeWrapper ];
+
     # wrap the binary in a script where the appropriate env var is set
     postFixup = old.postFixup or "" + ''
       wrapProgram "$out/bin/idea-ultimate" \
