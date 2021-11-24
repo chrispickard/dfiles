@@ -1,7 +1,8 @@
 {
   inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     comma = {
@@ -20,20 +21,20 @@
         system = "x86_64-linux";
         homeDirectory = "/home/chrispickard";
         username = "chrispickard";
-
         stateVersion = "21.11";
 
-        configuration.imports = [ ./home.nix btf/default.nix ];
+        pkgs = import nixpkgs {
 
-        # pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          overlays = [
+            #     nur.overlay
+            (final: prev: { comma = import comma { inherit (prev) pkgs; }; })
+            (final: prev: { btf = import btf { inherit (prev) pkgs; }; })
+          ];
+          config.allowUnfree = true;
+        };
 
-        #   system = "x86_64-linux";
-        #   overlays = [
-        #     nur.overlay
-        #     (final: prev: { comma = import comma { inherit (prev) pkgs; }; })
-        #   ];
-        #   config.allowUnfree = true;
-        # };
+        configuration.imports = [ ./home.nix ];
 
       };
   };
