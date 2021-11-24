@@ -37,7 +37,7 @@
         configuration.imports = [ ./home.nix ];
 
       };
-    defaultApp.x86_64-linux.btf = {
+    defaultApp.x86_64-linux = {
       program = "${self.packages.x86_64-linux.btf}/bin/btf";
     };
 
