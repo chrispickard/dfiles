@@ -115,8 +115,8 @@ in {
     gnome3.file-roller
     gsettings_desktop_schemas
     vlc
-    # comma
-    # btf
+    comma
+    btf
     # jetbrains.idea-ultimate
     idea-overlay
     shellcheck
