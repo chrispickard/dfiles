@@ -66,6 +66,7 @@ in {
     goimports
     lastpass-cli
     google-chrome
+    chromium
     delve
     gcc
     nodePackages.node2nix
@@ -88,6 +89,7 @@ in {
     nodejs
     nixfmt
     slack
+    franz
     pandoc
     nodePackages.npm
     nodePackages.prettier
@@ -102,6 +104,7 @@ in {
     # python38Packages.python-language-server
     # python38Packages.pyls-black
     black
+    awscli2
     teams
     discord
     ansible

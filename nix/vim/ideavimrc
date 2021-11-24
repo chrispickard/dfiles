@@ -17,7 +17,7 @@ set textobj-entire
 set ReplaceWithRegister
 
 """ Plugin settings -------------------------
-let g:argtextobj_pairs="[:],(:),<:>"
+let g:argtextobj_pairs="{:},[:],(:),<:>"
 
 """ Common settings -------------------------
 set showmode
@@ -48,4 +48,3 @@ vnoremap <A-m>    :action NextSplitter<CR>
 set ideajoin
 
 vmap s S
-

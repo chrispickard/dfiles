@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ tig gitAndTools.delta ];
+  home.packages = with pkgs; [ tig gitAndTools.delta gitAndTools.lab ];
   programs.zsh.shellAliases = {
     g = "${pkgs.git}/bin/git";
     gits = "${pkgs.git}/bin/git status";
@@ -9,7 +9,7 @@
   };
   programs.git = {
     enable = true;
-    package = pkgs.gitAndTools.lab;
+    package = pkgs.git;
     extraConfig = {
       core = { editor = "et"; };
       user.useConfigOnly = true;

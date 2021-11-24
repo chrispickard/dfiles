@@ -7,8 +7,14 @@ let
     (require 'magit)
     (defun hello-magit ()
       (magit-status (magit-toplevel (pwd))))
+    (defun hello-magit-gui ()
+      (select-frame-set-input-focus (make-frame))
+      (magit-status (magit-toplevel (pwd))))
+
     (defadvice magit-mode-bury-buffer (after kill-frame-also activate)
       (spacemacs/frame-killer))
+    (setq frame-title-format '("Magit"))
+    (setq inhibit-splash-screen t)
   '';
 in {
   nixpkgs.overlays = [
@@ -68,7 +74,7 @@ in {
     text = ''
       #!/bin/sh
       export XDG_RUNTIME_DIR=$HOME/.tmp
-      emacsclient -c $@
+      emacsclient $@
     '';
     executable = true;
   };
@@ -82,7 +88,9 @@ in {
   home.file."bin/magit-float" = {
     text = ''
       #!/bin/sh
-      guimacs -e '(hello-magit)'
+      XDG_RUNTIME_DIR=~/.tmp emacsclient \
+        -c -F '((name . "Magit") (width . 100) (height . 40) (font . "Iosevka-16"))' \
+        -e '(hello-magit)'
     '';
     executable = true;
   };
@@ -120,9 +128,12 @@ in {
     '';
   };
   systemd.user.services.magit = {
-    Unit.Description = "magit! a git porcelain inside emacs";
+    Unit = {
+      Description = "magit! a git porcelain inside emacs";
+      X-RestartIfChanged = true;
+    };
     Service = {
-      Environment = [ "XDG_RUNTIME_DIR=/home/chrispickard/.tmp" ];
+      Environment = [ "XDG_RUNTIME_DIR=${config.home.homeDirectory}/.tmp" ];
       ExecStart = "${emacspkg}/bin/emacs --fg-daemon --load ${helloMagit}";
       Restart = "always";
     };

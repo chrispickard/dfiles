@@ -4,9 +4,14 @@ let
   homeDir = config.home.homeDirectory;
   onepassCompletion =
     pkgs.writeTextDir "share/zsh/site-functions/_op" (builtins.readFile ./_op);
+  podmanCompletion = pkgs.writeTextDir "share/zsh/site-functions/_podman"
+    (builtins.readFile ./_podman);
+  labCompletion = pkgs.writeTextDir "share/zsh/site-functions/_lab"
+    (builtins.readFile ./_lab);
 in {
   home.packages = with pkgs; [ perl ];
   programs.zsh = {
+    enableCompletion = false;
     enable = true;
     shellAliases = {
       ls = "${pkgs.exa}/bin/exa";
@@ -52,6 +57,15 @@ in {
       {
         name = "op";
         src = "${onepassCompletion}/share/zsh/site-functions/";
+      }
+      {
+        name = "podman";
+        src = "${podmanCompletion}/share/zsh/site-functions/";
+      }
+      {
+        name = "lab";
+        src = "${labCompletion}/share/zsh/site-functions/";
+        file = "_lab";
       }
       {
         name = "terraform";
