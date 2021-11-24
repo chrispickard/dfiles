@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "btf": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1628272293,
+        "narHash": "sha256-oAkyx8sIiGq4UkhNMKdtCCjbnGn7FHJvaJuloQrAHvo=",
+        "owner": "chrispickard",
+        "repo": "btf",
+        "rev": "15db424dc4786770409e0bf2573093366845ed44",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chrispickard",
+        "repo": "btf",
+        "rev": "15db424dc4786770409e0bf2573093366845ed44",
+        "type": "github"
+      }
+    },
     "comma": {
       "flake": false,
       "locked": {
@@ -67,6 +84,7 @@
     },
     "root": {
       "inputs": {
+        "btf": "btf",
         "comma": "comma",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
