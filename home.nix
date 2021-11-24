@@ -133,6 +133,7 @@ in {
     protobuf3_12
     go-protobuf
     rustup
+    cached-nix-shell
     # k8s stuff
     kubernetes-helm
     kubectl
