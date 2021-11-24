@@ -45,7 +45,7 @@
       };
       defaultApp."${system}" = {
         type = "app";
-        program = ./hola;
+        program = ./bin/hola;
       };
 
     };
