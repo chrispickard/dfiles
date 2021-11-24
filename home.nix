@@ -1,14 +1,14 @@
 { config, pkgs, ... }:
 
 let
-  comma = import (builtins.fetchTarball
-    "https://github.com/Shopify/comma/archive/60a4cf8ec5c93104d3cfb9fc5a5bac8fb18cc8e4.tar.gz") {
-      inherit pkgs;
-    };
-  btf = import (builtins.fetchTarball
-    "https://github.com/chrispickard/btf/archive/refs/tags/v0.0.4.tar.gz") {
-      inherit pkgs;
-    };
+  # comma = import (builtins.fetchTarball
+  #   "https://github.com/Shopify/comma/archive/60a4cf8ec5c93104d3cfb9fc5a5bac8fb18cc8e4.tar.gz") {
+  #     inherit pkgs;
+  #   };
+  # btf = import (builtins.fetchTarball
+  #   "https://github.com/chrispickard/btf/archive/refs/tags/v0.0.4.tar.gz") {
+  #     inherit pkgs;
+  #   };
   idea-overlay = pkgs.jetbrains.idea-ultimate.overrideAttrs (old: rec {
     # add `makeWrapper` to existing dependencies
     buildInputs = old.buildInputs or [ ] ++ [ pkgs.makeWrapper ];
@@ -118,8 +118,8 @@ in {
     gnome3.file-roller
     gsettings_desktop_schemas
     vlc
-    comma
-    btf
+    # comma
+    # btf
     # jetbrains.idea-ultimate
     idea-overlay
     shellcheck
