@@ -42,7 +42,7 @@
 
       defaultApp."${system}" = {
         type = "app";
-        program = ./bin/hola;
+        program = "${btf}/bin/btf";
       };
 
     };
