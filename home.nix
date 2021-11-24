@@ -89,7 +89,6 @@ in {
     nodejs
     nixfmt
     slack
-    franz
     pandoc
     nodePackages.npm
     nodePackages.prettier
@@ -105,8 +104,6 @@ in {
     # python38Packages.pyls-black
     black
     awscli2
-    teams
-    discord
     ansible
     youtube-dl
     mailspring
@@ -123,7 +120,6 @@ in {
     # jetbrains.idea-ultimate
     idea-overlay
     shellcheck
-    beam.packages.erlangR23.elixir_1_10
     mkcert
     step-ca
     step-cli
@@ -132,7 +128,6 @@ in {
     docker-credential-helpers
     skopeo
     kotlin
-    eclipses.eclipse-platform
     kafkacat
     protobuf3_12
     go-protobuf
