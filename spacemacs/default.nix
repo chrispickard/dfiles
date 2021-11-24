@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  emacspkg = pkgs.emacsUnstable;
+  emacspkg = pkgs.emacs27;
   helloMagit = pkgs.writeText "hello-magit.el" ''
     (setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
     (require 'magit)
@@ -17,12 +17,12 @@ let
     (setq inhibit-splash-screen t)
   '';
 in {
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url =
-        "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-    }))
-  ];
+  # nixpkgs.overlays = [
+  #   (import (builtins.fetchTarball {
+  #     url =
+  #       "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+  #   }))
+  # ];
   programs.emacs = {
     enable = true;
     # package = pkgs.emacs27;
