@@ -37,5 +37,10 @@
         configuration.imports = [ ./home.nix ];
 
       };
+    apps.x86_64-linux.blender_2_79 = {
+      type = "app";
+      program = "${self.packages.x86_64-linux.btf}/bin/btf";
+    };
+
   };
 }
