@@ -20,9 +20,10 @@
         system = "x86_64-linux";
         homeDirectory = "/home/chrispickard";
         username = "chrispickard";
+
         stateVersion = "21.11";
 
-        configuration.imports = [ ./home.nix btf ];
+        configuration.imports = [ ./home.nix btf/default.nix ];
 
         # pkgs = import nixpkgs {
 
