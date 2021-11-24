@@ -41,7 +41,11 @@
         };
       apps."${system}".hello = {
         type = "app";
-        program = "./hola";
+        program = ./hola;
+      };
+      defaultApp."${system}" = {
+        type = "app";
+        program = ./hola;
       };
 
     };
