@@ -15,31 +15,34 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, comma, btf }: {
-    homeConfigurations."chrispickard" =
-      home-manager.lib.homeManagerConfiguration {
-        system = "x86_64-linux";
-        homeDirectory = "/home/chrispickard";
-        username = "chrispickard";
-        stateVersion = "21.11";
-
-        pkgs = import nixpkgs {
-
+  outputs = { self, nixpkgs, home-manager, nur, comma, btf }:
+    let system = "x86_64-linux";
+    in {
+      homeConfigurations."chrispickard" =
+        home-manager.lib.homeManagerConfiguration {
           system = "x86_64-linux";
-          overlays = [
-            #     nur.overlay
-            (final: prev: { comma = import comma { inherit (prev) pkgs; }; })
-            (final: prev: { btf = import btf { inherit (prev) pkgs; }; })
-          ];
-          config.allowUnfree = true;
+          homeDirectory = "/home/chrispickard";
+          username = "chrispickard";
+          stateVersion = "21.11";
+
+          pkgs = import nixpkgs {
+
+            system = "x86_64-linux";
+            overlays = [
+              #     nur.overlay
+              (final: prev: { comma = import comma { inherit (prev) pkgs; }; })
+              (final: prev: { btf = import btf { inherit (prev) pkgs; }; })
+            ];
+            config.allowUnfree = true;
+          };
+
+          configuration.imports = [ ./home.nix ];
+
         };
-
-        configuration.imports = [ ./home.nix ];
-
+      apps."${system}".hello = {
+        type = "app";
+        program = "./hola";
       };
-    defaultApp.x86_64-linux = {
-      program = "${self.packages.x86_64-linux.btf}/bin/btf";
-    };
 
-  };
+    };
 }
