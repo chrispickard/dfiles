@@ -16,7 +16,7 @@
         system = "x86_64-linux";
         homeDirectory = "/home/chrispickard";
         username = "chrispickard";
-        stateVersion = "22.05";
+        stateVersion = "21.11";
 
         configuration = ./home.nix;
 
