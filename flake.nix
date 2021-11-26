@@ -49,7 +49,7 @@
       };
       myJoe = ./joe;
 
-      joe = (pkgs.callPackage ./joe/default.nix { });
+      joe = (pkgs.callPackage self.myJoe { });
 
       apps."${system}".joe = {
         type = "app";
