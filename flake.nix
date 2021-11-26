@@ -13,9 +13,10 @@
       url = "github:chrispickard/btf/15db424dc4786770409e0bf2573093366845ed44";
       flake = false;
     };
+    mozilla-overlay.url = "github:mozilla/nixpkgs-mozilla";
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, comma, btf }:
+  outputs = { self, nixpkgs, home-manager, mozilla-overlay, comma, btf }:
     let system = "x86_64-linux";
     in {
       homeConfigurations."chrispickard" =
@@ -30,6 +31,7 @@
             system = "x86_64-linux";
             overlays = [
               #     nur.overlay
+              (import mozilla-overlay)
               (final: prev: { comma = import comma { inherit (prev) pkgs; }; })
               (final: prev: { btf = import btf { inherit (prev) pkgs; }; })
             ];
@@ -42,7 +44,7 @@
 
       defaultApp."${system}" = {
         type = "app";
-        program = "${nixpkgs.packages.hello}/bin/hello";
+        program = "./bin/hola";
       };
 
     };
