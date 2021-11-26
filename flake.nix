@@ -35,17 +35,17 @@
         config.allowUnfree = true;
       };
       lib = nixpkgs.lib;
+      user = "chrispickard";
     in {
-      homeConfigurations."chrispickard" =
-        home-manager.lib.homeManagerConfiguration {
-          inherit system pkgs;
-          homeDirectory = "/home/chrispickard";
-          username = "chrispickard";
-          stateVersion = "21.11";
+      homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
+        inherit system pkgs;
+        homeDirectory = "/home/${user}";
+        username = "${user}";
+        stateVersion = "21.11";
 
-          configuration.imports = [ ./home.nix ];
+        configuration.imports = [ ./home.nix ];
 
-        };
+      };
 
       defaultApp."${system}" = {
         type = "app";
