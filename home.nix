@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 let
   # comma = import (builtins.fetchTarball
@@ -48,7 +48,6 @@ in {
     ./modules/vscode.nix
     ./modules/jira
     ./modules/firefox
-    (pkgs.callPackage ./joe/default.nix { })
   ];
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -100,7 +99,7 @@ in {
     nodePackages.bash-language-server
     # nodePackages.vls
     nodePackages.eslint
-    joe
+    myJoe
     python3
     pcmanfm
     # python38Packages.python-language-server

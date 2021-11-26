@@ -31,6 +31,7 @@
           (import emacs-overlay)
           (final: prev: { comma = import comma { inherit (prev) pkgs; }; })
           (final: prev: { btf = import btf { inherit (prev) pkgs; }; })
+          (final: prev: { myJoe = import self.myJoe { inherit (prev) pkgs; }; })
         ];
         config.allowUnfree = true;
       };
@@ -46,6 +47,7 @@
         configuration.imports = [ ./home.nix ];
 
       };
+      myJoe = ./joe;
 
       joe = (pkgs.callPackage ./joe/default.nix { });
 
