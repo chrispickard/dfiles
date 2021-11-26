@@ -55,9 +55,6 @@
         type = "app";
         program = "${self.joe}/bin/joe";
       };
-      defaultApp."${system}" = {
-        type = "app";
-        program = ./bin/hola;
-      };
+      defaultApp."${system}" = self.apps."${system}".joe;
     };
 }
