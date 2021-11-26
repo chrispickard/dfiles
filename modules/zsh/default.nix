@@ -65,7 +65,6 @@ in {
       {
         name = "lab";
         src = "${labCompletion}/share/zsh/site-functions/";
-        file = "_lab";
       }
       {
         name = "terraform";

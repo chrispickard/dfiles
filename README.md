@@ -17,5 +17,5 @@ echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 switch to the new configuration
 
 ```shell
-nix run .# switch
+nix run .\# switch
 ```
