@@ -1,7 +1,7 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 let
-  emacspkg = pkgs.emacs27;
+  emacspkg = pkgs.emacsUnstable;
   helloMagit = pkgs.writeText "hello-magit.el" ''
     (setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
     (require 'magit)
@@ -17,6 +17,7 @@ let
     (setq inhibit-splash-screen t)
   '';
 in {
+  # nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
   # nixpkgs.overlays = [
   #   (import (builtins.fetchTarball {
   #     url =
