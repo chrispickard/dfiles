@@ -12,7 +12,7 @@ buildGoModule rec {
   src = lib.cleanSource ./.;
 
   # vendorSha256 = lib.fakeSha256;
-  vendorSha256 = "p3RPQzL6/1A5NzlDL12yd7WucweC6TkstNYkZPO5m+0=";
+  vendorSha256 = "+AaUQqhks2SmLro+cc4c5jZrI72X+DiMZRujznNux2w=";
 
   meta = with lib; {
     homepage = "https://github.com/chrispickard/btf";

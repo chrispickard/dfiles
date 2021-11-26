@@ -1,9 +1,11 @@
 package main
 
 import (
-	"github.com/alecthomas/kong"
 	"github.com/magefile/mage/sh"
 	"github.com/mattn/go-shellwords"
+	"gopkg.in/alecthomas/kingpin.v2"
+	"log"
+	"os"
 )
 
 type SwitchCmd struct{}
@@ -47,13 +49,27 @@ func run(cmd string) error {
 	return nil
 }
 
-var CLI struct {
-	Switch SwitchCmd `cmd:"" help:"helpers"`
-	Update UpdateCmd `cmd:"" help:"helpers"`
-}
+var (
+	app    = kingpin.New("joe", "yooooo joooeeeee!")
+	s      = app.Command("switch", "switch to new")
+	update = app.Command("update", "update to new")
+)
 
 func main() {
-	ctx := kong.Parse(&CLI)
-	err := ctx.Run()
-	ctx.FatalIfErrorf(err)
+	switch kingpin.MustParse(app.Parse(os.Args[1:])) {
+	case s.FullCommand():
+		cmd := SwitchCmd{}
+		err := cmd.Run()
+		if err != nil {
+			log.Fatalln(err)
+		}
+	case update.FullCommand():
+		cmd := UpdateCmd{}
+		err := cmd.Run()
+		if err != nil {
+			log.Fatalln(err)
+		}
+	default:
+		log.Fatalln(app.Help)
+	}
 }
