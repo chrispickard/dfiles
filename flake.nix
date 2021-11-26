@@ -22,32 +22,32 @@
 
   outputs =
     { self, nixpkgs, home-manager, mozilla-overlay, emacs-overlay, comma, btf }:
-    let sys = "x86_64-linux";
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          (import mozilla-overlay)
+          (import emacs-overlay)
+          (final: prev: { comma = import comma { inherit (prev) pkgs; }; })
+          (final: prev: { btf = import btf { inherit (prev) pkgs; }; })
+        ];
+        config.allowUnfree = true;
+      };
+      lib = nixpkgs.lib;
     in {
       homeConfigurations."chrispickard" =
         home-manager.lib.homeManagerConfiguration {
-          system = sys;
+          inherit system pkgs;
           homeDirectory = "/home/chrispickard";
           username = "chrispickard";
           stateVersion = "21.11";
-
-          pkgs = import nixpkgs {
-
-            system = sys;
-            overlays = [
-              (import mozilla-overlay)
-              (import emacs-overlay)
-              (final: prev: { comma = import comma { inherit (prev) pkgs; }; })
-              (final: prev: { btf = import btf { inherit (prev) pkgs; }; })
-            ];
-            config.allowUnfree = true;
-          };
 
           configuration.imports = [ ./home.nix ];
 
         };
 
-      defaultApp."${sys}" = {
+      defaultApp."${system}" = {
         type = "app";
         program = "./bin/hola";
       };
