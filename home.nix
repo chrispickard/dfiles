@@ -48,6 +48,7 @@ in {
     ./modules/vscode.nix
     ./modules/jira
     ./modules/firefox
+    (pkgs.callPackage ./joe/default.nix { })
   ];
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -99,6 +100,7 @@ in {
     nodePackages.bash-language-server
     # nodePackages.vls
     nodePackages.eslint
+    joe
     python3
     pcmanfm
     # python38Packages.python-language-server
