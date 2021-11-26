@@ -47,11 +47,11 @@
 
       };
 
-      joe = pkgs.callPackage ./joe/default.nix;
+      joe = (pkgs.callPackage ./joe/default.nix { });
 
       apps."${system}".joe = {
         type = "app";
-        program = "${self.joe { }}}/bin/btf";
+        program = "${self.joe}/bin/joe";
       };
       defaultApp."${system}" = {
         type = "app";

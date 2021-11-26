@@ -6,28 +6,13 @@
 , overlayPackages ? [ ] }:
 
 buildGoModule rec {
-  pname = "btf";
+  pname = "joe";
   version = "0.0.4";
 
-  src = fetchFromGitHub {
-    owner = "chrispickard";
-    repo = "btf";
-    rev = "v${version}";
-    sha256 = "13xm84h7hw35dsfahabpmcg42xb6acqnr1r59qqqk5r19xnf1gy7";
-  };
+  src = lib.cleanSource ./.;
 
-  vendorSha256 = "1pdp7a43lw0jzqsca63c501ra659l0231zjkydi69632zghc80as";
-
-  # Since the tarball pulled from GitHub doesn't contain git tag information,
-  # we fetch the expected tag's timestamp from a file in the root of the
-  # repository.
-  preBuild = ''
-    buildFlagsArray=(
-      -ldflags="
-        -X github.com/chrispickard/btf/version.VERSION=${version}
-      "
-    )
-  '';
+  # vendorSha256 = lib.fakeSha256;
+  vendorSha256 = "p3RPQzL6/1A5NzlDL12yd7WucweC6TkstNYkZPO5m+0=";
 
   meta = with lib; {
     homepage = "https://github.com/chrispickard/btf";
