@@ -2,16 +2,15 @@
 
 let
   homeDir = config.home.homeDirectory;
-  onepassCompletion =
-    pkgs.writeTextDir "share/zsh/site-functions/_op" (builtins.readFile ./_op);
-  podmanCompletion = pkgs.writeTextDir "share/zsh/site-functions/_podman"
+  onepassCompletion = pkgs.writeTextDir "share/zsh/site-functions/op.plugin.zsh"
+    (builtins.readFile ./_op);
+  podmanCompletion = pkgs.writeTextDir "share/zsh/site-functions/podman.plugin.zsh"
     (builtins.readFile ./_podman);
-  labCompletion = pkgs.writeTextDir "share/zsh/site-functions/_lab"
+  labCompletion = pkgs.writeTextDir "share/zsh/site-functions/lab.plugin.zsh"
     (builtins.readFile ./_lab);
 in {
   home.packages = with pkgs; [ perl ];
   programs.zsh = {
-    enableCompletion = false;
     enable = true;
     shellAliases = {
       ls = "${pkgs.exa}/bin/exa";
@@ -28,7 +27,7 @@ in {
 
       reload = "exec zsh";
       switch =
-        "rm ~/.config/mimeapps.list || true && home-manager switch && exec zsh";
+        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && joe switch && exec zsh";
 
       start = "./start.py";
       t = "./.test.sh";
@@ -56,14 +55,17 @@ in {
       }
       {
         name = "op";
+        file = "op.plugin.zsh";
         src = "${onepassCompletion}/share/zsh/site-functions/";
       }
       {
         name = "podman";
+        file = "podman.plugin.zsh";
         src = "${podmanCompletion}/share/zsh/site-functions/";
       }
       {
         name = "lab";
+        file = "lab.plugin.zsh";
         src = "${labCompletion}/share/zsh/site-functions/";
       }
       {
@@ -80,7 +82,7 @@ in {
         src = "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting";
       }
     ];
-    # enableCompletion = true;
+    enableCompletion = true;
     initExtraBeforeCompInit = ''
       fpath+=$HOME/.zsh/plugins
       zstyle ':completion:*' accept-exact '*(N)'

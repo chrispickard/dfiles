@@ -12,6 +12,8 @@ allow the nix command to use flakes (currently experimental)
 ```shell
 mkdir -p ~/.config/nix/
 echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+# change the priority of the nix install
+nix-env --set-flag priority 4 nix-2.4
 ```
 
 switch to the new configuration

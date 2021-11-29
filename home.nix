@@ -71,6 +71,7 @@ in {
     delve
     gcc
     nodePackages.node2nix
+    nix
     terraform
     terraform-lsp
     iosevka
