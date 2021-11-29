@@ -4,7 +4,8 @@ let
   homeDir = config.home.homeDirectory;
   onepassCompletion = pkgs.writeTextDir "share/zsh/site-functions/op.plugin.zsh"
     (builtins.readFile ./_op);
-  podmanCompletion = pkgs.writeTextDir "share/zsh/site-functions/podman.plugin.zsh"
+  podmanCompletion =
+    pkgs.writeTextDir "share/zsh/site-functions/podman.plugin.zsh"
     (builtins.readFile ./_podman);
   labCompletion = pkgs.writeTextDir "share/zsh/site-functions/lab.plugin.zsh"
     (builtins.readFile ./_lab);
@@ -111,6 +112,7 @@ in {
           GROOT="$(git rev-parse --show-toplevel)"
           $GROOT/gradlew -p $GROOT "$@"
       }
+
       __clip_cmd_line () {
           # local WORDCHARS="./&%$"
           if ${pkgs.xorg.xhost}/bin/xhost &> /dev/null ; then print -rn -- $BUFFER | xclip -sel c; fi

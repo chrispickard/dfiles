@@ -19,5 +19,5 @@ nix-env --set-flag priority 4 nix-2.4
 switch to the new configuration
 
 ```shell
-nix run .\# switch
+nix run .# switch
 ```
