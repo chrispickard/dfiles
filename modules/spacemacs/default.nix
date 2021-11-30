@@ -1,7 +1,10 @@
 { config, pkgs, lib, inputs, ... }:
 
 let
-  emacspkg = pkgs.emacsUnstable;
+  emacspkg = with pkgs;
+    ((emacsPackagesNgGen emacsPgtkGcc).emacsWithPackages
+      (epkgs: [ epkgs.vterm ]));
+
   helloMagit = pkgs.writeText "hello-magit.el" ''
     (setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
     (require 'magit)
@@ -38,6 +41,8 @@ in {
     pkgs.aspellDicts.en
     pkgs.libtool
     pkgs.cmake
+    pkgs.binutils # native-comp needs 'as', provided by this
+    # emacsPgtkGcc   # 28 + pgtk + native-comp
   ];
   home.sessionVariables = {
     ASPELL_CONF = "data-dir $HOME/.nix-profile/lib/aspell";

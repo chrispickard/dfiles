@@ -10,8 +10,8 @@
       flake = false;
     };
     btf = {
-      url = "github:chrispickard/btf/15db424dc4786770409e0bf2573093366845ed44";
-      flake = false;
+      url = "github:chrispickard/btf";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     mozilla-overlay = {
       url = "github:mozilla/nixpkgs-mozilla";
