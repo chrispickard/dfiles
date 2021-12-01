@@ -1,11 +1,12 @@
 package main
 
 import (
+	"log"
+	"os"
+
 	"github.com/magefile/mage/sh"
 	"github.com/mattn/go-shellwords"
 	"gopkg.in/alecthomas/kingpin.v2"
-	"log"
-	"os"
 )
 
 type SwitchCmd struct{}
