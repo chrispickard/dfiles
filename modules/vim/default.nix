@@ -28,6 +28,7 @@
       telescope-nvim
       nvim-lspconfig
       packer-nvim
+      neogit
     ];
     extraConfig = ''
       set clipboard=unnamedplus
