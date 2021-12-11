@@ -12,7 +12,7 @@ import (
 type SwitchCmd struct{}
 
 func (s *SwitchCmd) Run() error {
-	err := run("nix build .#homeConfigurations.chrispickard.activationPackage")
+	err := run("nix build --verbose .#homeConfigurations.chrispickard.activationPackage")
 	if err != nil {
 		return err
 	}
@@ -23,7 +23,7 @@ func (s *SwitchCmd) Run() error {
 type UpdateCmd struct{}
 
 func (s *UpdateCmd) Run() error {
-	err := run("nix build --recreate-lock-file .#homeConfigurations.chrispickard.activationPackage")
+	err := run("nix build --verbose --recreate-lock-file .#homeConfigurations.chrispickard.activationPackage")
 	if err != nil {
 		return err
 	}

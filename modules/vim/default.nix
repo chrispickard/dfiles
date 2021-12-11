@@ -28,6 +28,7 @@
       telescope-nvim
       nvim-lspconfig
       packer-nvim
+      plenary-nvim
       neogit
     ];
     extraConfig = ''
@@ -38,7 +39,7 @@
       require('packer').startup(function()
         use {
             'glacambre/firenvim',
-            run = function() vim.fn['firenvim#install'](0) end 
+            run = function() vim.fn['firenvim#install'](0) end
         }
       end)
       require'lspconfig'.gopls.setup{}

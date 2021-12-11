@@ -29,6 +29,8 @@ in {
       reload = "exec zsh";
       switch =
         "rm ~/.config/mimeapps.list || true && cd ~/dfiles && joe switch && exec zsh";
+      update =
+        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && joe update && exec zsh";
 
       start = "./start.py";
       t = "./.test.sh";
