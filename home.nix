@@ -48,7 +48,6 @@ in {
     ./modules/vscode.nix
     ./modules/jira
     ./modules/firefox
-    ./modules/xonsh.nix
   ];
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -67,6 +66,7 @@ in {
     lastpass-cli
     google-chrome
     chromium
+    trivy
     delve
     gcc
     nodePackages.node2nix
