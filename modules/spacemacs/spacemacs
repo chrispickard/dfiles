@@ -529,6 +529,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   (setq shr-width 80)
 
   (setq ediff-window-setup-function 'ediff-setup-windows-default)
+  (setq warning-minimum-level :error)
 
   ;; ADD OTHER WINDOW TO TMUX
   (bind-key (kbd "M-m") 'other-window)

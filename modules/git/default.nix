@@ -1,7 +1,17 @@
 { config, lib, pkgs, ... }:
 
-{
-  home.packages = with pkgs; [ tig gitAndTools.delta gitAndTools.lab ];
+let
+  gitIdentity =
+    pkgs.writeShellScriptBin "git-identity" (builtins.readFile ./git-identity);
+  gg = pkgs.writeShellScriptBin "gg" (builtins.readFile ./gg);
+in {
+  home.packages = with pkgs; [
+    tig
+    gitAndTools.delta
+    gitAndTools.lab
+    gitIdentity
+    gg
+  ];
   programs.zsh.shellAliases = {
     g = "${pkgs.git}/bin/git";
     gits = "${pkgs.git}/bin/git status";
@@ -37,13 +47,4 @@
       options = { syntax-theme = "Nord"; };
     };
   };
-  home.file."bin/gg" = {
-    source = ./gg;
-    executable = true;
-  };
-  home.file."bin/git-identity" = {
-    source = ./git-identity;
-    executable = true;
-  };
-
 }

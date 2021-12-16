@@ -6,7 +6,8 @@
   #     url = https://github.com/mjlbach/neovim-nightly-overlay/archive/master.tar.gz;
   #   }))
   # ];
-  home.packages = [ pkgs.neovim-remote pkgs.page pkgs.lua ];
+  home.packages = [ pkgs.neovim-remote pkgs.tree-sitter pkgs.page pkgs.lua ];
+
   home.sessionVariables = { MANPAGER = "nvim -c MANPAGER -"; };
   programs.neovim = {
     # package = pkgs.neovim-nightly;
@@ -30,6 +31,8 @@
       packer-nvim
       plenary-nvim
       neogit
+      (pkgs.vimPlugins.nvim-treesitter.withPlugins
+        (plugins: pkgs.tree-sitter.allGrammars))
     ];
     extraConfig = ''
       set clipboard=unnamedplus
@@ -42,6 +45,40 @@
             run = function() vim.fn['firenvim#install'](0) end
         }
       end)
+      require'nvim-treesitter.configs'.setup {
+        textobjects = {
+          lsp_interop = {
+            enable = true,
+            border = 'none',
+            peek_definition_code = {
+              ["<leader>df"] = "@function.outer",
+              ["<leader>dF"] = "@class.outer",
+            },
+          },
+          select = {
+            enable = true,
+
+            -- Automatically jump forward to textobj, similar to targets.vim 
+            lookahead = true,
+
+            keymaps = {
+              -- You can use the capture groups defined in textobjects.scm
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+
+              -- Or you can define your own textobjects like this
+              ["iF"] = {
+                python = "(function_definition) @function",
+                cpp = "(function_definition) @function",
+                c = "(function_definition) @function",
+                java = "(method_declaration) @function",
+              },
+            },
+          },
+        },
+      }
       require'lspconfig'.gopls.setup{}
       EOF
       let g:vim_markdown_folding_disabled = 1
