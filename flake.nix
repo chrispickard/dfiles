@@ -55,6 +55,7 @@
         type = "app";
         program = "${self.joe}/bin/joe";
       };
+      devShell."${system}" = pkgs.mkShell { nativeBuildInputs = [ self.joe ]; };
       defaultApp."${system}" = self.apps."${system}".joe;
     };
 }
