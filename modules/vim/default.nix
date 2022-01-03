@@ -32,6 +32,7 @@
       plenary-nvim
       neogit
       diffview-nvim
+      nvim-web-devicons
       (pkgs.vimPlugins.nvim-treesitter.withPlugins
         (plugins: pkgs.tree-sitter.allGrammars))
     ];
@@ -83,9 +84,11 @@
       require'lspconfig'.gopls.setup{}
       local neogit = require("neogit")
       neogit.setup { 
-        disable_insert_on_commit = true
+        disable_insert_on_commit = false,
+        disable_commit_confirmation = true,
         integrations = { diffview = true }
       }
+      neogit.config.use_magit_keybindings()
       EOF
       let g:vim_markdown_folding_disabled = 1
       let g:compe = {}
