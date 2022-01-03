@@ -83,7 +83,8 @@
       require'lspconfig'.gopls.setup{}
       local neogit = require("neogit")
       neogit.setup { 
-      integrations = { diffview = true }
+        disable_insert_on_commit = true
+        integrations = { diffview = true }
       }
       EOF
       let g:vim_markdown_folding_disabled = 1
