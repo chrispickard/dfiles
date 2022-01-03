@@ -31,6 +31,7 @@
       packer-nvim
       plenary-nvim
       neogit
+      diffview-nvim
       (pkgs.vimPlugins.nvim-treesitter.withPlugins
         (plugins: pkgs.tree-sitter.allGrammars))
     ];
@@ -80,6 +81,10 @@
         },
       }
       require'lspconfig'.gopls.setup{}
+      local neogit = require("neogit")
+      neogit.setup { 
+      integrations = { diffview = true }
+      }
       EOF
       let g:vim_markdown_folding_disabled = 1
       let g:compe = {}

@@ -29,9 +29,9 @@ in {
   # ];
   programs.emacs = {
     enable = true;
-    # package = pkgs.emacs27;
-    package = emacspkg;
-    # package = pkgs.emacsGcc;
+    package = pkgs.emacs27;
+    # package = emacspkg;
+    # package = pkgs.emacsPgtkGcc;
   };
   # services.emacs.enable = true;
 

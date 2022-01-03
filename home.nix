@@ -88,6 +88,8 @@ in {
     vgo2nix
     nodejs
     nixfmt
+    rnix-lsp
+    nixpkgs-fmt
     slack
     pandoc
     nodePackages.npm
@@ -115,7 +117,7 @@ in {
     _1password-gui
     gnome3.file-roller
     gsettings_desktop_schemas
-    vlc
+    # vlc
     comma
     btf
     # jetbrains.idea-ultimate
