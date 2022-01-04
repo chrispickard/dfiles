@@ -34,6 +34,7 @@
       neogit
       diffview-nvim
       nvim-web-devicons
+      committia
       (pkgs.vimPlugins.nvim-treesitter.withPlugins
         (plugins: pkgs.tree-sitter.allGrammars))
     ];
@@ -169,6 +170,16 @@
       nnoremap <leader>fh <cmd>Telescope help_tags<cr>
       au BufEnter github.com_*.txt set filetype=markdown
       au BufEnter gitlab.tangramflex.tech_*.txt set filetype=markdown
+
+      let g:committia_hooks = {}
+      function! g:committia_hooks.edit_open(info)
+        setlocal spell
+        startinsert
+
+        imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+        imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
+        nnoremap <buffer><LocalLeader><LocalLeader> :wq<cr>
+      endfunction
     '';
 
   };
