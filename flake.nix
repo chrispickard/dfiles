@@ -26,6 +26,7 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
+        inherit (pkgs) lib;
         overlays = [
           (import mozilla-overlay)
           (import emacs-overlay)
@@ -36,7 +37,6 @@
         ];
         config.allowUnfree = true;
       };
-      lib = nixpkgs.lib;
       user = "chrispickard";
     in {
       homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
@@ -50,7 +50,7 @@
       };
       myJoe = ./joe;
 
-      joe = (pkgs.callPackage self.myJoe { });
+      joe = pkgs.callPackage self.myJoe { };
 
       apps."${system}".joe = {
         type = "app";
