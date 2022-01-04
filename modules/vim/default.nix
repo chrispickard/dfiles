@@ -25,9 +25,10 @@
       vim-nix
       vim-markdown
       vim-manpager
-      nvim-compe
-      telescope-nvim
+      nvim-cmp
+      cmp-nvim-lsp
       nvim-lspconfig
+      telescope-nvim
       packer-nvim
       plenary-nvim
       neogit
@@ -81,7 +82,63 @@
           },
         },
       }
-      require'lspconfig'.gopls.setup{}
+
+      local lspconfig = require('lspconfig')
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+      local servers = { 'rnix' }
+      for _, lsp in ipairs(servers) do
+        lspconfig[lsp].setup {
+          -- on_attach = my_custom_on_attach,
+          capabilities = capabilities,
+        }
+      end
+
+      local cmp = require('cmp')
+
+      cmp.setup {
+        snippet = {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end,
+        },
+        mapping = {
+          ['<C-p>'] = cmp.mapping.select_prev_item(),
+          ['<C-n>'] = cmp.mapping.select_next_item(),
+          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.close(),
+          ['<CR>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+          },
+          ['<Tab>'] = function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end,
+          ['<S-Tab>'] = function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end,
+        },
+        sources = {
+          { name = 'nvim_lsp' },
+        },
+      }
+
       local neogit = require("neogit")
       neogit.setup { 
         disable_insert_on_commit = false,
@@ -91,28 +148,6 @@
       neogit.config.use_magit_keybindings()
       EOF
       let g:vim_markdown_folding_disabled = 1
-      let g:compe = {}
-      let g:compe.enabled = v:true
-      let g:compe.autocomplete = v:true
-      let g:compe.debug = v:false
-      let g:compe.min_length = 1
-      let g:compe.preselect = 'enable'
-      let g:compe.throttle_time = 80
-      let g:compe.source_timeout = 200
-      let g:compe.incomplete_delay = 400
-      let g:compe.max_abbr_width = 100
-      let g:compe.max_kind_width = 100
-      let g:compe.max_menu_width = 100
-      let g:compe.documentation = v:true
-
-      let g:compe.source = {}
-      let g:compe.source.path = v:true
-      let g:compe.source.buffer = v:true
-      let g:compe.source.calc = v:true
-      let g:compe.source.nvim_lsp = v:true
-      let g:compe.source.nvim_lua = v:true
-      let g:compe.source.vsnip = v:true
-      let g:compe.source.ultisnips = v:true
       set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
       colorscheme nord
       let g:lightline = {
@@ -122,6 +157,11 @@
       let mapleader=" "
       :tnoremap <leader>[ <C-\><C-n>
       autocmd TermOpen * startinsert
+
+      nnoremap <leader>sc :nohl<CR>
+      vmap s S
+      nnoremap <C-e> $
+      nnoremap <C-a> ^
 
       nnoremap <leader>ff <cmd>Telescope find_files<cr>
       nnoremap <leader>fg <cmd>Telescope live_grep<cr>
