@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # nixpkgs.overlays = [
-  #   (import (builtins.fetchTarball {
-  #     url = https://github.com/mjlbach/neovim-nightly-overlay/archive/master.tar.gz;
-  #   }))
-  # ];
   home.packages = [ pkgs.neovim-remote pkgs.tree-sitter pkgs.page pkgs.lua ];
 
   home.sessionVariables = { MANPAGER = "nvim -c MANPAGER -"; };
@@ -20,21 +15,28 @@
       vim-surround
       targets-vim
       vim-go
-      vim-commentary
+      kommentary
       lightline-vim
       vim-nix
       vim-markdown
       vim-manpager
       nvim-cmp
       cmp-nvim-lsp
+      cmp_luasnip
+      luasnip
+      friendly-snippets
       nvim-lspconfig
       telescope-nvim
+      telescope-frecency-nvim
+      telescope-fzy-native-nvim
       packer-nvim
       plenary-nvim
       neogit
       diffview-nvim
       nvim-web-devicons
       committia
+      zig-vim
+      pears-nvim
       (pkgs.vimPlugins.nvim-treesitter.withPlugins
         (plugins: pkgs.tree-sitter.allGrammars))
     ];
@@ -42,13 +44,11 @@
       set clipboard=unnamedplus
       set termguicolors
       set completeopt=menuone,noselect
+      set signcolumn=yes
+      set ignorecase smartcase
+      let mapleader=" "
+      let maplocalleader=","
       lua <<EOF
-      require('packer').startup(function()
-        use {
-            'glacambre/firenvim',
-            run = function() vim.fn['firenvim#install'](0) end
-        }
-      end)
       require'nvim-treesitter.configs'.setup {
         textobjects = {
           lsp_interop = {
@@ -89,7 +89,7 @@
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-      local servers = { 'rnix' }
+      local servers = { 'rnix', 'zls' }
       for _, lsp in ipairs(servers) do
         lspconfig[lsp].setup {
           -- on_attach = my_custom_on_attach,
@@ -97,35 +97,33 @@
         }
       end
 
-      local cmp = require('cmp')
+      
+      local has_words_before = function()
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
 
-      cmp.setup {
-        snippet = {
-          expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-          end,
-        },
+      local luasnip = require("luasnip")
+      require("luasnip.loaders.from_vscode").load()
+      local cmp = require("cmp")
+
+      cmp.setup({
+
         mapping = {
-          ['<C-p>'] = cmp.mapping.select_prev_item(),
-          ['<C-n>'] = cmp.mapping.select_next_item(),
-          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.close(),
-          ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-          },
-          ['<Tab>'] = function(fallback)
+
+          ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
+            elseif has_words_before() then
+              cmp.complete()
             else
               fallback()
             end
-          end,
-          ['<S-Tab>'] = function(fallback)
+          end, { "i", "s" }),
+
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
@@ -133,12 +131,12 @@
             else
               fallback()
             end
-          end,
+          end, { "i", "s" }),
         },
         sources = {
           { name = 'nvim_lsp' },
         },
-      }
+      })
 
       local neogit = require("neogit")
       neogit.setup { 
@@ -146,7 +144,37 @@
         disable_commit_confirmation = true,
         integrations = { diffview = true }
       }
-      neogit.config.use_magit_keybindings()
+
+      local telescope = require('telescope')
+      local themes = require('telescope.themes')
+      telescope.load_extension('fzy_native')
+      telescope.load_extension("frecency")
+      local actions = require("telescope.actions")
+
+      telescope.setup {
+        defaults = themes.get_ivy {
+          mappings = {
+            i = {
+              ["<esc>"] = actions.close,
+              ["<C-k>"] = actions.move_selection_previous,
+              ["<C-j>"] = actions.move_selection_next,
+            },
+          },
+        },
+      }
+      require("pears").setup()
+      vim.g.kommentary_create_default_mappings = false
+
+      vim.api.nvim_set_keymap("n", "gcc", "<Plug>kommentary_line_default", {})
+      vim.api.nvim_set_keymap("v", "gc", "<Plug>kommentary_visual_default", {})
+      vim.api.nvim_set_keymap("n", "gc", "<Plug>kommentary_motion_default", {})
+      vim.api.nvim_set_keymap("n", "<leader>;;", "<Plug>kommentary_line_default", {})
+      vim.api.nvim_set_keymap("n", "<leader>;", "<Plug>kommentary_motion_default", {})
+      vim.api.nvim_set_keymap("x", "<leader>;", "<Plug>kommentary_visual_default", {})
+
+      vim.api.nvim_set_keymap("i", "<M-BS>", "<C-w>", {})
+      vim.api.nvim_set_keymap("i", "<M-C-H>", "<C-o>dB", {})
+
       EOF
       let g:vim_markdown_folding_disabled = 1
       set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
@@ -155,7 +183,6 @@
         \ 'colorscheme': 'nord',
         \ }
       set noshowmode
-      let mapleader=" "
       :tnoremap <leader>[ <C-\><C-n>
       autocmd TermOpen * startinsert
 
@@ -165,9 +192,10 @@
       nnoremap <C-a> ^
 
       nnoremap <leader>ff <cmd>Telescope find_files<cr>
-      nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+      nnoremap <leader>/ <cmd>Telescope live_grep<cr>
       nnoremap <leader>fb <cmd>Telescope buffers<cr>
       nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+      nnoremap <M-;> <cmd>Telescope frecency<cr>
       au BufEnter github.com_*.txt set filetype=markdown
       au BufEnter gitlab.tangramflex.tech_*.txt set filetype=markdown
 
@@ -178,12 +206,21 @@
 
         imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
         imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
-        nnoremap <buffer><LocalLeader><LocalLeader> :wq<cr>
+        map <buffer><LocalLeader><LocalLeader> :wq<cr>
+        map <buffer><LocalLeader>k :q!<cr>
       endfunction
     '';
 
   };
   home.file.".ideavimrc".source = ./ideavimrc;
+
+  home.file."bin/et" = {
+    text = ''
+      #!/bin/sh
+      nvim "$@"
+    '';
+    executable = true;
+  };
 
   # home.file.".vimrc".source = ./vimrc;
   # xdg.configFile."nvim/init.vim".source = ./vimrc;

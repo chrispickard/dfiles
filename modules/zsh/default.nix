@@ -28,13 +28,13 @@ in {
 
       reload = "exec zsh";
       switch =
-        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && joe switch && exec zsh";
+        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && home-manager --flake . switch && exec zsh";
       update =
-        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && joe update && exec zsh";
+        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && nix flake update && home-manager --flake . switch && exec zsh";
 
       start = "./start.py";
       t = "./.test.sh";
-      umux = "${pkgs.tmuxp}/bin/tmuxp load -y ~/.tmuxp/work.yaml";
+      #umux = "${pkgs.tmuxp}/bin/tmuxp load -y ~/.tmuxp/work.yaml";
 
       sc = "systemctl";
       scu = "systemctl --user";

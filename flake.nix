@@ -33,7 +33,6 @@
           (import mozilla-overlay)
           (final: prev: { comma = import comma { inherit (prev) pkgs; }; })
           (final: prev: { btf = import btf { inherit (prev) pkgs; }; })
-          (final: prev: { myJoe = import self.myJoe { inherit (prev) pkgs; }; })
         ];
         config.allowUnfree = true;
       };
@@ -48,13 +47,12 @@
         configuration.imports = [ ./home.nix ];
 
       };
-      myJoe = ./joe;
 
-      joe = pkgs.callPackage self.myJoe { };
+      joe = pkgs.callPackage pkgs.home-manager {};
 
       apps."${system}".joe = {
         type = "app";
-        program = "${self.joe}/bin/joe";
+        program = "${self.joe}/bin/home-manager";
       };
       devShell."${system}" = pkgs.mkShell { nativeBuildInputs = [ self.joe ]; };
       defaultApp."${system}" = self.apps."${system}".joe;

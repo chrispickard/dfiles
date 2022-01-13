@@ -100,7 +100,6 @@ in {
     nodePackages.bash-language-server
     # nodePackages.vls
     nodePackages.eslint
-    myJoe
     python3
     pcmanfm
     # python38Packages.python-language-server
@@ -136,6 +135,8 @@ in {
     go-protobuf
     rustup
     rust-analyzer
+    zig
+    zls
     cached-nix-shell
     # k8s stuff
     kubernetes-helm
@@ -357,7 +358,7 @@ in {
   };
   programs.java = {
     enable = true;
-    # package = pkgs.oraclejdk;
+    package = pkgs.oraclejdk;
   };
 }
 

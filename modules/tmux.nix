@@ -12,7 +12,7 @@
     prefix = "M-a";
     terminal = "$TERM";
     secureSocket = true;
-    tmuxp.enable = true;
+    # tmuxp.enable = true;
     plugins = with pkgs; [
       tmuxPlugins.extrakto
       tmuxPlugins.nord

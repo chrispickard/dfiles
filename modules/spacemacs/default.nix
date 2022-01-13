@@ -61,13 +61,13 @@ in {
     '';
     executable = true;
   };
-  home.file."bin/et" = {
-    text = ''
-      #!/bin/sh
-      TERM=xterm-24bit emacsclient -nw -a "vim" $@
-    '';
-    executable = true;
-  };
+  #home.file."bin/et" = {
+  #  text = ''
+  #    #!/bin/sh
+  #    TERM=xterm-24bit emacsclient -nw -a "vim" $@
+  #  '';
+  #  executable = true;
+  #};
   home.file."bin/termacs" = {
     text = ''
       #!/bin/sh
@@ -140,7 +140,7 @@ in {
     };
     Service = {
       Environment = [ "XDG_RUNTIME_DIR=${config.home.homeDirectory}/.tmp" ];
-      ExecStart = "${emacspkg}/bin/emacs --fg-daemon --load ${helloMagit}";
+      ExecStart = "${pkgs.emacs27}/bin/emacs --fg-daemon --load ${helloMagit}";
       Restart = "always";
     };
     Install.WantedBy = [ "default.target" ];
