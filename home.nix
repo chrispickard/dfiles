@@ -36,7 +36,7 @@ in {
     ./modules/i3.nix
     # ./termite.nix
     # ./urxvt.nix
-    # ./kitty.nix
+    ./modules/kitty.nix
     ./modules/xterm.nix
     ./modules/st.nix
     # ./gnome-terminal.nix
@@ -109,8 +109,7 @@ in {
     ansible
     youtube-dl
     mailspring
-    mattermost-desktop
-    gnome3.libsecret
+    libsecret
     gnome3.zenity
     _1password
     _1password-gui

@@ -6,11 +6,11 @@
       st = super.st.override {
         extraLibs = [ super.harfbuzz ];
         patches = builtins.map super.fetchurl [
-          {
-            url =
-              "https://st.suckless.org/patches/nordtheme/st-nordtheme-0.8.2.diff";
-            sha256 = "0ssj7gsb3snk1pqfkffwc0dshrbmvf7ffqvrdi4k2p451mnqmph1";
-          }
+          # {
+          #   url =
+          #     "https://st.suckless.org/patches/nordtheme/st-nordtheme-0.8.2.diff";
+          #   sha256 = "0ssj7gsb3snk1pqfkffwc0dshrbmvf7ffqvrdi4k2p451mnqmph1";
+          # }
           {
             url =
               "https://st.suckless.org/patches/ligatures/0.8.3/st-ligatures-20200430-0.8.3.diff";
