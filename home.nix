@@ -38,7 +38,7 @@ in {
     # ./urxvt.nix
     ./modules/kitty.nix
     ./modules/xterm.nix
-    ./modules/st.nix
+    ./modules/st/default.nix
     # ./gnome-terminal.nix
     ./modules/services.nix
     # ./prometheus.nix

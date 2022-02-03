@@ -61,13 +61,13 @@ in {
     '';
     executable = true;
   };
-  #home.file."bin/et" = {
-  #  text = ''
-  #    #!/bin/sh
-  #    TERM=xterm-24bit emacsclient -nw -a "vim" $@
-  #  '';
-  #  executable = true;
-  #};
+  home.file."bin/et" = {
+   text = ''
+     #!/bin/sh
+     TERM=xterm-24bit emacsclient -nw -a "vim" $@
+   '';
+   executable = true;
+  };
   home.file."bin/termacs" = {
     text = ''
       #!/bin/sh

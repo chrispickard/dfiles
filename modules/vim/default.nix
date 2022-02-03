@@ -3,7 +3,7 @@
 {
   home.packages = [ pkgs.neovim-remote pkgs.tree-sitter pkgs.page pkgs.lua pkgs.sumneko-lua-language-server pkgs.gnvim];
 
-  home.sessionVariables = { MANPAGER = "nvim -c MANPAGER -"; };
+  home.sessionVariables = { MANPAGER = "nvim -c MANPAGER -"; MANWIDTH="999"; };
   programs.neovim = {
     # package = pkgs.neovim-nightly;
     enable = true;
@@ -200,6 +200,7 @@
       }
       require("pears").setup()
       vim.g.kommentary_create_default_mappings = false
+      vim.g.man_hardwrap = false
 
       vim.api.nvim_set_keymap("n", "gcc", "<Plug>kommentary_line_default", {})
       vim.api.nvim_set_keymap("v", "gc", "<Plug>kommentary_visual_default", {})
@@ -250,13 +251,13 @@
   };
   home.file.".ideavimrc".source = ./ideavimrc;
 
-  home.file."bin/et" = {
-    text = ''
-      #!/bin/sh
-      nvim "$@"
-    '';
-    executable = true;
-  };
+  # home.file."bin/et" = {
+  #   text = ''
+  #     #!/bin/sh
+  #     nvim "$@"
+  #   '';
+  #   executable = true;
+  # };
 
   # home.file.".vimrc".source = ./vimrc;
   # xdg.configFile."nvim/init.vim".source = ./vimrc;
