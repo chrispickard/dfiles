@@ -964,7 +964,6 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;;   )
   (require 'git-commit)
   (global-git-commit-mode)
-  (global-term-cursor-mode)
   ;; (server-start)
   ;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
   ;; (setq flycheck-gometalinter-vendor t)
