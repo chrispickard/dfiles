@@ -24,7 +24,8 @@
      ;;                shell-scripts-backend 'lsp)
      shell-scripts
      shell
-     ;; common-lisp
+     (common-lisp :variables
+                  inferior-lisp-program "/home/chrispickard/.nix-profile/bin/sbcl")
      ;; haskell
      (json :variables
            json-fmt-tool 'prettier

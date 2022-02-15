@@ -111,6 +111,10 @@ in {
           mkdir -p "$@" && cd "$@"
       }
 
+      login1pass() {
+          eval $(lpass show 1password.com --password | op signin tangramflex)
+      }
+
       jumptostore () {
           cd $(dirname $(realpath $(which "$@" )))
       }

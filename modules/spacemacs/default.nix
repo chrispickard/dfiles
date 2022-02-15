@@ -41,6 +41,7 @@ in {
     pkgs.aspellDicts.en
     pkgs.libtool
     pkgs.cmake
+    pkgs.sbcl
     pkgs.binutils # native-comp needs 'as', provided by this
     # emacsPgtkGcc   # 28 + pgtk + native-comp
   ];
@@ -62,11 +63,11 @@ in {
     executable = true;
   };
   home.file."bin/et" = {
-   text = ''
-     #!/bin/sh
-     TERM=xterm-24bit emacsclient -nw -a "vim" $@
-   '';
-   executable = true;
+    text = ''
+      #!/bin/sh
+      TERM=xterm-24bit emacsclient -nw -a "vim" $@
+    '';
+    executable = true;
   };
   home.file."bin/termacs" = {
     text = ''
