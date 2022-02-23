@@ -358,7 +358,7 @@ in {
   };
   programs.java = {
     enable = true;
-    package = pkgs.oraclejdk;
+    # package = pkgs.oraclejdk;
   };
 }
 

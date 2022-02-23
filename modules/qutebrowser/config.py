@@ -132,7 +132,8 @@ config.set('content.notifications.enabled', True, 'https://app.slack.com')
 # Enable smooth scrolling for web pages. Note smooth scrolling does not
 # work with the `:scroll-px` command.
 # Type: Bool
-c.scrolling.smooth = True
+# c.scrolling.smooth = True
+c.scrolling.smooth = False
 config.bind("J", "tab-prev")
 config.bind("K", "tab-next")
 # config.unbind("<")
@@ -147,6 +148,7 @@ config.bind("a", "tab-focus last")
 config.bind("j", "scroll-px 0 100")
 config.bind("<Ctrl-e>", "scroll-px 0 100")
 config.bind("<Ctrl-y>", "scroll-px 0 -100")
+config.bind("<Ctrl-k>", "fake-key '<Ctrl-k>';; mode-enter insert")
 config.bind("k", "scroll-px 0 -100")
 config.bind("u", "scroll-page 0 -0.4")
 config.bind("d", "scroll-page 0 0.4")
@@ -155,6 +157,7 @@ config.bind("B", "set-cmd-text -s :bookmark-load")
 config.bind("<Alt-l>", "spawn --userscript qute-lastpass {url:host}")
 config.bind("<Alt-l>", "spawn --userscript qute-lastpass {url:host}", mode="insert")
 config.bind(";c", "hint toggle")
+config.bind(";h", "hint all userscript open-firefox")
 config.bind("<Space>sc", "search ;; mode-enter caret ;; selection-drop ;; mode-leave")
 
 config.source('nord-qutebrowser.py')
@@ -164,5 +167,6 @@ c.tabs.pinned.frozen = True
 c.auto_save.session = True
 c.tabs.max_width = 250
 c.tabs.min_width = 100
+c.content.blocking.method = "both"
 
 # config.set("colors.webpage.darkmode.enabled", True)
