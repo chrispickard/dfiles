@@ -35,12 +35,22 @@
         ];
         config.allowUnfree = true;
       };
-      user = "chrispickard";
+      user = "chris";
+      work_user = "chrispickard";
     in {
       homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
         inherit system pkgs;
         homeDirectory = "/home/${user}";
         username = "${user}";
+        stateVersion = "21.11";
+
+        configuration.imports = [ ./home.nix ];
+
+      };
+      homeConfigurations."${work_user}" = home-manager.lib.homeManagerConfiguration {
+        inherit system pkgs;
+        homeDirectory = "/home/${work_user}";
+        username = "${work_user}";
         stateVersion = "21.11";
 
         configuration.imports = [ ./home.nix ];
