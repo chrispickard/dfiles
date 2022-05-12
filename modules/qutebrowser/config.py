@@ -9,6 +9,26 @@
 # Documentation:
 #   qute://help/configuring.html
 #   qute://help/settings.html
+# import urllib.request
+# from qutebrowser.api import cmdutils
+
+# class MiscCommands:
+#     @cmdutils.register(instance='config-commands')
+#     def alright(self):
+#         from qutebrowser.components import scrollcommands
+#         from qutebrowser.mainwindow import tabbedbrowser, mainwindow
+#         from qutebrowser.utils import objreg
+#         print("ok")
+#         r = urllib.request.urlopen("http://127.0.0.1:80")
+#         print(r.read())
+
+#         target = config.val.new_instance_open_target
+#         win_id = mainwindow.get_window(via_ipc=True, target=target)
+#         tabbed_browser = objreg.get('tabbed-browser', default=None,
+#                                     scope='window', window=0)
+#         print(tabbed_browser.get_current_url())
+#         scrollcommands.scroll(cmdutils.Value.cur_tab, "down")
+
 
 # Change the argument to True to still load settings configured via autoconfig.yml
 config.load_autoconfig(True)
@@ -46,6 +66,8 @@ config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
 #   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
 #   - never: Don't accept cookies at all.
 config.set('content.cookies.accept', 'all', 'devtools://*')
+config.set('content.cookies.accept', 'all', 'https://*.slack.com/*')
+config.set('content.cookies.accept', 'all', 'https://app.element.io/*')
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -119,7 +141,7 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 # Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
-c.hints.selectors = c.hints.selectors | {"toggle": ['[class*="expand"]', '[class="togg"]']}
+c.hints.selectors = c.hints.selectors | {"toggle": ['[class*="expand"]', '[class*="togg"]']}
 
 # Allow websites to show notifications.
 # Type: BoolAsk
@@ -127,7 +149,8 @@ c.hints.selectors = c.hints.selectors | {"toggle": ['[class*="expand"]', '[class
 #   - true
 #   - false
 #   - ask
-config.set('content.notifications.enabled', True, 'https://app.slack.com')
+config.set('content.notifications.enabled', True, 'https://*.slack.com')
+config.set('content.notifications.enabled', True, 'https://app.element.io')
 
 # Enable smooth scrolling for web pages. Note smooth scrolling does not
 # work with the `:scroll-px` command.
@@ -146,17 +169,20 @@ config.bind("O", "set-cmd-text -s :open")
 config.bind("<Alt-;>", "set-cmd-text -s :tab-select")
 config.bind("a", "tab-focus last")
 config.bind("j", "scroll-px 0 100")
+config.bind("}", "ok")
 config.bind("<Ctrl-e>", "scroll-px 0 100")
 config.bind("<Ctrl-y>", "scroll-px 0 -100")
-config.bind("<Ctrl-k>", "fake-key '<Ctrl-k>';; mode-enter insert")
+config.bind("<Ctrl-k>", "spawn -u ctrl-k")
 config.bind("k", "scroll-px 0 -100")
 config.bind("u", "scroll-page 0 -0.4")
+config.bind("e", "spawn -u passthrough")
 config.bind("d", "scroll-page 0 0.4")
 config.bind("b", "set-cmd-text -s :bookmark-load -t")
 config.bind("B", "set-cmd-text -s :bookmark-load")
 config.bind("<Alt-l>", "spawn --userscript qute-lastpass {url:host}")
 config.bind("<Alt-l>", "spawn --userscript qute-lastpass {url:host}", mode="insert")
 config.bind(";c", "hint toggle")
+config.bind("yf", "hint links yank")
 config.bind(";h", "hint all userscript open-firefox")
 config.bind("<Space>sc", "search ;; mode-enter caret ;; selection-drop ;; mode-leave")
 
@@ -168,5 +194,13 @@ c.auto_save.session = True
 c.tabs.max_width = 250
 c.tabs.min_width = 100
 c.content.blocking.method = "both"
+c.colors.webpage.preferred_color_scheme = "dark"
+c.editor.command = ["emacsclient", "{file}"]
+c.downloads.location.prompt = False
+c.tabs.title.format_pinned = ""
+c.zoom.default = 125
+c.url.searchengines = {"DEFAULT": "https://www.google.com/search?q={}" }
+c.fonts.default_size = "8pt"
+# c.fonts.web.size.default = 18
 
 # config.set("colors.webpage.darkmode.enabled", True)

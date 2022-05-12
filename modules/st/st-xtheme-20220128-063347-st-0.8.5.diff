@@ -1,0 +1,239 @@
+diff '--color=auto' -uraN st-0.8.5/config.def.h st-xtheme/config.def.h
+--- st-0.8.5/config.def.h	2022-01-07 15:41:35.000000000 +0400
++++ st-xtheme/config.def.h	2022-01-28 06:13:11.486859924 +0400
+@@ -1,5 +1,9 @@
+ /* See LICENSE file for copyright and license details. */
+
++/* theme management */
++# include "theme_beg.h" /* this is a compile-time generated header file */
++# include "theme.h"
++
+ /*
+  * appearance
+  *
+@@ -96,34 +100,36 @@
+ /* Terminal colors (16 first used in escape sequence) */
+ static const char *colorname[] = {
+ 	/* 8 normal colors */
+-	"black",
+-	"red3",
+-	"green3",
+-	"yellow3",
+-	"blue2",
+-	"magenta3",
+-	"cyan3",
+-	"gray90",
++	ST_COLOR0,
++	ST_COLOR1,
++	ST_COLOR2,
++	ST_COLOR3,
++	ST_COLOR4,
++	ST_COLOR5,
++	ST_COLOR6,
++	ST_COLOR7,
+
+ 	/* 8 bright colors */
+-	"gray50",
+-	"red",
+-	"green",
+-	"yellow",
+-	"#5c5cff",
+-	"magenta",
+-	"cyan",
+-	"white",
++	ST_COLOR8,
++	ST_COLOR9,
++	ST_COLOR10,
++	ST_COLOR11,
++	ST_COLOR12,
++	ST_COLOR13,
++	ST_COLOR14,
++	ST_COLOR15,
+
+ 	[255] = 0,
+
+ 	/* more colors can be added after 255 to use with DefaultXX */
+-	"#cccccc",
+-	"#555555",
+-	"gray90", /* default foreground colour */
+-	"black", /* default background colour */
++	ST_CURSORCOLOR,
++	ST_REVCURCOLOR,
++	ST_FOREGROUND, /* default foreground colour */
++	ST_BACKGROUND, /* default background colour */
+ };
+
++/* theme management */
++# include "theme_end.h" /* this is a compile-time generated header file */
+
+ /*
+  * Default colors (colorname index)
+diff '--color=auto' -uraN st-0.8.5/Makefile st-xtheme/Makefile
+--- st-0.8.5/Makefile	2022-01-07 15:41:35.000000000 +0400
++++ st-xtheme/Makefile	2022-01-28 06:24:02.729486753 +0400
+@@ -18,19 +18,27 @@
+ config.h:
+ 	cp config.def.h config.h
+
++theme.h:
++	chmod +x ./xtheme ./themesetup
++	./xtheme
++
++theme: theme.h
++	./themesetup
++
+ .c.o:
+ 	$(CC) $(STCFLAGS) -c $<
+
+-st.o: config.h st.h win.h
+-x.o: arg.h config.h st.h win.h
++st.o: config.h st.h theme win.h
++x.o: arg.h config.h st.h theme win.h
+
+-$(OBJ): config.h config.mk
++$(OBJ): config.h theme config.mk
+
+ st: $(OBJ)
+ 	$(CC) -o $@ $(OBJ) $(STLDFLAGS)
++	rm theme_{beg,end}.h
+
+ clean:
+-	rm -f st $(OBJ) st-$(VERSION).tar.gz
++	rm -f st $(OBJ) theme_{beg,end}.h st-$(VERSION).tar.gz
+
+ dist: clean
+ 	mkdir -p st-$(VERSION)
+@@ -54,4 +62,4 @@
+ 	rm -f $(DESTDIR)$(PREFIX)/bin/st
+ 	rm -f $(DESTDIR)$(MANPREFIX)/man1/st.1
+
+-.PHONY: all options clean dist install uninstall
++.PHONY: all options clean dist install uninstall theme
+diff '--color=auto' -uraN st-0.8.5/themes/leet.h st-xtheme/themes/leet.h
+--- st-0.8.5/themes/leet.h	1970-01-01 04:00:00.000000000 +0400
++++ st-xtheme/themes/leet.h	2022-01-28 06:10:04.064533316 +0400
+@@ -0,0 +1,21 @@
++# define ST_ALPHA .75F
++# define ST_FOREGROUND "#FF0000"
++# define ST_BACKGROUND "#080000"
++# define ST_CURSORCOLOR "#D40000"
++# define ST_REVCURCOLOR "#FF0000"
++# define ST_COLOR0 "#010008"
++# define ST_COLOR1 "#A71B1A"
++# define ST_COLOR2 "#3B8526"
++# define ST_COLOR3 "#E49202"
++# define ST_COLOR4 "#1D576D"
++# define ST_COLOR5 "#97219C"
++# define ST_COLOR6 "#24866F"
++# define ST_COLOR7 "#B5AD64"
++# define ST_COLOR8 "#1C1C1C"
++# define ST_COLOR9 "#BF3130"
++# define ST_COLOR10 "#58A642"
++# define ST_COLOR11 "#FFB026"
++# define ST_COLOR12 "#4169E1"
++# define ST_COLOR13 "#A7248C"
++# define ST_COLOR14 "#37A48D"
++# define ST_COLOR15 "#CEC67D"
+diff '--color=auto' -uraN st-0.8.5/themes/redish.h st-xtheme/themes/redish.h
+--- st-0.8.5/themes/redish.h	1970-01-01 04:00:00.000000000 +0400
++++ st-xtheme/themes/redish.h	2022-01-28 06:10:04.064533316 +0400
+@@ -0,0 +1,21 @@
++# define ST_ALPHA 1.F
++# define ST_FOREGROUND "#FF0000"
++# define ST_BACKGROUND "#1C0F0F"
++# define ST_CURSORCOLOR "#D40000"
++# define ST_REVCURCOLOR "#FF0000"
++# define ST_COLOR0 "#1C0F11"
++# define ST_COLOR1 "#752323"
++# define ST_COLOR2 "#D96767"
++# define ST_COLOR3 "#FF0000"
++# define ST_COLOR4 "#523F3F"
++# define ST_COLOR5 "#993131"
++# define ST_COLOR6 "#B45050"
++# define ST_COLOR7 "#735050"
++# define ST_COLOR8 "#806060"
++# define ST_COLOR9 "#C02F2F"
++# define ST_COLOR10 "#D76262"
++# define ST_COLOR11 "#FF0000"
++# define ST_COLOR12 "#7E4F4F"
++# define ST_COLOR13 "#FF1111"
++# define ST_COLOR14 "#FF8A8A"
++# define ST_COLOR15 "#8C6161"
+diff '--color=auto' -uraN st-0.8.5/themesetup st-xtheme/themesetup
+--- st-0.8.5/themesetup	1970-01-01 04:00:00.000000000 +0400
++++ st-xtheme/themesetup	2022-01-28 06:10:04.064533316 +0400
+@@ -0,0 +1,5 @@
++#!/bin/sh
++
++echo \# if $(cat theme.h | cut -d' ' -f3 | sed "s/^/defined /;s/$/ ||/" | tr "\n" " ") 0 > theme_beg.h
++echo -e "# error (conflicting macro names)\n# endif" >> theme_beg.h
++cat theme.h | cut -d' ' -f3 | sed "s/^/# undef /;" > theme_end.h
+diff '--color=auto' -uraN st-0.8.5/xresources.list st-xtheme/xresources.list
+--- st-0.8.5/xresources.list	1970-01-01 04:00:00.000000000 +0400
++++ st-xtheme/xresources.list	2022-01-28 06:10:04.064533316 +0400
+@@ -0,0 +1,21 @@
++alpha
++foreground		"
++background		"
++cursorColor		"
++revCurColor		"
++color0			"
++color1			"
++color2			"
++color3			"
++color4			"
++color5			"
++color6			"
++color7			"
++color8			"
++color9			"
++color10			"
++color11			"
++color12			"
++color13			"
++color14			"
++color15			"
+diff '--color=auto' -uraN st-0.8.5/xtheme st-xtheme/xtheme
+--- st-0.8.5/xtheme	1970-01-01 04:00:00.000000000 +0400
++++ st-xtheme/xtheme	2022-01-28 06:10:04.064533316 +0400
+@@ -0,0 +1,40 @@
++#!/bin/sh
++
++prefix=st
++resfile=xresources.list
++themeout=theme.h
++themedefault=themes/leet.h
++
++rm -f $themeout
++
++cat "$resfile" | while read r s
++do
++	m=ST_$(echo $r | tr '[:lower:]' '[:upper:]')
++
++	echo -e "$prefix\n" |
++	{
++		l=''
++
++		while read p
++		do
++			l="$(																\
++				xrdb -query														\
++					| grep -P "^$p\*?\.?$r:\s*\S*$"  -m 1						\
++					| sed "s/^$p\*\?\.\?$r:\s*\(\S*\)$/# define $m $s\1$s/"		\
++			)"
++
++			if [[ "$l" != '' ]]
++			then
++				echo "$l" >> $themeout
++				break
++			fi
++		done
++
++		if [[ "$l" == '' ]]
++		then
++			cat "$themedefault" | grep -P "# define $m " >> $themeout
++		fi
++	}
++done
++
++./themesetup

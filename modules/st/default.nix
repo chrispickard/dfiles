@@ -8,8 +8,8 @@
         patches = builtins.map super.fetchurl [
           # {
           #   url =
-          #     "https://st.suckless.org/patches/nordtheme/st-nordtheme-0.8.2.diff";
-          #   sha256 = "0ssj7gsb3snk1pqfkffwc0dshrbmvf7ffqvrdi4k2p451mnqmph1";
+          #     "https://st.suckless.org/patches/xtheme/st-xtheme-20220128-063347-st-0.8.5.diff";
+          #   sha256 = "altYga/olpyWtDVvr/VrQvflA3DrzHPjjzS5K6glIhk=";
           # }
           {
             url =
@@ -25,10 +25,10 @@
       };
     })
   ];
-  xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
-  in {
-    "${leader}+j" = "exec btf -m st-256color /home/chrispickard/bin/st-size";
-  };
+  # xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
+  # in {
+  #   "${leader}+j" = "exec btf -m st-256color /home/chrispickard/bin/st-size";
+  # };
   home.file."bin/st-size" = {
     text = ''
       #!/bin/sh

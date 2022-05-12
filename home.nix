@@ -27,17 +27,17 @@ in {
   targets.genericLinux.enable = true;
 
   imports = [
-    ./modules/git
     ./modules/jq.nix
+    ./modules/git
     ./modules/zsh
     ./modules/tmux.nix
     ./modules/vim
     ./modules/spacemacs
     ./modules/i3.nix
     # ./termite.nix
-    # ./urxvt.nix
+    # ./modules/urxvt.nix
     ./modules/kitty.nix
-    ./modules/xterm.nix
+    # ./modules/xterm.nix
     ./modules/st/default.nix
     # ./gnome-terminal.nix
     ./modules/services.nix
@@ -60,10 +60,10 @@ in {
   # changes in each release.
 
   home.packages = with pkgs; [
-    go
+    go_1_18
     # goimports
     gopls
-    goimports
+    gotools
     lastpass-cli
     google-chrome
     chromium
@@ -115,8 +115,8 @@ in {
     _1password
     _1password-gui
     gnome3.file-roller
-    gsettings_desktop_schemas
-    # vlc
+    gsettings-desktop-schemas
+    vlc
     comma
     btf
     # jetbrains.idea-ultimate
@@ -143,6 +143,7 @@ in {
     kubectl
     tilt
     kube3d
+    zellij
   ];
   fonts.fontconfig.enable = true;
 

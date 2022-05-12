@@ -34,7 +34,7 @@ in {
 
       start = "./start.py";
       t = "./.test.sh";
-      umux = "${pkgs.tmuxp}/bin/tmuxp load -y ~/.tmuxp/work.yaml";
+      # umux = "${pkgs.tmuxp}/bin/tmuxp load -y ~/.tmuxp/work.yaml";
 
       sc = "systemctl";
       scu = "systemctl --user";
@@ -82,7 +82,7 @@ in {
       }
       {
         name = "systemctl";
-        src = "${pkgs.libudev}/share/zsh/site-functions/";
+        src = "${pkgs.udev}/share/zsh/site-functions/";
       }
       {
         name = "zsh-syntax-highlighting";
@@ -101,7 +101,7 @@ in {
       if [ -f "$HOME/.zshenv_local" ]; then
           source "$HOME/.zshenv_local"
       fi
-          '';
+    '';
     defaultKeymap = "emacs";
     initExtra = ''
       if [ -f "$HOME/.zshrc_local" ]; then
@@ -112,7 +112,13 @@ in {
       }
 
       login1pass() {
-          eval $(lpass show 1password.com --password | op signin tangramflex)
+          eval $(lpass show 1password.com --password | op signin --account tangramflex)
+      }
+
+      totp() {
+         login1pass
+         op item get --field type=otp $1 --format json | jq -r .totp | pbcopy
+         echo "totp done"
       }
 
       jumptostore () {
@@ -157,6 +163,7 @@ in {
       LESS = "-g -i -M -R -S -w -z-4 -X --mouse";
       SYSTEMD_LESS = "-g -i -M -R -S -w -z-4 -X --mouse";
       PAGER = "less";
+      HISTFILE = "${"HOME"}/.zsh_history";
       PATH = lib.makeBinPath [ "${homeDir}/dev/golang" "${homeDir}" ]
         + lib.optionalString (!config.home.emptyActivationPath)
         "\${PATH:+:}$PATH";

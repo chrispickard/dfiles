@@ -17,4 +17,48 @@
     source = ./open-firefox;
     executable = true;
   };
+
+  xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
+  in {
+    "${leader}+c" = "exec open-qutebrowser";
+    # "${leader}+h" = ''exec btf -m "DI2E Framework Jira" firefox'';
+    # "${leader}+h" = ''exec btf -m " - Jira" firefox'';
+  };
+
+  xdg.mimeApps = {
+    associations.added = {
+      "x-scheme-handler/http" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "x-scheme-handler/https" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "x-scheme-handler/ftp" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "x-scheme-handler/chrome" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "text/html" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "application/x-extension-htm" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "application/x-extension-html" =
+        [ "org.qutebrowser.qutebrowser.desktop" ];
+      "application/x-extension-shtml" =
+        [ "org.qutebrowser.qutebrowser.desktop" ];
+      "application/xhtml+xml" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "application/x-extension-xhtml" =
+        [ "org.qutebrowser.qutebrowser.desktop" ];
+      "application/x-extension-xht" = [ "org.qutebrowser.qutebrowser.desktop" ];
+    };
+    defaultApplications = {
+      "inode/directory" = [ "pcmanfm.desktop" ];
+      "x-scheme-handler/msteams" = [ "teams.desktop" ];
+      "x-scheme-handler/http" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "x-scheme-handler/https" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "x-scheme-handler/ftp" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "x-scheme-handler/chrome" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "text/html" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "application/x-extension-htm" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "application/x-extension-html" =
+        [ "org.qutebrowser.qutebrowser.desktop" ];
+      "application/x-extension-shtml" =
+        [ "org.qutebrowser.qutebrowser.desktop" ];
+      "application/xhtml+xml" = [ "org.qutebrowser.qutebrowser.desktop" ];
+      "application/x-extension-xhtml" =
+        [ "org.qutebrowser.qutebrowser.desktop" ];
+      "application/x-extension-xht" = [ "org.qutebrowser.qutebrowser.desktop" ];
+    };
+  };
 }

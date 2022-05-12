@@ -30,7 +30,6 @@
         overlays = [
           (import mozilla-overlay)
           (import emacs-overlay)
-          (import mozilla-overlay)
           (final: prev: { comma = import comma { inherit (prev) pkgs; }; })
           (final: prev: { btf = import btf { inherit (prev) pkgs; }; })
         ];
@@ -48,7 +47,7 @@
 
       };
 
-      joe = pkgs.callPackage pkgs.home-manager {};
+      joe = pkgs.callPackage pkgs.home-manager { };
 
       apps."${system}".joe = {
         type = "app";

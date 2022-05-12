@@ -27,7 +27,7 @@
       }
     ];
     extraConfig = ''
-      set -g terminal-overrides ',xterm-256color:Tc'
+      set -g terminal-overrides ',rxvt-unicode-256color:Tc'
       bind -n M-h select-pane -L
       bind -n M-j select-pane -D
       bind -n M-k select-pane -U
@@ -70,5 +70,5 @@
         panes:
           - focus: true
           - null
-      '';
+  '';
 }

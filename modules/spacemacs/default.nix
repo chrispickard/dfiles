@@ -29,7 +29,7 @@ in {
   # ];
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs27;
+    # package = pkgs.emacs27;
     # package = emacspkg;
     # package = pkgs.emacsPgtkGcc;
   };
@@ -141,7 +141,7 @@ in {
     };
     Service = {
       Environment = [ "XDG_RUNTIME_DIR=${config.home.homeDirectory}/.tmp" ];
-      ExecStart = "${pkgs.emacs27}/bin/emacs --fg-daemon --load ${helloMagit}";
+      ExecStart = "${pkgs.emacs}/bin/emacs --fg-daemon --load ${helloMagit}";
       Restart = "always";
     };
     Install.WantedBy = [ "default.target" ];

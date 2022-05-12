@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ xclip xsel rofi ];
+  home.packages = with pkgs; [ xclip xsel rofi autorandr ];
   services.unclutter = { enable = true; };
   xsession = {
     enable = true;
@@ -13,7 +13,7 @@
           statusCommand = "${pkgs.i3status}/bin/i3status";
           fonts = {
             names = [ "Iosevka" ];
-            size = 8.0;
+            size = 7.0;
           };
           colors = {
             separator = "#aea79f";
@@ -61,17 +61,16 @@
           # "${leader}+j" = "exec btf -m URxvt urxvt";
           # "${leader}+e" = "exec btf -m emacs@chris emacs";
           # "${leader}+c" = "exec btf -m Firefox firefox";
-          "${leader}+m" = "exec btf -m nheko ${pkgs.nheko}/bin/nheko";
-          "${leader}+s" = "exec btf -m Slack slack";
-          "${leader}+d" = "exec btf -m Discord Discord";
-          "${leader}+i" = "exec btf -m jetbrains-idea open-idea";
+          "${leader}+n" = "exec open-element";
+          "${leader}+s" = "exec open-slack";
+          # "${leader}+d" = "exec btf -m Discord Discord";
+          "${leader}+i" = "exec open-idea";
           # "${leader}+i" = ''exec btf -m "Eclipse Platform" eclipse'';
-          "${leader}+t" = ''
-            exec btf -m "Microsoft Teams" teams'';
-          "${leader}+r" = ''
-            exec btf -m "Rocket.Chat" /home/chris.pickard/bin/run-rocketchat'';
-          "${leader}+o" = ''
-            exec btf -m " - Outlook" /home/chris.pickard/bin/open-outlook.sh'';
+          # "${leader}+t" = ''exec btf -m "Microsoft Teams" teams'';
+          # "${leader}+r" = ''
+          # exec btf -m "Rocket.Chat" /home/chris.pickard/bin/run-rocketchat'';
+          # "${leader}+o" = ''
+          #   exec btf -m " - Outlook" /home/chris.pickard/bin/open-outlook.sh'';
           # "${leader}+k" = "exec btf -m Code code";
           # "${leader}+h" = ''exec btf -m "DI2E Framework Jira" firefox'';
           "${mod}+d" = "exec rofi -show run";
@@ -80,7 +79,8 @@
           "${mod}+grave" = "scratchpad show";
           "${mod}+j" = "focus left";
           "${mod}+k" = "focus down";
-          "${mod}+l" = "exec sh -c '${pkgs.i3lock}/bin/i3lock -c 222222 & sleep 5 && xset dpms force of'";
+          "${mod}+l" =
+            "exec sh -c '${pkgs.xscreensaver}/bin/xscreensaver-command -lock'";
           "${mod}+r" = "mode resize";
           "${mod}+semicolon" = "focus right";
           "${mod}+Left" = "focus left";
@@ -123,6 +123,25 @@
           "${mod}+Shift+8" = "move container to workspace 8";
           "${mod}+Shift+9" = "move container to workspace 9";
           "${mod}+Shift+0" = "move container to workspace 10";
+
+          # gnome control
+          "Super+d" = "exec gnome-control-center displays";
+          "Super+b" = "exec gnome-control-center bluetooth";
+          "Super+s" = "exec gnome-control-center sound";
+
+          "XF86AudioRaiseVolume " =
+            "exec --no-startup-id ${pkgs.pulsemixer}/bin/pulsemixer --change-volume +5";
+          "XF86AudioLowerVolume " =
+            "exec --no-startup-id ${pkgs.pulsemixer}/bin/pulsemixer --change-volume -5";
+          "XF86AudioMute" =
+            "exec --no-startup-id ${pkgs.pulsemixer}/bin/pulsemixer --toggle-mute";
+          "XF86MonBrightnessUp" = "exec xbacklight -inc 20";
+          "XF86MonBrightnessDown" = "exec xbacklight -dec 20";
+
+          "XF86AudioPlay" = "exec playerctl play";
+          "XF86AudioPause" = "exec playerctl pause";
+          "XF86AudioNext" = "exec playerctl next";
+          "XF86AudioPrev" = "exec playerctl previous";
           "${mod}+Shift+r" = "restart";
           "${mod}+Shift+q" = "kill";
           "${mod}+Shift+e" = ''
@@ -143,11 +162,18 @@
             notification = false;
           }
           {
+            command = "xscreensaver &";
+            notification = false;
+          }
+          {
+            command = "${pkgs.unclutter-xfixes}/bin/unclutter --fork";
+            notification = false;
+          }
+          {
             command = let
               wallpaper = builtins.fetchurl {
-                url =
-                  "https://unsplash.com/photos/rCbdp8VCYhQ/download?force=true";
-                sha256 = "1jy1vkv29hfgacir8dc9rbkzaq9ihsgpwkdm1jviy5g34kw3czwp";
+                url = "https://www.pexels.com/photo/1072179/download";
+                sha256 = "0w4f20yki4rbbd1zdx8f136w4rqd8sc88ncp6z5y2jx4dv2xq5aj";
               };
             in "feh --bg-center ${wallpaper}";
             notification = false;
