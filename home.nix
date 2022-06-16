@@ -67,15 +67,15 @@ in {
     lastpass-cli
     google-chrome
     chromium
-    trivy
+    # trivy
     delve
     gcc
-    nodePackages.node2nix
-    terraform
-    terraform-lsp
+    # nodePackages.node2nix
+    # terraform
+    # terraform-lsp
     iosevka
     source-code-pro
-    tmate
+    # tmate
     openssl
     sshuttle
     feh
@@ -86,16 +86,16 @@ in {
     zlib
     fd
     entr
-    vgo2nix
+    # vgo2nix
     nodejs
     nixfmt
     rnix-lsp
     nixpkgs-fmt
-    slack
+    # slack
     pandoc
-    nodePackages.npm
-    nodePackages.prettier
-    shfmt
+    # nodePackages.npm
+    # nodePackages.prettier
+    # shfmt
     scrot
     bashInteractive
     nodePackages.bash-language-server
@@ -107,7 +107,7 @@ in {
     # python38Packages.pyls-black
     black
     awscli2
-    ansible
+    # ansible
     youtube-dl
     mailspring
     libsecret
@@ -128,11 +128,11 @@ in {
     dive
     docker-compose
     docker-credential-helpers
-    skopeo
-    kotlin
-    kafkacat
-    protobuf3_12
-    go-protobuf
+    # skopeo
+    # kotlin
+    # kafkacat
+    # protobuf3_12
+    # go-protobuf
     rustup
     rust-analyzer
     zig
@@ -143,7 +143,8 @@ in {
     kubectl
     tilt
     kube3d
-    zellij
+    just
+    # zellij
   ];
   fonts.fontconfig.enable = true;
 

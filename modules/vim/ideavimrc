@@ -1,6 +1,8 @@
 " Selected Intellimacs modules
 
 source ~/.intellimacs/spacemacs.vim
+source ~/.intellimacs/major.vim
+source ~/.intellimacs/extra.vim
 
 source ~/.intellimacs/which-key.vim
 
@@ -12,7 +14,6 @@ set surround
 set multiple-cursors
 set commentary
 set argtextobj
-set easymotion
 set textobj-entire
 set ReplaceWithRegister
 
@@ -45,6 +46,7 @@ nnoremap <A-;>    :action RecentFiles<CR>
 vnoremap <A-;>    :action RecentFiles<CR>
 nnoremap <A-m>    :action NextSplitter<CR>
 vnoremap <A-m>    :action NextSplitter<CR>
+nnoremap <C-S-,>    :action DebugClass<CR>
 set ideajoin
 
 vmap s S

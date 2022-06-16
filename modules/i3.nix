@@ -158,7 +158,7 @@
 
         startup = [
           {
-            command = "xset r rate 200 100";
+            command = "xset r rate 200 150";
             notification = false;
           }
           {

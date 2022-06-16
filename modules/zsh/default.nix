@@ -9,6 +9,8 @@ let
     (builtins.readFile ./_podman);
   labCompletion = pkgs.writeTextDir "share/zsh/site-functions/lab.plugin.zsh"
     (builtins.readFile ./_lab);
+  justCompletion = pkgs.writeTextDir "share/zsh/site-functions/just.plugin.zsh"
+    (builtins.readFile ./_just);
 in {
   home.packages = with pkgs; [ perl ];
   programs.zsh = {
@@ -70,6 +72,11 @@ in {
         name = "podman";
         file = "podman.plugin.zsh";
         src = "${podmanCompletion}/share/zsh/site-functions/";
+      }
+      {
+        name = "just";
+        file = "just.plugin.zsh";
+        src = "${justCompletion}/share/zsh/site-functions/";
       }
       {
         name = "lab";
