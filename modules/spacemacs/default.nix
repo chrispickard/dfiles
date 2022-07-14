@@ -6,16 +6,19 @@ let
       (epkgs: [ epkgs.vterm ]));
 
   helloMagit = pkgs.writeText "hello-magit.el" ''
+    (require 'frames-only-mode)
+    (frames-only-mode)
     (setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
     (require 'magit)
     (defun hello-magit ()
       (magit-status (magit-toplevel (pwd))))
     (defun hello-magit-gui ()
-      (select-frame-set-input-focus (make-frame))
+      # (select-frame-set-input-focus (make-frame))
       (magit-status (magit-toplevel (pwd))))
 
-    (defadvice magit-mode-bury-buffer (after kill-frame-also activate)
-      (spacemacs/frame-killer))
+
+    # (defadvice magit-mode-bury-buffer (after kill-frame-also activate)
+    #   (spacemacs/frame-killer))
     (setq frame-title-format '("Magit"))
     (setq inhibit-splash-screen t)
   '';
@@ -88,16 +91,14 @@ in {
   home.file."bin/magit" = {
     text = ''
       #!/bin/sh
-      termacs -e '(hello-magit)'
+      XDG_RUNTIME_DIR=~/.tmp TERM=xterm-24bit emacsclient -t -e '(hello-magit)'
     '';
     executable = true;
   };
   home.file."bin/magit-float" = {
     text = ''
       #!/bin/sh
-      XDG_RUNTIME_DIR=~/.tmp emacsclient \
-        -c -F '((name . "Magit") (width . 100) (height . 40) (font . "Iosevka-16"))' \
-        -e '(hello-magit)'
+      XDG_RUNTIME_DIR=~/.tmp emacsclient -c -e '(setq frame-title-format (quote ("Magit")))' -e '(hello-magit)'
     '';
     executable = true;
   };

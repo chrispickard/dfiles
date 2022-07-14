@@ -40,7 +40,9 @@ vmap <C-e> $
 
 nmap gs :action Tool_External Tools_magit<CR>
 vmap gs :action Tool_External Tools_magit<CR>
-
+nmap gq :action com.andrewbrookins.idea.wrap.WrapParagraphAction<CR>
+nmap <A-q> :action com.andrewbrookins.idea.wrap.WrapParagraphAction<CR>
+imap <A-q> <C-o>:action com.andrewbrookins.idea.wrap.WrapParagraphAction<CR>
 
 nnoremap <A-;>    :action RecentFiles<CR>
 vnoremap <A-;>    :action RecentFiles<CR>

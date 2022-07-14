@@ -1,9 +1,13 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = [ pkgs.neovim-remote pkgs.tree-sitter pkgs.page pkgs.lua pkgs.gnvim];
+  home.packages =
+    [ pkgs.neovim-remote pkgs.tree-sitter pkgs.page pkgs.lua pkgs.gnvim ];
 
-  home.sessionVariables = { MANPAGER = "nvim -c MANPAGER -"; MANWIDTH="999"; };
+  home.sessionVariables = {
+    MANPAGER = "nvim -c MANPAGER -";
+    MANWIDTH = "999";
+  };
   programs.neovim = {
     # package = pkgs.neovim-nightly;
     enable = true;
@@ -97,7 +101,7 @@
         }
       end
 
-      
+
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil

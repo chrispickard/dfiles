@@ -5,7 +5,7 @@
 
 
 sanitise tridactyllocal tridactylsync
-set smoothscroll true
+" set smoothscroll true
 colorscheme base16-nord
 " set theme dark
 " " set newtab about:newtab

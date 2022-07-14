@@ -21,6 +21,8 @@ let
       --unset DESKTOP_STARTUP_ID
     '';
   });
+  onepass =
+    pkgs._1password-gui.override ({ polkitPolicyOwners = [ "chrispickard" ]; });
 in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -67,6 +69,7 @@ in {
     lastpass-cli
     google-chrome
     chromium
+    microsoft-edge-beta
     # trivy
     delve
     gcc
@@ -112,8 +115,6 @@ in {
     mailspring
     libsecret
     gnome3.zenity
-    _1password
-    _1password-gui
     gnome3.file-roller
     gsettings-desktop-schemas
     vlc
@@ -144,6 +145,7 @@ in {
     tilt
     kube3d
     just
+    # onepass
     # zellij
   ];
   fonts.fontconfig.enable = true;

@@ -295,6 +295,7 @@
    dotspacemacs-pretty-docs nil
    dotspacemacs-use-spacelpa nil
    dotspacemacs-additional-packages '((tridactyl-mode :location (recipe :fetcher github :repo "Fuco1/tridactyl-mode"))
+                                      frames-only-mode
                                       (term-cursor :location (recipe :fetcher github :repo "h0d/term-cursor.el" ))
                                       direnv
                                       company-flx

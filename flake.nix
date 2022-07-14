@@ -17,7 +17,10 @@
       url = "github:mozilla/nixpkgs-mozilla";
       flake = false;
     };
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -39,23 +42,32 @@
       work_user = "chrispickard";
     in {
       homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
-        inherit system pkgs;
-        homeDirectory = "/home/${user}";
-        username = "${user}";
-        stateVersion = "21.11";
-
-        configuration.imports = [ ./home.nix ];
-
+        inherit pkgs;
+        modules = [
+          ./home.nix
+          {
+            home = {
+              username = "${user}";
+              homeDirectory = "/home/${user}";
+              stateVersion = "22.05";
+            };
+          }
+        ];
       };
-      homeConfigurations."${work_user}" = home-manager.lib.homeManagerConfiguration {
-        inherit system pkgs;
-        homeDirectory = "/home/${work_user}";
-        username = "${work_user}";
-        stateVersion = "21.11";
-
-        configuration.imports = [ ./home.nix ];
-
-      };
+      homeConfigurations."${work_user}" =
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./home.nix
+            {
+              home = {
+                username = "${work_user}";
+                homeDirectory = "/home/${work_user}";
+                stateVersion = "22.05";
+              };
+            }
+          ];
+        };
 
       joe = pkgs.callPackage pkgs.home-manager { };
 
