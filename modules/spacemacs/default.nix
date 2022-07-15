@@ -13,12 +13,8 @@ let
     (defun hello-magit ()
       (magit-status (magit-toplevel (pwd))))
     (defun hello-magit-gui ()
-      # (select-frame-set-input-focus (make-frame))
       (magit-status (magit-toplevel (pwd))))
 
-
-    # (defadvice magit-mode-bury-buffer (after kill-frame-also activate)
-    #   (spacemacs/frame-killer))
     (setq frame-title-format '("Magit"))
     (setq inhibit-splash-screen t)
   '';

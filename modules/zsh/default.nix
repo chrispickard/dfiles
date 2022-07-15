@@ -180,8 +180,11 @@ in {
   programs.bash = {
     enable = true;
     sessionVariables = {
-      PATH = lib.makeBinPath [ "${homeDir}/dev/golang" "${homeDir}" ]
-        + lib.optionalString (!config.home.emptyActivationPath)
+      PATH = lib.makeBinPath [
+        "${homeDir}/dev/golang"
+        "${homeDir}"
+        "${homeDir}/.cargo"
+      ] + lib.optionalString (!config.home.emptyActivationPath)
         "\${PATH:+:}$PATH";
     };
   };
