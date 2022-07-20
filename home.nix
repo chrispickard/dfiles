@@ -30,6 +30,7 @@ in {
 
   imports = [
     ./modules/jq.nix
+    ./modules/espanso.nix
     ./modules/git
     ./modules/zsh
     ./modules/tmux.nix
@@ -94,10 +95,10 @@ in {
     nixfmt
     rnix-lsp
     nixpkgs-fmt
-    # slack
+    slack
     pandoc
     # nodePackages.npm
-    # nodePackages.prettier
+    nodePackages.prettier
     # shfmt
     scrot
     bashInteractive

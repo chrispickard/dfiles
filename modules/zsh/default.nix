@@ -171,8 +171,11 @@ in {
       SYSTEMD_LESS = "-g -i -M -R -S -w -z-4 -X --mouse";
       PAGER = "less";
       HISTFILE = "${"HOME"}/.zsh_history";
-      PATH = lib.makeBinPath [ "${homeDir}/dev/golang" "${homeDir}" ]
-        + lib.optionalString (!config.home.emptyActivationPath)
+      PATH = lib.makeBinPath [
+        "${homeDir}/dev/golang"
+        "${homeDir}/.cargo"
+        "${homeDir}"
+      ] + lib.optionalString (!config.home.emptyActivationPath)
         "\${PATH:+:}$PATH";
       # SSH_AUTH_SOCK = "/run/user/\${UID}/keyring/ssh";
     };

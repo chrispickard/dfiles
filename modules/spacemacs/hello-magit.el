@@ -1,0 +1,11 @@
+(require 'frames-only-mode)
+(frames-only-mode)
+(setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
+(require 'magit)
+(defun hello-magit ()
+  (magit-status (magit-toplevel (pwd))))
+(defun hello-magit-gui ()
+  (magit-status (magit-toplevel (pwd))))
+
+(setq frame-title-format '("Magit"))
+(setq inhibit-splash-screen t)
