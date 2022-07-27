@@ -130,7 +130,7 @@ in {
     dive
     docker-compose
     docker-credential-helpers
-    # skopeo
+    skopeo
     # kotlin
     # kafkacat
     # protobuf3_12
