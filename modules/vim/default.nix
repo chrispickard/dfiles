@@ -5,8 +5,8 @@
     [ pkgs.neovim-remote pkgs.tree-sitter pkgs.page pkgs.lua pkgs.gnvim ];
 
   home.sessionVariables = {
-    MANPAGER = "nvim -c MANPAGER -";
-    MANWIDTH = "999";
+    # MANPAGER = "nvim -c MANPAGER -";
+    # MANWIDTH = "999";
   };
   programs.neovim = {
     # package = pkgs.neovim-nightly;

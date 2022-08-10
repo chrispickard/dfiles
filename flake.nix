@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-22.05";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,14 +24,19 @@
     };
   };
 
-  outputs =
-    { self, nixpkgs, home-manager, mozilla-overlay, emacs-overlay, comma, btf }:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, mozilla-overlay
+    , emacs-overlay, comma, btf }:
     let
       system = "x86_64-linux";
+      overlay-stable = final: prev: {
+        stable =
+          nixpkgs-stable.legacyPackages.${prev.system}; # considering nixpkgs-unstable is an input registered before.
+      };
       pkgs = import nixpkgs {
         inherit system;
         inherit (pkgs) lib;
         overlays = [
+          overlay-stable
           (import mozilla-overlay)
           (import emacs-overlay)
           (final: prev: { comma = import comma { inherit (prev) pkgs; }; })

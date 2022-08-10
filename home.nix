@@ -77,7 +77,7 @@ in {
     # nodePackages.node2nix
     # terraform
     # terraform-lsp
-    iosevka
+    pkgs.stable.iosevka
     source-code-pro
     # tmate
     openssl
@@ -96,6 +96,7 @@ in {
     rnix-lsp
     nixpkgs-fmt
     slack
+    discord
     pandoc
     # nodePackages.npm
     nodePackages.prettier
