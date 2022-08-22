@@ -32,7 +32,7 @@ in {
       switch =
         "rm ~/.config/mimeapps.list || true && cd ~/dfiles && home-manager --flake . switch && exec zsh";
       update =
-        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && nix flake update && home-manager --flake . switch && exec zsh";
+        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && nix registry remove nixpkgs && nix registry pin nixpkgs && nix flake update && home-manager --flake . switch && exec zsh";
 
       start = "./start.py";
       t = "./.test.sh";

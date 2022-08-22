@@ -77,7 +77,7 @@ in {
     # nodePackages.node2nix
     # terraform
     # terraform-lsp
-    pkgs.stable.iosevka
+    iosevka
     source-code-pro
     # tmate
     openssl

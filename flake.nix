@@ -36,6 +36,7 @@
         inherit system;
         inherit (pkgs) lib;
         overlays = [
+          # to use the stable overlay, use something like pkgs.stable.iosevka
           overlay-stable
           (import mozilla-overlay)
           (import emacs-overlay)
