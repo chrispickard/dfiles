@@ -128,14 +128,15 @@ bind <C-h> unfocus
 " bindurl news.* G open
 
 " bind --mode=ignore I mode normal
- bind / fillcmdline find
- bind ? fillcmdline find -?
- bind n findnext 1
- bind N findnext -1
- bind <Space>sc nohlsearch
- unbindurl overcast.fm <Space>sc
- unbindurl youtube.com <Space>sc
- unbindurl infinitelooper.com <Space>sc
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+bind <Space>sc nohlsearch
+unbindurl overcast.fm <Space>sc
+unbindurl youtube.com <Space>sc
+unbindurl infinitelooper.com <Space>sc
+unbindurl open.spotify.com <Space>sc
 " bindurl www.google.com f hint -Jc .rc > .r > a
 
 " set tabopenpos next
