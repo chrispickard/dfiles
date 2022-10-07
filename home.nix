@@ -116,8 +116,8 @@ in {
     youtube-dl
     mailspring
     libsecret
-    gnome3.zenity
-    gnome3.file-roller
+    gnome.zenity
+    gnome.file-roller
     gsettings-desktop-schemas
     vlc
     comma

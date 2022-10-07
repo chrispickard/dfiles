@@ -44,12 +44,12 @@
       };
     };
   };
-  systemd.user.services.blackd = {
-    Unit.Description = "blackd: the uncompromising code formatter";
-    Service = {
-      ExecStart = "${pkgs.python38Packages.black}/bin/blackd";
-      Restart = "on-failure";
-    };
-    Install.WantedBy = [ "default.target" ];
-  };
+  # systemd.user.services.blackd = {
+  #   Unit.Description = "blackd: the uncompromising code formatter";
+  #   Service = {
+  #     ExecStart = "${pkgs.python38Packages.black}/bin/blackd";
+  #     Restart = "on-failure";
+  #   };
+  #   Install.WantedBy = [ "default.target" ];
+  # };
 }

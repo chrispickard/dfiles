@@ -61,6 +61,7 @@ unbindurl mail.google.com m
 unbindurl mail.google.com r
 unbindurl mail.google.com R
 unbindurl mail.google.com v
+unbindurl mail.google.com <C-d>
 unbindurl keep.google.com j
 unbindurl keep.google.com k
 unbindurl keep.google.com z
@@ -137,6 +138,7 @@ unbindurl overcast.fm <Space>sc
 unbindurl youtube.com <Space>sc
 unbindurl infinitelooper.com <Space>sc
 unbindurl open.spotify.com <Space>sc
+unbindurl mail.google.com <Space>sc
 " bindurl www.google.com f hint -Jc .rc > .r > a
 
 " set tabopenpos next
