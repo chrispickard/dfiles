@@ -3,10 +3,7 @@
 {
   home.packages = [ pkgs.tree-sitter pkgs.page pkgs.lua pkgs.gnvim ];
 
-  home.sessionVariables = {
-    MANPAGER = "nvim -c MANPAGER -";
-    MANWIDTH = "999";
-  };
+  home.sessionVariables = { MANPAGER = "nvim +Man!"; };
   programs.neovim = {
     # package = pkgs.stable.neovim;
     enable = true;
@@ -22,7 +19,7 @@
       lightline-vim
       vim-nix
       vim-markdown
-      vim-manpager
+      # vim-manpager
       nvim-cmp
       cmp-nvim-lsp
       cmp_luasnip

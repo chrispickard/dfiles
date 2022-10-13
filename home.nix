@@ -51,7 +51,7 @@ in {
     ./modules/vscode.nix
     ./modules/jira
     ./modules/firefox
-    ./modules/qutebrowser
+    # ./modules/qutebrowser
   ];
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
