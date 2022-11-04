@@ -1,7 +1,22 @@
 { config, lib, pkgs, ... }:
 
-{
-  home.packages = with pkgs; [ xclip xsel rofi autorandr ];
+let
+  polybar-overlay = pkgs.polybar.override { i3Support = true; };
+  poly_launch = pkgs.writeShellScriptBin "launch_polybar" ''
+    if type "xrandr"; then
+      for m in $(${pkgs.xorg.xrandr}/bin/xrandr --query | grep " connected" | cut -d" " -f1); do
+        MONITOR=$m ${polybar-overlay}/bin/polybar --reload example &
+      done
+    else
+        ${polybar-overlay}/bin/polybar --reload example &
+    fi
+  '';
+in {
+  home.packages = with pkgs; [ xclip xsel rofi autorandr polybar-overlay ];
+  #  xdg.configFile."polybar/config.ini" = {
+  #    source = ./config.ini;
+  #    # recursive = true;
+  #  };
   services.unclutter = { enable = true; };
   xsession = {
     enable = true;
@@ -11,9 +26,14 @@
         modifier = "Mod4";
         bars = [{
           statusCommand = "${pkgs.i3status}/bin/i3status";
+          #          statusCommand = "${poly_launch}/bin/launch_polybar";
+          #          position = "bottom";
+          #          command = "${pkgs.i3}/bin/i3bar";
+          #          workspaceButtons = false;
+          #          trayOutput = "none";
           fonts = {
             names = [ "Iosevka" ];
-            size = 7.0;
+            size = 9.0;
           };
           colors = {
             separator = "#aea79f";
@@ -53,34 +73,16 @@
           mod = config.modifier;
           leader = "Mod1 + Shift";
         in {
-          # "${leader}+j" = "exec btf -m Gnome-terminal gnome-terminal";
-          # "${leader}+j" = "exec btf -m XTerm xterm";
-          # "${leader}+j" =
-          #   "exec btf -m \"kitty@chris\" kitty";
-          # "${leader}+j" = "exec btf -m UXTerm uxterm";
-          # "${leader}+j" = "exec btf -m URxvt urxvt";
-          # "${leader}+e" = "exec btf -m emacs@chris emacs";
-          # "${leader}+c" = "exec btf -m Firefox firefox";
           "${leader}+n" = "exec open-element";
           "${leader}+s" = "exec open-slack";
-          # "${leader}+d" = "exec btf -m Discord Discord";
+          "${leader}+d" = "exec open-discord";
           "${leader}+i" = "exec open-idea";
-          # "${leader}+i" = ''exec btf -m "Eclipse Platform" eclipse'';
-          # "${leader}+t" = ''exec btf -m "Microsoft Teams" teams'';
-          # "${leader}+r" = ''
-          # exec btf -m "Rocket.Chat" /home/chris.pickard/bin/run-rocketchat'';
-          # "${leader}+o" = ''
-          #   exec btf -m " - Outlook" /home/chris.pickard/bin/open-outlook.sh'';
-          # "${leader}+k" = "exec btf -m Code code";
-          # "${leader}+h" = ''exec btf -m "DI2E Framework Jira" firefox'';
-          "${mod}+d" = "exec rofi -show run";
+          "${mod}+space" = "exec rofi -show drun";
 
           "${mod}+Shift+grave" = "move scratchpad";
           "${mod}+grave" = "scratchpad show";
           "${mod}+j" = "focus left";
           "${mod}+k" = "focus down";
-          "${mod}+l" =
-            "exec sh -c '${pkgs.xscreensaver}/bin/xscreensaver-command -lock'";
           "${mod}+r" = "mode resize";
           "${mod}+semicolon" = "focus right";
           "${mod}+Left" = "focus left";
@@ -98,11 +100,9 @@
           "${mod}+h" = "split h";
           "${mod}+v" = "split v";
           "${mod}+f" = "fullscreen";
-          "${mod}+s" = "layout stacking";
           "${mod}+t" = "layout tabbed";
           "${mod}+e" = "layout toggle split";
           "${mod}+Shift+f" = "floating toggle";
-          "${mod}+space" = "focus mode_toggle";
           "${mod}+1" = "workspace 1";
           "${mod}+2" = "workspace 2";
           "${mod}+3" = "workspace 3";
@@ -125,23 +125,10 @@
           "${mod}+Shift+0" = "move container to workspace 10";
 
           # gnome control
-          "Super+d" = "exec gnome-control-center displays";
-          "Super+b" = "exec gnome-control-center bluetooth";
-          "Super+s" = "exec gnome-control-center sound";
+          "${mod}+d" = "exec gnome-control-center --class=floating display";
+          "${mod}+b" = "exec gnome-control-center --class=floating bluetooth";
+          "${mod}+s" = "exec gnome-control-center --class=floating sound";
 
-          "XF86AudioRaiseVolume " =
-            "exec --no-startup-id ${pkgs.pulsemixer}/bin/pulsemixer --change-volume +5";
-          "XF86AudioLowerVolume " =
-            "exec --no-startup-id ${pkgs.pulsemixer}/bin/pulsemixer --change-volume -5";
-          "XF86AudioMute" =
-            "exec --no-startup-id ${pkgs.pulsemixer}/bin/pulsemixer --toggle-mute";
-          "XF86MonBrightnessUp" = "exec xbacklight -inc 20";
-          "XF86MonBrightnessDown" = "exec xbacklight -dec 20";
-
-          "XF86AudioPlay" = "exec playerctl play";
-          "XF86AudioPause" = "exec playerctl pause";
-          "XF86AudioNext" = "exec playerctl next";
-          "XF86AudioPrev" = "exec playerctl previous";
           "${mod}+Shift+r" = "restart";
           "${mod}+Shift+q" = "kill";
           "${mod}+Shift+e" = ''
@@ -189,6 +176,7 @@
         no_focus [title="Microsoft Teams Notification"]
         for_window [class="Firefox" title="Developer Tools"] resize set 900 480
         client.focused          #4c7899 #285577 #ffffff #2e9ef4   #1E272C
+        for_window [class="^.*"] border pixel 1
       '';
     };
 
@@ -214,7 +202,8 @@
   home.file."bin/open-idea" = {
     text = ''
       #!/bin/sh
-      ${pkgs.steam-run}/bin/steam-run idea-ultimate
+      . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+      btf -m jetbrains-idea idea-ultimate
     '';
     executable = true;
   };
@@ -229,6 +218,23 @@
     text = ''
       #!/bin/sh
       xclip -sel clipboard -o $@
+    '';
+    executable = true;
+  };
+  home.file."bin/open-slack" = {
+    text = ''
+      #!/bin/sh
+      . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+      btf -m Slack slack
+    '';
+    executable = true;
+  };
+
+  home.file."bin/open-discord" = {
+    text = ''
+      #!/bin/sh
+      . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+      btf -m Discord discord
     '';
     executable = true;
   };

@@ -14,14 +14,14 @@
       };
     })
   ];
-  # xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
-  # in {
-  #   "${leader}+j" = "exec btf -m st-256color /home/chrispickard/bin/st-size";
-  # };
+  xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
+  in {
+    "${leader}+j" = "exec btf -m st-256color /home/chrispickard/bin/st-size";
+  };
   home.file."bin/st-size" = {
     text = ''
       #!/bin/sh
-      st -f "Iosevka:size=18"
+      st -f "Iosevka:size=17"
     '';
     executable = true;
   };

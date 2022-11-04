@@ -1,14 +1,25 @@
 { config, pkgs, ... }:
+let
+  f = pkgs.wrapFirefox pkgs.firefox-bin-unwrapped {
+    wmClass = "defaultdefaultdefault";
+  };
 
-{
+  ffox = pkgs.writeShellScriptBin "ffox" ''
+    ${f}/bin/firefox --class defaultdefaultdefault -P default $@
+  '';
+
+  otherfox = pkgs.writeShellScriptBin "otherfox" ''
+    ${f}/bin/firefox --class otherfox -P otherfox $@
+  '';
+
+in {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-bin;
-    # package = pkgs.firefox-bin;
+    package = f;
   };
+  home.packages = with pkgs; [ ffox otherfox ];
   home.file.".mozilla/native-messaging-hosts/tridactyl.json".source =
     "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
-  # xdg.configFile."tridactyl/tridactylrc".source = ./tridactylrc;
   xdg.configFile."tridactyl" = {
     source = ./tridactyl;
     # recursive = true;
@@ -16,9 +27,8 @@
 
   xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
   in {
-    "${leader}+o" = "exec btf -m Firefox firefox";
-    # "${leader}+h" = ''exec btf -m "DI2E Framework Jira" firefox'';
-    # "${leader}+h" = ''exec btf -m " - Jira" firefox'';
+    "${leader}+c" = "exec btf -m defaultdefaultdefault ${ffox}/bin/ffox";
+    "${leader}+o" = "exec btf -m otherfox ${otherfox}/bin/otherfox";
   };
 
   xdg.mimeApps = {

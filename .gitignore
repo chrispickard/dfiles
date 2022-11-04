@@ -4,3 +4,4 @@ result/
 /joe/joe
 /.direnv/
 *.~undo-tree~
+*.iml

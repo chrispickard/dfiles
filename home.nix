@@ -21,8 +21,8 @@ let
       --unset DESKTOP_STARTUP_ID
     '';
   });
-  onepass =
-    pkgs._1password-gui.override ({ polkitPolicyOwners = [ "chrispickard" ]; });
+  # onepass =
+  #   pkgs._1password-gui-beta.override ({ polkitPolicyOwners = [ "chrispickard" ]; });
 in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -36,7 +36,7 @@ in {
     ./modules/tmux.nix
     ./modules/vim
     ./modules/spacemacs
-    ./modules/i3.nix
+    ./modules/i3
     # ./termite.nix
     # ./modules/urxvt.nix
     ./modules/kitty.nix

@@ -65,7 +65,7 @@
     '';
     executable = true;
   };
-  xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
+  #xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
   # in { "${leader}+j" = ''exec btf -m kitty@chris /home/chris.pickard/bin/kitty-with-class''; };
-  in { "${leader}+j" = ''exec open-kitty''; };
+  #in { "${leader}+j" = ''exec open-kitty''; };
 }

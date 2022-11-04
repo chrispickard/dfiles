@@ -36,7 +36,7 @@ in {
 
       start = "./start.py";
       t = "./.test.sh";
-      # umux = "${pkgs.tmuxp}/bin/tmuxp load -y ~/.tmuxp/work.yaml";
+      umux = "${pkgs.tmuxp}/bin/tmuxp load -y ~/.tmuxp/work.yaml";
 
       sc = "systemctl";
       scu = "systemctl --user";
