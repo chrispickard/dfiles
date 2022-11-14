@@ -147,6 +147,7 @@ in {
     tilt
     kube3d
     just
+    openfortivpn
     # onepass
     # zellij
   ];

@@ -1,22 +1,7 @@
 { config, lib, pkgs, ... }:
 
-let
-  polybar-overlay = pkgs.polybar.override { i3Support = true; };
-  poly_launch = pkgs.writeShellScriptBin "launch_polybar" ''
-    if type "xrandr"; then
-      for m in $(${pkgs.xorg.xrandr}/bin/xrandr --query | grep " connected" | cut -d" " -f1); do
-        MONITOR=$m ${polybar-overlay}/bin/polybar --reload example &
-      done
-    else
-        ${polybar-overlay}/bin/polybar --reload example &
-    fi
-  '';
-in {
-  home.packages = with pkgs; [ xclip xsel rofi autorandr polybar-overlay ];
-  #  xdg.configFile."polybar/config.ini" = {
-  #    source = ./config.ini;
-  #    # recursive = true;
-  #  };
+{
+  home.packages = with pkgs; [ xclip xsel rofi autorandr ];
   services.unclutter = { enable = true; };
   xsession = {
     enable = true;
@@ -26,11 +11,6 @@ in {
         modifier = "Mod4";
         bars = [{
           statusCommand = "${pkgs.i3status}/bin/i3status";
-          #          statusCommand = "${poly_launch}/bin/launch_polybar";
-          #          position = "bottom";
-          #          command = "${pkgs.i3}/bin/i3bar";
-          #          workspaceButtons = false;
-          #          trayOutput = "none";
           fonts = {
             names = [ "Iosevka" ];
             size = 9.0;
@@ -81,23 +61,10 @@ in {
 
           "${mod}+Shift+grave" = "move scratchpad";
           "${mod}+grave" = "scratchpad show";
-          "${mod}+j" = "focus left";
-          "${mod}+k" = "focus down";
+          "${mod}+h" = "focus left";
+          "${mod}+j" = "focus down";
           "${mod}+r" = "mode resize";
-          "${mod}+semicolon" = "focus right";
-          "${mod}+Left" = "focus left";
-          "${mod}+Down" = "focus down";
-          "${mod}+Up" = "focus up";
-          "${mod}+Right" = "focus right";
-          "${mod}+Shift+j" = "move left";
-          "${mod}+Shift+k" = "move down";
-          "${mod}+Shift+l" = "move up";
-          "${mod}+Shift+semicolon" = "move right";
-          "${mod}+Shift+Left" = "move left";
-          "${mod}+Shift+Down" = "move down";
-          "${mod}+Shift+Up" = "move up";
-          "${mod}+Shift+Right" = "move right";
-          "${mod}+h" = "split h";
+          "${mod}+l" = "focus right";
           "${mod}+v" = "split v";
           "${mod}+f" = "fullscreen";
           "${mod}+t" = "layout tabbed";
@@ -124,10 +91,21 @@ in {
           "${mod}+Shift+9" = "move container to workspace 9";
           "${mod}+Shift+0" = "move container to workspace 10";
 
+          "${mod}+Shift+h" = "move left";
+          "${mod}+Shift+j" = "move down";
+          "${mod}+Shift+k" = "move up";
+          "${mod}+Shift+l" = "move right";
+
+          "${mod}+Ctrl+Shift+h" = "move workspace to output left";
+          "${mod}+Ctrl+Shift+j" = "move workspace to output down";
+          "${mod}+Ctrl+Shift+k" = "move workspace to output up";
+          "${mod}+Ctrl+Shift+l" = "move workspace to output right";
+
           # gnome control
-          "${mod}+d" = "exec gnome-control-center --class=floating display";
-          "${mod}+b" = "exec gnome-control-center --class=floating bluetooth";
-          "${mod}+s" = "exec gnome-control-center --class=floating sound";
+          "${mod}+d" = "exec regolith-control-center --class=floating display";
+          "${mod}+b" =
+            "exec regolith-control-center --class=floating bluetooth";
+          "${mod}+s" = "exec regolith-control-center --class=floating sound";
 
           "${mod}+Shift+r" = "restart";
           "${mod}+Shift+q" = "kill";
@@ -157,6 +135,11 @@ in {
             notification = false;
           }
           {
+            command = ''
+              gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "['<Super>Escape']"'';
+            notification = false;
+          }
+          {
             command = let
               wallpaper = builtins.fetchurl {
                 url = "https://www.pexels.com/photo/1072179/download";
@@ -171,6 +154,7 @@ in {
         new_window pixel 1
         #focus_on_window_activation smart
         for_window [class="floating"] floating enable
+        for_window [class="1Password"] floating enable
         for_window [class="Firefox" title="Developer Tools"] floating enable
         for_window [title="Microsoft Teams Notification"] floating enable
         no_focus [title="Microsoft Teams Notification"]
