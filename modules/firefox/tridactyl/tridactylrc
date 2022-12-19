@@ -132,8 +132,8 @@ bind <C-h> unfocus
 " bind --mode=ignore I mode normal
 bind / fillcmdline find
 bind ? fillcmdline find -?
-bind n findnext 1
-bind N findnext -1
+bind n findnext
+bind N findnext --reverse
 bind <Space>sc nohlsearch
 unbindurl overcast.fm <Space>sc
 unbindurl youtube.com <Space>sc

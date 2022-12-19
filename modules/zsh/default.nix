@@ -2,6 +2,11 @@
 
 let
   homeDir = config.home.homeDirectory;
+  k = pkgs.kubectl.overrideAttrs (oldAttrs: {
+    postInstall = oldAttrs.postInstall or "" + ''
+      jaja
+    '';
+  });
   onepassCompletion = pkgs.writeTextDir "share/zsh/site-functions/op.plugin.zsh"
     (builtins.readFile ./_op);
   podmanCompletion =

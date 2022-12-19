@@ -6,6 +6,10 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-doom-emacs = {
+      url = "github:nix-community/nix-doom-emacs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     comma = {
       url = "github:Shopify/comma/60a4cf8ec5c93104d3cfb9fc5a5bac8fb18cc8e4";
       flake = false;
@@ -25,12 +29,12 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, mozilla-overlay
-    , emacs-overlay, comma, btf }:
+    , emacs-overlay, comma, btf, nix-doom-emacs }:
     let
       system = "x86_64-linux";
       overlay-stable = final: prev: {
         stable =
-          nixpkgs-stable.legacyPackages.${prev.system}; # considering nixpkgs-unstable is an input registered before.
+          nixpkgs-stable.legacyPackages.${prev.system}; # considering nixpkgs-stable is an input registered before.
       };
       pkgs = import nixpkgs {
         inherit system;
@@ -51,6 +55,7 @@
       homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
+          nix-doom-emacs.hmModule
           ./home.nix
           {
             home = {
@@ -65,6 +70,7 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
+          nix-doom-emacs.hmModule
             ./home.nix
             {
               home = {
