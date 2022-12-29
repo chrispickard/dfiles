@@ -211,7 +211,7 @@
    ;; Emacs commands (M-x).
    ;; By default the command key is `:' so ex-commands are executed like in Vim
    ;; with `:' and Emacs commands are executed with `<leader> :'.
-   dotspacemacs-emacs-command-key ":"
+   dotspacemacs-emacs-command-key "SPC"
    ;; If non nil the paste micro-state is enabled. While enabled pressing `p`
    ;; several times cycle between the kill ring content.
    dotspacemacs-enable-paste-micro-state nil
@@ -306,6 +306,7 @@
                                       shackle
                                       ox-slack
                                       frame-purpose
+                                      evil-terminal-cursor-changer
                                       ;; solaire-mode
                                       ;; hydra-posframe
                                       evil-textobj-syntax
@@ -679,7 +680,6 @@ With a prefix ARG invokes `projectile-commander' instead of
   (spacemacs/set-leader-keys "l" 'avy-goto-line)
   (spacemacs/set-leader-keys "w/" 'split-window-right-and-focus)
   (spacemacs/set-leader-keys "w-" 'split-window-below-and-focus)
-  (spacemacs/set-leader-keys "SPC" 'imenu)
   (spacemacs/set-leader-keys "qr" 'restart-emacs)
   (spacemacs/set-leader-keys "qR" 'spacemacs/restart-emacs-resume-layouts)
   (spacemacs/set-leader-keys-for-major-mode 'typescript-mode
@@ -978,6 +978,8 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (setq flycheck-gometalinter-disable-linters '("gas"))
   (setq dotspacemacs-large-file-size 2)
   (setq lsp-go-gocode-completion-enabled t)
+  (require 'evil-terminal-cursor-changer)
+  (evil-terminal-cursor-changer-activate)
   (direnv-mode)
   ;; (require 'flycheck)
   ;; (require 'lsp-mode)

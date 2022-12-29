@@ -13,6 +13,17 @@ let
   '';
 
 in {
+  xdg.desktopEntries = {
+    ffox = {
+      name = "ffox";
+      genericName = "Web Browser";
+      exec = "${ffox}/bin/ffox %U";
+      terminal = false;
+      categories = [ "Application" "Network" "WebBrowser" ];
+      mimeType = [ "text/html" "text/xml" ];
+    };
+
+  };
   programs.firefox = {
     enable = true;
     package = f;
@@ -58,14 +69,10 @@ in {
     defaultApplications = {
       "inode/directory" = [ "pcmanfm.desktop" ];
       "x-scheme-handler/msteams" = [ "teams.desktop" ];
-      "x-scheme-handler/http" = [
-        "firefox.desktop"
-        "userapp-Firefox Developer Edition-2993P0.desktop"
-      ];
-      "x-scheme-handler/https" = [
-        "firefox.desktop"
-        "userapp-Firefox Developer Edition-2993P0.desktop"
-      ];
+      "x-scheme-handler/http" =
+        [ "ffox.desktop" "userapp-Firefox Developer Edition-2993P0.desktop" ];
+      "x-scheme-handler/https" =
+        [ "ffox.desktop" "userapp-Firefox Developer Edition-2993P0.desktop" ];
       "x-scheme-handler/ftp" =
         [ "userapp-Firefox Developer Edition-2993P0.desktop" ];
       "x-scheme-handler/chrome" = [

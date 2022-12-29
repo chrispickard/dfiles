@@ -214,6 +214,15 @@
     executable = true;
   };
 
+  home.file."bin/open-element" = {
+    text = ''
+      #!/bin/sh
+      . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+      btf -m Element ${pkgs.element-desktop}/bin/element-desktop
+    '';
+    executable = true;
+  };
+
   home.file."bin/open-discord" = {
     text = ''
       #!/bin/sh
