@@ -38,7 +38,7 @@ in {
     ./modules/i3
     # ./termite.nix
     # ./modules/urxvt.nix
-    ./modules/kitty.nix
+    # ./modules/kitty.nix
     # ./modules/xterm.nix
     ./modules/st/default.nix
     # ./gnome-terminal.nix
@@ -114,6 +114,7 @@ in {
     awscli2
     # ansible
     youtube-dl
+    obs-studio
     mailspring
     libsecret
     gnome.zenity
@@ -129,7 +130,7 @@ in {
     step-ca
     step-cli
     dive
-    docker-compose
+    # docker-compose
     docker-credential-helpers
     skopeo
     # kotlin
@@ -148,6 +149,7 @@ in {
     kube3d
     just
     openfortivpn
+    zotero
     # zellij
   ];
   fonts.fontconfig.enable = true;

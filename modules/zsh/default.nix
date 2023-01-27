@@ -28,7 +28,7 @@ in {
       tree = "${pkgs.exa}/bin/exa -T";
       d = "docker";
       k = "kubectl";
-      dc = "docker-compose";
+      dc = "docker compose";
       tf = "terraform";
       o = "xdg-open";
       idea = "idea-ultimate";
@@ -56,14 +56,14 @@ in {
       }
       {
         name = "docker";
-        src = "${pkgs.docker}/share/zsh/site-functions/";
+        src = "${pkgs.docker-client}/share/zsh/site-functions/";
         file = "_docker";
       }
-      {
-        name = "kitty";
-        src = "${pkgs.kitty}/share/zsh/site-functions/";
-        file = "_kitty";
-      }
+      # {
+      #   name = "kitty";
+      #   src = "${pkgs.kitty}/share/zsh/site-functions/";
+      #   file = "_kitty";
+      # }
       {
         name = "k3d";
         src = "${pkgs.kube3d}/share/zsh/site-functions/";
