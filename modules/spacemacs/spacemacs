@@ -10,7 +10,7 @@
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
-   '(ansible
+   '(;;ansible
      systemd
      ;;perl5
      ;; asciidoc
@@ -18,30 +18,29 @@
      ;; sql
      ;; lua
      ;; ansible
-     lsp
+     ;; lsp
      xclipboard
      ;; (shell-scripts :variables
      ;;                shell-scripts-backend 'lsp)
      shell-scripts
-     shell
-     (common-lisp :variables
-                  inferior-lisp-program "/home/chrispickard/.nix-profile/bin/sbcl")
+     ;; shell
+     ;; (common-lisp :variables
+     ;;              inferior-lisp-program "/home/chrispickard/.nix-profile/bin/sbcl")
      ;; haskell
      (json :variables
            json-fmt-tool 'prettier
            js-indent-level 2
            json-fmt-on-save t)
-     (nixos
-      :variables nixos-format-on-save t)
+     nixos
      themes-megapack
      ;; ipython-notebook
      ;; nim
-     helm
+     ;; helm
      ;; (ivy
      ;;  :variables
      ;;  ivy-enable-advanced-buffer-information t)
      emoji
-     (terraform :variables terraform-backend 'lsp)
+     ;; (terraform :variables terraform-backend 'lsp)
      ;; elm
      (rust :variables
            lsp-rust-server 'rust-analyzer
@@ -78,73 +77,71 @@
           git-gutter-use-fringe t)
      (org
       :variables
-      org-enable-jira-support t
-      jiralib-url "https://jira.di2e.net"
+      org-enable-roam-support t
       org-enable-github-support t)
-     (vue
-      :variables
-      vue-backend 'lsp)
-     (node :variable
-           node-add-modules-path t)
+     ;; (vue
+     ;;  :variables
+     ;;  vue-backend 'lsp)
+     ;; (node :variable
+     ;;       node-add-modules-path t)
      (syntax-checking :variables syntax-checking-enable-by-default t)
      emacs-lisp
-     clojure
-     (docker :variables
-             docker-dockerfile-backend 'lsp)
+     ;; clojure
+     ;; (docker :variables
+     ;;         docker-dockerfile-backend 'lsp)
      markdown
-     dap
+     ;; dap
      ;; tmux
      ;; racket
-     (elfeed :variables
-             rmh-elfeed-org-files '("~/.emacs_custom/elfeed.org"))
-     (python :variables
-             python-backend 'lsp
-             python-sort-imports-on-save t
-             python-formatter 'lsp
-             python-pipenv-activate t
-             python-save-before-test t
-             python-format-on-save t)
+     ;; (elfeed :variables
+     ;;         rmh-elfeed-org-files '("~/.emacs_custom/elfeed.org"))
+     ;; (python :variables
+     ;;         python-backend 'lsp
+     ;;         python-sort-imports-on-save t
+     ;;         python-formatter 'lsp
+     ;;         python-pipenv-activate t
+     ;;         python-save-before-test t
+     ;;         python-format-on-save t)
      (restclient :variables
                   restclient-use-org t)
-     erlang
-     elasticsearch
+     ;; erlang
+     ;; elasticsearch
      ;; ruby
      elixir
 
-     (java
-      :variables
-      lsp-java-save-action-organize-imports nil
-      lsp-eldoc-render-all nil
-      lsp-highlight-symbol-at-point nil
-      java-backend 'lsp)
+     ;; (java
+     ;;  :variables
+     ;;  lsp-java-save-action-organize-imports nil
+     ;;  lsp-eldoc-render-all nil
+     ;;  lsp-highlight-symbol-at-point nil
+     ;;  java-backend 'lsp)
      ;; vinegar
-     (html :variables
-           css-enable-lsp t
-           less-enable-lsp t
-           scss-enable-lsp t
-           html-enable-lsp t)
+     ;; (html :variables
+     ;;       css-enable-lsp t
+     ;;       less-enable-lsp t
+     ;;       scss-enable-lsp t
+     ;;       html-enable-lsp t)
      (ranger :variables
              ranger-enter-with-minus t
              ;; ranger-ignored-extensions '("mkv" "iso" "mp4" "pdf" "tar" "tar.*")
              ;; ranger-max-preview-size 1
              ranger-show-dotfile t
              ranger-cleanup-on-disable t)
-     (typescript :variables
-                 typescript-fmt-on-save t
-                 typescript-fmt-tool 'prettier
-                 ;; typescript-backend 'lsp
-                 web-mode-markup-indent-offset 2
-                 web-mode-css-indent-offset 2
-                 web-mode-code-indent-offset 2
-                 web-mode-attr-indent-offset 2
-                 )
+     ;; (typescript :variables
+     ;;             typescript-fmt-on-save t
+     ;;             typescript-fmt-tool 'prettier
+     ;;             ;; typescript-backend 'lsp
+     ;;             web-mode-markup-indent-offset 2
+     ;;             web-mode-css-indent-offset 2
+     ;;             web-mode-code-indent-offset 2
+     ;;             web-mode-attr-indent-offset 2
+     ;;             )
      ;; confluence
      vimscript)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-mc
                                     evil-unimpaired
                                     company-box
-                                    forge
                                     evil-escape
                                     spaceline
                                     clojure-cheatsheet
@@ -196,7 +193,7 @@
                                :weight Regular
                                :width Regular
                                :powerline-scale 1.0
-                               :size 16.0)
+                               :size 18.0)
    dotspacemacs-mode-line-theme '(doom)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -613,47 +610,45 @@ With a prefix ARG invokes `projectile-commander' instead of
    (with-eval-after-load 'cc-mode
      (bind-map-set-keys java-mode-map
        "<S-f6>"  'lsp-rename))
-   ;; (with-eval-after-load 'nix-mode
-   ;;   (add-hook 'before-save-hook 'nix-format-buffer))
    (with-eval-after-load 'json-mode
      (setq json-fmt-tool 'prettier)
      (setq-default tab-width 2))
 
-   (with-eval-after-load 'go-mode
-     (require 'dap-go)
-     (dap-register-debug-template "Go Test Debug Package"
-                                  (list :type "go"
-                                        :request "launch"
-                                        :name "Launch Debug Package"
-                                        :mode "debug"
-                                        :program nil
-                                        :buildFlags nil
-                                        :args nil
-                                        :env nil
-                                        :envFile nil))
-     (lsp-register-custom-settings
-      '(("gopls.completeUnimported" t t)
-        ("gopls.staticcheck" t t)))
+   ;; (with-eval-after-load 'go-mode
+   ;;   (require 'dap-go)
+   ;;   (dap-register-debug-template "Go Test Debug Package"
+   ;;                                (list :type "go"
+   ;;                                      :request "launch"
+   ;;                                      :name "Launch Debug Package"
+   ;;                                      :mode "debug"
+   ;;                                      :program nil
+   ;;                                      :buildFlags nil
+   ;;                                      :args nil
+   ;;                                      :env nil
+   ;;                                      :envFile nil))
+   ;;   (lsp-register-custom-settings
+   ;;    '(("gopls.completeUnimported" t t)
+   ;;      ("gopls.staticcheck" t t)))
 
-     (bind-map-set-keys go-mode-map
-       "<S-f6>"  'go-rename))
+   ;;   (bind-map-set-keys go-mode-map
+   ;;     "<S-f6>"  'go-rename))
 
-   (with-eval-after-load 'lsp-ui
-     (bind-map-set-keys lsp-ui-mode-map
-       "M-RET"  'my/do-action))
+   ;; (with-eval-after-load 'lsp-ui
+   ;;   (bind-map-set-keys lsp-ui-mode-map
+   ;;     "M-RET"  'my/do-action))
 
-   (with-eval-after-load 'typescript-mode
-     (require 'dap-mode)
-     (require 'dap-node)
-     (dap-register-debug-template "Node::Inspect"
-                                  (list :type "node"
-                                        :port 9229
-                                        :program "oops.ts"
-                                        :request "attach"
-                                        :protocol "inspector"
-                                        :sourceMaps t
-                                        :restart t
-                                        :name "Node::Inspect")))
+   ;; (with-eval-after-load 'typescript-mode
+   ;;   (require 'dap-mode)
+   ;;   (require 'dap-node)
+   ;;   (dap-register-debug-template "Node::Inspect"
+   ;;                                (list :type "node"
+   ;;                                      :port 9229
+   ;;                                      :program "oops.ts"
+   ;;                                      :request "attach"
+   ;;                                      :protocol "inspector"
+   ;;                                      :sourceMaps t
+   ;;                                      :restart t
+   ;;                                      :name "Node::Inspect")))
 
    (bind-map-set-keys evil-normal-state-map
      "C-b" 'evil-first-non-blank
@@ -682,13 +677,13 @@ With a prefix ARG invokes `projectile-commander' instead of
   (spacemacs/set-leader-keys "w-" 'split-window-below-and-focus)
   (spacemacs/set-leader-keys "qr" 'restart-emacs)
   (spacemacs/set-leader-keys "qR" 'spacemacs/restart-emacs-resume-layouts)
-  (spacemacs/set-leader-keys-for-major-mode 'typescript-mode
-    "dd" 'enter-debug-mode
-    "d." 'dap-hydra
-    "da" 'dap-disconnect
-    "dc" 'dap-continue
-    "dn" 'dap-next
-    )
+  ;; (spacemacs/set-leader-keys-for-major-mode 'typescript-mode
+  ;;   "dd" 'enter-debug-mode
+  ;;   "d." 'dap-hydra
+  ;;   "da" 'dap-disconnect
+  ;;   "dc" 'dap-continue
+  ;;   "dn" 'dap-next
+  ;;   )
 
   ;; (add-lisp-hooks #'smartparens-strict-mode)
   ;; (add-lisp-hooks #'evil-cleverparens-mode)
@@ -712,14 +707,14 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (add-lisp-hooks #'modify-lisp-syntax)
   ;; (add-lisp-hooks #'evil-cleverparens-mode)
   ;;(add-hook 'java-mode-hook (lambda () (add-to-list 'spacemacs-jump-handlers 'helm-gtags-find-tag-from-here)))
-  (add-hook 'java-mode-hook 'semantic-mode)
+  ;; (add-hook 'java-mode-hook 'semantic-mode)
   ;; (add-hook 'elixir-mode-hook 'turn-off-smartparens)
   ;;(define-key java-mode-map (kbd "SPC-m,") '(meghanada-run-task "clean package"))
 
   (add-hook 'web-mode-hook (lambda() (define-key web-mode-map (kbd "M-;") nil)))
   ;; (add-lisp-hooks 'fix-indent)
   (add-hook 'prog-mode-hook #'yas-minor-mode)
-  (setq parinfer-extensions '(defaults pretty-parens evil smart-tab smart-yank))
+  ;; (setq parinfer-extensions '(defaults pretty-parens evil smart-tab smart-yank))
   ;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
   ;; (setq flycheck-gometalinter-vendor t)
   (setq flycheck-elixir-credo-strict t)
@@ -748,18 +743,18 @@ With a prefix ARG invokes `projectile-commander' instead of
   (add-hook 'prog-mode-hook 'company-mode)
   (add-lisp-hooks 'show-paren-mode)
 
-  (add-hook 'spacemacs-post-theme-change-hook '(lambda () (setq solarized-use-variable-pitch nil)
-                                                 (setq solarized-scale-org-headlines nil)))
-  (setq solarized-use-variable-pitch nil)
-  (setq solarized-scale-org-headlines nil)
-  (setq lsp-enable-symbol-highlighting nil)
-  (setq lsp-ui-sideline-show-hover 't)
+  ;; (add-hook 'spacemacs-post-theme-change-hook '(lambda () (setq solarized-use-variable-pitch nil)
+  ;;                                                (setq solarized-scale-org-headlines nil)))
+  ;; (setq solarized-use-variable-pitch nil)
+  ;; (setq solarized-scale-org-headlines nil)
+  ;; (setq lsp-enable-symbol-highlighting nil)
+  ;; (setq lsp-ui-sideline-show-hover 't)
   ;; (add-hook 'spacemacs-post-theme-change-hook 'remove-bolds)
   ;; (setq evil-cleverparens-use-regular-insert t)
-  (with-eval-after-load 'yasnippet
-    ;; (add-to-list 'yas-snippet-dirs "~/.emacs_custom/snippets")
-    (yas-global-mode 1)
-    (define-key yas-minor-mode-map (kbd "M-SPC") #'yas-expand))
+  ;; (with-eval-after-load 'yasnippet
+  ;;   ;; (add-to-list 'yas-snippet-dirs "~/.emacs_custom/snippets")
+  ;;   (yas-global-mode 1)
+  ;;   (define-key yas-minor-mode-map (kbd "M-SPC") #'yas-expand))
   (global-auto-revert-mode 1)
 
   (with-eval-after-load 'evil
@@ -777,8 +772,8 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;;   (setq lsp-prefer-flymake :none))
 
   (with-eval-after-load 'org
-    (add-hook 'org-mode-hook 'spacemacs/toggle-fill-column-indicator-off)
-    (add-hook 'org-mode-hook 'visual-line-mode)
+    ;; (add-hook 'org-mode-hook 'spacemacs/toggle-fill-column-indicator-off)
+    ;; (add-hook 'org-mode-hook 'visual-line-mode)
     (load-file "~/.emacs_custom/setup-org.el"))
   ;; (with-eval-after-load 'hydra
   ;;   (require 'posframe)
@@ -790,7 +785,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   (with-eval-after-load 'company
     (setq company-flx-limit 20)
     (company-flx-mode 1)
-    (setq company-idle-delay 0.2)
+    (setq company-idle-delay 0.1)
     (bind-map-set-keys company-active-map
       "C-h" nil
       "C-k" 'company-select-previous
@@ -805,7 +800,7 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;;  (setq elpy-rpc-python-command "python4")
   ;; (elpy-use-ipython)
   ;; shell script hook
-  (add-hook 'shell-script-enabled-hook #'flycheck-mode)
+  ;; (add-hook 'shell-script-enabled-hook #'flycheck-mode)
   ;; (add-hook 'visual-line-mode-hook 'visual-fill-column-mode)
 
   ;;(add-hook 'python-mode-hook 'set-python-interpreter)
@@ -834,8 +829,8 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (defadvice sotclojure-find-or-define-variable (before sotclojure-push-jump-var activate)
   ;;   (evil--jumps-push))
 
-  (defadvice meghanada-local-variable (before save-before-local-var activate)
-    (save-buffer))
+  ;; (defadvice meghanada-local-variable (before save-before-local-var activate)
+  ;;   (save-buffer))
 
   ;; when using sotlisp enter insert mode upon using the insert parens funcs
   ;; (defadvice sotlisp-newline-and-parentheses
@@ -905,27 +900,26 @@ With a prefix ARG invokes `projectile-commander' instead of
     "C-l" 'evil-complete-previous-line)
   (add-hook 'evil-evilified-state-entry-hook 'setup-evilified-state)
   (setq twittering-icon-mode t)
-  (setq twittering-use-icon-storage t)
+  ;; (setq twittering-use-icon-storage t)
 
-  (setq inferior-lisp-program "ros -Q run")
+  ;; (setq inferior-lisp-program "ros -Q run")
 
   (when (memq window-system '(mac ns x)))
 
 
   ;; (setq gofmt-command "")
-  (add-hook 'go-mode-hook 'gofmt-before-save)
+  ;; (add-hook 'go-mode-hook 'gofmt-before-save)
   ;; (add-hook 'go-mode-hook '(lambda (bind-key (kbd "<S-f6>") 'helm-mini)))
   ;; (add-hook 'go-mode-hook (lambda () (bind-key (kbd "<S-f6>") 'go-rename)))
   ;; (add-hook 'java-mode-hook (lambda () (bind-key (kbd "<S-f6>") 'lsp-rename)))
   ;; (add-hook 'lsp-hook '(setq flycheck-checker 'golangci-lint))
   ;; (setq godoc-and-godef-command "~/dev/golang/bin/gocode")
-  ;; (setq company-go-gocode-command "~/dev/golang/bin/gocode")
-  (setq cider-cljs-lein-repl
-        "(do (require 'figwheel-sidecar.repl-api)
-          (figwheel-sidecar.repl-api/start-figwheel!)
-          (figwheel-sidecar.repl-api/cljs-repl))")
+  ;; (setq cider-cljs-lein-repl
+  ;;       "(do (require 'figwheel-sidecar.repl-api)
+  ;;         (figwheel-sidecar.repl-api/start-figwheel!)
+  ;;         (figwheel-sidecar.repl-api/cljs-repl))")
 
-  (setq meghanada-javac-xlint "-Xlint:all,-processing")
+  ;; (setq meghanada-javac-xlint "-Xlint:all,-processing")
 
   (setq dotspacemacs-frame-title-format "emacs@chris")
 

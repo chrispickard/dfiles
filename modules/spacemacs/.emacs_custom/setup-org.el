@@ -65,14 +65,14 @@
 
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
 
-(require 'elfeed-org)
-(elfeed-org)
-(setq rmh-elfeed-org-files (list "~/.emacs_custom/elfeed.org"))
+;; (require 'elfeed-org)
+;; (elfeed-org)
+;; (setq rmh-elfeed-org-files (list "~/.emacs_custom/elfeed.org"))
 
 (require 'org-protocol)
 (defun transform-square-brackets-to-round-ones(string-to-transform)
   "Transforms [ into ( and ] into ), other chars left unchanged."
-  (concat 
+  (concat
    (mapcar #'(lambda (c) (if (equal c ?\[) ?\( (if (equal c ?\]) ?\) c))) string-to-transform))
   )
 

@@ -1,13 +1,10 @@
 { config, pkgs, lib, inputs, ... }:
 
 let
-  emacspkg = with pkgs;
-    ((emacsPackagesNgGen emacsPgtkGcc).emacsWithPackages
-      (epkgs: [ epkgs.vterm ]));
-
   helloMagit =
     pkgs.writeText "hello-magit.el" (builtins.readFile ./hello-magit.el);
-in {
+in
+{
   # nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
   # nixpkgs.overlays = [
   #   (import (builtins.fetchTarball {
@@ -17,11 +14,10 @@ in {
   # ];
   programs.emacs = {
     enable = true;
-    # package = pkgs.emacs27;
-    # package = emacspkg;
-    # package = pkgs.emacsPgtkGcc;
   };
-  # services.emacs.enable = true;
+  services.emacs = {
+    enable = true;
+  };
 
   home.packages = [
     pkgs.aspell
@@ -40,8 +36,9 @@ in {
   home.file.".spacemacs".source = ./spacemacs;
   home.file.".emacs_custom".source = ./.emacs_custom;
 
-  xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
-  in { "${leader}+e" = "exec btf -m emacs@chris emacs"; };
+  xsession.windowManager.i3.config.keybindings =
+    let leader = "Mod1 + Shift";
+    in { "${leader}+e" = "exec btf -m emacs@chris emacs"; };
 
   home.file."bin/e" = {
     text = ''

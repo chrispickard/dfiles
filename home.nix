@@ -21,6 +21,30 @@ let
       --unset DESKTOP_STARTUP_ID
     '';
   });
+  clion-overlay = pkgs.jetbrains.clion.overrideAttrs (old: rec {
+    # add `makeWrapper` to existing dependencies
+    buildInputs = old.buildInputs or [ ] ++ [ pkgs.makeWrapper ];
+
+    # wrap the binary in a script where the appropriate env var is set
+    postFixup = old.postFixup or "" + ''
+      wrapProgram "$out/bin/clion" \
+      --set GOPATH "${config.programs.zsh.sessionVariables.GOPATH}" \
+      --set JAVA_HOME "${config.home.sessionVariables.JAVA_HOME}" \
+      --unset DESKTOP_STARTUP_ID
+    '';
+  });
+  goland-overlay = pkgs.jetbrains.goland.overrideAttrs (old: rec {
+    # add `makeWrapper` to existing dependencies
+    buildInputs = old.buildInputs or [ ] ++ [ pkgs.makeWrapper ];
+
+    # wrap the binary in a script where the appropriate env var is set
+    postFixup = old.postFixup or "" + ''
+      wrapProgram "$out/bin/goland" \
+      --set GOPATH "${config.programs.zsh.sessionVariables.GOPATH}" \
+      --set JAVA_HOME "${config.home.sessionVariables.JAVA_HOME}" \
+      --unset DESKTOP_STARTUP_ID
+    '';
+  });
   # onepass =
   #   pkgs._1password-gui-beta.override ({ polkitPolicyOwners = [ "chrispickard" ]; });
 in {
@@ -125,6 +149,8 @@ in {
     btf
     # jetbrains.idea-ultimate
     idea-overlay
+    clion-overlay
+    goland-overlay
     shellcheck
     mkcert
     step-ca
@@ -150,6 +176,8 @@ in {
     just
     openfortivpn
     zotero
+    logseq
+    obsidian
     # zellij
   ];
   fonts.fontconfig.enable = true;

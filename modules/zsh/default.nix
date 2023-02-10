@@ -35,13 +35,13 @@ in {
 
       reload = "exec zsh";
       switch =
-        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && home-manager --flake . switch && exec zsh";
+        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && home-manager --flake . switch && systemctl --user restart emacs.service && exec zsh";
       update =
-        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && nix registry remove nixpkgs && nix flake update &&  nix registry pin nixpkgs && home-manager --flake . switch && exec zsh";
+        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && nix registry remove nixpkgs && nix flake update &&  nix registry pin nixpkgs && home-manager --flake . switch && systemctl --user restart emacs.service && exec zsh";
 
       start = "./start.py";
       t = "./.test.sh";
-      umux = "${pkgs.tmuxp}/bin/tmuxp load -y ~/.tmuxp/work.yaml";
+      umux = "${pkgs.stable.tmuxp}/bin/tmuxp load -y ~/.tmuxp/work.yaml";
 
       sc = "systemctl";
       scu = "systemctl --user";
