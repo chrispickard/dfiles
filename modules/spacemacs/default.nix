@@ -38,8 +38,15 @@ in
 
   xsession.windowManager.i3.config.keybindings =
     let leader = "Mod1 + Shift";
-    in { "${leader}+e" = "exec btf -m emacs@chris emacs"; };
+    in { "${leader}+e" = "exec btf -m emacs@chris es"; };
 
+  home.file."bin/es" = {
+    text = ''
+      #!/bin/sh
+      emacsclient -n -c "vim" $@
+    '';
+    executable = true;
+  };
   home.file."bin/e" = {
     text = ''
       #!/bin/sh

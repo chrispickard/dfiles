@@ -53,7 +53,7 @@
           mod = config.modifier;
           leader = "Mod1 + Shift";
         in {
-          "${leader}+n" = "exec open-nheko";
+          "${leader}+n" = "exec open-element";
           "${leader}+s" = "exec open-slack";
           "${leader}+d" = "exec open-discord";
           "${leader}+i" = "exec open-idea";
@@ -214,12 +214,11 @@
     executable = true;
   };
 
-  home.file."bin/open-nheko" = {
+  home.file."bin/open-element" = {
     text = ''
       #!/bin/sh
       . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-      export QT_XCB_GL_INTEGRATION=none
-      btf -m '^nheko&' ${pkgs.nheko}/bin/nheko
+      btf -m '^Element&' ${pkgs.element-desktop}/bin/element-desktop
     '';
     executable = true;
   };
