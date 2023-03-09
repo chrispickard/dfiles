@@ -68,7 +68,7 @@
           "${mod}+v" = "split v";
           "${mod}+f" = "fullscreen";
           "${mod}+t" = "layout tabbed";
-          "${mod}+e" = "layout toggle split";
+          # "${mod}+e" = "layout toggle split";
           "${mod}+Shift+f" = "floating toggle";
           "${mod}+1" = "workspace 1";
           "${mod}+2" = "workspace 2";
@@ -218,7 +218,7 @@
     text = ''
       #!/bin/sh
       . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-      btf -m '^Element&' ${pkgs.element-desktop}/bin/element-desktop
+      btf -m 'Element' ${pkgs.element-desktop}/bin/element-desktop
     '';
     executable = true;
   };

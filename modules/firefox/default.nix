@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  f = pkgs.wrapFirefox pkgs.firefox-bin-unwrapped {
+  f = pkgs.wrapFirefox pkgs.firefox-devedition-bin-unwrapped {
     wmClass = "defaultdefaultdefault";
   };
 

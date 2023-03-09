@@ -3,8 +3,9 @@
 let
   helloMagit =
     pkgs.writeText "hello-magit.el" (builtins.readFile ./hello-magit.el);
-in
-{
+
+  homeDir = config.home.homeDirectory;
+in {
   # nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
   # nixpkgs.overlays = [
   #   (import (builtins.fetchTarball {
@@ -12,12 +13,8 @@ in
   #       "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
   #   }))
   # ];
-  programs.emacs = {
-    enable = true;
-  };
-  services.emacs = {
-    enable = true;
-  };
+  programs.emacs = { enable = true; };
+  services.emacs = { enable = true; };
 
   home.packages = [
     pkgs.aspell
@@ -31,19 +28,26 @@ in
   ];
   home.sessionVariables = {
     ASPELL_CONF = "data-dir $HOME/.nix-profile/lib/aspell";
+    PATH = lib.makeBinPath [ "${homeDir}/.emacs.d" ]
+      + lib.optionalString (!config.home.emptyActivationPath)
+      "\${PATH:+:}$PATH";
   };
 
   home.file.".spacemacs".source = ./spacemacs;
   home.file.".emacs_custom".source = ./.emacs_custom;
 
-  xsession.windowManager.i3.config.keybindings =
-    let leader = "Mod1 + Shift";
-    in { "${leader}+e" = "exec btf -m emacs@chris es"; };
+  xsession.windowManager.i3.config.keybindings = let
+    mod = config.modifier;
+    leader = "Mod1 + Shift";
+  in {
+    "${leader}+e" = "exec btf -m emacs@chris es";
+    "Mod4+e" = ''exec emacsclient --eval "(emacs-everywhere)"'';
+  };
 
   home.file."bin/es" = {
     text = ''
       #!/bin/sh
-      emacsclient -n -c "vim" $@
+      emacsclient -n -c -a "vim" $@
     '';
     executable = true;
   };

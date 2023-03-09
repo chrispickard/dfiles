@@ -306,6 +306,7 @@
                                       evil-terminal-cursor-changer
                                       ;; solaire-mode
                                       ;; hydra-posframe
+                                      mixed-pitch
                                       evil-textobj-syntax
                                       super-save)
    ;; User initialization goes here
@@ -331,9 +332,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; (setq configuration-layer-elpa-archives '(("melpa" . "melpa.org/packages/")
   ;;                                           ("org" . "orgmode.org/elpa/")
   ;;                                           ("gnu" . "elpa.gnu.org/packages/")))
-  (setq solarized-use-variable-pitch nil)
-  (setq solarized-use-less-bold t)
-  (setq solarized-scale-org-headlines nil))
+  )
 
 (defun enter-debug-mode ()
   ""
@@ -404,9 +403,6 @@ abort completely with `C-g'."
   (let (org-log-done org-log-states)   ; turn off logging
     (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
-(defun ladicle/toggle-lsp-ui-doc ()
-  (interactive)
-  (lsp-ui-doc-glance))
 
 (defun add-lisp-hooks (hook)
   "add hooks to lisp modes of choice"
@@ -419,7 +415,7 @@ abort completely with `C-g'."
     "gs"  'magit-status-or-other-dir
     "gc"  'org-capture
     "ga"  'org-agenda
-    "gt"  'open-org-todo))
+    "gt"  'org-todo))
 
 (defun indent-buffer ()
   (aggressive-indent-indent-region-and-on (point-min) (point-max)))
@@ -508,9 +504,6 @@ With a prefix ARG invokes `projectile-commander' instead of
    This function is called at the very end of Spacemacs initialization after
   layers configuration."
   (setq-default powerline-default-separator 'arrow)
-  ;; (setq dotspacemacs-mode-line-unicode-symbols nil)
-  ;; (spacemacs/toggle-highlight-current-line-globally-off)
-  ;; (setq solarized-use-more-italic t)
 
   (bind-key (kbd "M-;") 'helm-mini)
 
@@ -540,25 +533,10 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (bind-key (kbd "C-M-s") 'sp-forward-barf-sexp )
 
   ;; (bind-key (kbd "<f2>") 'begin-defect-capture)
-  (setq lsp-ui-doc-position 'at-point)
-  (setq lsp-ui-doc-use-webkit t)
   (add-to-list 'auto-mode-alist '(".*github.*\\.txt?\\'" . markdown-mode))
   (add-to-list 'auto-mode-alist '(".*office.*\\.txt?\\'" . org-mode))
   (unbind-key (kbd "s") evil-normal-state-map)
-  ;; (unbind-key (kbd "s") evil-cleverparens-mode-map)
 
-  ;; (bind-map-set-keys evil-cleverparents-mode-map
-  ;;   "gc"  'org-capture
-  ;;   "g/"  'helm-swoop
-  ;;   "ga"  'org-agenda
-  ;;   "gs"  'magit-status-or-other-dir
-  ;;   "ss"   'evil-avy-goto-char-2
-  ;;   "M-n"  'next-error-cycle
-  ;;   "M-p"  'previous-error-cycle
-  ;;   "sc"   'avy-goto-char
-  ;;   "sl"   'evil-avy-goto-line
-  ;;   "gl"  'flycheck-error-list
-  ;;   "gt"  'open-org-todo)
   (setq nord-comment-brightness 20)
 
   (setq nord-region-highlight "frost")
@@ -566,7 +544,6 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (doom-themes-org-config)
   (setq lsp-auto-guess-root t)
   ;; (setq lsp-ui-sideline-enable nil)
-  (setq lsp-ui-doc-enable nil)
   (setq-default
    web-mode-markup-indent-offset 2
    web-mode-css-indent-offset 2
@@ -576,35 +553,15 @@ With a prefix ARG invokes `projectile-commander' instead of
    typescript-indent-level 2)
   (setq lsp-signature-auto-activate nil)
 
-  ;; brighten buffers (that represent real files)
-  ;; (add-hook 'change-major-mode-hook #'turn-on-solaire-mode)
-
-  ;; ...if you use auto-revert-mode, this prevents solaire-mode from turning
-  ;; itself off every time Emacs reverts the file
-  ;; (add-hook 'after-revert-hook #'turn-on-solaire-mode)
-  ;; (solaire-global-mode +1)
-  ;; (solaire-mode-swap-bg)
-
-  ;; (setq nord-region-highlight "snowstorm")
-  ;; (setq sml/theme 'atom-one-dark)
-  ;; (setq sml/no-confirm-load-theme t)
-  ;; (sml/setup)
-  ;; (smart-mode-line-enable)
-  ;; (mini-modeline-mode t)
   (bind-map-set-keys evil-normal-state-map
     "gc"  'org-capture
     "g/"  'helm-swoop
     "ga"  'org-agenda
     "gs"  'magit-status-or-other-dir
-    "s"  'evil-avy-goto-word-1
-    ;; "ss"   'evil-avy-goto-char-2
-    "M-n"  'next-error-cycle
-    "M-p"  'previous-error-cycle
-    ;; "sc"   'avy-goto-char
-    ;; "sl"   'evil-avy-goto-line
+    "s"   'evil-avy-goto-word-1
+    "M-n" 'next-error-cycle
+    "M-p" 'previous-error-cycle
     "gl"  'flycheck-error-list
-
-    "K" 'ladicle/toggle-lsp-ui-doc
     "gt"  'open-org-todo)
 
    (with-eval-after-load 'cc-mode
@@ -614,47 +571,10 @@ With a prefix ARG invokes `projectile-commander' instead of
      (setq json-fmt-tool 'prettier)
      (setq-default tab-width 2))
 
-   ;; (with-eval-after-load 'go-mode
-   ;;   (require 'dap-go)
-   ;;   (dap-register-debug-template "Go Test Debug Package"
-   ;;                                (list :type "go"
-   ;;                                      :request "launch"
-   ;;                                      :name "Launch Debug Package"
-   ;;                                      :mode "debug"
-   ;;                                      :program nil
-   ;;                                      :buildFlags nil
-   ;;                                      :args nil
-   ;;                                      :env nil
-   ;;                                      :envFile nil))
-   ;;   (lsp-register-custom-settings
-   ;;    '(("gopls.completeUnimported" t t)
-   ;;      ("gopls.staticcheck" t t)))
-
-   ;;   (bind-map-set-keys go-mode-map
-   ;;     "<S-f6>"  'go-rename))
-
-   ;; (with-eval-after-load 'lsp-ui
-   ;;   (bind-map-set-keys lsp-ui-mode-map
-   ;;     "M-RET"  'my/do-action))
-
-   ;; (with-eval-after-load 'typescript-mode
-   ;;   (require 'dap-mode)
-   ;;   (require 'dap-node)
-   ;;   (dap-register-debug-template "Node::Inspect"
-   ;;                                (list :type "node"
-   ;;                                      :port 9229
-   ;;                                      :program "oops.ts"
-   ;;                                      :request "attach"
-   ;;                                      :protocol "inspector"
-   ;;                                      :sourceMaps t
-   ;;                                      :restart t
-   ;;                                      :name "Node::Inspect")))
 
    (bind-map-set-keys evil-normal-state-map
      "C-b" 'evil-first-non-blank
      "C-e" 'evil-end-of-line)
-
-  ;; (setq scroll-conservatively 101) ;; move minimum when cursor exits view, instead of recentering
 
   ;; until the minibuffer is closed
   (defun my-minibuffer-setup-hook (&optional arg)
@@ -677,30 +597,15 @@ With a prefix ARG invokes `projectile-commander' instead of
   (spacemacs/set-leader-keys "w-" 'split-window-below-and-focus)
   (spacemacs/set-leader-keys "qr" 'restart-emacs)
   (spacemacs/set-leader-keys "qR" 'spacemacs/restart-emacs-resume-layouts)
-  ;; (spacemacs/set-leader-keys-for-major-mode 'typescript-mode
-  ;;   "dd" 'enter-debug-mode
-  ;;   "d." 'dap-hydra
-  ;;   "da" 'dap-disconnect
-  ;;   "dc" 'dap-continue
-  ;;   "dn" 'dap-next
-  ;;   )
 
-  ;; (add-lisp-hooks #'smartparens-strict-mode)
-  ;; (add-lisp-hooks #'evil-cleverparens-mode)
-  ;; (add-lisp-hooks #'evil-smartparens-mode)
-  ;; (add-lisp-hooks #'smartparens-mode)
   (add-lisp-hooks #'electric-pair-mode)
   (add-hook 'prog-mode-hook #'spacemacs/toggle-fill-column-indicator-on)
-  ;; (add-hook 'prog-mode-hook #'hasklig-mode)
-  ;; (add-hook 'prog-mode-hook #'spacemacs/toggle-line-numbers-on)
   (add-hook 'prog-mode-hook #'(lambda () (setq fill-column 100)))
   (add-hook 'writeroom-mode-hook #'(lambda () (setq fill-column 80)))
 
 
   (add-hook 'text-mode-hook #'spacemacs/toggle-fill-column-indicator-on)
   (add-hook 'text-mode-hook #'(lambda () (setq fill-column 100)))
-  (add-hook 'text-mode-hook #'auto-fill-mode)
-  ;; (add-hook 'text-mode-hook 'variable-pitch-mode)
   (modify-syntax-entry ?_ "w")
   (modify-syntax-entry ?- "w")
   ;; (add-lisp-hooks #'aggressive-indent-mode)
@@ -768,20 +673,6 @@ With a prefix ARG invokes `projectile-commander' instead of
       (define-key (eval map) ")" nil))
     (require 'evil-textobj-syntax))
 
-  ;; (with-eval-after-load 'lsp-mode
-  ;;   (setq lsp-prefer-flymake :none))
-
-  (with-eval-after-load 'org
-    ;; (add-hook 'org-mode-hook 'spacemacs/toggle-fill-column-indicator-off)
-    ;; (add-hook 'org-mode-hook 'visual-line-mode)
-    (load-file "~/.emacs_custom/setup-org.el"))
-  ;; (with-eval-after-load 'hydra
-  ;;   (require 'posframe)
-  ;;   (load-file "~/dev/elisp/hydra-posframe/hydra-posframe.el")
-  ;;   (setq hydra-posframe-poshandler 'my/posframe-poshandler-window-top-center)
-  ;;   (setq hydra-posframe-border-width 5)
-  ;;   (hydra-posframe-mode))
-
   (with-eval-after-load 'company
     (setq company-flx-limit 20)
     (company-flx-mode 1)
@@ -801,7 +692,6 @@ With a prefix ARG invokes `projectile-commander' instead of
   ;; (elpy-use-ipython)
   ;; shell script hook
   ;; (add-hook 'shell-script-enabled-hook #'flycheck-mode)
-  ;; (add-hook 'visual-line-mode-hook 'visual-fill-column-mode)
 
   ;;(add-hook 'python-mode-hook 'set-python-interpreter)
   ;; elisp hooks
@@ -944,6 +834,17 @@ With a prefix ARG invokes `projectile-commander' instead of
   (setq frame-resize-pixelwise t)
   ;; require magit here so that it can be used as $EDITOR with it initted already
   (with-eval-after-load 'org
+
+    (add-hook 'org-mode 'visual-line-mode)
+    (add-hook 'visual-line-mode-hook 'visual-fill-column-mode)
+    (custom-theme-set-faces
+     'user
+     '(variable-pitch ((t (:family "Noto Serif" :weight Light :size 18.0))))
+     '(fixed-pitch ((t ( :family "Iosevka"
+                         :weight Regular
+                         :width Regular
+                         :powerline-scale 1.0
+                         :size 18.0)))))
     (add-hook 'org-mode-hook 'spacemacs/toggle-fill-column-indicator-off)
     (load-file "~/.emacs_custom/setup-org.el"))
 
