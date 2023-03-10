@@ -179,6 +179,7 @@ in {
       PATH = lib.makeBinPath [
         "${homeDir}/dev/golang"
         "${homeDir}/.cargo"
+        "${homeDir}/.emacs.d"
         "${homeDir}"
       ] + lib.optionalString (!config.home.emptyActivationPath)
         "\${PATH:+:}$PATH";
@@ -191,6 +192,7 @@ in {
       PATH = lib.makeBinPath [
         "${homeDir}/dev/golang"
         "${homeDir}"
+        "${homeDir}/.emacs.d"
         "${homeDir}/.cargo"
       ] + lib.optionalString (!config.home.emptyActivationPath)
         "\${PATH:+:}$PATH";

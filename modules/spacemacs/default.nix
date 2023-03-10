@@ -23,14 +23,13 @@ in {
     pkgs.libtool
     pkgs.cmake
     pkgs.sbcl
+    pkgs.shfmt
     pkgs.binutils # native-comp needs 'as', provided by this
     # emacsPgtkGcc   # 28 + pgtk + native-comp
   ];
+
   home.sessionVariables = {
     ASPELL_CONF = "data-dir $HOME/.nix-profile/lib/aspell";
-    PATH = lib.makeBinPath [ "${homeDir}/.emacs.d" ]
-      + lib.optionalString (!config.home.emptyActivationPath)
-      "\${PATH:+:}$PATH";
   };
 
   home.file.".spacemacs".source = ./spacemacs;

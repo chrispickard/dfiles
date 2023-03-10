@@ -157,6 +157,7 @@
         for_window [class="1Password"] floating enable
         for_window [class="Firefox" title="Developer Tools"] floating enable
         for_window [title="Microsoft Teams Notification"] floating enable
+        for_window [title="emacs-everywhere@chris"] floating enable
         no_focus [title="Microsoft Teams Notification"]
         for_window [class="Firefox" title="Developer Tools"] resize set 900 480
         client.focused          #4c7899 #285577 #ffffff #2e9ef4   #1E272C

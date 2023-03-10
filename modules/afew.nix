@@ -49,6 +49,30 @@
                     'NOT tag:inbox':'Eman/[Gmail]/All Mail'
       UTD/Inbox = 'tag:spam':'UTD/Deleted Items' 'tag:trash':'UTD/Deleted Items' \
                   'NOT tag:inbox':'UTD/Archive'
+      [HeaderMatchingFilter.1]
+      header = From
+      pattern = .*chris.pickard@tangramflex.com.*
+      tags = +chris.pickard@tangramflex.com
+      [HeaderMatchingFilter.2]
+      header = To
+      pattern = .*chris.pickard@tangramflex.com.*
+      tags = +chris.pickard@tangramflex.com
+      [HeaderMatchingFilter.3]
+      header = From
+      pattern = .*chrispickard9@gmail.com.*
+      tags = +chrispickard9@gmail.com
+      [HeaderMatchingFilter.4]
+      header = To
+      pattern = .*chrispickard9@gmail.com.*
+      tags = +chrispickard9@gmail.com
+      [HeaderMatchingFilter.5]
+      header = From
+      pattern = .*thephoenixforce9@gmail.com.*
+      tags = +thephoenixforce9@gmail.com
+      [HeaderMatchingFilter.6]
+      header = To
+      pattern = .*thephoenixforce9@gmail.com.*
+      tags = +thephoenixforce9@gmail.com
     '';
   };
 }
