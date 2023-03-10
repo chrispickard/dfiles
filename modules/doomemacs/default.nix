@@ -1,25 +1,33 @@
 { config, lib, pkgs, ... }:
 
 {
-  programs.doom-emacs = rec {
-    enable = true;
-    doomPrivateDir = ../doom.d;
-    # Only init/packages so we only rebuild when those change.
-    doomPackageDir = pkgs.linkFarm "doom-packages-dir" [
-      {
-        name = "init.el";
-        path = ../doom.d/init.el;
-      }
-      {
-        name = "packages.el";
-        path = ../doom.d/packages.el;
-      }
-      {
-        name = "config.el";
-        path = pkgs.emptyFile;
-      }
-    ];
-  };
+
+  # programs.doom-emacs = rec {
+  #   enable = true;
+  #   doomPrivateDir = ./doom.d;
+  #   # Only init/packages so we only rebuild when those change.
+  #   doomPackageDir = pkgs.linkFarm "doom-packages-dir" [
+  #     {
+  #       name = "init.el";
+  #       path = ./doom.d/init.el;
+  #     }
+  #     {
+  #       name = "packages.el";
+  #       path = ./doom.d/packages.el;
+  #     }
+  #     {
+  #       name = "config.el";
+  #       path = pkgs.emptyFile;
+  #     }
+  #   ];
+  # };
+
+  home.packages = [ pkgs.shfmt ];
+  xdg.configFile."doom" = { source = ./doom.d; };
+  # xdg.configFile."doom/init.el" = (builtins.readFile ./doom.d/init.el);
+  # xdg.configFile."doom/config.el" = (builtins.readFile ./doom.d/config.el);
+  programs.emacs = { enable = true; };
+  services.emacs = { enable = true; };
   xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
   in { "${leader}+e" = "exec btf -m emacs@chris emacs"; };
 

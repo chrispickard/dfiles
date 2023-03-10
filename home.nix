@@ -58,7 +58,7 @@ in {
     ./modules/zsh
     ./modules/tmux.nix
     ./modules/vim
-    ./modules/spacemacs
+    ./modules/doomemacs
     ./modules/i3
     # ./termite.nix
     # ./modules/urxvt.nix
@@ -94,7 +94,7 @@ in {
     lastpass-cli
     google-chrome
     chromium
-    microsoft-edge-beta
+    # microsoft-edge-beta
     # trivy
     delve
     gcc
@@ -190,6 +190,7 @@ in {
     LOCALE_ARCHIVE_2_27 = "${pkgs.glibcLocales}/lib/locale/locale-archive";
     LOCALE_ARCHIVE = "/usr/bin/locale";
     SSH_AUTH_SOCK = "\${SSH_AUTH_SOCK:$HOME/.1password/agent.sock}";
+    WINEPATH = "C:\\Tornado\\host\\x86-win32\\bin\\";
   };
 
   xdg.mimeApps = {
