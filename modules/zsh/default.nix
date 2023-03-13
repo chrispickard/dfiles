@@ -35,7 +35,7 @@ in {
 
       reload = "exec zsh";
       switch =
-        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && home-manager --flake . switch && exec zsh";
+        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && home-manager --flake . switch && ln -s ~/dfiles/modules/doomemacs/doom.d ~/.config/doom && exec zsh";
       update =
         "rm ~/.config/mimeapps.list || true && cd ~/dfiles && nix registry remove nixpkgs && nix flake update &&  nix registry pin nixpkgs && home-manager --flake . switch && systemctl --user restart emacs.service && exec zsh";
 

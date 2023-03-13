@@ -182,6 +182,7 @@ in {
     # zellij
     wine-staging
     bless
+    gdb
   ];
   fonts.fontconfig.enable = true;
 

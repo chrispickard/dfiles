@@ -22,15 +22,46 @@
   #   ];
   # };
 
-  home.packages = [ pkgs.shfmt ];
-  xdg.configFile."doom" = { source = ./doom.d; };
-  # xdg.configFile."doom/init.el" = (builtins.readFile ./doom.d/init.el);
-  # xdg.configFile."doom/config.el" = (builtins.readFile ./doom.d/config.el);
+  home.packages = [
+    pkgs.aspell
+    pkgs.emacs-all-the-icons-fonts
+    pkgs.aspellDicts.en
+    pkgs.libtool
+    pkgs.cmake
+    pkgs.sbcl
+    pkgs.shfmt
+    pkgs.binutils # native-comp needs 'as', provided by this
+    # emacsPgtkGcc   # 28 + pgtk + native-comp
+  ];
+
   programs.emacs = { enable = true; };
   services.emacs = { enable = true; };
-  xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
-  in { "${leader}+e" = "exec btf -m emacs@chris emacs"; };
 
+  # no longer using this because it symlinks to ~/.config/doom in the `switch` command instead, which keeps it out of the nix store
+  # don't want it in the nix store because it requires you to switch generations every time you update the doom config
+  # xdg.configFile."doom" = {
+  #   source = ./doom.d;
+  # };
+
+  home.sessionVariables = {
+    ASPELL_CONF = "data-dir $HOME/.nix-profile/lib/aspell";
+  };
+
+  xsession.windowManager.i3.config.keybindings = let
+    mod = config.modifier;
+    leader = "Mod1 + Shift";
+  in {
+    "${leader}+e" = "exec btf -m emacs@chris es";
+    "Mod4+e" = ''exec emacsclient --eval "(emacs-everywhere)"'';
+  };
+
+  home.file."bin/es" = {
+    text = ''
+      #!/bin/sh
+      emacsclient -n -c -a "vim" $@
+    '';
+    executable = true;
+  };
   home.file."bin/e" = {
     text = ''
       #!/bin/sh
