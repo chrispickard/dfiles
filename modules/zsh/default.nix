@@ -9,8 +9,11 @@ let
     (builtins.readFile ./_podman);
   labCompletion = pkgs.writeTextDir "share/zsh/site-functions/lab.plugin.zsh"
     (builtins.readFile ./_lab);
-  justCompletion = pkgs.writeTextDir "share/zsh/site-functions/just.plugin.zsh"
-    (builtins.readFile ./_just);
+  switchScript = pkgs.writeTextFile {
+    name = "switch";
+    text = (builtins.readFile ./switch);
+    executable = true;
+  };
 in {
   home.packages = with pkgs; [ perl ];
   programs.zsh = {
@@ -30,9 +33,8 @@ in {
 
       reload = "exec zsh";
       switch = ''
-        rm ~/.config/mimeapps.list || true && \
-        home-manager --flake ~/dfiles switch && \
-        ln -s ~/dfiles/modules/doomemacs/doom.d ~/.config/doom && \
+        ${switchScript}
+        printf "reloading zsh, please wait\n"
         exec zsh
       '';
       update =
@@ -77,11 +79,11 @@ in {
         file = "podman.plugin.zsh";
         src = "${podmanCompletion}/share/zsh/site-functions/";
       }
-      {
-        name = "just";
-        file = "just.plugin.zsh";
-        src = "${justCompletion}/share/zsh/site-functions/";
-      }
+      # {
+      #   name = "just";
+      #   file = "just.plugin.zsh";
+      #   src = "${justCompletion}/share/zsh/site-functions/";
+      # }
       {
         name = "lab";
         file = "lab.plugin.zsh";

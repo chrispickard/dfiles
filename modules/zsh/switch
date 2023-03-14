@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "switching"
+if [ -f "$HOME/.config/mimeapps.list" ]; then
+    printf "file doesn't exist, no need to clear it"
+fi
+
+home-manager --flake ~/dfiles switch
+
+if [ ! -L "$HOME/.config/doom" ]; then
+    ln -s ~/dfiles/modules/doomemacs/doom.d ~/.config/doom
+fi
