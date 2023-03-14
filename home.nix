@@ -191,7 +191,7 @@ in {
     LOCALE_ARCHIVE_2_27 = "${pkgs.glibcLocales}/lib/locale/locale-archive";
     LOCALE_ARCHIVE = "/usr/bin/locale";
     SSH_AUTH_SOCK = "\${SSH_AUTH_SOCK:$HOME/.1password/agent.sock}";
-    WINEPATH = "C:\\Tornado\\host\\x86-win32\\bin\\";
+    # WINEPATH = "C:\\Tornado\\host\\x86-win32\\bin\\";
   };
 
   xdg.mimeApps = {

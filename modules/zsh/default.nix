@@ -2,11 +2,6 @@
 
 let
   homeDir = config.home.homeDirectory;
-  k = pkgs.kubectl.overrideAttrs (oldAttrs: {
-    postInstall = oldAttrs.postInstall or "" + ''
-      jaja
-    '';
-  });
   onepassCompletion = pkgs.writeTextDir "share/zsh/site-functions/op.plugin.zsh"
     (builtins.readFile ./_op);
   podmanCompletion =
@@ -34,8 +29,12 @@ in {
       idea = "idea-ultimate";
 
       reload = "exec zsh";
-      switch =
-        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && home-manager --flake . switch && ln -s ~/dfiles/modules/doomemacs/doom.d ~/.config/doom && exec zsh";
+      switch = ''
+        rm ~/.config/mimeapps.list || true && \
+        home-manager --flake ~/dfiles switch && \
+        ln -s ~/dfiles/modules/doomemacs/doom.d ~/.config/doom && \
+        exec zsh
+      '';
       update =
         "rm ~/.config/mimeapps.list || true && cd ~/dfiles && nix registry remove nixpkgs && nix flake update &&  nix registry pin nixpkgs && home-manager --flake . switch && systemctl --user restart emacs.service && exec zsh";
 
@@ -176,6 +175,7 @@ in {
       SYSTEMD_LESS = "-g -i -M -R -S -w -z-4 -X --mouse";
       PAGER = "less";
       HISTFILE = "${"HOME"}/.zsh_history";
+      WINEPATH = "C:\\\\Tornado\\\\host\\\\\\x86-win32\\\\\\bin\\\\";
       PATH = lib.makeBinPath [
         "${homeDir}/dev/golang"
         "${homeDir}/.cargo"

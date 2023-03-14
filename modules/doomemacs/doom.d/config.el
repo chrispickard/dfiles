@@ -90,13 +90,17 @@
         :o "s" #'evil-Surround-edit
         )
   )
+
+(map! :after with-editor
+      :localleader :desc "accept" "," #'with-editor-finish
+      :localleader :desc "decline" "k" #'with-editor-cancel)
+
 (defun open-notmuch-search ()
   (notmuch-search "tag:inbox"))
 
 (defun send-via-gmi ()
   (message (message-fetch-field "from"))
   (let ((from (message-fetch-field "from")))
-    (message from)
     (cond ((string= from "chrispickard9@gmail.com") (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/.mail/personal")))
           ((string= from "chris.pickard@tangramflex.com") (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/.mail/work")))
           ((string= from "thephoenixforce9@gmail.com") (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/.mail/tpf")))
@@ -124,8 +128,6 @@
 (after! notmuch
   (setq notmuch-fcc-dirs nil)
   (setq +notmuch-sync-backend "notmuch new")
-  ;; TODO
-  ;; (setq notmuch-tagging-keys)
 
   (setq sendmail-program "gmi")
   (add-hook 'message-send-hook #'send-via-gmi))
@@ -138,10 +140,10 @@
 
 (setq emacs-everywhere-frame-name-format "emacs-everywhere@chris")
 
-; TODO org-protocol
+                                        ; TODO org-protocol
 (setq org-capture-templates `(
-	("p" "Protocol" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
-        "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-	("L" "Protocol Link" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
-        "* %? [[%:link][%:description]] \nCaptured On: %U")
-))
+	                      ("p" "Protocol" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
+                               "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+	                      ("L" "Protocol Link" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
+                               "* %? [[%:link][%:description]] \nCaptured On: %U")
+                              ))
