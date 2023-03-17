@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+FLAKE_LOC="${HOME}/dfiles"
+
+echo "switching"
+if [ -f "${HOME}/.config/mimeapps.list" ]; then
+    printf "file doesn't exist, no need to clear it"
+fi
+
+nix registry remove nixpkgs
+nix flake update "${FLAKE_LOC}"
+nix registry pin nixpkgs
+
+home-manager --flake "${FLAKE_LOC}" switch
+
+if [ ! -L "${HOME}/.config/doom" ]; then
+    ln -s "${FLAKE_LOC}/modules/doomemacs/doom.d" "${HOME}/.config/doom"
+fi

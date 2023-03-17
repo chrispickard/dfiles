@@ -232,4 +232,5 @@
     '';
     executable = true;
   };
+  # services.taffybar = { enable = true; };
 }

@@ -14,6 +14,11 @@ let
     text = (builtins.readFile ./switch);
     executable = true;
   };
+  updateScript = pkgs.writeTextFile {
+    name = "update";
+    text = (builtins.readFile ./update);
+    executable = true;
+  };
 in {
   home.packages = with pkgs; [ perl ];
   programs.zsh = {
@@ -37,8 +42,11 @@ in {
         printf "reloading zsh, please wait\n"
         exec zsh
       '';
-      update =
-        "rm ~/.config/mimeapps.list || true && cd ~/dfiles && nix registry remove nixpkgs && nix flake update &&  nix registry pin nixpkgs && home-manager --flake . switch && systemctl --user restart emacs.service && exec zsh";
+      update = ''
+        ${updateScript}
+        printf "reloading zsh, please wait\n"
+        exec zsh
+      '';
 
       start = "./start.py";
       t = "./.test.sh";

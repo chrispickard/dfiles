@@ -22,7 +22,7 @@
 ;; accept. For example:
 ;;
 (setq doom-font (font-spec :family "Iosevka" :size 22 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+      doom-variable-pitch-font (font-spec :family "DejaVu Sans" :size 22))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -88,12 +88,15 @@
         :v "s" #'evil-surround-region
         :o "s" #'evil-surround-edit
         :o "s" #'evil-Surround-edit
+        :n "-" #'ranger
         )
   )
 
 (map! :after with-editor
+      :map with-editor-mode-map
       :localleader :desc "accept" "," #'with-editor-finish
       :localleader :desc "decline" "k" #'with-editor-cancel)
+
 
 (defun open-notmuch-search ()
   (notmuch-search "tag:inbox"))
@@ -128,10 +131,16 @@
 (after! notmuch
   (setq notmuch-fcc-dirs nil)
   (setq +notmuch-sync-backend "notmuch new")
-
+  ;; (setq notmuch-show-text/html-blocked-images nil)
   (setq sendmail-program "gmi")
   (add-hook 'message-send-hook #'send-via-gmi))
 
+(map! :after notmuch
+      :map notmuch-message-mode-map
+      :localleader :desc "accept" "," #'message-send-and-exit
+      :localleader :desc "decline" "k" #'message-dont-send)
+
+(after! (setq ranger-deer-show-details t))
 
 (setq consult-preview-key "M-.")
 (setq doom-localleader-key ",")
@@ -141,9 +150,10 @@
 (setq emacs-everywhere-frame-name-format "emacs-everywhere@chris")
 
                                         ; TODO org-protocol
-(setq org-capture-templates `(
-	                      ("p" "Protocol" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
-                               "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-	                      ("L" "Protocol Link" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
-                               "* %? [[%:link][%:description]] \nCaptured On: %U")
-                              ))
+(setq org-capture-templates
+      `(
+	("p" "Protocol" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
+         "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+	("L" "Protocol Link" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
+         "* %? [[%:link][%:description]] \nCaptured On: %U")
+        ))

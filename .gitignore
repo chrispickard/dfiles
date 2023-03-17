@@ -6,3 +6,4 @@ result/
 *.~undo-tree~
 *.iml
 /.redo/
+/modules/doomemacs/doom.d/custom.el
