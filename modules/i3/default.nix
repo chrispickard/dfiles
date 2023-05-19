@@ -49,69 +49,71 @@
           newWindow = "smart";
         };
 
-        keybindings = let
-          mod = config.modifier;
-          leader = "Mod1 + Shift";
-        in {
-          "${leader}+n" = "exec open-element";
-          "${leader}+s" = "exec open-slack";
-          "${leader}+d" = "exec open-discord";
-          "${leader}+i" = "exec open-idea";
-          "${mod}+space" = "exec rofi -show drun";
+        keybindings =
+          let
+            mod = config.modifier;
+            leader = "Mod1 + Shift";
+          in
+          {
+            "${leader}+n" = "exec open-element";
+            "${leader}+s" = "exec open-slack";
+            "${leader}+d" = "exec open-discord";
+            "${leader}+i" = "exec open-idea";
+            "${mod}+space" = "exec rofi -show drun";
+            "${mod}+Shift+space" = "exec rofi -show run";
+            "${mod}+Shift+grave" = "move scratchpad";
+            "${mod}+grave" = "scratchpad show";
+            "${mod}+h" = "focus left";
+            "${mod}+j" = "focus down";
+            "${mod}+r" = "mode resize";
+            "${mod}+l" = "focus right";
+            "${mod}+v" = "split v";
+            "${mod}+f" = "fullscreen";
+            "${mod}+t" = "layout tabbed";
+            # "${mod}+e" = "layout toggle split";
+            "${mod}+Shift+f" = "floating toggle";
+            "${mod}+1" = "workspace 1";
+            "${mod}+2" = "workspace 2";
+            "${mod}+3" = "workspace 3";
+            "${mod}+4" = "workspace 4";
+            "${mod}+5" = "workspace 5";
+            "${mod}+6" = "workspace 6";
+            "${mod}+7" = "workspace 7";
+            "${mod}+8" = "workspace 8";
+            "${mod}+9" = "workspace 9";
+            "${mod}+0" = "workspace 10";
+            "${mod}+Shift+1" = "move container to workspace 1";
+            "${mod}+Shift+2" = "move container to workspace 2";
+            "${mod}+Shift+3" = "move container to workspace 3";
+            "${mod}+Shift+4" = "move container to workspace 4";
+            "${mod}+Shift+5" = "move container to workspace 5";
+            "${mod}+Shift+6" = "move container to workspace 6";
+            "${mod}+Shift+7" = "move container to workspace 7";
+            "${mod}+Shift+8" = "move container to workspace 8";
+            "${mod}+Shift+9" = "move container to workspace 9";
+            "${mod}+Shift+0" = "move container to workspace 10";
 
-          "${mod}+Shift+grave" = "move scratchpad";
-          "${mod}+grave" = "scratchpad show";
-          "${mod}+h" = "focus left";
-          "${mod}+j" = "focus down";
-          "${mod}+r" = "mode resize";
-          "${mod}+l" = "focus right";
-          "${mod}+v" = "split v";
-          "${mod}+f" = "fullscreen";
-          "${mod}+t" = "layout tabbed";
-          # "${mod}+e" = "layout toggle split";
-          "${mod}+Shift+f" = "floating toggle";
-          "${mod}+1" = "workspace 1";
-          "${mod}+2" = "workspace 2";
-          "${mod}+3" = "workspace 3";
-          "${mod}+4" = "workspace 4";
-          "${mod}+5" = "workspace 5";
-          "${mod}+6" = "workspace 6";
-          "${mod}+7" = "workspace 7";
-          "${mod}+8" = "workspace 8";
-          "${mod}+9" = "workspace 9";
-          "${mod}+0" = "workspace 10";
-          "${mod}+Shift+1" = "move container to workspace 1";
-          "${mod}+Shift+2" = "move container to workspace 2";
-          "${mod}+Shift+3" = "move container to workspace 3";
-          "${mod}+Shift+4" = "move container to workspace 4";
-          "${mod}+Shift+5" = "move container to workspace 5";
-          "${mod}+Shift+6" = "move container to workspace 6";
-          "${mod}+Shift+7" = "move container to workspace 7";
-          "${mod}+Shift+8" = "move container to workspace 8";
-          "${mod}+Shift+9" = "move container to workspace 9";
-          "${mod}+Shift+0" = "move container to workspace 10";
+            "${mod}+Shift+h" = "move left";
+            "${mod}+Shift+j" = "move down";
+            "${mod}+Shift+k" = "move up";
+            "${mod}+Shift+l" = "move right";
 
-          "${mod}+Shift+h" = "move left";
-          "${mod}+Shift+j" = "move down";
-          "${mod}+Shift+k" = "move up";
-          "${mod}+Shift+l" = "move right";
+            "${mod}+Ctrl+Shift+h" = "move workspace to output left";
+            "${mod}+Ctrl+Shift+j" = "move workspace to output down";
+            "${mod}+Ctrl+Shift+k" = "move workspace to output up";
+            "${mod}+Ctrl+Shift+l" = "move workspace to output right";
 
-          "${mod}+Ctrl+Shift+h" = "move workspace to output left";
-          "${mod}+Ctrl+Shift+j" = "move workspace to output down";
-          "${mod}+Ctrl+Shift+k" = "move workspace to output up";
-          "${mod}+Ctrl+Shift+l" = "move workspace to output right";
+            # gnome control
+            "${mod}+d" = "exec regolith-control-center --class=floating display";
+            "${mod}+b" =
+              "exec regolith-control-center --class=floating bluetooth";
+            "${mod}+s" = "exec regolith-control-center --class=floating sound";
 
-          # gnome control
-          "${mod}+d" = "exec regolith-control-center --class=floating display";
-          "${mod}+b" =
-            "exec regolith-control-center --class=floating bluetooth";
-          "${mod}+s" = "exec regolith-control-center --class=floating sound";
-
-          "${mod}+Shift+r" = "restart";
-          "${mod}+Shift+q" = "kill";
-          "${mod}+Shift+e" = ''
-            exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"'';
-        };
+            "${mod}+Shift+r" = "restart";
+            "${mod}+Shift+q" = "kill";
+            "${mod}+Shift+e" = ''
+              exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"'';
+          };
         modes.resize = {
           "j" = "resize shrink width 10 px or 10 ppt";
           "k" = "resize grow height 10 px or 10 ppt";
@@ -140,12 +142,14 @@
             notification = false;
           }
           {
-            command = let
-              wallpaper = builtins.fetchurl {
-                url = "https://www.pexels.com/photo/1072179/download";
-                sha256 = "0w4f20yki4rbbd1zdx8f136w4rqd8sc88ncp6z5y2jx4dv2xq5aj";
-              };
-            in "feh --bg-center ${wallpaper}";
+            command =
+              let
+                wallpaper = builtins.fetchurl {
+                  url = "https://www.pexels.com/photo/1072179/download";
+                  sha256 = "0w4f20yki4rbbd1zdx8f136w4rqd8sc88ncp6z5y2jx4dv2xq5aj";
+                };
+              in
+              "feh --bg-center ${wallpaper}";
             notification = false;
           }
         ];
@@ -158,6 +162,7 @@
         for_window [class="Firefox" title="Developer Tools"] floating enable
         for_window [title="Microsoft Teams Notification"] floating enable
         for_window [title="emacs-everywhere@chris"] floating enable
+        for_window [class="Qemu-system-ppc"] floating enable
         no_focus [title="Microsoft Teams Notification"]
         for_window [class="Firefox" title="Developer Tools"] resize set 900 480
         client.focused          #4c7899 #285577 #ffffff #2e9ef4   #1E272C

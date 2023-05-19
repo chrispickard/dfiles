@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
+  home.packages = [
+    pkgs.kitty
+  ];
   xdg.configFile."kitty/kitty.conf".text = ''
     # Nord Colorscheme for Kitty
     # Based on:
@@ -65,7 +68,7 @@
     '';
     executable = true;
   };
-  #xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
-  # in { "${leader}+j" = ''exec btf -m kitty@chris /home/chris.pickard/bin/kitty-with-class''; };
-  #in { "${leader}+j" = ''exec open-kitty''; };
+  xsession.windowManager.i3.config.keybindings =
+    let leader = "Mod1 + Shift";
+    in { "${leader}+j" = ''exec btf -m kitty@chris /home/chris.pickard/bin/kitty-with-class''; };
 }

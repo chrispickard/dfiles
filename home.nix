@@ -47,7 +47,8 @@ let
   });
   # onepass =
   #   pkgs._1password-gui-beta.override ({ polkitPolicyOwners = [ "chrispickard" ]; });
-in {
+in
+{
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   targets.genericLinux.enable = true;
@@ -139,13 +140,13 @@ in {
     awscli2
     # ansible
     youtube-dl
-    obs-studio
+    # obs-studio
     mailspring
     libsecret
     gnome.zenity
     gnome.file-roller
     gsettings-desktop-schemas
-    vlc
+    # vlc
     comma
     btf
     # jetbrains.idea-ultimate
@@ -165,7 +166,6 @@ in {
     # protobuf3_12
     # go-protobuf
     rustup
-    rust-analyzer
     zig
     zls
     cached-nix-shell
@@ -177,8 +177,9 @@ in {
     just
     openfortivpn
     zotero
+    lldb
     logseq
-    obsidian
+    # obsidian
     # zellij
     wine-staging
     bless
@@ -199,8 +200,6 @@ in {
     defaultApplications = {
       "inode/directory" = [ "pcmanfm.desktop" ];
       "x-scheme-handler/msteams" = [ "teams.desktop" ];
-      "x-scheme-handler/mailspring" = [ "mailspring.desktop" ];
-      "x-scheme-handler/mailto" = [ "mailspring.desktop" ];
     };
   };
   programs.htop = { enable = true; };
@@ -403,4 +402,3 @@ in {
     # package = pkgs.oraclejdk;
   };
 }
-

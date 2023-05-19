@@ -88,8 +88,8 @@
        ;;ansible
        ;;biblio            ; Writes a PhD for you (citation needed)
        ;;debugger          ; FIXME stepping through code, to help you add bugs
-       ;;direnv
-       ;;docker
+       direnv
+       docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
@@ -110,12 +110,12 @@
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
-       ;;tty               ; improve the terminal Emacs experience
+       tty               ; improve the terminal Emacs experience
 
        :lang
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
-       ;;(cc +lsp)         ; C > C++ == 1
+       (cc +lsp +tree-sitter)         ; C > C++ == 1
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
@@ -151,13 +151,13 @@
        ;;lua               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
-       (nix +tree-sitter)               ; I hereby declare "nix geht mehr!"
+       (nix +lsp +tree-sitter)               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        org               ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       ;;python            ; beautiful is better than ugly
+       (python +lsp)            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
@@ -174,7 +174,7 @@
        ;;terra             ; Earth and Moon in alignment for performance.
        ;;web               ; the tubes
        ;;yaml              ; JSON, but readable
-       ;;zig               ; C, but simpler
+       (zig +lsp +treesitter)               ; C, but simpler
 
        :email
        ;; (mu4e +org +gmail)

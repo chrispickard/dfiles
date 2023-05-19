@@ -131,9 +131,15 @@
 (after! notmuch
   (setq notmuch-fcc-dirs nil)
   (setq +notmuch-sync-backend "notmuch new")
+  ;; (add-hook! 'notmuch-hooks)
+  (add-hook 'message-mode-hook #'notmuch-address-setup)
+  (add-hook 'message-mode-hook #'notmuch-company-setup)
   ;; (setq notmuch-show-text/html-blocked-images nil)
   (setq sendmail-program "gmi")
   (add-hook 'message-send-hook #'send-via-gmi))
+
+(after! cc-mode
+  (eldoc-mode -1))
 
 (map! :after notmuch
       :map notmuch-message-mode-map
@@ -157,3 +163,8 @@
 	("L" "Protocol Link" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
          "* %? [[%:link][%:description]] \nCaptured On: %U")
         ))
+
+(set-popup-rule! "\\*notmuch update\\*")
+(setq global-eldoc-mode nil)
+
+(setq +format-on-save-enabled-modes '(not cc-mode c-mode))

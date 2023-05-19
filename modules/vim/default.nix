@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = [ pkgs.tree-sitter pkgs.page pkgs.lua pkgs.gnvim ];
+  home.packages = [ pkgs.tree-sitter pkgs.page pkgs.lua ];
 
   home.sessionVariables = { MANPAGER = "nvim +Man!"; };
   programs.neovim = {
@@ -62,7 +62,7 @@
           select = {
             enable = true,
 
-            -- Automatically jump forward to textobj, similar to targets.vim 
+            -- Automatically jump forward to textobj, similar to targets.vim
             lookahead = true,
 
             keymaps = {
@@ -151,7 +151,7 @@
       })
 
       local neogit = require("neogit")
-      neogit.setup { 
+      neogit.setup {
         disable_insert_on_commit = false,
         disable_commit_confirmation = true,
         integrations = { diffview = true }

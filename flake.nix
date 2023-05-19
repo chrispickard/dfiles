@@ -28,8 +28,17 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, mozilla-overlay
-    , emacs-overlay, comma, btf, nix-doom-emacs }:
+  outputs =
+    { self
+    , nixpkgs
+    , nixpkgs-stable
+    , home-manager
+    , mozilla-overlay
+    , emacs-overlay
+    , comma
+    , btf
+    , nix-doom-emacs
+    }:
     let
       system = "x86_64-linux";
       overlay-stable = final: prev: {
@@ -51,7 +60,8 @@
       };
       user = "chris";
       work_user = "chrispickard";
-    in {
+    in
+    {
       homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
@@ -70,7 +80,7 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-          nix-doom-emacs.hmModule
+            nix-doom-emacs.hmModule
             ./home.nix
             {
               home = {

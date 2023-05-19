@@ -1,5 +1,14 @@
 { config, lib, pkgs, ... }:
 
+let
+  ename = pkgs.emacsPackages.pdf-tools.ename;
+  version = pkgs.emacsPackages.pdf-tools.version;
+  epdfinfo = pkgs.runCommand "epdfinfo" { } ''
+    mkdir -p $out/bin
+    cp "${pkgs.emacsPackages.pdf-tools}/share/emacs/site-lisp/elpa/${ename}-${version}/epdfinfo" $out/bin
+  '';
+
+in
 {
 
   # programs.doom-emacs = rec {
@@ -30,9 +39,33 @@
     pkgs.cmake
     pkgs.sbcl
     pkgs.shfmt
+    pkgs.clang-tools
+    pkgs.crystal
+    epdfinfo
     pkgs.binutils # native-comp needs 'as', provided by this
     # emacsPgtkGcc   # 28 + pgtk + native-comp
   ];
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/mailto" = [ "notmuch.desktop" ];
+    };
+  };
+
+  xdg.desktopEntries = {
+    notmuch = {
+      name = "notmuch";
+      genericName = "Mail Client";
+      exec = ''
+        sh -c "exec emacsclient --alternate-editor= --display=\\"\\$DISPLAY\\" --eval \\\\message-mailto\\\\ \\\\\\"%u\\\\\\"\\\\"
+      '';
+
+      terminal = false;
+      categories = [ "Email" ];
+      mimeType = [ "x-scheme-handler/mailto" "text/xml" ];
+    };
+  };
 
   programs.emacs = { enable = true; };
   services.emacs = { enable = true; };
@@ -47,13 +80,15 @@
     ASPELL_CONF = "data-dir $HOME/.nix-profile/lib/aspell";
   };
 
-  xsession.windowManager.i3.config.keybindings = let
-    mod = config.modifier;
-    leader = "Mod1 + Shift";
-  in {
-    "${leader}+e" = "exec btf -m emacs@chris es";
-    "Mod4+e" = ''exec emacsclient --eval "(emacs-everywhere)"'';
-  };
+  xsession.windowManager.i3.config.keybindings =
+    let
+      mod = config.modifier;
+      leader = "Mod1 + Shift";
+    in
+    {
+      "${leader}+e" = "exec btf -m emacs@chris es";
+      "Mod4+e" = ''exec emacsclient --eval "(emacs-everywhere)"'';
+    };
 
   home.file."bin/es" = {
     text = ''
