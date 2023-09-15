@@ -26,6 +26,10 @@
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zigpkgs = {
+      url = "github:mitchellh/zig-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -38,6 +42,7 @@
     , comma
     , btf
     , nix-doom-emacs
+    , zigpkgs
     }:
     let
       system = "x86_64-linux";
@@ -53,6 +58,7 @@
           overlay-stable
           (import mozilla-overlay)
           (import emacs-overlay)
+          (final: prev: { zigpkgs = import zigpkgs { inherit (prev) pkgs; inherit system; }; })
           (final: prev: { comma = import comma { inherit (prev) pkgs; }; })
           (final: prev: { btf = import btf { inherit (prev) pkgs; }; })
         ];

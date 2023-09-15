@@ -14,6 +14,13 @@
       };
     })
   ];
+  # xsession.windowManager.i3.config.keybindings =
+  #   let leader = "Mod1 + Shift";
+  #   in
+  #   {
+  #     "${leader}+j" = "exec btf -m st-256color /home/chrispickard/bin/st-size";
+  #   };
+
   xsession.windowManager.i3.config.keybindings =
     let leader = "Mod1 + Shift";
     in

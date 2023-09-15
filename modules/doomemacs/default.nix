@@ -41,6 +41,7 @@ in
     pkgs.shfmt
     pkgs.clang-tools
     pkgs.crystal
+    pkgs.graphviz
     epdfinfo
     pkgs.binutils # native-comp needs 'as', provided by this
     # emacsPgtkGcc   # 28 + pgtk + native-comp

@@ -6,7 +6,7 @@ let
     (builtins.readFile ./_op);
   podmanCompletion =
     pkgs.writeTextDir "share/zsh/site-functions/podman.plugin.zsh"
-    (builtins.readFile ./_podman);
+      (builtins.readFile ./_podman);
   labCompletion = pkgs.writeTextDir "share/zsh/site-functions/lab.plugin.zsh"
     (builtins.readFile ./_lab);
   switchScript = pkgs.writeTextFile {
@@ -19,16 +19,17 @@ let
     text = (builtins.readFile ./update);
     executable = true;
   };
-in {
+in
+{
   home.packages = with pkgs; [ perl ];
   programs.zsh = {
     enable = true;
     shellAliases = {
-      ls = "${pkgs.exa}/bin/exa";
-      ll = "${pkgs.exa}/bin/exa -l";
-      la = "${pkgs.exa}/bin/exa -la";
-      l = "${pkgs.exa}/bin/exa -la";
-      tree = "${pkgs.exa}/bin/exa -T";
+      ls = "${pkgs.eza}/bin/eza";
+      ll = "${pkgs.eza}/bin/eza -l";
+      la = "${pkgs.eza}/bin/eza -la";
+      l = "${pkgs.eza}/bin/eza -la";
+      tree = "${pkgs.eza}/bin/eza -T";
       d = "docker";
       k = "kubectl";
       dc = "docker compose";
@@ -112,6 +113,7 @@ in {
       }
     ];
     enableCompletion = true;
+    enableVteIntegration = true;
     initExtraBeforeCompInit = ''
       fpath+=$HOME/.zsh/plugins
       zstyle ':completion:*' accept-exact '*(N)'
@@ -212,7 +214,7 @@ in {
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    changeDirWidgetCommand = "fd . $HOME --type=d";
+    changeDirWidgetCommand = "fd . $HOME --type=d --type=l";
   };
   programs.direnv = {
     enable = true;

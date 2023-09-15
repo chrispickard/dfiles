@@ -166,8 +166,7 @@ in
     # protobuf3_12
     # go-protobuf
     rustup
-    zig
-    zls
+    zigpkgs.master
     cached-nix-shell
     # k8s stuff
     kubernetes-helm
@@ -184,6 +183,7 @@ in
     wine-staging
     bless
     gdb
+    cdrkit
   ];
   fonts.fontconfig.enable = true;
 

@@ -1,0 +1,39 @@
+font-family = "Iosevka"
+font-size = 22
+
+# nord colors
+foreground=#D8DEE9
+background=#2E3440
+cursor-color=#81A1C1
+
+# black
+palette = 0=#3B4252
+palette = 8=#4C566A
+
+# red
+palette = 1=#BF616A
+palette = 9=#BF616A
+
+# green
+palette = 2=#A3BE8C
+palette = 1=#A3BE8C
+
+# yellow
+palette = 3=#EBCB8B
+palette = 1=#EBCB8B
+
+# blue
+palette = 4=#81A1C1
+palette = 1=#81A1C1
+
+# magenta
+palette = 5=#B48EAD
+palette = 1=#B48EAD
+
+# cyan
+palette = 6=#88C0D0
+palette = 1=#8FBCBB
+
+# white
+palette = 7=#E5E9F0
+palette = 1=#B48EAD
