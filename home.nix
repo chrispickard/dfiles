@@ -76,6 +76,7 @@ in
     ./modules/jira
     ./modules/firefox
     ./modules/mail.nix
+    ./modules/ghostty
     # ./modules/qutebrowser
   ];
   # This value determines the Home Manager release that your

@@ -16,24 +16,24 @@ palette = 9=#BF616A
 
 # green
 palette = 2=#A3BE8C
-palette = 1=#A3BE8C
+palette = 10=#A3BE8C
 
 # yellow
 palette = 3=#EBCB8B
-palette = 1=#EBCB8B
+palette = 11=#EBCB8B
 
 # blue
 palette = 4=#81A1C1
-palette = 1=#81A1C1
+palette = 12=#81A1C1
 
 # magenta
 palette = 5=#B48EAD
-palette = 1=#B48EAD
+palette = 13=#B48EAD
 
 # cyan
 palette = 6=#88C0D0
-palette = 1=#8FBCBB
+palette = 14=#8FBCBB
 
 # white
 palette = 7=#E5E9F0
-palette = 1=#B48EAD
+palette = 15=#B48EAD
