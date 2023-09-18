@@ -75,7 +75,8 @@ in
     ./modules/vscode.nix
     ./modules/jira
     ./modules/firefox
-    ./modules/mail.nix
+    # ./modules/mail.nix
+    ./modules/thunderbird.nix
     ./modules/ghostty
     # ./modules/qutebrowser
   ];
