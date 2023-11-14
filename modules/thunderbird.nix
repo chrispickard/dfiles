@@ -8,6 +8,6 @@ in
     let leader = "Mod1 + Shift";
     in
     {
-      "${leader}+t" = "exec btf -m thunderbird ${thunderbird}";
+      "${leader}+t" = "exec btf -m thunderbird ${thunderbird}/bin/thunderbird";
     };
 }

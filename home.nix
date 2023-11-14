@@ -28,7 +28,17 @@ let
     # wrap the binary in a script where the appropriate env var is set
     postFixup = old.postFixup or "" + ''
       wrapProgram "$out/bin/clion" \
-      --set GOPATH "${config.programs.zsh.sessionVariables.GOPATH}" \
+      --set JAVA_HOME "${config.home.sessionVariables.JAVA_HOME}" \
+      --unset DESKTOP_STARTUP_ID
+    '';
+  });
+  rust-rover-overlay = pkgs.jetbrains.rust-rover.overrideAttrs (old: rec {
+    # add `makeWrapper` to existing dependencies
+    buildInputs = old.buildInputs or [ ] ++ [ pkgs.makeWrapper ];
+
+    # wrap the binary in a script where the appropriate env var is set
+    postFixup = old.postFixup or "" + ''
+      wrapProgram "$out/bin/rust-rover" \
       --set JAVA_HOME "${config.home.sessionVariables.JAVA_HOME}" \
       --unset DESKTOP_STARTUP_ID
     '';
@@ -41,6 +51,17 @@ let
     postFixup = old.postFixup or "" + ''
       wrapProgram "$out/bin/goland" \
       --set GOPATH "${config.programs.zsh.sessionVariables.GOPATH}" \
+      --set JAVA_HOME "${config.home.sessionVariables.JAVA_HOME}" \
+      --unset DESKTOP_STARTUP_ID
+    '';
+  });
+  pycharm-overlay = pkgs.jetbrains.pycharm.overrideAttrs (old: rec {
+    # add `makeWrapper` to existing dependencies
+    buildInputs = old.buildInputs or [ ] ++ [ pkgs.makeWrapper ];
+
+    # wrap the binary in a script where the appropriate env var is set
+    postFixup = old.postFixup or "" + ''
+      wrapProgram "$out/bin/pycharm" \
       --set JAVA_HOME "${config.home.sessionVariables.JAVA_HOME}" \
       --unset DESKTOP_STARTUP_ID
     '';
@@ -90,13 +111,13 @@ in
   # changes in each release.
 
   home.packages = with pkgs; [
-    go_1_18
+    go_1_21
     # goimports
     gopls
     gotools
     lastpass-cli
     google-chrome
-    chromium
+    stable.chromium
     # microsoft-edge-beta
     # trivy
     delve
@@ -141,19 +162,21 @@ in
     black
     awscli2
     # ansible
-    youtube-dl
+    yt-dlp
+
     # obs-studio
-    mailspring
+    # mailspring
     libsecret
     gnome.zenity
     gnome.file-roller
     gsettings-desktop-schemas
-    # vlc
+    vlc
     comma
     btf
     # jetbrains.idea-ultimate
     idea-overlay
     clion-overlay
+    rust-rover-overlay
     goland-overlay
     shellcheck
     mkcert
@@ -177,9 +200,9 @@ in
     kube3d
     just
     openfortivpn
-    zotero
+    # zotero
     lldb
-    logseq
+    # logseq
     # obsidian
     # zellij
     wine-staging

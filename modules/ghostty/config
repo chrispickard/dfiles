@@ -1,5 +1,10 @@
 font-family = "Iosevka"
 font-size = 22
+# keybind = 'ctrl+enter:unbind'
+
+# command = "tmuxp load -y ~/.tmuxp/work.yaml"
+
+window-decoration = false
 
 # nord colors
 foreground=#D8DEE9

@@ -168,3 +168,39 @@
 (setq global-eldoc-mode nil)
 
 (setq +format-on-save-enabled-modes '(not cc-mode c-mode))
+
+;; Hacky generic mode for flex
+
+;; To use put in a directory like ~/.emacs.d/lisp/
+;; and add that directory to the load-path in the ~/.emacs init file
+;; then load the file
+
+;; Ex:
+;; (add-to-list 'load-path "~/.emacs.d/lisp/")
+;; (load "flex-mode")
+
+(require 'generic-x)
+
+(define-generic-mode
+  'flex-mode                          ;; name of the mode
+  '("//" ("/*" . "*/"))                ;; comments delimiter
+  '("function" "transform" "let" "struct" "enum" "as" "variant"
+    "variant" "import" "module" "type" "extends" "match"
+    "constrainedtype" "newtype" "if" "const" "for" "in" "message" "bit")      ;; some keywords
+   ;; '(("%{\\([A-Z_]+\\)}" 1 font-lock-variable-name-face)
+   ;;      ("\\b[0-9][0-9][0-9]\\b" . font-lock-constant-face))
+   ;;      ("\\[.*\\]" . font-lock-type-face))
+  '(("=" . 'font-lock-operator)
+    ("+" . 'font-lock-operator)     ;; some operators
+    ("->" . 'font-lock-operator)
+    ("^\\s-*transform\\s-+\\([A-Za-z0-9_]+\\)"
+     (1 font-lock-function-name-face))
+    ("^\\s-*function\\s-+\\([A-Za-z0-9_]+\\)"
+     (1 font-lock-function-name-face))
+    ("^\\s-*let\\s-+\\([A-Za-z0-9_]+\\)"
+     (1 font-lock-variable-name-face))
+    (";" . 'font-lock-builtin))     ;; a built-in
+  '("\\.flex$")                    ;; files that trigger this mode
+  '((lambda () (modify-syntax-entry ?' "\"")))    ;; any other functions to call
+  "Flex custom highlighting mode"     ;; doc string
+)

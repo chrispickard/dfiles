@@ -5,14 +5,15 @@ let
   };
 
   ffox = pkgs.writeShellScriptBin "ffox" ''
-    ${f}/bin/firefox --class defaultdefaultdefault -P default $@
+    ${f}/bin/firefox-developer-edition --class defaultdefaultdefault -P default $@
   '';
 
   otherfox = pkgs.writeShellScriptBin "otherfox" ''
-    ${f}/bin/firefox --class otherfox -P otherfox $@
+    ${f}/bin/firefox-developer-edition --class otherfox -P otherfox $@
   '';
 
-in {
+in
+{
   xdg.desktopEntries = {
     ffox = {
       name = "ffox";
@@ -36,11 +37,13 @@ in {
     # recursive = true;
   };
 
-  xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
-  in {
-    "${leader}+c" = "exec btf -m defaultdefaultdefault ${ffox}/bin/ffox";
-    "${leader}+o" = "exec btf -m otherfox ${otherfox}/bin/otherfox";
-  };
+  xsession.windowManager.i3.config.keybindings =
+    let leader = "Mod1 + Shift";
+    in
+    {
+      "${leader}+c" = "exec btf -m defaultdefaultdefault ${ffox}/bin/ffox";
+      "${leader}+o" = "exec btf -m otherfox ${otherfox}/bin/otherfox";
+    };
 
   xdg.mimeApps = {
     associations.added = {

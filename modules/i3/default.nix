@@ -164,6 +164,7 @@
         for_window [title="emacs-everywhere@chris"] floating enable
         for_window [class="Qemu-system-ppc"] floating enable
         for_window [class="Qalculate-gtk"] floating enable
+        for_window [class="thunderbird"] floating enable
         for_window [class="tornado.exe"] floating enable
         no_focus [title="Microsoft Teams Notification"]
         for_window [class="Firefox" title="Developer Tools"] resize set 900 480
@@ -195,7 +196,7 @@
     text = ''
       #!/bin/sh
       . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-      btf -m jetbrains- idea-ultimate
+      btf -m jetbrains- true
     '';
     executable = true;
   };
@@ -222,11 +223,18 @@
     executable = true;
   };
 
+  home.file."bin/momentplz" = {
+    text = ''
+      #!/bin/sh
+      flatpak run xyz.mx_moment.moment
+    '';
+    executable = true;
+  };
   home.file."bin/open-element" = {
     text = ''
       #!/bin/sh
       . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-      btf -m 'Element' ${pkgs.element-desktop}/bin/element-desktop
+      btf -m 'moment' momentplz
     '';
     executable = true;
   };

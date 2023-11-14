@@ -214,7 +214,7 @@ in
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    changeDirWidgetCommand = "fd . $HOME --type=d --type=l";
+    changeDirWidgetCommand = "fd . $HOME --type=d";
   };
   programs.direnv = {
     enable = true;

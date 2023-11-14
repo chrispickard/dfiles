@@ -14,12 +14,12 @@
       };
     })
   ];
-  # xsession.windowManager.i3.config.keybindings =
-  #   let leader = "Mod1 + Shift";
-  #   in
-  #   {
-  #     "${leader}+j" = "exec btf -m st-256color /home/chrispickard/bin/st-size";
-  #   };
+  xsession.windowManager.i3.config.keybindings =
+    let leader = "Mod1 + Shift";
+    in
+    {
+      "${leader}+j" = "exec btf -m st-256color /home/chrispickard/bin/st-large-size";
+    };
 
   home.file."bin/st-size" = {
     text = ''
@@ -32,7 +32,7 @@
   home.file."bin/st-large-size" = {
     text = ''
       #!/bin/sh
-      st -f "Iosevka:size=22"
+      st -f "Iosevka:size=25"
     '';
     executable = true;
   };
