@@ -7,6 +7,9 @@ let
   podmanCompletion =
     pkgs.writeTextDir "share/zsh/site-functions/podman.plugin.zsh"
       (builtins.readFile ./_podman);
+  telepresenceCompletion =
+    pkgs.writeTextDir "share/zsh/site-functions/telepresence.plugin.zsh"
+      (builtins.readFile ./_telepresence);
   labCompletion = pkgs.writeTextDir "share/zsh/site-functions/lab.plugin.zsh"
     (builtins.readFile ./_lab);
   switchScript = pkgs.writeTextFile {
@@ -79,6 +82,10 @@ in
         src = "${pkgs.kube3d}/share/zsh/site-functions/";
       }
       {
+        name = "kubectl";
+        src = "${pkgs.kubectl}/share/zsh/site-functions/";
+      }
+      {
         name = "op";
         file = "op.plugin.zsh";
         src = "${onepassCompletion}/share/zsh/site-functions/";
@@ -99,12 +106,17 @@ in
         src = "${labCompletion}/share/zsh/site-functions/";
       }
       {
+        name = "telepresence";
+        file = "telepresence.plugin.zsh";
+        src = "${telepresenceCompletion}/share/zsh/site-functions/";
+      }
+      {
         name = "terraform";
         src = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/terraform";
       }
       {
         name = "systemctl";
-        src = "${pkgs.udev}/share/zsh/site-functions/";
+        src = "${pkgs.systemd}/share/zsh/site-functions/";
       }
       {
         name = "zsh-syntax-highlighting";

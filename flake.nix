@@ -63,6 +63,9 @@
           (final: prev: { btf = import btf { inherit (prev) pkgs; }; })
         ];
         config.allowUnfree = true;
+        config.permittedInsecurePackages = [
+          "electron-25.9.0"
+        ];
       };
       user = "chris";
       work_user = "chrispickard";

@@ -28,6 +28,10 @@ in {
         lieer = { enable = true; };
         realName = "${name}";
         notmuch.enable = true;
+        astroid = {
+          enable = true;
+          sendMailCommand = "${pkgs.gmailieer}/bin/gmi send -t -C ~/.mail/work";
+        };
       };
       personal = {
         address = "${personal}";
@@ -37,6 +41,11 @@ in {
         lieer = { enable = true; };
         realName = "${name}";
         notmuch.enable = true;
+        astroid = {
+          enable = true;
+          sendMailCommand =
+            "${pkgs.gmailieer}/bin/gmi send -t -C ~/.mail/personal";
+        };
       };
       tpf = {
         address = "${tpf}";
@@ -46,16 +55,24 @@ in {
         lieer = { enable = true; };
         realName = "${name}";
         notmuch.enable = true;
+        astroid = {
+          enable = true;
+          sendMailCommand = "${pkgs.gmailieer}/bin/gmi send -t -C ~/.mail/tpf";
+        };
       };
     };
   };
 
+  xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
+  in { "${leader}+t" = "exec btf -m Astroid /usr/bin/astroid"; };
   programs = {
     notmuch = {
       enable = true;
       hooks = {
-        preNew = "${syncmymail}/bin/syncmymail";
-        postNew = "${pkgs.afew}/bin/afew -C ${notmuchrc} --tag --new --verbose";
+        preNew =
+          "${pkgs.astroid}/bin/astroid --start-polling || true && ${syncmymail}/bin/syncmymail";
+        postNew =
+          "${pkgs.afew}/bin/afew -C ${notmuchrc} --tag --new --verbose; ${pkgs.astroid}/bin/astroid --stop-polling || true";
       };
       new = {
         ignore = [ "trash" "*.json" ];
@@ -65,6 +82,16 @@ in {
       maildir.synchronizeFlags = true;
     };
     lieer = { enable = true; };
+    astroid = {
+      enable = true;
+      extraConfig = {
+        thread_view.preferred_type = "html";
+        editor = {
+          cmd = "emacsclient -q -c %1";
+          external_editor = true;
+        };
+      };
+    };
   };
   systemd.user.services.syncmail = {
     Unit = {

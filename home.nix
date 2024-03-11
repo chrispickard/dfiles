@@ -96,7 +96,7 @@ in
     ./modules/vscode.nix
     ./modules/jira
     ./modules/firefox
-    # ./modules/mail.nix
+    ./modules/mail.nix
     ./modules/thunderbird.nix
     ./modules/ghostty
     # ./modules/qutebrowser
@@ -194,21 +194,22 @@ in
     zigpkgs.master
     cached-nix-shell
     # k8s stuff
-    kubernetes-helm
-    kubectl
-    tilt
-    kube3d
+    # kubernetes-helm
+    # kubectl
+    # tilt
+    # kube3d
     just
     openfortivpn
     # zotero
     lldb
-    # logseq
+    logseq
     # obsidian
     # zellij
     wine-staging
     bless
     gdb
     cdrkit
+    nushell
   ];
   fonts.fontconfig.enable = true;
 

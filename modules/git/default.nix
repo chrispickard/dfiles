@@ -10,7 +10,9 @@ in {
     gitAndTools.delta
     gitAndTools.lab
     gitIdentity
+    git-absorb
     gg
+    jujutsu
   ];
   programs.zsh.shellAliases = {
     g = "${pkgs.git}/bin/git";
