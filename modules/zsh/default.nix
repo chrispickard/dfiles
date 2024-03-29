@@ -201,6 +201,7 @@ in
       HISTFILE = "${"HOME"}/.zsh_history";
       WINEPATH = "C:\\\\Tornado\\\\host\\\\\\x86-win32\\\\\\bin\\\\";
       PATH = lib.makeBinPath [
+        "${homeDir}/.krew"
         "${homeDir}/dev/golang"
         "${homeDir}/.cargo"
         "${homeDir}/.emacs.d"

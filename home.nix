@@ -141,7 +141,7 @@ in
     # vgo2nix
     nodejs
     nixfmt
-    rnix-lsp
+    # rnix-lsp
     nixpkgs-fmt
     slack
     discord
@@ -192,7 +192,6 @@ in
     # go-protobuf
     rustup
     zigpkgs.master
-    cached-nix-shell
     # k8s stuff
     # kubernetes-helm
     # kubectl
