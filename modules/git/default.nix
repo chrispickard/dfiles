@@ -8,9 +8,9 @@ in {
   home.packages = with pkgs; [
     tig
     gitAndTools.delta
-    gitAndTools.lab
     gitIdentity
     git-absorb
+    glab
     gg
     jujutsu
   ];

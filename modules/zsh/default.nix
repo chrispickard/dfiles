@@ -10,8 +10,6 @@ let
   telepresenceCompletion =
     pkgs.writeTextDir "share/zsh/site-functions/telepresence.plugin.zsh"
       (builtins.readFile ./_telepresence);
-  labCompletion = pkgs.writeTextDir "share/zsh/site-functions/lab.plugin.zsh"
-    (builtins.readFile ./_lab);
   switchScript = pkgs.writeTextFile {
     name = "switch";
     text = (builtins.readFile ./switch);
@@ -82,6 +80,10 @@ in
         src = "${pkgs.kube3d}/share/zsh/site-functions/";
       }
       {
+        name = "glab";
+        src = "${pkgs.glab}/share/zsh/site-functions/";
+      }
+      {
         name = "kubectl";
         src = "${pkgs.kubectl}/share/zsh/site-functions/";
       }
@@ -100,11 +102,6 @@ in
       #   file = "just.plugin.zsh";
       #   src = "${justCompletion}/share/zsh/site-functions/";
       # }
-      {
-        name = "lab";
-        file = "lab.plugin.zsh";
-        src = "${labCompletion}/share/zsh/site-functions/";
-      }
       {
         name = "telepresence";
         file = "telepresence.plugin.zsh";
@@ -215,6 +212,7 @@ in
     enable = true;
     sessionVariables = {
       PATH = lib.makeBinPath [
+        "${homeDir}/.krew"
         "${homeDir}/dev/golang"
         "${homeDir}"
         "${homeDir}/.emacs.d"

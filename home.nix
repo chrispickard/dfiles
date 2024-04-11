@@ -78,6 +78,7 @@ in
     ./modules/jq.nix
     ./modules/git
     ./modules/zsh
+    ./modules/nushell
     ./modules/tmux.nix
     ./modules/vim
     ./modules/doomemacs
@@ -157,9 +158,11 @@ in
     python3
     remmina
     pcmanfm
+    sqlite-interactive
     # python38Packages.python-language-server
     # python38Packages.pyls-black
     black
+    robo3t
     awscli2
     # ansible
     yt-dlp
@@ -201,7 +204,7 @@ in
     openfortivpn
     # zotero
     lldb
-    logseq
+    # logseq
     # obsidian
     # zellij
     wine-staging
