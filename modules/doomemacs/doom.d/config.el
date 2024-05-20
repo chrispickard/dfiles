@@ -155,6 +155,15 @@
 
 (setq emacs-everywhere-frame-name-format "emacs-everywhere@chris")
 
+(after! circe
+  (set-irc-server! "irc.libera.chat"
+    `(:tls t
+      :port 6697
+      :nick "doom"
+      :sasl-username "chris.pickard"
+      :sasl-password "mypassword"
+      :channels ("#emacs"))))
+
                                         ; TODO org-protocol
 (setq org-capture-templates
       `(

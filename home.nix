@@ -97,6 +97,7 @@ in
     ./modules/vscode.nix
     ./modules/jira
     ./modules/firefox
+    ./modules/chrome.nix
     ./modules/mail.nix
     ./modules/thunderbird.nix
     ./modules/ghostty
@@ -231,10 +232,10 @@ in
     };
   };
   programs.htop = { enable = true; };
-  programs.mpv = {
-    enable = true;
-    scripts = [ pkgs.mpvScripts.mpris ];
-  };
+  # programs.mpv = {
+  #   enable = true;
+  #   scripts = [ pkgs.mpvScripts.mpris ];
+  # };
   programs.readline.enable = true;
   programs.nix-index = {
     enable = true;

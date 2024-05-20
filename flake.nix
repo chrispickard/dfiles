@@ -75,7 +75,6 @@
         inherit pkgs;
         modules = [
           nix-doom-emacs.hmModule
-          ./home.nix
           {
             home = {
               username = "${user}";
@@ -83,6 +82,7 @@
               stateVersion = "22.05";
             };
           }
+          ./home.nix
         ];
       };
       homeConfigurations."${work_user}" =

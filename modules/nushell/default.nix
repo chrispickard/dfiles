@@ -20,5 +20,6 @@ in
     starship
     eza
     carapace
+    fish
   ];
 }
