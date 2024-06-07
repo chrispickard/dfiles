@@ -213,6 +213,7 @@ in
     gdb
     cdrkit
     nushell
+    redisinsight
   ];
   fonts.fontconfig.enable = true;
 
