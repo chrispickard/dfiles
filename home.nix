@@ -164,15 +164,15 @@ in
     # python38Packages.pyls-black
     black
     robo3t
-    awscli2
+    # awscli2
     # ansible
     yt-dlp
 
     # obs-studio
     # mailspring
     libsecret
-    gnome.zenity
-    gnome.file-roller
+    zenity
+    file-roller
     gsettings-desktop-schemas
     vlc
     comma
@@ -213,7 +213,7 @@ in
     gdb
     cdrkit
     nushell
-    redisinsight
+    # redisinsight
   ];
   fonts.fontconfig.enable = true;
 

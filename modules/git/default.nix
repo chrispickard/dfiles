@@ -7,7 +7,7 @@ let
 in {
   home.packages = with pkgs; [
     tig
-    gitAndTools.delta
+    # gitAndTools.delta
     gitIdentity
     git-absorb
     glab
@@ -43,10 +43,10 @@ in {
       current = "branch --show-current";
       f = "fetch";
     };
-    delta = {
-      enable = true;
-      # options = [ "--dark" "--theme=base16" ];
-      options = { syntax-theme = "Nord"; };
-    };
+    # delta = {
+    #   enable = true;
+    #   # options = [ "--dark" "--theme=base16" ];
+    #   options = { syntax-theme = "Nord"; };
+    # };
   };
 }

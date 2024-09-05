@@ -10,7 +10,7 @@ if [ -f "${HOME}/.config/mimeapps.list" ]; then
 fi
 
 nix registry remove nixpkgs
-nix flake update "${FLAKE_LOC}"
+nix flake update --flake "${FLAKE_LOC}"
 nix registry pin nixpkgs
 
 home-manager --flake "${FLAKE_LOC}" switch

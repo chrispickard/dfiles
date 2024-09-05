@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }:
 
 let
-  ename = pkgs.emacsPackages.pdf-tools.ename;
-  version = pkgs.emacsPackages.pdf-tools.version;
-  epdfinfo = pkgs.runCommand "epdfinfo" { } ''
-    mkdir -p $out/bin
-    cp "${pkgs.emacsPackages.pdf-tools}/share/emacs/site-lisp/elpa/${ename}-${version}/epdfinfo" $out/bin
-  '';
+  # ename = pkgs.emacsPackages.pdf-tools.ename;
+  # version = pkgs.emacsPackages.pdf-tools.version;
+  # epdfinfo = pkgs.runCommand "epdfinfo" { } ''
+  #   mkdir -p $out/bin
+  #   cp "${pkgs.emacsPackages.pdf-tools}/share/emacs/site-lisp/elpa/${ename}-${version}/epdfinfo" $out/bin
+  # '';
 
 in
 {
@@ -42,9 +42,9 @@ in
     pkgs.clang-tools
     pkgs.crystal
     pkgs.graphviz
-    epdfinfo
+    # epdfinfo
     pkgs.binutils # native-comp needs 'as', provided by this
-    # emacsPgtkGcc   # 28 + pgtk + native-comp
+    # pkgs.emacs29-pgtk   # 28 + pgtk + native-comp
   ];
 
   xdg.mimeApps = {
@@ -88,7 +88,9 @@ in
     in
     {
       "${leader}+e" = "exec btf -m emacs@chris es";
-      "Mod4+e" = ''exec emacsclient --eval "(emacs-everywhere)"'';
+      "${leader}+m" = "exec btf -m magit@chris es";
+      "${leader}+k" = "exec btf -m scratch@chris es";
+      # "Mod4+e" = ''exec emacsclient --eval "(emacs-everywhere)"'';
     };
 
   home.file."bin/es" = {

@@ -49,3 +49,8 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
                                         ;(unpin! t)
 (package! nushell-mode :recipe (:host github :repo "mrkkrp/nushell-mode"))
+
+(package! window-purpose)
+(package! frame-purpose)
+
+(package! adoc-mode)

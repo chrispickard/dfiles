@@ -200,10 +200,18 @@
     '';
     executable = true;
   };
+  home.file."bin/open-scratch" = {
+    text = ''
+      #!/bin/sh
+      . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+      btf -m SCRATCH.md true
+    '';
+    executable = true;
+  };
   home.file."bin/pbcopy" = {
     text = ''
       #!/bin/sh
-      xclip -sel clipboard $@
+      tr -d '\n' | xclip -sel clipboard $@
     '';
     executable = true;
   };
