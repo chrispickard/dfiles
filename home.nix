@@ -113,7 +113,7 @@ in
   # changes in each release.
 
   home.packages = with pkgs; [
-    go_1_21
+    go_1_23
     # goimports
     gopls
     gotools
@@ -208,8 +208,7 @@ in
     # logseq
     # obsidian
     # zellij
-    wine-staging
-    bless
+    wine
     gdb
     cdrkit
     nushell

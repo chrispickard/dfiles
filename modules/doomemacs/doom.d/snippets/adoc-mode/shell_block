@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: shell_block
+# key: _sh
+# --
+
+[source,shell]
+----
+$0
+----

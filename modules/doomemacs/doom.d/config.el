@@ -373,12 +373,25 @@
 ;; (provide 'zezin-purpose)
 ;; ;;; zezin-purpose.el ends here
 
-(frame-purpose-make-frame :modes '("Magit")
-                          :title "magit@chris")
+;; (frame-purpose-make-frame :modes '("Magit")
+;;                           :title "magit@chris")
 
-(add-to-list 'forge-alist '("gitlab.tangramflex.tech"
-                            "gitlab.tangramflex.tech/api/v4"
-                            "gitlab.tangramflex.tech"
-                            forge-gitlab-repository))
+(after! forge
+  (add-to-list 'forge-alist '("gitlab.tangramflex.tech"
+                              "gitlab.tangramflex.tech/api/v4"
+                              "gitlab.tangramflex.tech"
+                              forge-gitlab-repository)))
 
 (setq auth-sources '("~/.netrc"))
+
+(use-package! adoc-mode
+  :custom-face
+  (adoc-title-0-face ((t (:height 1.3 :weight bold))))
+  (adoc-title-1-face ((t (:height 1.2 :weight bold))))
+  (adoc-title-2-face ((t (:height 1.1 :weight bold))))
+  (adoc-title-3-face ((t (:height 1.0 :weight bold))))
+  (adoc-meta-face ((t (:height 0.7))))
+  (adoc-secondary-text-face ((t (:height 0.7)))))
+
+
+(setq consult-ripgrep-args "rg --null --no-ignore --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip")

@@ -9,13 +9,13 @@ let
   notmuchrc = "/home/chrispickard/.config/notmuch/default/config";
 
   syncmymail = pkgs.writeShellScriptBin "syncmymail" ''
-    ${pkgs.gmailieer}/bin/gmi sync -C ~/.mail/work --limit=100
-    ${pkgs.gmailieer}/bin/gmi sync -C ~/.mail/personal --limit=100
-    ${pkgs.gmailieer}/bin/gmi sync -C ~/.mail/tpf --limit=100
+    ${pkgs.lieer}/bin/gmi sync -C ~/.mail/work --limit=100
+    ${pkgs.lieer}/bin/gmi sync -C ~/.mail/personal --limit=100
+    ${pkgs.lieer}/bin/gmi sync -C ~/.mail/tpf --limit=100
   '';
 in {
   imports = [ ./afew.nix ];
-  home.packages = with pkgs; [ notmuch gmailieer syncmymail w3m ];
+  home.packages = with pkgs; [ notmuch lieer syncmymail w3m ];
 
   accounts.email = {
     maildirBasePath = "${maildir}";
@@ -30,7 +30,7 @@ in {
         notmuch.enable = true;
         astroid = {
           enable = true;
-          sendMailCommand = "${pkgs.gmailieer}/bin/gmi send -t -C ~/.mail/work";
+          sendMailCommand = "${pkgs.lieer}/bin/gmi send -t -C ~/.mail/work";
         };
       };
       personal = {
@@ -44,7 +44,7 @@ in {
         astroid = {
           enable = true;
           sendMailCommand =
-            "${pkgs.gmailieer}/bin/gmi send -t -C ~/.mail/personal";
+            "${pkgs.lieer}/bin/gmi send -t -C ~/.mail/personal";
         };
       };
       tpf = {
@@ -57,7 +57,7 @@ in {
         notmuch.enable = true;
         astroid = {
           enable = true;
-          sendMailCommand = "${pkgs.gmailieer}/bin/gmi send -t -C ~/.mail/tpf";
+          sendMailCommand = "${pkgs.lieer}/bin/gmi send -t -C ~/.mail/tpf";
         };
       };
     };

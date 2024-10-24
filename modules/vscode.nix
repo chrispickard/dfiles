@@ -5,13 +5,13 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
-    extensions = with pkgs.vscode-extensions; [
-      vscodevim.vim
-      jnoortheen.nix-ide
-      arcticicestudio.nord-visual-studio-code
-      esbenp.prettier-vscode
-      octref.vetur
-    ];
+    # extensions = with pkgs.vscode-extensions; [
+    #   vscodevim.vim
+    #   jnoortheen.nix-ide
+    #   arcticicestudio.nord-visual-studio-code
+    #   esbenp.prettier-vscode
+    #   octref.vetur
+    # ];
     userSettings = {
       "keyboard.dispatch" = "keyCode";
       "workbench.colorTheme" = "Nord";

@@ -143,23 +143,8 @@ in
           mkdir -p "$@" && cd "$@"
       }
 
-      login1pass() {
-          eval $(lpass show 1password.com --password | op signin --account tangramflex)
-      }
-
-      totp() {
-         login1pass
-         op item get --field type=otp $1 --format json | jq -r .totp | pbcopy
-         echo "totp done"
-      }
-
       jumptostore () {
           cd $(dirname $(realpath $(which "$@" )))
-      }
-
-      gw () {
-          GROOT="$(git rev-parse --show-toplevel)"
-          $GROOT/gradlew -p $GROOT "$@"
       }
 
       __clip_cmd_line () {
