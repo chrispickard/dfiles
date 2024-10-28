@@ -119,7 +119,6 @@ in
     gotools
     lastpass-cli
     google-chrome
-    stable.chromium
     # microsoft-edge-beta
     # trivy
     delve
@@ -193,6 +192,7 @@ in
     # kotlin
     # kafkacat
     # protobuf3_12
+    element-desktop
     # go-protobuf
     rustup
     zigpkgs.master
