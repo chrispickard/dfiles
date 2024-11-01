@@ -212,6 +212,7 @@ in
     gdb
     cdrkit
     nushell
+    asciidoctor-with-extensions
     # redisinsight
   ];
   fonts.fontconfig.enable = true;

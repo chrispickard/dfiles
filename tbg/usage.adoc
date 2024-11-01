@@ -1,0 +1,6 @@
+Usage: tbg --cmd <CMD> --work-dir <WD>
+
+Options:
+  -c, --cmd <CMD>      the command to run in background
+  -w, --work-dir <WD>  the working directory
+  -h, --help           Print help

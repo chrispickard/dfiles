@@ -7,3 +7,4 @@ result/
 *.iml
 /.redo/
 /modules/doomemacs/doom.d/custom.el
+/tbg/target/

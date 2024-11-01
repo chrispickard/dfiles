@@ -1,6 +1,16 @@
 use std::env;
 use std::path::PathBuf;
 use std::process::{Child, Command};
+use clap::Parser;
+
+#[derive(Parser, Debug)]
+struct Args {
+    #[arg(short, long, help = "the command to run in background")]
+    cmd: String,
+
+    #[arg(short, long = "work-dir", help = "the working directory")]
+    wd: String
+}
 
 struct Tmux {
     tmux: Command,
@@ -39,6 +49,8 @@ fn main() {
     // then, run arg in new session with name `bg`
     // creating it if it doesn't exist
     // then reattach
+    let args = Args::parse();
+
     let home = env::var("HOME").unwrap();
     let path: PathBuf = [&home, "dev", "programs", "orcas"].iter().collect();
     let mut tmux = Tmux::new("bg".to_string());
