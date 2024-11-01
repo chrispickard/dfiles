@@ -2,7 +2,4 @@
 
 == Usage
 
-[source,]
-----
 include::usage.adoc[]
-----
