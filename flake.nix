@@ -49,6 +49,7 @@
       overlay-stable = final: prev: {
         stable =
           nixpkgs-stable.legacyPackages.${prev.system}; # considering nixpkgs-stable is an input registered before.
+        astroid = pkgs.stable.astroid;
       };
       pkgs = import nixpkgs {
         inherit system;

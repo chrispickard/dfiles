@@ -112,6 +112,8 @@ in
   # the Home Manager release notes for a list of state version
   # changes in each release.
 
+  programs.ghostty.enable = true;
+
   home.packages = with pkgs; [
     go_1_23
     # goimports
@@ -157,7 +159,7 @@ in
     nodePackages.eslint
     python3
     remmina
-    pcmanfm
+    # pcmanfm
     sqlite-interactive
     # python38Packages.python-language-server
     # python38Packages.pyls-black
@@ -183,8 +185,8 @@ in
     goland-overlay
     shellcheck
     mkcert
-    step-ca
-    step-cli
+    # step-ca
+    # step-cli
     dive
     # docker-compose
     docker-credential-helpers
@@ -212,6 +214,7 @@ in
     gdb
     cdrkit
     nushell
+    xfce.thunar
     asciidoctor-with-extensions
     # redisinsight
   ];
@@ -228,7 +231,7 @@ in
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "inode/directory" = [ "pcmanfm.desktop" ];
+      # "inode/directory" = [ "pcmanfm.desktop" ];
       "x-scheme-handler/msteams" = [ "teams.desktop" ];
     };
   };

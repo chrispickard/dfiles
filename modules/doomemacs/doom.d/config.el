@@ -88,7 +88,7 @@
         :v "s" #'evil-surround-region
         :o "s" #'evil-surround-edit
         :o "s" #'evil-Surround-edit
-        :n "-" #'ranger
+        :n "-" #'dirvish
         )
   )
 
@@ -392,6 +392,10 @@
   (adoc-title-3-face ((t (:height 1.0 :weight bold))))
   (adoc-meta-face ((t (:height 0.7))))
   (adoc-secondary-text-face ((t (:height 0.7)))))
+
+(use-package uniline
+  :defer t
+  :bind ("C-<insert>" . uniline-mode))
 
 
 (setq consult-ripgrep-args "rg --null --no-ignore --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip")

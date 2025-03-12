@@ -37,6 +37,7 @@ in
       tf = "terraform";
       o = "xdg-open";
       idea = "idea-ultimate";
+      topgrade = "${pkgs.topgrade}/bin/topgrade && switch";
 
       reload = "exec zsh";
       switch = ''
@@ -214,6 +215,8 @@ in
   };
   programs.direnv = {
     enable = true;
+    nix-direnv.enable = true;
     enableZshIntegration = true;
+    silent = true;
   };
 }

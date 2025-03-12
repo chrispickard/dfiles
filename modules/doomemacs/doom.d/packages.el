@@ -54,3 +54,4 @@
 (package! frame-purpose)
 
 (package! adoc-mode)
+(package! uniline)

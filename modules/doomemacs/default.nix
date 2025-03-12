@@ -88,8 +88,8 @@ in
     in
     {
       "${leader}+e" = "exec btf -m emacs@chris es";
-      "${leader}+m" = "exec btf -m magit@chris es";
-      "${leader}+k" = "exec btf -m scratch@chris es";
+      # "${leader}+m" = "exec btf -m magit@chris es";
+      # "${leader}+k" = "exec btf -m scratch@chris es";
       # "Mod4+e" = ''exec emacsclient --eval "(emacs-everywhere)"'';
     };
 

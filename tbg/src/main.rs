@@ -1,7 +1,5 @@
-use std::env;
-use std::path::PathBuf;
-use std::process::{Child, Command};
 use clap::Parser;
+use std::process::{Command, Output};
 
 #[derive(Parser, Debug)]
 struct Args {
@@ -25,23 +23,25 @@ impl Tmux {
         }
 
     }
-    fn ensure_session (&mut self){
+    fn ensure_session (&mut self) -> std::io::Result<Output> {
         let cmd = Command::new("tmux")
             .arg("has-session")
             .arg("-t")
             .arg(self.session_name.clone())
-            .spawn();
+            .output();
         if cmd.is_ok() {
-            return;
+            return cmd;
         }
 
         self.tmux
+            .env_remove("TMUX")
             .arg("new-session")
             .arg("-s")
-            .arg("bg");
-    }
-    fn spawn(&mut self) -> std::io::Result<Child> {
-        self.tmux.spawn()
+            .arg(self.session_name.clone())
+            .arg("-d")
+            .output()
+
+
     }
 }
 fn main() {
@@ -51,21 +51,16 @@ fn main() {
     // then reattach
     let args = Args::parse();
 
-    let home = env::var("HOME").unwrap();
-    let path: PathBuf = [&home, "dev", "programs", "orcas"].iter().collect();
     let mut tmux = Tmux::new("bg".to_string());
-    tmux.ensure_session();
-    tmux.spawn().unwrap();
+    tmux.ensure_session().expect("TODO: panic message");
 
-    // let status= Command::new("tmux")
-    //     .arg("new-session")
-    //     .arg("-s")
-    //     .arg("bg")
-    //     .arg("-d")
-    //     .env_remove("TMUX")
-    //     .current_dir(&path)
-    //     .arg("direnv exec . libreoffice")
-    //     .status()
-    //     .unwrap();
-    // println!("{}", status);
+    Command::new("tmux")
+        .env_remove("TMUX")
+        .arg("new-window")
+        .arg("-t")
+        .arg("bg:")
+        .arg(args.cmd)
+        .current_dir(args.wd)
+        .status()
+        .unwrap();
 }

@@ -63,16 +63,16 @@ in {
     };
   };
 
-  xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
-  in { "${leader}+t" = "exec btf -m Astroid /usr/bin/astroid"; };
+  # xsession.windowManager.i3.config.keybindings = let leader = "Mod1 + Shift";
+  # in { "${leader}+t" = "exec notmuch; btf -m emacs@chris emacs"; };
   programs = {
     notmuch = {
       enable = true;
       hooks = {
         preNew =
-          "${pkgs.astroid}/bin/astroid --start-polling || true && ${syncmymail}/bin/syncmymail";
+          "${syncmymail}/bin/syncmymail";
         postNew =
-          "${pkgs.afew}/bin/afew -C ${notmuchrc} --tag --new --verbose; ${pkgs.astroid}/bin/astroid --stop-polling || true";
+          "${pkgs.afew}/bin/afew -C ${notmuchrc} --tag --new --verbose";
       };
       new = {
         ignore = [ "trash" "*.json" ];

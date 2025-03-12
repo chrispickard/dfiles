@@ -9,6 +9,7 @@
 
   xdg.mimeApps = {
     associations.added = {
+      # "inode/directory" = [ "pcmanfm.desktop" ];
       "x-scheme-handler/http" =
         [ "google-chrome.desktop" ];
       "x-scheme-handler/https" =
@@ -32,7 +33,7 @@
         [ "google-chrome.desktop" ];
     };
     defaultApplications = {
-      "inode/directory" = [ "pcmanfm.desktop" ];
+      "inode/directory" = [ "thunar.desktop" ];
       "x-scheme-handler/msteams" = [ "teams.desktop" ];
       "x-scheme-handler/http" =
         [ "google-chrome.desktop" ];
