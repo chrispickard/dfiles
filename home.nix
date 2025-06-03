@@ -78,8 +78,8 @@ in
     ./modules/jq.nix
     ./modules/git
     ./modules/zsh
-    ./modules/nushell
-    ./modules/tmux.nix
+    # ./modules/nushell
+    # ./modules/tmux.nix
     ./modules/vim
     ./modules/doomemacs
     ./modules/i3
@@ -180,7 +180,7 @@ in
     btf
     # jetbrains.idea-ultimate
     idea-overlay
-    clion-overlay
+    # clion-overlay
     rust-rover-overlay
     goland-overlay
     shellcheck

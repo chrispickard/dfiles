@@ -8,3 +8,4 @@ result/
 /.redo/
 /modules/doomemacs/doom.d/custom.el
 /tbg/target/
+/config/tmux/plugins/

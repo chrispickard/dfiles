@@ -1,0 +1,9 @@
+#! /usr/bin/env fish
+
+for i in (find -type d | tail -n +2);
+    # if test "(stat $i)"
+    # else if not "(stat -c %F $i)" = "symbolic link"
+
+    # end
+    ln -s (realpath $i) ~/.config/$i
+end
