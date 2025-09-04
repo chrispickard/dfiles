@@ -44,6 +44,7 @@ in
     pkgs.graphviz
     epdfinfo
     pkgs.binutils # native-comp needs 'as', provided by this
+    pkgs.nil
     # pkgs.emacs29-pgtk   # 28 + pgtk + native-comp
   ];
 

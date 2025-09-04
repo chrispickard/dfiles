@@ -9,6 +9,7 @@
     # ./modules/jq.nix
     ./modules/git
     ./modules/zsh
+    ./modules/fish
     # ./modules/nushell
     ./modules/tmux.nix
     ./modules/vim
