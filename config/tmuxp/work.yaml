@@ -1,6 +1,0 @@
-session_name: work
-windows:
-  - window_name: ""
-    panes:
-      - focus: true
-      - null

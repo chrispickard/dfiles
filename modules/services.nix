@@ -12,6 +12,7 @@
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
   };
   services.dunst = {
     # enable = true;

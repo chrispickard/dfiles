@@ -26,11 +26,11 @@ in
   programs.zsh = {
     enable = true;
     shellAliases = {
-      ls = "${pkgs.eza}/bin/eza";
-      ll = "${pkgs.eza}/bin/eza -l";
-      la = "${pkgs.eza}/bin/eza -la";
-      l = "${pkgs.eza}/bin/eza -la";
-      tree = "${pkgs.eza}/bin/eza -T";
+      # ls = "${pkgs.eza}/bin/eza";
+      # ll = "${pkgs.eza}/bin/eza -l";
+      # la = "${pkgs.eza}/bin/eza -la";
+      # l = "${pkgs.eza}/bin/eza -la";
+      # tree = "${pkgs.eza}/bin/eza -T";
       d = "docker";
       k = "kubectl";
       dc = "docker compose";
@@ -189,6 +189,7 @@ in
         "${homeDir}/.cargo"
         "${homeDir}/.emacs.d"
         "${homeDir}"
+        "/home/linuxbrew/.linuxbrew/"
       ] + lib.optionalString (!config.home.emptyActivationPath)
         "\${PATH:+:}$PATH";
       # SSH_AUTH_SOCK = "/run/user/\${UID}/keyring/ssh";

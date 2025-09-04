@@ -18,8 +18,6 @@ in
   home.packages = with pkgs; [
     perl
     starship
-    eza
     carapace
-    fish
   ];
 }

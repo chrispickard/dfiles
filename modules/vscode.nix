@@ -12,7 +12,7 @@
     #   esbenp.prettier-vscode
     #   octref.vetur
     # ];
-    userSettings = {
+    profiles.default.userSettings = {
       "keyboard.dispatch" = "keyCode";
       "workbench.colorTheme" = "Nord";
       "window.menuBarVisibility" = "toggle";

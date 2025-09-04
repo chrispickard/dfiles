@@ -1,85 +1,16 @@
 { config, pkgs, ... }:
 
-let
-  # comma = import (builtins.fetchTarball
-  #   "https://github.com/Shopify/comma/archive/60a4cf8ec5c93104d3cfb9fc5a5bac8fb18cc8e4.tar.gz") {
-  #     inherit pkgs;
-  #   };
-  # btf = import (builtins.fetchTarball
-  #   "https://github.com/chrispickard/btf/archive/refs/tags/v0.0.4.tar.gz") {
-  #     inherit pkgs;
-  #   };
-  idea-overlay = pkgs.jetbrains.idea-ultimate.overrideAttrs (old: rec {
-    # add `makeWrapper` to existing dependencies
-    buildInputs = old.buildInputs or [ ] ++ [ pkgs.makeWrapper ];
-
-    # wrap the binary in a script where the appropriate env var is set
-    postFixup = old.postFixup or "" + ''
-      wrapProgram "$out/bin/idea-ultimate" \
-      --set GOPATH "${config.programs.zsh.sessionVariables.GOPATH}" \
-      --set JAVA_HOME "${config.home.sessionVariables.JAVA_HOME}" \
-      --unset DESKTOP_STARTUP_ID
-    '';
-  });
-  clion-overlay = pkgs.jetbrains.clion.overrideAttrs (old: rec {
-    # add `makeWrapper` to existing dependencies
-    buildInputs = old.buildInputs or [ ] ++ [ pkgs.makeWrapper ];
-
-    # wrap the binary in a script where the appropriate env var is set
-    postFixup = old.postFixup or "" + ''
-      wrapProgram "$out/bin/clion" \
-      --set JAVA_HOME "${config.home.sessionVariables.JAVA_HOME}" \
-      --unset DESKTOP_STARTUP_ID
-    '';
-  });
-  rust-rover-overlay = pkgs.jetbrains.rust-rover.overrideAttrs (old: rec {
-    # add `makeWrapper` to existing dependencies
-    buildInputs = old.buildInputs or [ ] ++ [ pkgs.makeWrapper ];
-
-    # wrap the binary in a script where the appropriate env var is set
-    postFixup = old.postFixup or "" + ''
-      wrapProgram "$out/bin/rust-rover" \
-      --set JAVA_HOME "${config.home.sessionVariables.JAVA_HOME}" \
-      --unset DESKTOP_STARTUP_ID
-    '';
-  });
-  goland-overlay = pkgs.jetbrains.goland.overrideAttrs (old: rec {
-    # add `makeWrapper` to existing dependencies
-    buildInputs = old.buildInputs or [ ] ++ [ pkgs.makeWrapper ];
-
-    # wrap the binary in a script where the appropriate env var is set
-    postFixup = old.postFixup or "" + ''
-      wrapProgram "$out/bin/goland" \
-      --set GOPATH "${config.programs.zsh.sessionVariables.GOPATH}" \
-      --set JAVA_HOME "${config.home.sessionVariables.JAVA_HOME}" \
-      --unset DESKTOP_STARTUP_ID
-    '';
-  });
-  pycharm-overlay = pkgs.jetbrains.pycharm.overrideAttrs (old: rec {
-    # add `makeWrapper` to existing dependencies
-    buildInputs = old.buildInputs or [ ] ++ [ pkgs.makeWrapper ];
-
-    # wrap the binary in a script where the appropriate env var is set
-    postFixup = old.postFixup or "" + ''
-      wrapProgram "$out/bin/pycharm" \
-      --set JAVA_HOME "${config.home.sessionVariables.JAVA_HOME}" \
-      --unset DESKTOP_STARTUP_ID
-    '';
-  });
-  # onepass =
-  #   pkgs._1password-gui-beta.override ({ polkitPolicyOwners = [ "chrispickard" ]; });
-in
 {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   targets.genericLinux.enable = true;
 
   imports = [
-    ./modules/jq.nix
+    # ./modules/jq.nix
     ./modules/git
     ./modules/zsh
     # ./modules/nushell
-    # ./modules/tmux.nix
+    ./modules/tmux.nix
     ./modules/vim
     ./modules/doomemacs
     ./modules/i3
@@ -94,12 +25,12 @@ in
     ./modules/curl
     ./modules/calc
     ./modules/topgrade.nix
-    ./modules/vscode.nix
-    ./modules/jira
-    ./modules/firefox
+    # ./modules/vscode.nix
+    # ./modules/jira
+    # ./modules/firefox
     ./modules/chrome.nix
     ./modules/mail.nix
-    ./modules/thunderbird.nix
+    # ./modules/thunderbird.nix
     ./modules/ghostty
     # ./modules/qutebrowser
   ];
@@ -112,27 +43,25 @@ in
   # the Home Manager release notes for a list of state version
   # changes in each release.
 
-  programs.ghostty.enable = true;
-
   home.packages = with pkgs; [
-    go_1_23
+    # go_1_23
     # goimports
-    gopls
-    gotools
-    lastpass-cli
-    google-chrome
+    # gopls
+    # gotools
+    # lastpass-cli
+    # google-Chrome
     # microsoft-edge-beta
     # trivy
-    delve
-    gcc
+    # delve
+    # gcc
     # nodePackages.node2nix
     # terraform
     # terraform-lsp
     iosevka
     source-code-pro
     # tmate
-    openssl
-    sshuttle
+    # openssl
+    # sshuttle
     feh
     # postman
     playerctl
@@ -151,6 +80,7 @@ in
     pandoc
     # nodePackages.npm
     nodePackages.prettier
+    # bun
     # shfmt
     scrot
     bashInteractive
@@ -171,51 +101,51 @@ in
 
     # obs-studio
     # mailspring
-    libsecret
-    zenity
-    file-roller
-    gsettings-desktop-schemas
-    vlc
-    comma
+    # libsecret
+    # zenity
+    # file-roller
+    # gsettings-desktop-schemas
+    # vlc
+    # comma
     btf
     # jetbrains.idea-ultimate
-    idea-overlay
+    # idea-overlay
     # clion-overlay
-    rust-rover-overlay
-    goland-overlay
-    shellcheck
-    mkcert
+    # rust-rover-overlay
+    # goland-overlay
+    # shellcheck
+    # mkcert
     # step-ca
     # step-cli
-    dive
+    # dive
     # docker-compose
-    docker-credential-helpers
-    skopeo
+    # docker-credential-helpers
+    # skopeo
     # kotlin
     # kafkacat
     # protobuf3_12
-    element-desktop
+    # element-desktop
     # go-protobuf
-    rustup
-    zigpkgs.master
+    # rustup
+    # zigpkgs.master
     # k8s stuff
     # kubernetes-helm
     # kubectl
     # tilt
     # kube3d
-    just
+    # just
     openfortivpn
     # zotero
-    lldb
+    # lldb
     # logseq
     # obsidian
     # zellij
     wine
-    gdb
-    cdrkit
-    nushell
+    # gdb
+    # cdrkit
+    # nushell
     xfce.thunar
-    asciidoctor-with-extensions
+    # asciidoctor-with-extensions
     # redisinsight
   ];
   fonts.fontconfig.enable = true;

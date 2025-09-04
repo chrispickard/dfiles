@@ -13,6 +13,7 @@ in {
     glab
     gg
     jujutsu
+    jjui
   ];
   programs.zsh.shellAliases = {
     g = "${pkgs.git}/bin/git";

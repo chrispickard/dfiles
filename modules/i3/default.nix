@@ -58,7 +58,10 @@
             "${leader}+n" = "exec open-element";
             "${leader}+s" = "exec open-slack";
             "${leader}+d" = "exec open-discord";
+            "${leader}+o" = "exec open-obsidian";
             "${leader}+i" = "exec open-idea";
+            "${leader}+j" = "exec btf -m st-256color /home/chrispickard/bin/st-large-size";
+            "${leader}+e" = "exec btf -m emacs@chris es";
             "${mod}+space" = "exec rofi -show drun";
             "${mod}+Shift+space" = "exec rofi -show run";
             "${mod}+Shift+grave" = "move scratchpad";
@@ -255,5 +258,12 @@
     '';
     executable = true;
   };
-  # services.taffybar = { enable = true; };
+  home.file."bin/open-obsidian" = {
+    text = ''
+      #!/bin/sh
+      . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+      btf -m obsidian obsidian
+    '';
+    executable = true;
+  };
 }

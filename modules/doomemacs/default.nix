@@ -81,39 +81,18 @@ in
     ASPELL_CONF = "data-dir $HOME/.nix-profile/lib/aspell";
   };
 
-  xsession.windowManager.i3.config.keybindings =
-    let
-      mod = config.modifier;
-      leader = "Mod1 + Shift";
-    in
-    {
-      "${leader}+e" = "exec btf -m emacs@chris es";
-      # "${leader}+m" = "exec btf -m magit@chris es";
-      # "${leader}+k" = "exec btf -m scratch@chris es";
-      # "Mod4+e" = ''exec emacsclient --eval "(emacs-everywhere)"'';
-    };
+  # xsession.windowManager.i3.config.keybindings =
+    # let
+    #   mod = config.modifier;
+    #   leader = "Mod1 + Shift";
+    # in
+    # {
+    #   "${leader}+e" = "exec btf -m emacs@chris es";
+    #   # "${leader}+m" = "exec btf -m magit@chris es";
+    #   # "${leader}+k" = "exec btf -m scratch@chris es";
+    #   # "Mod4+e" = ''exec emacsclient --eval "(emacs-everywhere)"'';
+    # };
 
-  home.file."bin/es" = {
-    text = ''
-      #!/bin/sh
-      emacsclient -n -c -a "vim" $@
-    '';
-    executable = true;
-  };
-  home.file."bin/e" = {
-    text = ''
-      #!/bin/sh
-      emacsclient -n -a "vim" $@
-    '';
-    executable = true;
-  };
-  home.file."bin/et" = {
-    text = ''
-      #!/bin/sh
-      TERM=xterm-24bit emacsclient -nw -a "vim" $@
-    '';
-    executable = true;
-  };
   home.file."bin/termacs" = {
     text = ''
       #!/bin/sh

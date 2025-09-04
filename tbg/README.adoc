@@ -1,5 +1,0 @@
-= tbg
-
-== Usage
-
-include::usage.adoc[]

@@ -104,9 +104,9 @@
 (defun send-via-gmi ()
   (message (message-fetch-field "from"))
   (let ((from (message-fetch-field "from")))
-    (cond ((string= from "chrispickard9@gmail.com") (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/.mail/personal")))
-          ((string= from "chris.pickard@tangramflex.com") (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/.mail/work")))
-          ((string= from "thephoenixforce9@gmail.com") (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/.mail/tpf")))
+    (cond ((string-match-p "chrispickard9@gmail.com" from) (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/.mail/personal")))
+          ((string-match-p "chris.pickard@tangramflex.com" from) (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/.mail/work")))
+          ((string-match-p "thephoenixforce9@gmail.com" from) (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/.mail/tpf")))
           )
     )
   )
@@ -399,3 +399,29 @@
 
 
 (setq consult-ripgrep-args "rg --null --no-ignore --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip")
+
+
+(use-package obsidian
+  :config
+  (global-obsidian-mode t)
+  (obsidian-backlinks-mode t)
+  :custom
+  ;; location of obsidian vault
+  (obsidian-directory "~/Documents/Vaulting")
+  ;; Default location for new notes from `obsidian-capture'
+  (obsidian-inbox-directory "Inbox")
+  ;; Useful if you're going to be using wiki links
+  (markdown-enable-wiki-links t)
+
+  ;; These bindings are only suggestions; it's okay to use other bindings
+  :bind (:map obsidian-mode-map
+              ;; Create note
+              ("C-c C-n" . obsidian-capture)
+              ;; If you prefer you can use `obsidian-insert-wikilink'
+              ("C-c C-l" . obsidian-insert-link)
+              ;; Open file pointed to by link at point
+              ("C-c C-o" . obsidian-follow-link-at-point)
+              ;; Open a different note from vault
+              ("C-c C-p" . obsidian-jump)
+              ;; Follow a backlink for the current file
+              ("C-c C-b" . obsidian-backlink-jump)))
