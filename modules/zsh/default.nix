@@ -189,7 +189,6 @@ in
         "${homeDir}/.cargo"
         "${homeDir}/.emacs.d"
         "${homeDir}"
-        "/home/linuxbrew/.linuxbrew/"
       ] + lib.optionalString (!config.home.emptyActivationPath)
         "\${PATH:+:}$PATH";
       # SSH_AUTH_SOCK = "/run/user/\${UID}/keyring/ssh";

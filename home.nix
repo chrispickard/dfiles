@@ -73,7 +73,7 @@
     entr
     # vgo2nix
     nodejs
-    nixfmt
+    nixfmt-rfc-style
     # rnix-lsp
     nixpkgs-fmt
     slack
@@ -155,7 +155,7 @@
     LOCALE_ARCHIVE_2_11 = "${pkgs.glibcLocales}/lib/locale/locale-archive";
     LOCALE_ARCHIVE_2_27 = "${pkgs.glibcLocales}/lib/locale/locale-archive";
     LOCALE_ARCHIVE = "/usr/bin/locale";
-    SSH_AUTH_SOCK = "\${SSH_AUTH_SOCK:$HOME/.1password/agent.sock}";
+    SSH_AUTH_SOCK = "/run/user/\${UID}/keyring/ssh";
     # WINEPATH = "C:\\Tornado\\host\\x86-win32\\bin\\";
   };
 
@@ -164,6 +164,7 @@
     defaultApplications = {
       # "inode/directory" = [ "pcmanfm.desktop" ];
       "x-scheme-handler/msteams" = [ "teams.desktop" ];
+      "x-scheme-handler/jetbrains" = [ "jetbrains-toolbox.desktop" ];
     };
   };
   programs.htop = { enable = true; };
@@ -365,4 +366,6 @@
     enable = true;
     # package = pkgs.oraclejdk;
   };
+  programs.halloy.enable = true;
+  # programs.obsidian.enable = true;
 }

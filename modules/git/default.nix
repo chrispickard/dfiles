@@ -4,10 +4,15 @@ let
   gitIdentity =
     pkgs.writeShellScriptBin "git-identity" (builtins.readFile ./git-identity);
   gg = pkgs.writeShellScriptBin "gg" (builtins.readFile ./gg);
+  aliases = {
+    g = "${pkgs.git}/bin/git";
+    gits = "${pkgs.git}/bin/git status";
+    gf = "${pkgs.git}/bin/git fetch";
+  };
 in {
   home.packages = with pkgs; [
     tig
-    # gitAndTools.delta
+    git
     gitIdentity
     git-absorb
     glab
@@ -15,11 +20,8 @@ in {
     jujutsu
     jjui
   ];
-  programs.zsh.shellAliases = {
-    g = "${pkgs.git}/bin/git";
-    gits = "${pkgs.git}/bin/git status";
-    gf = "${pkgs.git}/bin/git fetch";
-  };
+  programs.zsh.shellAliases = aliases;
+  programs.fish.shellAliases = aliases;
   programs.git = {
     enable = true;
     package = pkgs.git;
