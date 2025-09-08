@@ -114,13 +114,14 @@
     # clion-overlay
     # rust-rover-overlay
     # goland-overlay
-    # shellcheck
+    shellcheck
+    uv
     # mkcert
     # step-ca
     # step-cli
     # dive
     # docker-compose
-    # docker-credential-helpers
+    docker-credential-helpers
     # skopeo
     # kotlin
     # kafkacat
@@ -133,7 +134,7 @@
     # kubernetes-helm
     # kubectl
     # tilt
-    # kube3d
+    kube3d
     # just
     openfortivpn
     # zotero
@@ -167,7 +168,9 @@
       "x-scheme-handler/jetbrains" = [ "jetbrains-toolbox.desktop" ];
     };
   };
-  programs.htop = { enable = true; };
+  programs.htop = {
+    enable = true;
+  };
   # programs.mpv = {
   #   enable = true;
   #   scripts = [ pkgs.mpvScripts.mpris ];

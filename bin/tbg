@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+
+import libtmux
+
+
+def tbg(session_name: str, rest: list[str]) -> None:
+    svr = libtmux.Server()
+    session_list = svr.sessions.filter(name=session_name)
+    if len(session_list) == 0:
+        session = svr.new_session(session_name, attach=False)
+    else:
+        session = session_list[0]
+    cmd = ' '.join(rest)
+    session.new_window(window_shell=cmd, attach=False)
+
+
+if __name__ == '__main__':
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('session')
+    parser.add_argument('args', nargs='*')
+    args = parser.parse_args()
+    tbg(args.session, args.args)

@@ -55,12 +55,19 @@
       set -s copy-command 'xsel -b'
     '';
   };
-  home.file.".tmuxp/work.yaml".text = ''
+  xdg.configFile."tmuxp/work.yaml".text = ''
     session_name: work
     windows:
       - window_name: ""
         panes:
           - focus: true
           - null
+  '';
+  xdg.configFile."tmuxp/services.yaml".text = ''
+    session_name: services
+    windows:
+      - window_name: ""
+        panes:
+          - focus: true
   '';
 }
