@@ -211,6 +211,7 @@ in
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
     changeDirWidgetCommand = "fd . $HOME --type=d";
   };
   programs.direnv = {
