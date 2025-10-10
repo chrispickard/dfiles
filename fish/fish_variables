@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export EDITOR:et
 SETUVAR --export JJ_EDITOR:et
 SETUVAR --export QEMU_REPO:/home/chrispickard/dev/programs/orcas/qemu
 SETUVAR --export VXWORKS_REPO:/home/chrispickard/dev/programs/orcas/vxworks\x2dfiles

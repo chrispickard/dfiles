@@ -1,6 +1,7 @@
 if status is-interactive
     # aliases
     alias g="git"
+    alias j="jj"
     alias gits="git status"
     alias gf="git fetch"
     alias ls="eza"
@@ -12,6 +13,7 @@ if status is-interactive
     alias jc="journalctl"
     alias scu="systemctl --user"
     alias reload="exec fish"
+    alias vim="nvim"
     abbr --add jcu "journalctl --user-unit"
     alias umux="tmuxp load -y work"
     alias tbg="uv run --project ~/dfiles ~/dfiles/bin/tbg services --"
