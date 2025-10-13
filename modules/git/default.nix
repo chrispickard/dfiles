@@ -10,15 +10,17 @@ let
     gf = "${pkgs.git}/bin/git fetch";
   };
 in {
-  home.packages = with pkgs; [
-    tig
-    git
+  home.packages = [
+    pkgs.tig
+    pkgs.git
     gitIdentity
-    git-absorb
-    glab
+    pkgs.git-absorb
+    pkgs.glab
     gg
-    jujutsu
-    jjui
+    pkgs.jujutsu
+    pkgs.jjui
+    pkgs.difftastic
+    pkgs.mergiraf
   ];
   programs.zsh.shellAliases = aliases;
   programs.fish.shellAliases = aliases;
@@ -46,10 +48,5 @@ in {
       current = "branch --show-current";
       f = "fetch";
     };
-    # delta = {
-    #   enable = true;
-    #   # options = [ "--dark" "--theme=base16" ];
-    #   options = { syntax-theme = "Nord"; };
-    # };
   };
 }
