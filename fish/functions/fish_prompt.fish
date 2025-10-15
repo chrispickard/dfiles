@@ -6,7 +6,7 @@ function fish_prompt
 end
 
 function _fish_prompt_jj
-    set -l stuff (jj log  --no-graph --ignore-working-copy --color=always --revisions @ 2>/dev/null | head -1 | cut -d' ' -f1)
+    set -l stuff (jj log  --no-graph --ignore-working-copy --color=always --revisions @ -T 'change_id.shortest(8)' 2>/dev/null)
     set -l jj_stat $status
     if test $jj_stat -eq 0
         echo $stuff
