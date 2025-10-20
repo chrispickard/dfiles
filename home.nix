@@ -135,6 +135,8 @@
     # kubectl
     # tilt
     kube3d
+    k9s
+    zarf
     # just
     openfortivpn
     # zotero

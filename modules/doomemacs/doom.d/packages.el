@@ -55,3 +55,4 @@
 
 (package! adoc-mode)
 (package! uniline)
+(package! jj-mode :recipe (:host github :repo "bolivier/jj-mode.el"))
