@@ -29,8 +29,11 @@ if status is-interactive
 
     bind ctrl-alt-h backward-kill-bigword
     bind alt-shift-backspace backward-kill-bigword
+    bind alt-backspace backward-kill-word
     bind alt-B backward-bigword
     bind alt-F forward-bigword
+    # bind ctrl-u commandline | fish_clipboard_copy && backward-kill-line
+    telepresence completion fish | source
 
     set -g FZF_ALT_C_COMMAND "fd . $HOME --type=d"
 

@@ -134,7 +134,7 @@
     # kubernetes-helm
     # kubectl
     # tilt
-    kube3d
+    k3d
     k9s
     zarf
     # just
@@ -171,6 +171,9 @@
     };
   };
   programs.htop = {
+    enable = true;
+  };
+  programs.btop = {
     enable = true;
   };
   # programs.mpv = {

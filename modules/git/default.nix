@@ -27,7 +27,7 @@ in {
   programs.git = {
     enable = true;
     package = pkgs.git;
-    extraConfig = {
+    settings = {
       core = { editor = "et"; };
       user.useConfigOnly = true;
       user.work.name = "Chris Pickard";
@@ -36,17 +36,17 @@ in {
       user.personal.email = "chrispickard9@gmail.com";
       pull.ff = "only";
       init.defaultBranch = "main";
-    };
-    aliases = {
-      co = "checkout";
-      s = "status";
-      a = "add";
-      rs = "reset";
-      rb = "rebase";
-      identity = "! git-identity";
-      id = "! git-identity";
-      current = "branch --show-current";
-      f = "fetch";
+      aliases = {
+        co = "checkout";
+        s = "status";
+        a = "add";
+        rs = "reset";
+        rb = "rebase";
+        identity = "! git-identity";
+        id = "! git-identity";
+        current = "branch --show-current";
+        f = "fetch";
+      };
     };
   };
 }

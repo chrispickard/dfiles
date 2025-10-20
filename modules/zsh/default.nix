@@ -78,7 +78,7 @@ in
       # }
       {
         name = "k3d";
-        src = "${pkgs.kube3d}/share/zsh/site-functions/";
+        src = "${pkgs.k3d}/share/zsh/site-functions/";
       }
       {
         name = "glab";
