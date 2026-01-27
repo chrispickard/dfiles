@@ -2,12 +2,13 @@ if status is-interactive
     # aliases
     alias g="git"
     alias j="jj"
+    alias a="jj absorb"
     alias gits="git status"
     alias gf="git fetch"
     alias ls="eza"
     alias tree="eza -T"
-    # alias d="podman"
     alias d="docker"
+    alias dc="docker compose"
     alias k="kubectl"
     alias o="xdg-open"
     alias sc="systemctl"
@@ -32,13 +33,15 @@ if status is-interactive
     bind alt-backspace backward-kill-word
     bind alt-B backward-bigword
     bind alt-F forward-bigword
-    # bind ctrl-u commandline | fish_clipboard_copy && backward-kill-line
+    bind ctrl-u copy_and_clear_commandline
     telepresence completion fish | source
 
     set -g FZF_ALT_C_COMMAND "fd . $HOME --type=d"
+    
 
     fzf --fish | source
 
     # env vars
     source ~/.fish.local 2>/dev/null || true
 end
+export PATH="$HOME/.local/bin:$PATH"

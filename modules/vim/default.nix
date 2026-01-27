@@ -37,8 +37,8 @@
       committia
       zig-vim
       pears-nvim
-      (pkgs.vimPlugins.nvim-treesitter.withPlugins
-        (plugins: pkgs.tree-sitter.allGrammars))
+      # (pkgs.vimPlugins.nvim-treesitter.withPlugins
+      #   (plugins: pkgs.tree-sitter.allGrammars))
     ];
     extraConfig = ''
       set clipboard=unnamedplus

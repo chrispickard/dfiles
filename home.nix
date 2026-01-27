@@ -81,7 +81,8 @@
     pandoc
     # nodePackages.npm
     nodePackages.prettier
-    # bun
+    bun
+    pipenv
     # shfmt
     scrot
     bashInteractive
@@ -96,7 +97,7 @@
     # python38Packages.pyls-black
     black
     robo3t
-    # awscli2
+    awscli2
     # ansible
     yt-dlp
 

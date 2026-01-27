@@ -60,7 +60,9 @@
             "${leader}+d" = "exec open-discord";
             "${leader}+o" = "exec open-obsidian";
             "${leader}+i" = "exec open-idea";
+            "${leader}+k" = "exec open-scratch";
             "${leader}+j" = "exec btf -m st-256color /home/chrispickard/bin/st-large-size";
+            "${leader}+t" = "exec btf -m st-256color /home/chrispickard/bin/st-large-size";
             "${leader}+e" = "exec btf -m emacs@chris es";
             "${mod}+space" = "exec rofi -show drun";
             "${mod}+Shift+space" = "exec rofi -show run";
