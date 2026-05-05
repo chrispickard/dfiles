@@ -94,6 +94,27 @@ in
     #   # "Mod4+e" = ''exec emacsclient --eval "(emacs-everywhere)"'';
     # };
 
+  home.file."bin/es" = {
+    text = ''
+      #!/bin/sh
+      emacsclient -n -c -a "vim" $@
+    '';
+    executable = true;
+  };
+  home.file."bin/e" = {
+    text = ''
+      #!/bin/sh
+      emacsclient -n -a "vim" $@
+    '';
+    executable = true;
+  };
+  home.file."bin/et" = {
+    text = ''
+      #!/bin/sh
+      TERM=xterm-24bit emacsclient -nw -a "vim" $@
+    '';
+    executable = true;
+  };
   home.file."bin/termacs" = {
     text = ''
       #!/bin/sh

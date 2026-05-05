@@ -1,5 +1,6 @@
+shell-integration = fish
 font-family = "Iosevka"
-font-size = 22
+font-size = 26
 # keybind = 'ctrl+enter:unbind'
 
 # command = "tmuxp load -y ~/.tmuxp/work.yaml"

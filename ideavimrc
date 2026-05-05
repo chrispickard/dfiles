@@ -1,0 +1,56 @@
+" Selected Intellimacs modules
+
+source ~/.intellimacs/spacemacs.vim
+source ~/.intellimacs/major.vim
+source ~/.intellimacs/extra.vim
+
+source ~/.intellimacs/which-key.vim
+
+""" Map leader to space ---------------------
+let mapleader=" "
+
+""" Plugins  --------------------------------
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set textobj-entire
+set ReplaceWithRegister
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="{:},[:],(:),<:>"
+
+""" Common settings -------------------------
+set showmode
+set so=5
+set incsearch
+set nu
+set clipboard^=unnamedplus
+set visualbell
+
+""" Idea specific settings ------------------
+set ideastatusicon=gray
+set idearefactormode=keep
+
+" Comma for major mode
+nmap , <leader>m
+vmap , <leader>m
+nmap <C-a> ^
+nmap <C-e> $
+vmap <C-a> ^
+vmap <C-e> $
+
+nmap gs :action Tool_External Tools_magit<CR>
+vmap gs :action Tool_External Tools_magit<CR>
+nmap gq :action com.andrewbrookins.idea.wrap.WrapParagraphAction<CR>
+nmap <A-q> :action com.andrewbrookins.idea.wrap.WrapParagraphAction<CR>
+imap <A-q> <C-o>:action com.andrewbrookins.idea.wrap.WrapParagraphAction<CR>
+
+nnoremap <A-;>    :action RecentFiles<CR>
+vnoremap <A-;>    :action RecentFiles<CR>
+nnoremap <A-m>    :action NextSplitter<CR>
+vnoremap <A-m>    :action NextSplitter<CR>
+nnoremap <C-S-,>    :action DebugClass<CR>
+set ideajoin
+
+vmap s S

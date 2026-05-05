@@ -64,6 +64,7 @@
             "${leader}+j" = "exec btf -m st-256color /home/chrispickard/bin/st-large-size";
             "${leader}+t" = "exec btf -m st-256color /home/chrispickard/bin/st-large-size";
             "${leader}+e" = "exec btf -m emacs@chris es";
+            "${leader}+h" = "exec btf -m \"Terminal - \" true";
             "${mod}+space" = "exec rofi -show drun";
             "${mod}+Shift+space" = "exec rofi -show run";
             "${mod}+Shift+grave" = "move scratchpad";
@@ -164,6 +165,7 @@
         #focus_on_window_activation smart
         for_window [class="floating"] floating enable
         for_window [class="1Password"] floating enable
+        for_window [class="jetbrains-rustrover"] floating enable
         for_window [class="Firefox" title="Developer Tools"] floating enable
         for_window [title="Microsoft Teams Notification"] floating enable
         for_window [title="emacs-everywhere@chris"] floating enable

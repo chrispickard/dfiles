@@ -8,5 +8,4 @@ SETUVAR __fish_initialized:4300
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_plugins:jorgebucaran/fisher
 SETUVAR _fisher_upgraded_to_4_4:\x1d
-SETUVAR fish_key_bindings:fish_default_key_bindings
-SETUVAR fish_user_paths:/home/chrispickard/\x2elocal/share/JetBrains/Toolbox/apps/clion/bin\x1e/sbin\x1e/usr/sbin\x1e/usr/bin\x1e/bin\x1e/home/chrispickard/bin\x1e/home/chrispickard/\x2enix\x2dprofile/bin\x1e/home/linuxbrew/\x2elinuxbrew/bin
+SETUVAR fish_user_paths:/home/chrispickard/\x2enix\x2dprofile/bin\x1e/home/chrispickard/\x2elocal/share/JetBrains/Toolbox/apps/clion/bin\x1e/sbin\x1e/usr/sbin\x1e/usr/bin\x1e/bin\x1e/home/chrispickard/bin\x1e/home/linuxbrew/\x2elinuxbrew/bin

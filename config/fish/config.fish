@@ -15,6 +15,7 @@ if status is-interactive
     alias jc="journalctl"
     alias scu="systemctl --user"
     alias reload="exec fish"
+    alias t="task"
     alias vim="nvim"
     abbr --add jcu "journalctl --user-unit"
     alias umux="tmuxp load -y work"
@@ -45,3 +46,4 @@ if status is-interactive
     source ~/.fish.local 2>/dev/null || true
 end
 export PATH="$HOME/.local/bin:$PATH"
+export GOPATH="$HOME/dev/golang"

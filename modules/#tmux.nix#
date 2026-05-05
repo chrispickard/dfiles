@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj{ config, pkgs, ... }:
 
 {
   programs.tmux = {
@@ -53,8 +53,6 @@
 
       set -s set-clipboard external
       set -s copy-command 'xsel -b'
-
-      run-shell "~/.tmux/themes/nord-tmux/nord.tmux"
     '';
   };
   xdg.configFile."tmuxp/work.yaml".text = ''

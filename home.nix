@@ -12,7 +12,7 @@
     ./modules/fish
     # ./modules/nushell
     ./modules/tmux.nix
-    ./modules/vim
+    # ./modules/vim
     ./modules/doomemacs
     ./modules/i3
     # ./termite.nix
@@ -32,7 +32,7 @@
     ./modules/chrome.nix
     ./modules/mail.nix
     # ./modules/thunderbird.nix
-    ./modules/ghostty
+    # ./modules/ghostty
     # ./modules/qutebrowser
   ];
   # This value determines the Home Manager release that your
@@ -55,11 +55,11 @@
     # trivy
     # delve
     # gcc
-    # nodePackages.node2nix
     # terraform
     # terraform-lsp
     iosevka
     source-code-pro
+    nerd-fonts.iosevka
     # tmate
     # openssl
     # sshuttle
@@ -79,16 +79,11 @@
     slack
     discord
     pandoc
-    # nodePackages.npm
-    nodePackages.prettier
     bun
     pipenv
     # shfmt
     scrot
     bashInteractive
-    nodePackages.bash-language-server
-    # nodePackages.vls
-    nodePackages.eslint
     python3
     remmina
     # pcmanfm
@@ -137,8 +132,7 @@
     # tilt
     k3d
     k9s
-    zarf
-    # just
+    # zarf
     openfortivpn
     # zotero
     # lldb
@@ -148,6 +142,8 @@
     wine
     # gdb
     # cdrkit
+    maim
+    just
     # nushell
     xfce.thunar
     # asciidoctor-with-extensions
