@@ -1,0 +1,5 @@
+session_name: services
+windows:
+    - window_name: ""
+      panes:
+        - focus: true

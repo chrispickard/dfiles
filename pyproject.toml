@@ -4,5 +4,6 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.10"
 dependencies = [
+    "dbus-next>=0.2.3",
     "libtmux>=0.46.2",
 ]

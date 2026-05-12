@@ -18,7 +18,7 @@ if status is-interactive
     alias t="task"
     alias vim="nvim"
     abbr --add jcu "journalctl --user-unit"
-    alias umux="tmuxp load -y work"
+    alias umux="uvx tmuxp load -y work"
     alias tbg="uv run --project ~/dfiles ~/dfiles/bin/tbg services --"
     alias update="$HOME/dfiles/modules/zsh/update"
 
@@ -35,7 +35,7 @@ if status is-interactive
     bind alt-B backward-bigword
     bind alt-F forward-bigword
     bind ctrl-u copy_and_clear_commandline
-    telepresence completion fish | source
+    # telepresence completion fish | source
 
     set -g FZF_ALT_C_COMMAND "fd . $HOME --type=d"
     
@@ -43,7 +43,10 @@ if status is-interactive
     fzf --fish | source
 
     # env vars
-    source ~/.fish.local 2>/dev/null || true
+    source ~/.fish_local 2>/dev/null || true
 end
+export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
 export GOPATH="$HOME/dev/golang"
+export PATH="$GOPATH/bin:$PATH"
