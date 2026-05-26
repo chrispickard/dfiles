@@ -18,6 +18,9 @@
       "~/.config/doom": {
         "path": "config/doom"
       },
+      "~/.config/jj/config.toml": {
+        "path": "config/jj/config.toml"
+      },
       "~/bin/tbg": {
         "path": "bin/tbg"
       },

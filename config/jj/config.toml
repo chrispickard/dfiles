@@ -1,0 +1,8 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[ui]
+default-command = "status"
+
+[user]
+name = "Chris Pickard"
+email = "chris.pickard@tangramflex.com"
