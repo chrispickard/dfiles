@@ -1,23 +1,9 @@
 # My Dotfiles
-my dotfiles are configured via `nix`, `nix flakes`, and `home-manager`
 
-install nix if you haven't already
-
-```shell
-curl -L https://nixos.org/nix/install | sh
-```
-
-allow the nix command to use flakes (currently experimental)
+To set up this dotfiles repository, run:
 
 ```shell
-mkdir -p ~/.config/nix/
-echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
-# change the priority of the nix install
-nix-env --set-flag priority 4 nix-2.4
+bin/janitor
 ```
 
-switch to the new configuration
-
-```shell
-nix run .# switch
-```
+This will check for and install required dependencies, set up configuration symlinks, and ensure everything is in the correct state.

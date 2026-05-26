@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+DOTLOC="$HOME/dfiles"
+
+fatal() {
+    echo -e "\033[0;31mFATAL: $*\033[0m" >&2
+    exit 1
+}
+
+if ! command -v git &> /dev/null; then
+    echo "git not found, installing..."
+    sudo apt install git
+else
+    echo "git is already installed"
+fi
+
+if ! command -v curl &> /dev/null; then
+    echo "curl not found, installing..."
+    sudo apt install curl
+else
+    echo "curl is already installed"
+fi
+
+if ! command -v uv &> /dev/null; then
+    echo "uv not found, installing..."
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+else
+    echo "uv is already installed"
+fi
+
+if [ ! -d "$HOME/declaro" ]; then
+    echo "cloning declaro repository..."
+    git clone https://github.com/mantinhas/declaro.git $HOME/declaro
+    make -C $HOME/declaro install
+else
+    echo "declaro repository already exists at $HOME/declaro"
+fi
+
+if [ ! -d "$HOME/.config/emacs" ]; then
+    echo "cloning doom emacs..."
+    git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/.config/emacs
+else
+    echo "doom emacs already exists at $HOME/.config/emacs"
+fi
+
+if ! command -v uvx &> /dev/null; then
+    fatal "uvx is not available in PATH"
+fi
+
+uvx dotbot -c $DOTLOC/install.conf.json
+
+if [ -L "/etc/declaro/packages.list" ] && [ "$(readlink -f /etc/declaro/packages.list)" = "$DOTLOC/packages.list" ]; then
+    echo "symlink /etc/declaro/packages.list already points to $DOTLOC/packages.list"
+elif [ -e "/etc/declaro/packages.list" ]; then
+    fatal "/etc/declaro/packages.list exists but is not the correct symlink\nplease resolve this before proceeding" \
+
+else
+    echo "creating symlink /etc/declaro/packages.list -> $DOTLOC/packages.list"
+    sudo ln -s "$DOTLOC/packages.list" "/etc/declaro/packages.list"
+fi
+
+if ! command -v declaro &> /dev/null; then
+    fatal "declaro is not available in PATH"
+fi
+
+declaro clean

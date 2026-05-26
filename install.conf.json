@@ -4,6 +4,10 @@
       "relink": true,
       "create": true
     },
+    "clean": [
+        "~",
+        "~/.config"
+    ],
     "link": {
       "~/.config/tmux": {
         "path": "config/tmux"
@@ -11,8 +15,14 @@
       "~/.config/tmuxp": {
         "path": "config/tmuxp"
       },
+      "~/.config/doom": {
+        "path": "config/doom"
+      },
       "~/bin/tbg": {
         "path": "bin/tbg"
+      },
+      "~/bin/render-template": {
+        "path": "bin/render-template"
       },
       "~/bin/e": {
         "path": "bin/e"

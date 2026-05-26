@@ -21,6 +21,7 @@ if status is-interactive
     alias umux="uvx tmuxp load -y work"
     alias tbg="uv run --project ~/dfiles ~/dfiles/bin/tbg services --"
     alias update="$HOME/dfiles/modules/zsh/update"
+    alias db="uvx dotbot -c ~/dfiles/install.conf.json && echo 'dots installed 👍'"
 
     alias containme="podman exec -it --detach-keys='' (cat .container) fish"
 

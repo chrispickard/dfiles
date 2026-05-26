@@ -20,6 +20,7 @@ gnome-browser-connector
 gnome-tweaks
 google-chrome-stable
 jq
+yq
 libwayland-dev
 libxkbcommon-dev
 neovim
