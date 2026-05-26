@@ -21,6 +21,12 @@
       "~/.config/jj/config.toml": {
         "path": "config/jj/config.toml"
       },
+      "~/.config/foot": {
+        "path": "config/foot"
+      },
+      "~/.config/run-or-raise": {
+        "path": "config/run-or-raise"
+      },
       "~/bin/tbg": {
         "path": "bin/tbg"
       },
