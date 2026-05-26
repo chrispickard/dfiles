@@ -1,0 +1,28 @@
+[
+  {
+    "defaults": {
+      "relink": true,
+      "create": true
+    },
+    "link": {
+      "~/.config/tmux": {
+        "path": "config/tmux"
+      },
+      "~/.config/tmuxp": {
+        "path": "config/tmuxp"
+      },
+      "~/bin/tbg": {
+        "path": "bin/tbg"
+      },
+      "~/bin/e": {
+        "path": "bin/e"
+      },
+      "~/bin/et": {
+        "path": "bin/et"
+      },
+      "~/.ideavimrc": {
+        "path": "ideavimrc"
+      }
+    }
+  }
+]
