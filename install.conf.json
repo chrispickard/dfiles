@@ -24,6 +24,9 @@
       "~/bin/render-template": {
         "path": "bin/render-template"
       },
+      "~/bin/janitor": {
+        "path": "bin/janitor"
+      },
       "~/bin/e": {
         "path": "bin/e"
       },
