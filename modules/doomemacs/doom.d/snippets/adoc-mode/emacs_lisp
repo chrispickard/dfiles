@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: emacs_lisp
-# key: _el
-# --
-
-[source,emacs-lisp]
-----
-$0
-----
