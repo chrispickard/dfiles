@@ -10,15 +10,15 @@ def tbg(session_name: str, rest: list[str]) -> None:
         session = svr.new_session(session_name, attach=False)
     else:
         session = session_list[0]
-    cmd = ' '.join(rest)
+    cmd = " ".join(rest)
     session.new_window(window_shell=cmd, attach=False)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('session')
-    parser.add_argument('args', nargs='*')
+    parser.add_argument("session")
+    parser.add_argument("args", nargs="*")
     args = parser.parse_args()
     tbg(args.session, args.args)

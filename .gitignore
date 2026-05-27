@@ -12,3 +12,4 @@ result/
 .claude
 CLAUDE.md
 tmpl/.netrc
+tmpl/.fish_local

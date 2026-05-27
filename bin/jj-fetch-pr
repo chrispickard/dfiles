@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+    cat << EOF
+Usage: jj-fetch-pr <MR_NUMBER>
+
+Fetch a GitLab merge request and import it into jj.
+
+Arguments:
+  MR_NUMBER    The merge request number to fetch
+
+Description:
+  Fetches the specified merge request from GitLab's merge-requests/N/head
+  ref and creates a local branch pr-N-count. If the branch already exists,
+  it increments the count suffix until it finds an available name.
+  After fetching, it imports the changes into jj.
+
+Examples:
+  jj-fetch-pr 123    # Fetches MR !123 as pr-123-1 (or pr-123-2 if pr-123-1 exists)
+
+EOF
+    exit "${1:-0}"
+}
+
+if [[ $# -eq 0 ]]; then
+    echo "Error: Missing MR number argument" >&2
+    echo ""
+    usage 1
+fi
+
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+    usage 0
+fi
+
+MR_NUMBER="$1"
+
+# Validate MR number is numeric
+if ! [[ "$MR_NUMBER" =~ ^[0-9]+$ ]]; then
+    echo "Error: MR number must be a positive integer, got: $MR_NUMBER" >&2
+    exit 1
+fi
+
+# Check if we're in a git repository
+if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "Error: Not in a git repository" >&2
+    exit 1
+fi
+
+# Check if jj is available
+if ! command -v jj &> /dev/null; then
+    echo "Error: jj command not found in PATH" >&2
+    exit 1
+fi
+
+# Fetch the MR with incrementing counter for branch name
+count=1
+while true; do
+    if git fetch origin "merge-requests/${MR_NUMBER}/head:pr-${MR_NUMBER}-${count}"; then
+        echo "Successfully fetched MR ${MR_NUMBER} as pr-${MR_NUMBER}-${count}"
+        break
+    fi
+    ((count++))
+done
+
+# Import into jj
+jj git import

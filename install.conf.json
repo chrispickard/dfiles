@@ -21,6 +21,9 @@
       "~/.config/jj/config.toml": {
         "path": "config/jj/config.toml"
       },
+      "~/.config/git": {
+        "path": "config/git"
+      },
       "~/.config/foot": {
         "path": "config/foot"
       },
@@ -32,6 +35,9 @@
       },
       "~/bin/render-template": {
         "path": "bin/render-template"
+      },
+      "~/bin/jj-fetch-pr": {
+        "path": "bin/jj-fetch-pr"
       },
       "~/bin/janitor": {
         "path": "bin/janitor"
