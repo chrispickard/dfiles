@@ -75,5 +75,9 @@
 ;; they are implemented.
 
 ;; Custom keybindings
+(setq shell-file-name (executable-find "bash"))
+
 (map! "M-;" #'consult-buffer)
 (map! :leader "SPC" #'execute-extended-command)
+(map! :leader "TAB" #'evil-switch-to-windows-last-buffer)
+(map! :leader "s c" #'evil-ex-nohighlight)

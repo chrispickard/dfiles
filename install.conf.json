@@ -43,7 +43,7 @@
         "path": "bin/et"
       },
       "~/.ideavimrc": {
-        "path": "ideavimrc"
+        "path": "config/ideavimrc"
       }
     }
   }

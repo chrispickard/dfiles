@@ -31,15 +31,15 @@ fi
 
 if [ ! -d "$HOME/declaro" ]; then
     echo "cloning declaro repository..."
-    git clone https://github.com/mantinhas/declaro.git $HOME/declaro
-    make -C $HOME/declaro install
+    git clone https://github.com/mantinhas/declaro.git "$HOME/declaro"
+    make -C "$HOME/declaro" install
 else
     echo "declaro repository already exists at $HOME/declaro"
 fi
 
 if [ ! -d "$HOME/.config/emacs" ]; then
     echo "cloning doom emacs..."
-    git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/.config/emacs
+    git clone --depth 1 https://github.com/doomemacs/doomemacs "$HOME/.config/emacs"
 else
     echo "doom emacs already exists at $HOME/.config/emacs"
 fi
@@ -48,7 +48,7 @@ if ! command -v uvx &> /dev/null; then
     fatal "uvx is not available in PATH"
 fi
 
-uvx dotbot -c $DOTLOC/install.conf.json
+uvx dotbot -c "$DOTLOC/install.conf.json"
 
 if [ -L "/etc/declaro/packages.list" ] && [ "$(readlink -f /etc/declaro/packages.list)" = "$DOTLOC/packages.list" ]; then
     echo "symlink /etc/declaro/packages.list already points to $DOTLOC/packages.list"

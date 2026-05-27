@@ -5,7 +5,6 @@ if status is-interactive
     alias a="jj absorb"
     alias gits="git status"
     alias gf="git fetch"
-    alias ls="eza"
     alias tree="eza -T"
     alias d="docker"
     alias dc="docker compose"
@@ -20,10 +19,7 @@ if status is-interactive
     abbr --add jcu "journalctl --user-unit"
     alias umux="uvx tmuxp load -y work"
     alias tbg="uv run --project ~/dfiles ~/dfiles/bin/tbg services --"
-    alias update="$HOME/dfiles/modules/zsh/update"
-    alias db="uvx dotbot -c ~/dfiles/install.conf.json && echo 'dots installed 👍'"
-
-    alias containme="podman exec -it --detach-keys='' (cat .container) fish"
+    alias doom="~/.config/emacs/bin/doom"
 
     # settings
     set -g fish_autosuggestion_enabled 0
