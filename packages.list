@@ -4,7 +4,6 @@
 apt-transport-https
 build-essential
 ca-certificates
-telepresence
 cmake
 containerd.io
 curl
@@ -29,6 +28,8 @@ glab
 gnome-browser-connector
 gnome-tweaks
 google-chrome-stable
+gpg
+helm
 jq
 k9s
 kubectl
@@ -55,6 +56,7 @@ ripgrep
 shellcheck
 slack-desktop
 task
+telepresence
 tmux
 uidmap
 vde-switch

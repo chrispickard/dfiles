@@ -23,8 +23,8 @@ if status is-interactive
 
     # settings
     set -g fish_autosuggestion_enabled 0
-    set -g pure_symbol_prompt »
-    set -g pure_enable_container_detection false
+    # set -g pure_symbol_prompt »
+    # set -g pure_enable_container_detection false
 
     bind ctrl-alt-h backward-kill-bigword
     bind alt-shift-backspace backward-kill-bigword
@@ -36,6 +36,7 @@ if status is-interactive
 
     set -g FZF_ALT_C_COMMAND "fd . $HOME --type=d"
     
+    string match -q "$TERM_PROGRAM" "vscode" and . /usr/share/code/resources/app/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration.fish(code --locate-shell-integration-path fish)(code --locate-shell-integration-path fish)
 
     fzf --fish | source
 
