@@ -1,5 +1,9 @@
 #:schema https://docs.jj-vcs.dev/latest/config-schema.json
 
+[ui]
+default-command = "status"
+describe-show-full-diff = true
+
 [aliases]
 g = ["git"]
 tug = ["bookmark", "advance"]
@@ -11,9 +15,9 @@ fetch-pr = ['util', 'exec', '--', 'jj-fetch-pr']
 pr = ["fetch-pr"]
 
 
-[ui]
-default-command = "status"
-
 [user]
 name = "Chris Pickard"
 email = "chris.pickard@tangramflex.com"
+
+[git]
+private-commits = '''description('XXX:*')'''

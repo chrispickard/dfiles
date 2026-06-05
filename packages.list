@@ -5,6 +5,7 @@ apt-transport-https
 build-essential
 ca-certificates
 cmake
+code
 containerd.io
 curl
 direnv
@@ -30,6 +31,7 @@ gnome-tweaks
 google-chrome-stable
 gpg
 helm
+incus
 jq
 k9s
 kubectl
@@ -37,6 +39,8 @@ libboost1.74-all-dev
 libevent-dev
 libglib2.0-dev
 libssl-dev
+libvirt-clients
+libvirt-daemon
 libwayland-dev
 libx11-dev
 libxft-dev
@@ -52,6 +56,7 @@ pcscd
 podman
 podman-netavark
 python3-venv
+qemu-system
 ripgrep
 shellcheck
 slack-desktop

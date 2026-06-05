@@ -11,5 +11,4 @@ result/
 /config/tmux/plugins/
 .claude
 CLAUDE.md
-tmpl/.netrc
-tmpl/.fish_local
+tmpl/
