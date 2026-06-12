@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-exec emacsclient -t "$@"
+emacsclient -t -a nvim "$@"

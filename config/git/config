@@ -1,2 +1,4 @@
 [alias]
 	co = checkout
+  rs = reset
+

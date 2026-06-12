@@ -18,6 +18,15 @@
       "~/.config/doom": {
         "path": "config/doom"
       },
+      "~/.config/Code/User/settings.json": {
+        "path": "config/code/settings.json"
+      },
+      "~/.config/Code/User/keybindings.json": {
+        "path": "config/code/keybindings.json"
+      },
+      "~/.config/fish": {
+        "path": "config/fish"
+      },
       "~/.config/jj/config.toml": {
         "path": "config/jj/config.toml"
       },

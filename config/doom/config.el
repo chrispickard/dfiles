@@ -21,7 +21,7 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Iosevka" :size 24 :weight 'semi-light)
+(setq doom-font (font-spec :family "Iosevka" :size 32 :weight 'semi-light)
      doom-variable-pitch-font (font-spec :family "Ubuntu Sans" :size 20 :weight 'thin))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -81,3 +81,23 @@
 (map! :leader "SPC" #'execute-extended-command)
 (map! :leader "TAB" #'evil-switch-to-windows-last-buffer)
 (map! :leader "s c" #'evil-ex-nohighlight)
+(map! :n "-" #'dired-jump)
+(map! :v "s" #'evil-surround-region)
+(use-package consult
+  :config
+  (consult-customize
+   consult-buffer :preview-key nil))
+
+(setq-default tab-width 2)
+
+(define-derived-mode helm-mode yaml-mode "helm"
+  "Major mode for editing kubernetes helm templates")
+
+(use-package eglot
+  ; Any other existing eglot configuration plus the following:
+  :hook
+  ; Run eglot in helm-mode buffers
+  (helm-mode . eglot-ensure)
+  :config
+  ; Run `helm_ls serve` for helm-mode buffers
+  (add-to-list 'eglot-server-programs '(helm-mode "helm_ls" "serve")))

@@ -1,0 +1,9 @@
+# Source: task
+# Site: https://github.com/go-task/task
+# Repository: task / task
+# Description: A certifiably-awesome open-source package repository curated by task, hosted by Cloudsmith.
+
+
+deb [signed-by=/usr/share/keyrings/task-task-archive-keyring.gpg] https://dl.cloudsmith.io/public/task/task/deb/ubuntu noble main
+
+deb-src [signed-by=/usr/share/keyrings/task-task-archive-keyring.gpg] https://dl.cloudsmith.io/public/task/task/deb/ubuntu noble main

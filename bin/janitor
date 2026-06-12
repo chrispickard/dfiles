@@ -37,6 +37,13 @@ else
     echo "declaro repository already exists at $HOME/declaro"
 fi
 
+if [ ! -d "$HOME/.intellimacs" ]; then
+    echo "cloning intellimacs..."
+    git clone https://github.com/marcoieni/intellimacs.git "$HOME/.intellimacs"
+else
+    echo "intellimacs already exists at $HOME/.intellimacs"
+fi
+
 if [ ! -d "$HOME/.config/emacs" ]; then
     echo "cloning doom emacs..."
     git clone --depth 1 https://github.com/doomemacs/doomemacs "$HOME/.config/emacs"

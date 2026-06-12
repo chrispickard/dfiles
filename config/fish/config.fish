@@ -14,10 +14,11 @@ if status is-interactive
     alias jc="journalctl"
     alias scu="systemctl --user"
     alias reload="exec fish"
+    # alias pbcopy="fish_clipboard_copy"
+    # alias pbpaste="fish_clipboard_paste"
     alias t="task"
     alias vim="nvim"
     abbr --add jcu "journalctl --user-unit"
-    alias umux="uvx tmuxp load -y work"
     alias tbg="uv run --project ~/dfiles ~/dfiles/bin/tbg services --"
     alias doom="~/.config/emacs/bin/doom"
 
@@ -35,8 +36,6 @@ if status is-interactive
     # telepresence completion fish | source
 
     set -g FZF_ALT_C_COMMAND "fd . $HOME --type=d"
-    
-    string match -q "$TERM_PROGRAM" "vscode" and . /usr/share/code/resources/app/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration.fish(code --locate-shell-integration-path fish)(code --locate-shell-integration-path fish)
 
     fzf --fish | source
 

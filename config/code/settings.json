@@ -1,0 +1,104 @@
+{
+    "workbench.colorTheme": "Nord",
+    "editor.fontSize": 26,
+    "editor.fontFamily": "Iosevka",
+    "chat.titleBar.signIn.enabled": false,
+    "window.commandCenter": false,
+    "vim.easymotion": true,
+    "vim.useSystemClipboard": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<space>"
+            ],
+            "commands": [
+                "vspacecode.space"
+            ]
+        },
+        {
+            "before": [
+                "ctrl+a"
+            ],
+            "after": [
+                "^"
+            ]
+        },
+        {
+            "before": [
+                "ctrl+e"
+            ],
+            "after": [
+                "$"
+            ]
+        },
+        {
+            "before": [
+                ","
+            ],
+            "commands": [
+                "vspacecode.space",
+                {
+                    "command": "whichkey.triggerKey",
+                    "args": "m"
+                }
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<space>"
+            ],
+            "commands": [
+                "vspacecode.space"
+            ]
+        },
+        {
+            "before": [
+                ","
+            ],
+            "commands": [
+                "vspacecode.space",
+                {
+                    "command": "whichkey.triggerKey",
+                    "args": "m"
+                }
+            ]
+        },
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        }
+    ],
+    "vspacecode.bindingOverrides": [
+        {
+            "keys": "w.m",
+            "name": "maximize window",
+            "type": "command",
+            "command": "workbench.action.toggleSidebarVisibility"
+        },
+    ],
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.defaultColorDecorators": "never",
+        "editor.formatOnType": true,
+        "editor.wordBasedSuggestions": "off",
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true
+    },
+    "editor.occurrencesHighlight": "off",
+    "git.blame.editorDecoration.enabled": false,
+    "editor.minimap.enabled": false
+}

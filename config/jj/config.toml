@@ -11,8 +11,9 @@ fetch = ["git", "fetch"]
 f = ["git", "fetch"]
 push = ["git", "push"]
 p = ["git", "push"]
-fetch-pr = ['util', 'exec', '--', 'jj-fetch-pr']
+fetch-pr = ["util", "exec", "--", "jj-fetch-pr"]
 pr = ["fetch-pr"]
+q = ["util", "exec", "--", "pkill", "-KILL", "jjui"]
 
 
 [user]

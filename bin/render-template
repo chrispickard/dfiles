@@ -1,37 +1,13 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/usr/bin/env fish
 
-# Template renderer with 1Password secret injection
-# Usage: render-template <template-name> [output-file]
-# If output-file is omitted, prints to stdout
-
-TMPL_DIR="${TMPL_DIR:-$(dirname "$0")/../tmpl}"
-TEMPLATE_NAME="$1"
-OUTPUT_FILE="${2:-}"
-
-TEMPLATE_PATH="$TMPL_DIR/$TEMPLATE_NAME"
-
-if [[ ! -f "$TEMPLATE_PATH" ]]; then
-    echo "Error: Template '$TEMPLATE_NAME' not found at $TEMPLATE_PATH" >&2
+set TMPL_LOC "$HOME/dfiles/tmpl"
+if test ! (command -v "op")
+    echo "op not found"
     exit 1
-fi
+end
 
-# Check if op is available
-if ! command -v op &> /dev/null; then
-    echo "Error: 1Password CLI (op) is not installed or not in PATH" >&2
-    exit 1
-fi
-
-# Render the template by injecting secrets with op
-render() {
-    op inject -i "$TEMPLATE_PATH"
-}
-
-# Output to file or stdout
-if [[ -n "$OUTPUT_FILE" ]]; then
-    render > "$OUTPUT_FILE"
-    chmod 600 "$OUTPUT_FILE"
-    echo "Rendered template to $OUTPUT_FILE" >&2
-else
-    render
-fi
+for i in $TMPL_LOC/.*
+    if test (basename "$i") != ".gitkeep"
+        cat "$i" | op inject --cache=false >~/(basename $i)
+    end
+end
