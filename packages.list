@@ -37,6 +37,11 @@ glab
 gnome-browser-connector
 gnome-tweaks
 google-chrome-stable
+crun
+ghostty
+musl-tools
+openfortivpn
+sqlite-utils
 gpg
 helm
 incus
@@ -45,12 +50,15 @@ jq
 k9s
 kubectl
 libboost1.74-all-dev
+libcap-ng-dev
 libevent-dev
 libglib2.0-dev
 libnss3-tools
+libseccomp-dev
 libssl-dev
 libvirt-clients
 libvirt-daemon
+libvirt-daemon-system
 libwayland-dev
 libx11-dev
 libxft-dev

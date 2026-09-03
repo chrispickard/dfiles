@@ -10,6 +10,7 @@ if status is-interactive
     alias dc="docker compose"
     alias k="kubectl"
     alias o="xdg-open"
+    alias lh="ls -lh"
     alias sc="systemctl"
     alias jc="journalctl"
     alias scu="systemctl --user"
@@ -21,6 +22,7 @@ if status is-interactive
     abbr --add jcu "journalctl --user-unit"
     alias tbg="uv run --project ~/dfiles ~/dfiles/bin/tbg services --"
     alias doom="~/.config/emacs/bin/doom"
+    alias dive="docker run -ti --rm  -v /var/run/docker.sock:/var/run/docker.sock docker.io/wagoodman/dive"
 
     # settings
     set -g fish_autosuggestion_enabled 0
@@ -33,11 +35,10 @@ if status is-interactive
     bind alt-B backward-bigword
     bind alt-F forward-bigword
     bind ctrl-u copy_and_clear_commandline
-    # telepresence completion fish | source
 
     set -g FZF_ALT_C_COMMAND "fd . $HOME --type=d"
 
-    fzf --fish | source
+    fzf --fish | source || true
 
     # env vars
     source ~/.fish_local 2>/dev/null || true

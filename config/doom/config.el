@@ -82,6 +82,7 @@
 (map! :leader "TAB" #'evil-switch-to-windows-last-buffer)
 (map! :leader "s c" #'evil-ex-nohighlight)
 (map! :n "-" #'dired-jump)
+(map! :n "C-e" #'evil-end-of-line)
 (map! :v "s" #'evil-surround-region)
 (use-package consult
   :config
@@ -92,6 +93,10 @@
 
 (define-derived-mode helm-mode yaml-mode "helm"
   "Major mode for editing kubernetes helm templates")
+
+(use-package yaml-mode
+  :config
+    (setq tab-width 2))
 
 (use-package eglot
   ; Any other existing eglot configuration plus the following:

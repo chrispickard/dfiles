@@ -6,7 +6,7 @@ describe-show-full-diff = true
 
 [aliases]
 g = ["git"]
-tug = ["bookmark", "advance"]
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 fetch = ["git", "fetch"]
 f = ["git", "fetch"]
 push = ["git", "push"]
