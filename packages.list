@@ -11,18 +11,23 @@ code
 containerd.io
 curl
 direnv
-discord
+# discord
 distrobox
 docker-buildx-plugin
 docker-ce
 docker-ce-cli
 docker-compose-plugin
 drivestrike
+action1-agent
+bash
+coreutils
+sed
+sudo
+tar
 emacs-gtk
 eza
-fd-find
 fish
-fonts-iosevka
+# fonts-iosevka
 fonts-symbola
 foot
 foot-terminfo
@@ -38,16 +43,16 @@ gnome-browser-connector
 gnome-tweaks
 google-chrome-stable
 crun
-ghostty
+# ghostty
 musl-tools
 openfortivpn
 sqlite-utils
 gpg
 helm
 incus
-jfrog-cli-v2-jf
+# jfrog-cli-v2-jf
 jq
-k9s
+# k9s
 kubectl
 libboost1.74-all-dev
 libcap-ng-dev
@@ -70,7 +75,7 @@ musl-dev
 neovim
 ninja-build
 npm
-nvidia-prime
+# nvidia-prime
 opensc
 passt
 pcsc-tools
@@ -82,10 +87,10 @@ qemu-system
 ripgrep
 shellcheck
 slack-desktop
-step-ca
-step-cli
+# step-ca
+# step-cli
 task
-telepresence
+# telepresence
 tmux
 uidmap
 vde-switch
@@ -140,7 +145,7 @@ mythes-en-au
 mythes-en-us
 ncurses-base
 ncurses-bin
-nvidia-driver-595-open
+# nvidia-driver-595-open
 python3-netifaces
 shim-signed
 thunderbird-locale-en
@@ -185,7 +190,7 @@ nano
 nftables
 ntfs-3g
 numactl
-nvidia-dkms-595-open
+# nvidia-dkms-595-open
 openssh-client
 parted
 pciutils
