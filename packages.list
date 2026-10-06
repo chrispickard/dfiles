@@ -11,7 +11,7 @@ code
 containerd.io
 curl
 direnv
-# discord
+discord
 distrobox
 docker-buildx-plugin
 docker-ce
@@ -50,7 +50,7 @@ sqlite-utils
 gpg
 helm
 incus
-# jfrog-cli-v2-jf
+jfrog-cli-v2-jf
 jq
 # k9s
 kubectl
@@ -89,6 +89,8 @@ shellcheck
 slack-desktop
 # step-ca
 # step-cli
+cifs-utils
+smbclient
 task
 # telepresence
 tmux

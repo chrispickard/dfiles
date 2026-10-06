@@ -25,6 +25,14 @@ if status is-interactive
     alias doom="~/.config/emacs/bin/doom"
     alias dive="docker run -ti --rm  -v /var/run/docker.sock:/var/run/docker.sock docker.io/wagoodman/dive"
 
+    # Homebrew completions
+    if test -d (brew --prefix)/share/fish/completions
+        set -gx fish_complete_path $fish_complete_path (brew --prefix)/share/fish/completions
+    end
+
+    if test -d (brew --prefix)/share/fish/vendor_completions.d
+        set -gx fish_complete_path $fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
+    end
     # settings
     set -g fish_autosuggestion_enabled 0
     # set -g pure_symbol_prompt »
@@ -40,6 +48,7 @@ if status is-interactive
     set -g FZF_ALT_C_COMMAND "fd . $HOME --type=d"
 
     fzf --fish | source || true
+    jj util completion fish | source || true
 
     # env vars
     source ~/.fish_local 2>/dev/null || true

@@ -6,6 +6,7 @@ describe-show-full-diff = true
 
 [aliases]
 g = ["git"]
+clone = ["git", "clone"]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 fetch = ["git", "fetch"]
 f = ["git", "fetch"]
